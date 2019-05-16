@@ -1,0 +1,44 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Jouw takenoverzicht</title>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/header.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/task.css}"/>
+    </head>
+    <body>
+    <div th:insert="~{header :: header}"></div>
+    <div id="main">
+
+        <div id="content">
+            <h1>Vacatures</h1>
+
+                <div th:each="task : ${allTasks}">
+
+                    <form action="#" th:action="@{/showTask/${task}}" th:object="${allTasks}" method="get">
+                    <div class="vacature">
+
+                    <div class="Box2">
+                    <div class="titel">  <span th:text="${task.titel}"/></div>
+
+                    <div id="buttons">
+                        <input type="submit" th:value="Bekijken">
+                        <input type="hidden" th:id="taak" name="taak" th:value="${task.id}">
+                    </div>
+                    </div>
+                    <article class="tekst"><span th:text="${task.beschrijving}"/></article>
+
+                    </div>
+                        <div class="extraInfo">
+                            Startdatum: <span th:text="${task.startdatum}"></span><br>
+                            Vacature sluit: <span th:text="${task.sluitdatum}"></span>
+                        </div>
+
+            </form>
+                </div>
+                </div>
+        </div>
+    </body>
+    </html>
+

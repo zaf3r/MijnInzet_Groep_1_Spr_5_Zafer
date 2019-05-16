@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/header.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/task.css}"/>
+</head>
+
+<body>
+<div th:insert="~{header :: header}"></div>
+    <form action="#" th:action="@{/showTask{task}}" th:object="${task}" method="get">
+
+    <div class="opsomming">
+        <div class="titel"><span th:text="${titel}"></span></div>
+        <div class="informatie"></div>
+        <div class="buttons">
+        <input type='checkbox' name='thing' value='valuable' id="thing"/><label for="thing"></label>
+
+        </div>
+    </div>
+        <article class="tekst"><span th:text="${beschijving}"/></article>
+        <div id="Beschrijving"></div>
+
+    </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,54 @@
+body {
+    font-family: "Times New Roman", Times, sans-serif;
+    color: #5d4b79;
+    text-align: center;
+}
+
+.page-content {
+    position: absolute;
+    text-align: center;
+    left: 0;
+    right: 0;
+    top: 35%;
+    bottom: 0;
+}
+
+h1 {
+    font-size: 46px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+h2 {
+    font-size: 24px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+h3 {
+    font-size: 35px;
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+input:focus{
+    border:2px solid;
+}
+input[type=submit]{
+    background-color:lightgrey;
+    border-radius: 4px;
+    collapse: true;
+    cursor: pointer;
+}
+input[type=reset]{
+    background-color:lightgrey;
+    border-radius: 4px;
+    collapse: true;
+    cursor: pointer;
+}
+input[type=button]{
+    background-color:lightgrey;
+    border-radius: 4px;
+    collapse: true;
+    cursor: pointer;
+}
+input[type=checkbox]{
+    float: none;
+}

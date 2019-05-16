@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<link rel="stylesheet" type="text/css" th:href="@{/css/generic.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/header.css}"/>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- horizontal menu top of page -->
+<div th:insert="~{header :: header}"></div>
+
+<div class="page-content">
+    <h1 th:text="|Jammer dan|"></h1>
+    <h3 th:text="|Onze vlijtige Software Engineers|"></h3>
+    <h3 th:text="|hebben deze pagina nog niet af|"></h3><br>
+    <!--
+    <img src="resources/templates/img/dt100504.gif"> -->
+    //todo comment weghalen
+
+</div>
+</body>
+</html>

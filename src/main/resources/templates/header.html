@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:padding="http://www.w3.org/1999/xhtml"
+      xmlns:margin="http://www.w3.org/1999/xhtml" xmlns:list-style-type="http://www.w3.org/1999/xhtml">
+<html lang="en">
+<link rel="stylesheet" type="text/css" th:href="@{/css/header.css}"/>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<!--menu aan bovenzijde pagina-->
+    <div th:fragment="header" th:align="right">
+        <div class="navbar">
+            <img src="https://www.it-omscholing.nl/files/logo.png" width="75" height="60" alt="logo Make IT Work" align="left" class="logo">
+            <ul>
+                <li><a href="/">Home</a> </li>
+                <li><a href="/globalAvalability">Beschikbaarheid</a></li>
+                <li><a href="/addUser">Nieuwe gebruiker</a></li>
+                <li><a href="/teacher/preference">Voorkeur</a></li>
+                <li><a href="/taskOverview">Vacatures</a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

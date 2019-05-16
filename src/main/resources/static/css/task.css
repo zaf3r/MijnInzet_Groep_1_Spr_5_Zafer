@@ -1,0 +1,189 @@
+
+div#main {
+}
+
+div#content{
+    background-color: floralwhite;
+    float: left;
+    width: 100%;
+    height: 100vh;
+}
+
+.vacature {
+    background-color: floralwhite;
+    height: 250px;
+    margin: 0 auto;
+    width: 65%;
+    border-style: solid;
+    border-color: grey;
+}
+
+.Box2 {
+    background-color: floralwhite;
+    float: left;
+    width: 100%;
+    height: 70px;
+    border-bottom-style: dotted;
+    border-color: grey;
+}
+
+.titel {
+    background-color: floralwhite;
+    width: 70%;
+    height: 55px;
+    text-align: left;
+    padding-top: 5px;
+    padding-left: 16px;
+    float: left;
+    font-size: 24px;
+}
+
+.locatie {
+
+}
+
+div#button {
+    width: 30%;
+    float: left;
+}
+/* checkboxes */
+input[type=checkbox] {
+    display: none;
+}
+
+input[type=checkbox] + label {
+    margin: 25px;
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    background: url('https://instagram.com/static/bundles/es6/sprite_glyphs_4d61c80848f3.png/4d61c80848f3.png') no-repeat;
+    background-position: -156px -211px;
+}
+
+input[type=checkbox]:checked + label {
+    background-position: -130px -211px;
+}
+
+input[type=submit] {
+    background-color: yellow;
+    height: 40px;
+    width: 130px;
+    text-align: center;
+    font-size: 12px;
+    border: none;
+    float: right;
+    display: inline-block;
+    margin: 20px;
+}
+
+input[type=submit]:hover{
+    color: white;
+}
+
+.extraInfo {
+    background-color: ivory;
+    height: 70px;
+    width: 65%;
+    margin: 0 auto;
+    border-left: solid;
+    border-right: solid;
+    border-right-color: grey;
+    border-left-color: grey;
+}
+
+.tekst {
+    float: left;
+    height: auto;
+    padding: 10px;
+    font-size: 18px;
+    text-align: left;
+}
+
+h1 {
+    padding: 5px;
+    text-align: center;
+}
+
+p {
+    padding: 5px;
+}
+
+
+
+
+
+/*!* checkboxes *!*/
+/*div#header {*/
+/*    background-color: purple;*/
+/*    float: left;*/
+/*    width: 100%;*/
+/*    height: 100px;*/
+/*}*/
+
+/*div#box1{*/
+/*    background-color: antiquewhite;*/
+/*    float: left;*/
+/*    width: 15%;*/
+/*    height: 570px;*/
+/*}*/
+
+/*div#content{*/
+/*    background-color: lightblue;*/
+/*    float: left;*/
+/*    width: 85%;*/
+/*    height: 500px;*/
+/*}*/
+
+/*div#box5{*/
+/*    background-color: pink;*/
+/*    float: left;*/
+/*    width: 70%;*/
+/*    height: 500px;*/
+/*}*/
+
+/*div#box6{*/
+/*    background-color: antiquewhite;*/
+/*    float: left;*/
+/*    width: 30%;*/
+/*    height: 500px;*/
+/*}*/
+
+
+/*!* checkboxes *!*/
+/*input[type=checkbox] {*/
+/*    display: none;*/
+/*}*/
+
+/*input[type=checkbox] + label {*/
+/*    margin: 25px;*/
+/*    width: 24px;*/
+/*    height: 24px;*/
+/*    display: inline-block;*/
+/*    background: url('https://instagram.com/static/bundles/es6/sprite_glyphs_4d61c80848f3.png/4d61c80848f3.png') no-repeat;*/
+/*    background-position: -156px -211px;*/
+/*}*/
+
+/*input[type=checkbox]:checked + label {*/
+/*    background-position: -130px -211px;*/
+/*}*/
+
+/*.bekijken {*/
+/*    background-color: yellow;*/
+/*    height: 35px;*/
+/*    text-align: center;*/
+/*    border: none;*/
+/*    margin: 15px;*/
+/*    float: left;*/
+/*}*/
+
+/*.bekijken:hover{*/
+/*    color: white;*/
+/*}*/
+
+/*h1{*/
+/*    padding: 5px;*/
+/*}*/
+
+/*p{*/
+/*    padding: 5px;}*/
+
