@@ -19,7 +19,7 @@ public class UserDetailsImp extends User implements UserDetails {
     private User user;
 
 
-    public UserDetailsImp(final User user) {
+    public UserDetailsImp( User user) {
     this.user = user;
     }
 

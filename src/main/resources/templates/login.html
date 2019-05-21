@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <div style="width: 600px; margin-left: auto; margin-right: auto; margin-top: 24px; padding: 24px">
+        <div class="card">
+            <div class="cardheader">
+                <i class="user"></i> Please login
+            </div>
+            <form name="login" th:action="@{/login}" method="get">
+                <fieldset>
+<!--                <div th:if="${param.error}" class="aler-alert danger">-->
+<!--                    Invalid username and password-->
+<!--                 </div>-->
+
+<!--                <div th:if="${param.logout}" class="alert alert-success">-->
+<!--                        You have been logged out.-->
+<!--                 </div>-->
+
+                    <div class="form-group">
+                        <label for="username" class="sr-only">Username</label>
+                        <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
+                        </div>
+
+                    <div>
+                            <label for="password" class="sr-only">Password</label>
+                            <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+                        </div>
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in
+                        </button>
+
+                </fieldset>
+
+            </form>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+</body>
+</html>
