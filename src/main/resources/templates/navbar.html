@@ -3,7 +3,9 @@
 <!--<xmlns:th="http://www.springframework.org/schema/data/jaxb"-->
 <!--      xmlns:th="http://www.w3.org/1999/xhtml" xmlns:th="http://www.springframework.org/schema/data/jaxb"-->
 <html lang="en">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
 <link rel="stylesheet" type="text/css" th:href="@{/css/navbar.css}"/>
 <head>
     <meta charset="UTF-8">
@@ -14,11 +16,11 @@
 <!--menu aan bovenzijde pagina-->
 <div th:fragment="header" th:align="right">
     <ul>
+        <li><a href="/addUser"><img src="https://celebrityfreakshow.com/wp-content/uploads/2019/03/leuke-kleurplaten-knutselcreatief-55-schattige-poppetjes-tekenen-goede-60-schattige-poppetjes-tekenen.gif"></a></li>
         <li><a href="/home">Home</a> </li>
         <li><a href="/globalAvalability">Beschikbaarheid</a></li>
-        <li><a href="/addUser">Nieuwe gebruiker</a></li>
-        <li><a href="/teacher/preference">Voorkeur</a></li>
         <li><a href="/taskOverview">Vacatures</a></li>
+        <li><a href="/teacher/preference">Voorkeur</a></li>
     </ul>
     <div class="logo" th:align="left">
         <img src="https://www.it-omscholing.nl/files/logo.png" class="logo" alt="logo Make IT Work">
