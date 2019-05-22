@@ -27,6 +27,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(authProvider());
+        auth.userDetailsService(userDetailsService);
     }
 
     @Bean
@@ -42,15 +43,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.csrf().disable();
-        http.authorizeRequests()
-                .antMatchers("/login").authenticated()
+        http.cors().and().csrf().disable()
+                .headers()
+                .and()
+                .authorizeRequests()
+                .antMatchers("/login").permitAll()
                 .antMatchers("/teacher/*").hasRole("Docent")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginProcessingUrl("/")
+//                .loginProcessingUrl("/")
                 .loginPage("/login")
+//                .loginProcessingUrl("/perform_login")
+//                .successForwardUrl("/home")
+                .defaultSuccessUrl("/home", true)
                 .permitAll()
 //                .usernameParameter("username")
 //                .passwordParameter("password")
