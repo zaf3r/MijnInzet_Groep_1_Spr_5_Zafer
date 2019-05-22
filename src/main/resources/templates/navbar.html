@@ -11,18 +11,17 @@
 <body>
 <!--menu aan bovenzijde pagina-->
 <div th:fragment="header" th:align="right">
-    <div class="navigatie">
-        <img src="https://www.it-omscholing.nl/files/logo.png" width="75" height="60" alt="logo Make IT Work" align="right" class="logo" hspace="500px">
+    <ul>
+        <li><a href="/home">Home</a> </li>
+        <li><a href="/globalAvalability">Beschikbaarheid</a></li>
+        <li><a href="/addUser">Nieuwe gebruiker</a></li>
+        <li><a href="/teacher/preference">Voorkeur</a></li>
+        <li><a href="/taskOverview">Vacatures</a></li>
+    </ul>
+    <div class="logo" th:align="left">
+        <img src="https://www.it-omscholing.nl/files/logo.png" class="logo" alt="logo Make IT Work">
     </div>
-</div>
-    <div th:fragment="list">
-        <ul>
-            <li><a href="/">Home</a> </li>
-            <li><a href="/globalAvalability">Beschikbaarheid</a></li>
-            <li><a href="/addUser">Nieuwe gebruiker</a></li>
-            <li><a href="/teacher/preference">Voorkeur</a></li>
-            <li><a href="/taskOverview">Vacatures</a></li>
-        </ul>
+
     </div>
 </body>
 </html>

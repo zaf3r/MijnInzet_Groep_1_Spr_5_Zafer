@@ -1,17 +1,14 @@
 /*horizontal menu blockmenu*/
 body {
     background-color: white;
-    border-style: solid;
-    border-bottom-color: #4CAF50;
 }
 
-.navigatie {
-     background-color: #fc7170;
-     display: block;
-     padding: 20px;
-     width: 100vh;
-
- }
+img {
+    width:75px;
+    height: 60px;
+    align: left;
+    hspace:500px
+}
 
 .logo {
     border-style: solid;
@@ -27,11 +24,13 @@ ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    padding-top: 1px;
     border: 1px none;
     float: right;
-
 }
+
 li {
+    list-style-type: none;
     float: right;
     border-bottom: 1px none;
 }
@@ -39,7 +38,7 @@ li a {
     vertical-align:center;
     margin-right: 2px;
     width: 4em;
-    height: 4em;
+    height: 1px;
     font-size: 20px;
     font-family: "Times New Roman";
     color: black;
