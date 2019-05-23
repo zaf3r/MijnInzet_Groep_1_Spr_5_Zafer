@@ -20,13 +20,13 @@ public class ShowTaskController {
         this.taskRepository = taskRepository;
     }
 
-    @GetMapping("/showTask/{task}")  //th:action
-    public String TaskOverviewHandler(@PathVariable ("task") String id, Model model) {
-        String docNr = id;
-        Task task = this.taskRepository.findDocumentById(docNr);
-        model.addAttribute("taak", task);
-        return "showTask"; //html
-    }
+//    @GetMapping("/showTask/{task}")  //th:action
+//    public String TaskOverviewHandler(@PathVariable ("task") String id, Model model) {
+//        String docNr = id;
+//        Task task = this.taskRepository.findDocumentById(docNr);
+//        model.addAttribute("task", task);
+//        return "showTask"; //html
+//    }
 
 //    @PostMapping("/showTask/{titel}")
 //    public String getDocByName(@PathVariable("titel") String naam, Model model){

@@ -14,6 +14,7 @@
     -o-filter: blur(3px);
     -ms-filter: blur(3px);
     filter: blur(3px);
+    opacity: 0.2%;
 }
 
 /* img {
@@ -88,4 +89,5 @@ input[type=password] {
     height: 35px;
     width: 55%;
     font-size: 15px;
+    color: ivory;
 }

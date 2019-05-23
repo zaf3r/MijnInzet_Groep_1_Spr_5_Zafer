@@ -4,3 +4,8 @@ body {
     width: 300px;
     height: 900px;
 }
+
+button {
+    background-color: #fc7170;
+    border: solid blue 2px;
+}

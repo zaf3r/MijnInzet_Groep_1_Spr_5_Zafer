@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/header.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/navbar.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/task.css}"/>
 </head>
 
 <body>
 <div th:insert="~{header :: header}"></div>
-    <form action="#" th:action="@{/showTask{task}}" th:object="${task}" method="get">
+    <form action="#" th:action="@{/showTask/task}" th:object="${task}" method="get">
 
     <div class="opsomming">
-        <div class="titel"><span th:text="${titel}"></span></div>
+        <div class="titel"><span th:value="${task.titel}"></span></div>
         <div class="informatie"></div>
         <div class="buttons">
         <input type='checkbox' name='thing' value='valuable' id="thing"/><label for="thing"></label>
 
         </div>
     </div>
-        <article class="tekst"><span th:text="${beschijving}"/></article>
+        <article class="tekst" th:field="${task.beschrijving}"></article>
         <div id="Beschrijving"></div>
 
     </div>

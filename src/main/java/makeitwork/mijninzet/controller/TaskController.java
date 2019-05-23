@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
+//@RequestMapping(value = "/task")
 public class TaskController {
 
     private TaskRepository taskRepository;
@@ -24,7 +25,13 @@ public class TaskController {
         return "taskOverview";
     }
 
-
+    @GetMapping("/showTask/task")  //th:action
+    public String TaskOverviewHandler(@PathVariable String id, Model model) {
+        String docNr = id;
+        Task task = taskRepository.findDocumentById(docNr);
+        model.addAttribute("task", task);
+        return "showTask"; //html
+    }
 //
 //    @PutMapping
 //    public void insert(@RequestBody Task task){
