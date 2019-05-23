@@ -39,15 +39,17 @@
     margin-top: 75px; */
 }
 
-h3{
+h3 {
     font-size: 34px;
     color: purple;
     padding: 5px;
     margin-left: 4px;
+    margin-top: 5px;
     font-family: Chalkduster, fantasy;
     font-weight: bold;
     text-align: center;
 }
+
 
 fieldset {
     margin: 20px;
