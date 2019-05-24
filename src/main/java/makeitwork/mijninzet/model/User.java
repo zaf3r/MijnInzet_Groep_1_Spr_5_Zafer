@@ -74,6 +74,8 @@ public class User {
     public User() {
     }
 
+    // CONTROLLER MET GEGEVENS EN ROL LIST?
+
     public int getId() {
         return id;
     }
