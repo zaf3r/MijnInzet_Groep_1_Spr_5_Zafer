@@ -7,18 +7,18 @@
 </head>
 
 <body>
-<div th:insert="~{header :: header}"></div>
-    <form action="#" th:action="@{/showTask/task}" th:object="${task}" method="get">
+<div th:insert="~{navbar :: header}"></div>
+    <form action="#" th:action="@{/saveTask/task}" th:object="${task}" method="post">
 
     <div class="opsomming">
-        <div class="titel"><span th:value="${task.titel}"></span></div>
+        <div class="titel"><span th:field="*{titel}"></span></div>
         <div class="informatie"></div>
         <div class="buttons">
         <input type='checkbox' name='thing' value='valuable' id="thing"/><label for="thing"></label>
 
         </div>
     </div>
-        <article class="tekst" th:field="${task.beschrijving}"></article>
+        <article class="tekst" th:field="*{beschrijving}"></article>
         <div id="Beschrijving"></div>
 
     </div>

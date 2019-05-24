@@ -25,12 +25,17 @@ public class TaskController {
         return "taskOverview";
     }
 
-    @GetMapping("/showTask/task")  //th:action
-    public String TaskOverviewHandler(@PathVariable String id, Model model) {
-        String docNr = id;
-        Task task = taskRepository.findDocumentById(docNr);
+    @PostMapping("/showTask/task")  //th:action
+    public String TaskOverviewHandler(@ModelAttribute Task task, Model model) {
+//        Task task = taskRepository.findDocumentById(id);
         model.addAttribute("task", task);
         return "showTask"; //html
+    }
+
+    @RequestMapping("/saveTask/task")
+    public String ShowTaskHandler (@ModelAttribute Task task, Model model) {
+        taskRepository.save(task);//sql
+        return "showTask";
     }
 //
 //    @PutMapping

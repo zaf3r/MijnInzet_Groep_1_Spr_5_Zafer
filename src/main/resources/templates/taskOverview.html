@@ -16,7 +16,7 @@
 
                 <div th:each="task : ${allTasks}">
 
-                    <form action="#" th:action="@{/showTask/${task}}" th:object="${allTasks}" method="get">
+                    <form action="#" th:action="@{/showTask/task}" th:object="${allTasks}" method="post">
                     <div class="vacature">
 
                     <div class="Box2">
