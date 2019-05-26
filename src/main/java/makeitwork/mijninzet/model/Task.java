@@ -91,4 +91,8 @@ public class Task {
     public String getId() {
         return id;
     }
+
+    public void setSluitdatum(LocalDate sluitdatum) {
+        this.sluitdatum = sluitdatum;
+    }
 }

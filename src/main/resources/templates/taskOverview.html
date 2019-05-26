@@ -16,7 +16,7 @@
 
                 <div th:each="task : ${allTasks}">
 
-                    <form action="#" th:action="@{/showTask/${task}}" th:object="${allTasks}" method="get">
+                    <form action="#" th:action="@{/showTask/${task}}" th:object="${task}" method="get">
                     <div class="vacature">
 
                     <div class="Box2">
@@ -24,15 +24,15 @@
 
                     <div id="buttons">
                         <input type="submit" th:value="Bekijken">
-                        <input type="hidden" th:id="taak" name="taak" th:value="${task.id}">
+                        <input type="hidden" th:id="taak" name="taak" th:value="${task}">
                     </div>
                     </div>
                     <article class="tekst"><span th:text="${task.beschrijving}"/></article>
 
                     </div>
                         <div class="extraInfo">
-                            Startdatum: <span th:text="${task.startdatum}"></span><br>
-                            Vacature sluit: <span th:text="${task.sluitdatum}"></span>
+                            Startdatum    :<span th:text="${task.startdatum}"> niet bekend</span><br>
+                            Vacature sluit:<span th:text="${task.sluitdatum}"> staat open</span>
                         </div>
 
             </form>

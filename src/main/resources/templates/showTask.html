@@ -8,17 +8,17 @@
 
 <body>
 <div th:insert="~{header :: header}"></div>
-    <form action="#" th:action="@{/showTask{task}}" th:object="${task}" method="get">
+    <form action="#" th:action="@{/taskOverview}" th:object="${taak}" th:method="get">
 
     <div class="opsomming">
-        <div class="titel"><span th:text="${titel}"></span></div>
+        <div class="titel"><span th:text="${taak.titel}">Hier komt titel</span></div>
         <div class="informatie"></div>
         <div class="buttons">
-        <input type='checkbox' name='thing' value='valuable' id="thing"/><label for="thing"></label>
+        <input type='submit' name='thing' value='valuable' id="thing"/><label for="thing"></label>
 
         </div>
     </div>
-        <article class="tekst"><span th:text="${beschijving}"/></article>
+<!--        <article class="tekst"><span th:text="${taak.beschijving}"/></article>-->
         <div id="Beschrijving"></div>
 
     </div>
