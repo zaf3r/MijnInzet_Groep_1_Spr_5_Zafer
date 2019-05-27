@@ -2,17 +2,29 @@ package makeitwork.mijninzet.controller;
 
 
 import makeitwork.mijninzet.model.Task;
+import makeitwork.mijninzet.model.User;
+import makeitwork.mijninzet.repository.UsersRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import makeitwork.mijninzet.repository.TaskRepository;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
+
+import java.security.Principal;
+import java.util.*;
+
+import static java.util.Comparator.naturalOrder;
 
 @Controller
-//@RequestMapping(value = "/task")
 public class TaskController {
 
+    @Autowired
     private TaskRepository taskRepository;
+    @Autowired
+    private UsersRepository usersRepository;
 
     public TaskController(TaskRepository taskRepository){
         this.taskRepository = taskRepository;
@@ -20,21 +32,49 @@ public class TaskController {
 
     @GetMapping("/taskOverview") //th:action
     public String MenuHandler(Model model){
-        List<Task> tasks = this.taskRepository.findAll();
-        model.addAttribute("allTasks", tasks);
+        model.addAttribute("allTasks", tasks2Present());
         return "taskOverview";
     }
-
-    @PostMapping("/showTask/task")  //th:action
-    public String TaskOverviewHandler(@ModelAttribute Task task, Model model) {
-        model.addAttribute("task", task);
+    @GetMapping("/showTask/{task}")  //th:action
+    public String TaskDetailHandler(@ModelAttribute("task") Task taak, @RequestParam("taskId") String taakId, Model model) {
+        taak=opening(taakId);
+        model.addAttribute("taak",taak);
         return "showTask"; //html
     }
 
-    @RequestMapping("/saveTask/task")
-    public String ShowTaskHandler (@ModelAttribute Task task, Model model) {
-        taskRepository.save(task);//sql
-        return "showTask";
+    private List<Task> tasks2Present(){
+//        alle taken uit database ophalen
+        List<Task> tasks = this.taskRepository.findAll();
+//        de taken verwijderen waar user eerder op reageerde
+        tasks2React(tasks);
+//        taken op alfabetische volgorde zetten
+        sortTasks(tasks);
+//        opgeschoonde lijst aan handler geven
+        return tasks;
+    }
+
+    private Task opening(String taskId){
+        return this.taskRepository.findDocumentById(taskId);
+    }
+    private List<Task> sortTasks(List<Task> tasks){
+        Collections.sort(tasks,(a,b) -> {return a.getTitel().compareTo(b.getTitel());});
+        return tasks;
+    }
+    private List<Task> tasks2React(List<Task> tasks){
+        //todo taken waar <user> eerder op reageerde uit database halen
+        Set<Task> reacted = new HashSet<>();
+//        statement hieronder verder uitwerken
+//        set<Tasks> reacted = this.reactedrepo.findbyUser(<currentUserName()>
+        Set<Task> alleVacatures= new HashSet<>(tasks);
+        alleVacatures.removeAll(reacted); // levert tasks op waaruit alle eerder gereageerde taken zijn verwijderd
+        List<Task> tasks2Do =new ArrayList<>(alleVacatures);
+        return tasks2Do;
+    }
+    private String currentUserName(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            return authentication.getName();
+        } else return "";
     }
 //
 //    @PutMapping

@@ -91,4 +91,21 @@ public class Task {
     public String getId() {
         return id;
     }
+
+    public void setSluitdatum(LocalDate sluitdatum) {
+        this.sluitdatum = sluitdatum;
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id='" + id + '\'' +
+                ", titel='" + titel + '\'' +
+                ", locatie='" + locatie + '\'' +
+                ", beschrijving='" + beschrijving + '\'' +
+                ", startdat=" + startdatum +
+                ", sluitdate=" + sluitdatum +
+                ", uren=" + uren +
+                '}';
+    }
 }
