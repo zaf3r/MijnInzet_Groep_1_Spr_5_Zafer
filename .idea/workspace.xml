@@ -4,12 +4,9 @@
     <bookmark url="file://$PROJECT_DIR$/src/main/resources/templates/globalAvalability.html" description="&lt;input type=&quot;checkbox&quot; name=&quot;dag&quot; value=&quot;maandag2&quot;..." line="37" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="674d5d15-ae36-4c4f-827e-641c2b2ad1e7" name="Default Changelist" comment="New Task html">
-      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/ShowTaskController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/generic.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/generic.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/home.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/navbar.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/navbar.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/navbar.html" afterDir="false" />
+    <list default="true" id="674d5d15-ae36-4c4f-827e-641c2b2ad1e7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -159,7 +156,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="sprint2" />
+        <entry key="$PROJECT_DIR$" value="sprint3nuEcht" />
       </map>
     </option>
   </component>
@@ -637,15 +634,28 @@
       <option name="project" value="LOCAL" />
       <updated>1558684034237</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="New Task html">
+      <created>1558967215808</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1558967215808</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Merge met Master van Peter">
+      <created>1558967328379</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1558967328379</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="274208000" />
+    <option name="totallyTimeSpent" value="274724000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1892552" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -740,7 +750,8 @@
     <MESSAGE value="globalAvalability.html" />
     <MESSAGE value="custom login" />
     <MESSAGE value="New Task html" />
-    <option name="LAST_COMMIT_MESSAGE" value="New Task html" />
+    <MESSAGE value="Merge met Master van Peter" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge met Master van Peter" />
   </component>
   <component name="WindowStateProjectService">
     <state width="660" height="700" key="Git.Branch.Popup" />
