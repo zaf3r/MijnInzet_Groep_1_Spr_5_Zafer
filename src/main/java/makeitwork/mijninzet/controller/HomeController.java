@@ -19,7 +19,12 @@ public class HomeController {
     private static final String appName = "mijnInzet";
     private static final String teamLeden = "Baseet, Bibi, David, Merel, Peter en Zafer";
 
-    @GetMapping("/")
+    @GetMapping("/login")
+    public String login(){
+        return "login";
+    }
+
+    @GetMapping("/home")
     public String home(Model model,
                        @RequestParam(value = "name", required = false,
                                defaultValue = "Guest") String name) {

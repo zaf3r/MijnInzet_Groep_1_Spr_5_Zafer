@@ -42,15 +42,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.csrf().disable();
-        http.authorizeRequests()
-                .antMatchers("/teacher/*").hasRole("Docent")
+        http.cors().and().csrf().disable()
+                .headers()
                 .and()
                 .authorizeRequests()
+                .antMatchers("/login").permitAll()
+                .antMatchers("/teacher/*").hasRole("Docent")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
+                .loginPage("/login")
+//                .loginProcessingUrl("/perform_login")
+//                .successForwardUrl("/home")
+                .defaultSuccessUrl("/home", true)
                 .permitAll()
+//                .failureUrl()
                 .and()
                 .logout()
                 .permitAll();
