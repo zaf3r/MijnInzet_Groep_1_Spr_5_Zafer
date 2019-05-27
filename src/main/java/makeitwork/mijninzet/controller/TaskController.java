@@ -36,7 +36,8 @@ public class TaskController {
         return "taskOverview";
     }
     @GetMapping("/showTask/{task}")  //th:action
-    public String TaskDetailHandler(@ModelAttribute("task") Task taak, Model model) {
+    public String TaskDetailHandler(@ModelAttribute("task") Task taak, @RequestParam("taskId") String taakId, Model model) {
+        taak=opening(taakId);
         model.addAttribute("taak",taak);
         return "showTask"; //html
     }
@@ -48,9 +49,13 @@ public class TaskController {
         tasks2React(tasks);
 //        taken op alfabetische volgorde zetten
         sortTasks(tasks);
+//        opgeschoonde lijst aan handler geven
         return tasks;
     }
 
+    private Task opening(String taskId){
+        return this.taskRepository.findDocumentById(taskId);
+    }
     private List<Task> sortTasks(List<Task> tasks){
         Collections.sort(tasks,(a,b) -> {return a.getTitel().compareTo(b.getTitel());});
         return tasks;
@@ -60,9 +65,9 @@ public class TaskController {
         Set<Task> reacted = new HashSet<>();
 //        statement hieronder verder uitwerken
 //        set<Tasks> reacted = this.reactedrepo.findbyUser(<currentUserName()>
-        Set<Task> task2Do= new HashSet<>(tasks);
-        task2Do.removeAll(reacted); // levert tasks op waaruit alle eerder gereageerde taken zijn verwijderd
-        List<Task> tasks2Do =new ArrayList<>(task2Do);
+        Set<Task> alleVacatures= new HashSet<>(tasks);
+        alleVacatures.removeAll(reacted); // levert tasks op waaruit alle eerder gereageerde taken zijn verwijderd
+        List<Task> tasks2Do =new ArrayList<>(alleVacatures);
         return tasks2Do;
     }
     private String currentUserName(){

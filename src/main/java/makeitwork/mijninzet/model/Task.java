@@ -95,4 +95,17 @@ public class Task {
     public void setSluitdatum(LocalDate sluitdatum) {
         this.sluitdatum = sluitdatum;
     }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id='" + id + '\'' +
+                ", titel='" + titel + '\'' +
+                ", locatie='" + locatie + '\'' +
+                ", beschrijving='" + beschrijving + '\'' +
+                ", startdat=" + startdatum +
+                ", sluitdate=" + sluitdatum +
+                ", uren=" + uren +
+                '}';
+    }
 }

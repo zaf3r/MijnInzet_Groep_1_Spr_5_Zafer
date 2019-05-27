@@ -9,17 +9,23 @@
 <body>
 <div th:insert="~{header :: header}"></div>
     <form action="#" th:action="@{/taskOverview}" th:object="${taak}" th:method="get">
-
     <div class="opsomming">
-        <div class="titel"><span th:text="${taak.titel}">Hier komt titel</span></div>
+
+        <div class="titel" th:text="*{titel}">Hier komt titel</div><br>
         <div class="informatie"></div>
         <div class="buttons">
-        <input type='submit' name='thing' value='valuable' id="thing"/><label for="thing"></label>
-
+            <input type='checkbox' name='thing' value='valuable' id="thing"/><label for="thing"></label>
+            <input type='submit' name='thing' value='terug naar overzicht' id="task_db"/>
         </div>
     </div>
-<!--        <article class="tekst"><span th:text="${taak.beschijving}"/></article>-->
-        <div id="Beschrijving"></div>
+        <div>
+        <article class="tekst"><span th:text="*{beschrijving}"/></article>
+        </div>
+        <div>
+        Op de locatie: <span th:text="*{locatie}"/><br>
+        Aantal uren: <span th:text="*{uren}"/><br>
+        Vanaf: <span th:text="*{startdatum}"></span><br>
+        </div>
 
     </div>
     </form>
