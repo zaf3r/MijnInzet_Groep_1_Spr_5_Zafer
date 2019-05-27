@@ -52,3 +52,10 @@ input[type=button]{
 input[type=checkbox]{
     float: none;
 }
+
+body {
+    background-color: #faf3e6;
+    font-family: "Open Sans Condensed", sans-serif;
+    text-transform: uppercase;
+    color: rgb(63, 61, 58);
+}

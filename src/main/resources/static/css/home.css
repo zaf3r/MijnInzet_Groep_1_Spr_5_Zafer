@@ -11,8 +11,9 @@ button {
 }
 
 #header {
-    background: darkkhaki;
+    background: #191970;
     margin: 5px 0 40px 0;
+    color: white;
 }
 
 body {
@@ -21,4 +22,8 @@ body {
 
 ul{
     list-style-type: none;
+}
+
+.container {
+    margin-top: 65px;
 }
