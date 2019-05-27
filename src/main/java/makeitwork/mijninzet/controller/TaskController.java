@@ -27,7 +27,6 @@ public class TaskController {
 
     @PostMapping("/showTask/task")  //th:action
     public String TaskOverviewHandler(@ModelAttribute Task task, Model model) {
-//        Task task = taskRepository.findDocumentById(id);
         model.addAttribute("task", task);
         return "showTask"; //html
     }

@@ -20,14 +20,16 @@
                     <div class="vacature">
 
                     <div class="Box2">
-                    <div class="titel">  <span th:text="${task.titel}"/></div>
+                    <div class="titel">
+                        <span th:text="${task.titel}"/></div>
 
                     <div id="buttons">
                         <input type="submit" th:value="Bekijken">
-                        <input type="hidden" th:id="taak" name="taak" th:value="${task.id}">
+                        <input type="hidden" name="task" th:value="${task.getTitel()}">
                     </div>
                     </div>
-                    <article class="tekst"><span th:text="${task.beschrijving}"/></article>
+                    <article class="tekst">
+                        <span th:text="${task.beschrijving}"/></article>
 
                     </div>
                         <div class="extraInfo">

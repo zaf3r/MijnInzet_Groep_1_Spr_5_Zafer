@@ -1,11 +1,24 @@
-body {
-    padding-top: 100px;
-    margin-bottom: 50px;
-    width: 300px;
-    height: 900px;
-}
+
 
 button {
     background-color: #fc7170;
     border: solid blue 2px;
+}
+
+.card {
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+#header {
+    background: darkkhaki;
+    margin: 5px 0 40px 0;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+}
+
+ul{
+    list-style-type: none;
 }
