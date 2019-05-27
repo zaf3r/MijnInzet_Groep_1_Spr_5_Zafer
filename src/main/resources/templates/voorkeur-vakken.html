@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/navbar-custom.css}"/>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
     <meta charset="UTF-8">
     <title>Voorkeur opgeven</title>
     <script>
@@ -8,91 +18,111 @@
 
 </head>
 <body>
-<h1>Voorkeur vakken</h1>
-<p>Voer a.u.b uw voorkeur in hieronder (schaal 1-3)</p>
+<div>
+ <nav class="navbar fixed-top navbar-expand-lg navbar-light">
+     <a class="navbar-brand" href="#">
+         <img src="/images/logoMiW.png" width="46" height="30" class="d-inline-block align-top" alt="">
+     </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-<form th:object="${preferenceForm}" th:action="@{postPreferences}" method="post" id = "form">
-    <fieldset>
-        <legend>Vakken</legend>
-        <ul th:each="subject, subjectIndex : ${subjectsList}">
-            <label th:text="${subject.subjectName}"></label>
-            <div th:each="scaleValue, scaleIndex : ${preferenceScaleList}">
-                <input type="radio"
-                       th:field="${preferenceForm.preferenceRating[__${subjectIndex.index}__]}"
-                       th:value="${scaleValue.scale}" />
-                <label th:text="${scaleValue.scale}"></label>
-                <br>
-            </div>
-        </ul>
-    </fieldset>
-    <p><input type="submit" value="Submit" /></p>
-</form>
-<!--
-
-
-
-    <br>
-    <h1>Some header to separate</h1>
-    <br>
-
-
-
-
-
-
-    <form th:object="${preferenceForm}" method="post">
-        <fieldset>
-            <legend>Subject</legend>
-            <ul>
-                <li th:each="preference, preferenceStat: ${voorkeurTestsList}">\
-                    <label th:text="${preference.naamVak}"></label>
-                    <input type="radio"
-                           th:field="*{voorkeur[__${preferenceStat.index}__].voorkeurVak}"
-                           th:for th:value="${preference.voorkeurVak}" />
-                    <label th:each="voorkeur : ${preference.voorkeurSchaal}" th:text="${voorkeur.schaal}"></label>
-                    <br>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item justify-content-end">
+                    <a class="nav-link" href="http://localhost:8080/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.youtube.com/watch?v=iep9EJ9H1aU">Meltdown</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
                 </li>
             </ul>
-        </fieldset>
-        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+        </div>
+ </nav>
+
+
+
+<div class="container">
+    <br>
+    <br>
+    <br>
+
+    <br>
+    <h1 class="text-center" > Voorkeur vakken</h1>
+    <br>
+    <p>Geef hieronder a.u.b uw voorkeur op(schaal 1-3)</p>
+    <br>
+    <form th:object="${preferenceForm}" th:action="@{postPreferences}" method="post" id = "preferenceForm">
+    <table class="table table-striped table table-hover" >
+        <thead>
+        <tr>
+            <th scope="col"></th>
+            <th th:each="scaleValue, scaleIndex : ${preferenceScaleList}" scope="col">
+                <label th:text="${scaleValue.scale}"></label>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="subject, subjectIndex : ${subjectsList}">
+            <td>
+                <label th:text="${subject.subjectName}"></label>
+            </td>
+            <td th:each="scaleValue, scaleIndex : ${preferenceScaleList}">
+                <input type="radio"
+                       th:field="${preferenceForm.preferenceRating[__${subjectIndex.index}__]}"
+                       th:value="${scaleValue.scale}"
+                       required/>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+        <br>
+        <input class="save" type="submit" value="Oplaan voorkeuren">
     </form>
-
+<!--
+    <form th:object="${preferenceForm}" th:action="@{postPreferences}" method="post" id = "preferenceForm">
+        <table class="table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th th:each="scaleValue, scaleIndex : ${preferenceScaleList}" scope="col">
+                        <label th:text="${scaleValue.scale}"></label>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="subject, subjectIndex : ${subjectsList}">
+                    <td>
+                        <label th:text="${subject.subjectName}"></label>
+                    </td>
+                    <td th:each="scaleValue, scaleIndex : ${preferenceScaleList}">
+                        <input class="form-check-input" type="radio"
+                               th:field="${preferenceForm.preferenceRating[__${subjectIndex.index}__]}"
+                               th:value="${scaleValue.scale}"
+                               required/>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <input class="save" type="submit" value="Oplaan voorkeuren">
+    </form>-->
     <br>
-    <h1>Some header to separate</h1>
     <br>
+</div>
 
+<!-- Scripts below -->
+<script type="text/javascript" src="/js/voorkeur-check.js" th:src="@{/js/voorkeur-check.js}"></script>
 
--->
 </body>
 </html>
-
-
-
-
-
-
-<!--    <form th:object="${preferenceForm}" method="post">-->
-<!--        <fieldset>-->
-<!--            <legend>Subject</legend>-->
-<!--            <ul>-->
-<!--                <li th:each="preference, preferenceStat: ${voorkeurTestsList}">\-->
-<!--                    <label th:text="${preference.naamVak}"></label>-->
-<!--                    <input type="radio"-->
-<!--                           th:field="*{voorkeur[__${preferenceStat.index}__].voorkeurVak}"-->
-<!--                           th:for th:value="${preference.voorkeurVak}" />-->
-<!--                    <label th:each="voorkeur : ${preference.voorkeurSchaal}" th:text="${voorkeur.schaal}"></label>-->
-<!--                    <br>-->
-<!--                </li>-->
-<!--            </ul>-->
-<!--        </fieldset>-->
-<!--        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>-->
-<!--    </form>-->
-
-<!--    <br>-->
-<!--    <h1>Some header to separate</h1>-->
-<!--    <br>-->
-
-
-<!--&ndash;&gt;-->
-<!--</body>-->
-<!--</html>-->
