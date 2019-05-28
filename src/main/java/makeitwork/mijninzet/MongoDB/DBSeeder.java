@@ -1,8 +1,6 @@
 package makeitwork.mijninzet.MongoDB;
 
-import makeitwork.mijninzet.model.Task;
 import makeitwork.mijninzet.repository.TaskRepository;
-import org.bson.types.ObjectId;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
