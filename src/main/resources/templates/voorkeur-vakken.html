@@ -18,9 +18,12 @@
 
 </head>
 <body>
-<div>
- <nav class="navbar fixed-top navbar-expand-lg navbar-light">
-     <a class="navbar-brand" href="#">
+
+<!-- Start navbar -->
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-light">
+
+    <a class="navbar-brand" href="#">
          <img src="/images/logoMiW.png" width="46" height="30" class="d-inline-block align-top" alt="">
      </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,13 +53,14 @@
         </div>
  </nav>
 
+<!-- End navbar -->
 
+
+<!-- Start form -->
 
 <div class="container">
     <br>
     <br>
-    <br>
-
     <br>
     <h1 class="text-center" > Voorkeur vakken</h1>
     <br>
@@ -89,37 +93,11 @@
         <br>
         <input class="save" type="submit" value="Oplaan voorkeuren">
     </form>
-<!--
-    <form th:object="${preferenceForm}" th:action="@{postPreferences}" method="post" id = "preferenceForm">
-        <table class="table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th th:each="scaleValue, scaleIndex : ${preferenceScaleList}" scope="col">
-                        <label th:text="${scaleValue.scale}"></label>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="subject, subjectIndex : ${subjectsList}">
-                    <td>
-                        <label th:text="${subject.subjectName}"></label>
-                    </td>
-                    <td th:each="scaleValue, scaleIndex : ${preferenceScaleList}">
-                        <input class="form-check-input" type="radio"
-                               th:field="${preferenceForm.preferenceRating[__${subjectIndex.index}__]}"
-                               th:value="${scaleValue.scale}"
-                               required/>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <br>
-        <input class="save" type="submit" value="Oplaan voorkeuren">
-    </form>-->
     <br>
     <br>
 </div>
+
+<!-- End form -->
 
 <!-- Scripts below -->
 <script type="text/javascript" src="/js/voorkeur-check.js" th:src="@{/js/voorkeur-check.js}"></script>
