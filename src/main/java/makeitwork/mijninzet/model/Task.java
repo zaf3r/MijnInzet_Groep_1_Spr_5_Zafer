@@ -23,6 +23,9 @@ public class Task {
 
 
     private String beschrijving;
+
+    private String beschrijvingLang;
+
     private LocalDate startdatum;
 
     private LocalDate sluitdatum;
@@ -71,6 +74,9 @@ public class Task {
         return beschrijving;
     }
 
+    public String getBeschrijvingLang() {
+        return beschrijvingLang;
+    }
 
     public LocalDate getStartdatum() {
         return startdatum;

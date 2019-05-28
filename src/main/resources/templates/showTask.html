@@ -7,6 +7,9 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/task.css}"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
           integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Open+Sans&display=swap" rel="stylesheet">
 
 
 </head>
@@ -14,26 +17,73 @@
 <body>
 
 <div th:insert="~{navbar :: header}"></div>
+<section id="containerContent">
     <form action="#" th:action="@{/taskOverview}" th:object="${taak}" th:method="get">
-    <div class="opsomming">
 
-        <div class="titel" th:text="*{titel}">Hier komt titel</div><br>
-        <div class="informatie"></div>
-        <div class="buttons">
-            <input type='checkbox' name='thing' value='valuable' id="thing"/><label for="thing"></label>
-            <input type='submit' name='thing' value='terug naar overzicht' id="task_db"/>
-        </div>
-    </div>
-        <div>
-        <article class="tekst"><span th:text="*{beschrijving}"/></article>
-        </div>
-        <div>
-        Op de locatie: <span th:text="*{locatie}"/><br>
-        Aantal uren: <span th:text="*{uren}"/><br>
-        Vanaf: <span th:text="*{startdatum}"></span><br>
+        <div class="job-header">
+        <h1 class="job-header header"><span th:text="*{titel}"/></h1>
         </div>
 
-    </div>
+        <div class="container">
+            <div class="job-header-bar">
+                <input type='checkbox' name='thing' value='valuable' id="thing"/><label for="thing"></label>
+                <input type='submit' name='thing' value='terug naar overzicht' id="task_db"/>
+            </div>
+            <div class="row justify-content-md-center">
+                <div class="col col-lg-3">
+                </div>
+                <div class="col-md-auto" id="boxContent">
+                    <div class="container">
+                        <div class="row">
+
+                                <h2 class="details">Details</h2>
+                        <ul>
+                            <li class="Locatie">Locatie: <span th:text="*{locatie}"/></li>
+                            <li class="Uren">Uren: <span th:text="*{uren}"/></li>
+                            <li class="Startdatum">Start vanaf:<span th:text="*{startdatum}"/></li>
+                            <li class="Vacturenummer">Vacaturenummer: 123</li>
+                            <li class="Deadline">Reageren voor: 1 juli 2020</li>
+                        </ul>
+
+                        </div>
+                    </div>
+                    <div class="container-description">
+                        <h2 class="description">Beschrijving</h2>
+                                    <span th:text="*{beschrijvingLang}"/>
+                    </div>
+                </div>
+                <div class="col col-lg-3">
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+<!--    <div class="opsomming">-->
+
+<!--        <div class="titel" th:text="*{titel}">Hier komt titel</div><br>-->
+<!--        <div class="informatie"></div>-->
+<!--        <div class="buttons">-->
+<!--            <input type='checkbox' name='thing' value='valuable' id="thing"/><label for="thing"></label>-->
+<!--            <input type='submit' name='thing' value='terug naar overzicht' id="task_db"/>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--        <div>-->
+<!--        <article class="tekst"><span th:text="*{beschrijving}"/></article>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--        Op de locatie: <span th:text="*{locatie}"/><br>-->
+<!--        Aantal uren: <span th:text="*{uren}"/><br>-->
+<!--        Vanaf: <span th:text="*{startdatum}"></span><br>-->
+<!--        </div>-->
+
     </form>
+</section>
 </body>
+<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 </html>

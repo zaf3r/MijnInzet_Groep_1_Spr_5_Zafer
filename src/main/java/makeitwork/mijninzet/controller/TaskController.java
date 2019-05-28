@@ -37,7 +37,7 @@ public class TaskController {
     }
     @GetMapping("/showTask/{task}")  //th:action
     public String TaskDetailHandler(@ModelAttribute("task") Task taak, @RequestParam("taskId") String taakId, Model model) {
-        taak=opening(taakId);
+        taak = opening(taakId);
         model.addAttribute("taak",taak);
         return "showTask"; //html
     }

@@ -3,17 +3,6 @@
   margin-top: 80px;
 }
 
-/*.titel {*/
-/*    width: 65%;*/
-/*    height: 55px;*/
-/*    text-align: left;*/
-/*    vertical-align: center;*/
-/*    padding-top: 5px;*/
-/*    padding-left: 16px;*/
-/*    float: left;*/
-/*    font-size: 24px;*/
-/*}*/
-
 #gallery {
     margin-top: 50px;
 }
@@ -23,9 +12,23 @@ div#buttons {
     float: left;
 }
 
-.btn-outline-succes {
-    border: 2px solid yellow;
+.card-text{
+    font-size: 14px;
 }
+
+#containerContent {
+    margin-top: 100px;
+}
+
+#boxContent {
+    border: 2px solid rosybrown;
+}
+
+ul {
+    list-style-type: none;
+}
+
+
 /* checkboxes */
 
 input[type=checkbox] {
@@ -61,17 +64,6 @@ input[type=submit]:hover{
     color: white;
 }
 
-.extraInfo {
-    background-color: ivory;
-    height: 70px;
-    width: 65%;
-    margin: 0 auto;
-    border-left: solid;
-    border-right: solid;
-    border-right-color: grey;
-    border-left-color: grey;
-}
-
 .tekst {
     float: left;
     height: auto;
@@ -81,6 +73,8 @@ input[type=submit]:hover{
 }
 
 h1 {
+    font-family: "Amatic SC", cursive;
+    font-size: 60px;
     padding: 5px;
     text-align: center;
 }
@@ -89,6 +83,25 @@ p {
     padding: 5px;
 }
 
+h6{
+    font-weight: lighter;
+    color: grey;
+}
+
+h4{
+    font-family: "Open Sans", sans-serif;
+}
+
+h2{
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+    padding-top: 8px;
+}
+
+#details {
+    font-family: "Amatic SC", cursive;
+    font-size: 20px;
+}
 
 
 
