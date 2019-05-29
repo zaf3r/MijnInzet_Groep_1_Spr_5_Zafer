@@ -15,7 +15,7 @@ public class Availibility {
     public Availibility() {
         setAvailable(available,false);
     }
-    //constructor for a period (start-end) of time. Availibility is set to true.
+    //constructor for a period (start-end) of time. Availibility is set to true.    should default not be false?
     public Availibility(LocalDate startdate, LocalDate enddate) {
         this(startdate,enddate,true);
     }

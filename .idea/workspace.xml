@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="674d5d15-ae36-4c4f-827e-641c2b2ad1e7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Availibility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Availibility.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -34,83 +35,98 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/generic.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/config/SecurityConfiguration.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Availibility.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="392">
-              <caret line="55" column="29" lean-forward="true" selection-start-line="55" selection-start-column="29" selection-end-line="55" selection-end-column="29" />
+            <state relative-caret-position="1122">
+              <caret line="78" column="49" selection-start-line="78" selection-start-column="49" selection-end-line="78" selection-end-column="49" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/SQLScripts/MijnInzetInsertScriptv2.5.sql">
+        <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/StatusTask.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" selection-start-line="9" selection-end-line="16" selection-end-column="87" />
+            <state relative-caret-position="34">
+              <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/home.html">
+        <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Subject.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="7" lean-forward="true" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
+            <state relative-caret-position="238">
+              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/voorkeur-vakken.html">
+        <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Task.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1032">
-              <caret line="71" lean-forward="true" selection-start-line="71" selection-end-line="97" selection-end-column="11" />
+            <state relative-caret-position="175">
+              <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/globalAvalability.html">
+        <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/TasksDoneByUser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="18" selection-start-line="18" selection-end-line="18" />
+            <state relative-caret-position="5">
+              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/taskOverview.html">
+        <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/TaskRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="7" lean-forward="true" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="77" />
+            <state relative-caret-position="153">
+              <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/task.css">
+        <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/UsersRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="467">
-              <caret line="90" column="28" selection-start-line="90" selection-start-column="28" selection-end-line="90" selection-end-column="28" />
+            <state relative-caret-position="119">
+              <caret line="8" column="41" lean-forward="true" selection-start-line="8" selection-start-column="41" selection-end-line="8" selection-end-column="41" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/header.html">
+        <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/GlobalAvalability.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="3" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
+            <state relative-caret-position="277">
+              <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/PartOfDay.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Weekdays.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="10" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -207,6 +223,7 @@
         <option value="$PROJECT_DIR$/src/main/resources/static/css/generic.css" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/voorkeur-vakken.html" />
         <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/config/SecurityConfiguration.java" />
+        <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Availibility.java" />
       </list>
     </option>
   </component>
@@ -228,16 +245,146 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="-10" />
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="width" value="1920" />
-    <option name="height" value="1095" />
+    <option name="height" value="1080" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Sprint 1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sprint 1" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Sprint 1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sprint 1" type="462c0819:PsiDirectoryNode" />
+              <item name=".mvn" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Sprint 1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sprint 1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Sprint 1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sprint 1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Sprint 1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sprint 1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Sprint 1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sprint 1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="mijninzet" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Sprint 1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sprint 1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="mijninzet" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Sprint 1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sprint 1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="mijninzet" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Sprint 1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sprint 1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="mijninzet" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Sprint 1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sprint 1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="mijninzet" type="462c0819:PsiDirectoryNode" />
+              <item name="MongoDB" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Sprint 1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sprint 1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="mijninzet" type="462c0819:PsiDirectoryNode" />
+              <item name="repository" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Sprint 1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sprint 1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="mijninzet" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Sprint 1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sprint 1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Sprint 1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sprint 1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Sprint 1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sprint 1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Sprint 1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sprint 1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Sprint 1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sprint 1" type="462c0819:PsiDirectoryNode" />
+              <item name="testen" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope">
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
@@ -249,113 +396,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="mijninzet-c15-team-1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mijninzet-c15-team-1" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mijninzet-c15-team-1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mijninzet-c15-team-1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mijninzet-c15-team-1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mijninzet-c15-team-1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mijninzet-c15-team-1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mijninzet-c15-team-1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mijninzet-c15-team-1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mijninzet-c15-team-1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="mijninzet" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mijninzet-c15-team-1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mijninzet-c15-team-1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="mijninzet" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mijninzet-c15-team-1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mijninzet-c15-team-1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="mijninzet" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mijninzet-c15-team-1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mijninzet-c15-team-1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="mijninzet" type="462c0819:PsiDirectoryNode" />
-              <item name="MongoDB" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mijninzet-c15-team-1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mijninzet-c15-team-1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="mijninzet" type="462c0819:PsiDirectoryNode" />
-              <item name="repository" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mijninzet-c15-team-1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mijninzet-c15-team-1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="mijninzet" type="462c0819:PsiDirectoryNode" />
-              <item name="repository" type="462c0819:PsiDirectoryNode" />
-              <item name="SQLScripts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mijninzet-c15-team-1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mijninzet-c15-team-1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mijninzet-c15-team-1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mijninzet-c15-team-1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mijninzet-c15-team-1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mijninzet-c15-team-1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -440,6 +480,8 @@
       <workItem from="1557816715627" duration="37825000" />
       <workItem from="1557992275073" duration="5913000" />
       <workItem from="1558003077336" duration="956000" />
+      <workItem from="1559034623980" duration="1192000" />
+      <workItem from="1559037129241" duration="3344000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <created>1556914852462</created>
@@ -515,13 +557,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="203862000" />
+    <option name="totallyTimeSpent" value="208398000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18192919" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18456376" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -531,7 +573,7 @@
       <window_info id="Image Layers" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4986979" weight="0.32719547" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4981685" visible="true" weight="0.38163266" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4981685" weight="0.38101983" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.398017" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -541,7 +583,7 @@
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50183153" side_tool="true" weight="0.38163266" />
       <window_info anchor="bottom" id="Java Enterprise" order="10" weight="0.3286119" />
       <window_info anchor="bottom" id="Database Changes" order="11" />
-      <window_info anchor="bottom" id="Version Control" order="12" weight="0.3286119" />
+      <window_info anchor="bottom" id="Version Control" order="12" visible="true" weight="0.3286119" />
       <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
       <window_info anchor="bottom" id="Messages" order="14" weight="0.3122449" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -661,53 +703,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-core/5.1.5.RELEASE/spring-security-core-5.1.5.RELEASE.jar!/org/springframework/security/crypto/bcrypt/BCryptPasswordEncoder.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="19" column="11" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
-          <folding>
-            <element signature="e#618#619#0" expanded="true" />
-            <element signature="e#642#643#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-core/5.1.5.RELEASE/spring-security-core-5.1.5.RELEASE.jar!/org/springframework/security/crypto/password/PasswordEncoder.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="46" selection-start-line="2" selection-start-column="46" selection-end-line="2" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/avalability.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="1" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/user.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" selection-start-line="10" selection-end-line="12" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/empty.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" selection-start-line="1" selection-end-line="14" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jrt://C:/Program Files/Java/jdk-11.0.2!/java.base/sun/security/ssl/Alert.class" />
     <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Teacher.java" />
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.1.6.RELEASE/spring-webmvc-5.1.6.RELEASE.jar!/org/springframework/web/servlet/mvc/method/annotation/ServletInvocableHandlerMethod.class">
       <provider selected="true" editor-type-id="text-editor">
@@ -770,20 +765,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/PreferenceKey.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/UsersRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Subject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/User.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2057">
@@ -878,16 +859,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/TaskRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="795">
@@ -916,45 +887,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/SQLScripts/MijnInzetInsertScriptv2.5.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" selection-start-line="9" selection-end-line="16" selection-end-column="87" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/taskOverview.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="7" lean-forward="true" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/PreferenceRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/globalAvalability.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="7" lean-forward="true" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/task.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="467">
-          <caret line="90" column="28" selection-start-line="90" selection-start-column="28" selection-end-line="90" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -965,31 +901,136 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/header.html" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/task.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="467">
+          <caret line="90" column="24" selection-start-line="90" selection-start-column="24" selection-end-line="90" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/generic.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
+        <state relative-caret-position="34">
           <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/voorkeur-vakken.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1032">
-          <caret line="71" lean-forward="true" selection-start-line="71" selection-end-line="97" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/header.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="3" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/config/SecurityConfiguration.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="55" column="29" lean-forward="true" selection-start-line="55" selection-start-column="29" selection-end-line="55" selection-end-column="29" />
+        <state relative-caret-position="544">
+          <caret line="45" column="26" selection-start-line="45" selection-start-column="26" selection-end-line="45" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/SQLScripts/MijnInzetInsertScriptv2.5.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="72" selection-start-line="9" selection-start-column="72" selection-end-line="9" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="7" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/voorkeur-vakken.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1207">
+          <caret line="71" selection-start-line="71" selection-end-line="97" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/globalAvalability.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/taskOverview.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="30" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Weekdays.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="10" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/PartOfDay.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/GlobalAvalability.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/StatusTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Subject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Task.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/TasksDoneByUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/TaskRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/UsersRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="8" column="41" lean-forward="true" selection-start-line="8" selection-start-column="41" selection-end-line="8" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Availibility.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1122">
+          <caret line="78" column="49" selection-start-line="78" selection-start-column="49" selection-end-line="78" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
