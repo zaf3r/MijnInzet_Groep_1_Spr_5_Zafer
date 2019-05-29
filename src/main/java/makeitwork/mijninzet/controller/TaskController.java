@@ -2,9 +2,7 @@ package makeitwork.mijninzet.controller;
 
 
 import makeitwork.mijninzet.model.Task;
-import makeitwork.mijninzet.model.Teacher;
-import makeitwork.mijninzet.model.User;
-import makeitwork.mijninzet.repository.TeacherRepository;
+
 import makeitwork.mijninzet.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -25,8 +23,6 @@ public class TaskController {
 
     @Autowired
     private TaskRepository taskRepository;
-    @Autowired
-    private TeacherRepository teacherRepository;
 
     public TaskController(TaskRepository taskRepository){
         this.taskRepository = taskRepository;

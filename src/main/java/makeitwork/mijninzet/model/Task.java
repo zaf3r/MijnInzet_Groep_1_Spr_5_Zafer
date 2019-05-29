@@ -2,8 +2,6 @@ package makeitwork.mijninzet.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import javax.persistence.Column;
 import java.time.LocalDate;
 
 
@@ -11,7 +9,6 @@ import java.time.LocalDate;
 public class Task {
 
     @Id
-    @Column(name="task_id")
     private String id;
 
     private String titel;

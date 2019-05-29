@@ -6,7 +6,7 @@ import java.util.Set;
 
 @Entity
 @Table(name="docentt")
-public class Teacher extends User {
+public class Teacher {
 
 
     @Transient
@@ -44,18 +44,18 @@ public class Teacher extends User {
         this.id = id;
     }
 
-    @ManyToMany(fetch=FetchType.EAGER)
-    @JoinTable(name="tasks_teacher", joinColumns = @JoinColumn(name=COLUMN_ID),
-            inverseJoinColumns = @JoinColumn(name=PK_COLUMN_TASK))
-    private List<Task> tasks;
-
-    public List<Task> getTasks() {
-        return tasks;
-    }
-
-    public void setTasks(List<Task> tasks) {
-        this.tasks = tasks;
-    }
+//    @ManyToMany(fetch=FetchType.EAGER)
+//    @JoinTable(name="tasks_teacher", joinColumns = @JoinColumn(name=COLUMN_ID),
+//            inverseJoinColumns = @JoinColumn(name=PK_COLUMN_TASK))
+//    private List<Task> tasks;
+//
+//    public List<Task> getTasks() {
+//        return tasks;
+//    }
+//
+//    public void setTasks(List<Task> tasks) {
+//        this.tasks = tasks;
+//    }
 
     //toString
     @Override
