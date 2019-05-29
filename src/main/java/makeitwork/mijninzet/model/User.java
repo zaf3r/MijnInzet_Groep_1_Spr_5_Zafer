@@ -1,5 +1,7 @@
 package makeitwork.mijninzet.model;
 
+import org.hibernate.annotations.ManyToAny;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -40,7 +42,6 @@ public class User {
 
     @Transient
     private final String PK_COLUMN_OTHER_ENTITY = "rol_id";
-
 
     //Fields that are mapped by Hibernate
     @Id
@@ -123,4 +124,5 @@ public class User {
     public void setPreferenceSet(Set<Preference> preferenceSet) {
         this.preferenceSet = preferenceSet;
     }
+
 }

@@ -10,8 +10,6 @@
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Open+Sans&display=swap" rel="stylesheet">
-
-
 </head>
 
 <body>
@@ -25,18 +23,19 @@
         </div>
 
         <div class="container">
-            <div class="job-header-bar">
-                <input type='checkbox' name='thing' value='valuable' id="thing"/><label for="thing"></label>
+            <div class="job-header-bar col-md-8 justify-content-right py-5">
+<!--                <input type='submit' name='thing' value='valuable' id="thing"/><label for="thing"></label>-->
                 <input type='submit' name='thing' value='terug naar overzicht' id="task_db"/>
+                <button type="submit" id="love" class="love"><i class="fas fa-heart"></i></button>
             </div>
             <div class="row justify-content-md-center">
-                <div class="col col-lg-3">
+                <div class="col col-lg-2">
                 </div>
-                <div class="col-md-auto" id="boxContent">
+                <div class="col-md-8" id="boxContent">
                     <div class="container">
-                        <div class="row">
-
-                                <h2 class="details">Details</h2>
+                        <div class="row bg-info px-4 py-4">
+                            <div class="vacancy-pattern-spacing">
+                                <h2 class="details">Details</h2><br>
                         <ul>
                             <li class="Locatie">Locatie: <span th:text="*{locatie}"/></li>
                             <li class="Uren">Uren: <span th:text="*{uren}"/></li>
@@ -44,15 +43,15 @@
                             <li class="Vacturenummer">Vacaturenummer: 123</li>
                             <li class="Deadline">Reageren voor: 1 juli 2020</li>
                         </ul>
-
+                            </div>
                         </div>
                     </div>
-                    <div class="container-description">
+                    <div class="container-description px-4 py-5">
                         <h2 class="description">Beschrijving</h2>
                                     <span th:text="*{beschrijvingLang}"/>
                     </div>
                 </div>
-                <div class="col col-lg-3">
+                <div class="col col-lg-2">
                 </div>
             </div>
         </div>

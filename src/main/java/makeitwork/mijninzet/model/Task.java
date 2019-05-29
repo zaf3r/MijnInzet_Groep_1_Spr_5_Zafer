@@ -1,8 +1,6 @@
 package makeitwork.mijninzet.model;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.IndexDirection;
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.Column;
@@ -13,14 +11,12 @@ import java.time.LocalDate;
 public class Task {
 
     @Id
+    @Column(name="task_id")
     private String id;
 
     private String titel;
 
-    @Indexed(direction = IndexDirection.ASCENDING)
-
     private String locatie;
-
 
     private String beschrijving;
 
@@ -28,12 +24,13 @@ public class Task {
 
     private LocalDate startdatum;
 
+    private LocalDate einddatum;
+
     private LocalDate sluitdatum;
 
     private int uren;
 
     private InfoBy contactPerson;//nog naar het Nederland vertalen
-
 
     public Task() {
     }
@@ -100,6 +97,10 @@ public class Task {
 
     public void setSluitdatum(LocalDate sluitdatum) {
         this.sluitdatum = sluitdatum;
+    }
+
+    public LocalDate getEinddatum() {
+        return einddatum;
     }
 
     @Override
