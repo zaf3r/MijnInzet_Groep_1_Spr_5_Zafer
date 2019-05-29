@@ -3,6 +3,7 @@ package makeitwork.mijninzet.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.persistence.Column;
 import java.time.LocalDate;
 
 
