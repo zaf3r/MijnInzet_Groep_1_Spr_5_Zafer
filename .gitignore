@@ -37,13 +37,17 @@
 # .idea/*.iml
 # .idea/modules
 
-# CMake
-cmake-build-*/
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
 
-# Mongo Explorer plugin
-.idea/**/mongoSettings.xml
-
-# File-based project format
+### IntelliJ IDEA ###
+*.idea
 *.iws
 
 # IntelliJ
@@ -122,3 +126,11 @@ buildNumber.properties
 .mvn/wrapper/maven-wrapper.jar
 
 # End of https://www.gitignore.io/api/java,maven,intellij
+
+### MAC
+.DS_Store
+
+# OS generated files #
+######################
+client/.DS_Store
+.DS_Store

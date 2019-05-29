@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
@@ -163,4 +164,171 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 
 
+=======
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}"/>
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Inloggen</title>
+</head>
+<style>
+    .background-image {
+        background-image: url("https://images.unsplash.com/photo-1498079022511-d15614cb1c02?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80");
+        background-size: cover;
+        /*("https://assets-cdn-folia.boondrive.com/1240x698/10961_1515492443852_math-1500720_1920.jpg");*/
+
+        /*https://images.unsplash.com/photo-1512847930783-39fdc971594b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60*/
+        position: fixed;
+        margin: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+        display: block;
+        width: 100%;
+        height: 100%;
+
+        -webkit-filter: blur(3px);
+        -moz-filter: blur(3px);
+        -o-filter: blur(3px);
+        -ms-filter: blur(3px);
+        filter: blur(3px);
+    }
+
+    /* img {
+      background: url("https://assets-cdn-folia.boondrive.com/1240x698/10961_1515492443852_math-1500720_1920.jpg");
+       filter: blur(8px);
+      height: 100vh;
+
+      background-size: cover;
+    } */
+
+    .content {
+        position: fixed;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+        margin-left: 20px;
+        margin-right: 20px;
+        /* height: 200px;
+        width: 70%;
+        background-color: white;
+        margin: 0 auto;
+        display: inline block;
+        margin-top: 75px; */
+    }
+
+    h3{
+        font-size: 34px;
+        color: white;
+        padding: 5px;
+        padding-top: 40px;
+        margin-top: 10px;
+        font-family: 'Raleway', sans-serif;
+        text-align: center;
+    }
+
+    hr {
+        width: 50%;
+        color: antiquewhite;
+    }
+
+    fieldset {
+        margin: 20px;
+        padding: 0;
+        border-style: none;
+    }
+
+    .form-group {
+        height: 70px;
+        position: center;
+    }
+
+    ul {
+        list-style-type: none;
+        position: center;
+        padding-left: 560px;
+    }
+
+    input[type=text] {
+        height: 35px;
+        width: 45%;
+        margin: 60px 0 auto;
+        font-size: 16px;
+        border: none;
+    }
+
+    input[type=password] {
+        height: 35px;
+        width: 45%;
+        font-size: 16px;
+        margin-top: 2px;
+        border: none;
+    }
+
+    .btn {
+        margin-top: 10px;
+        height: 35px;
+        width: 45%;
+        font-size: 15px;
+        background: white;
+        color: #5d4b79;
+        border-color: white;
+    }
+
+</style>
+<body>
+
+<div class ="background-image"></div>
+
+<div class="content">
+    <h3>
+        MIJNINZET<br>
+        <hr>
+        het roosterprogramma
+    </h3>
+
+    <form name="login" th:action="@{/login}" method="post" >
+
+        <fieldset>
+
+            <div class="form-group">
+                <ul>
+                    <label for="username" class="sr-only"></label>
+                <li> <input type="text" id="username" name="username" class="<form>
+                    </form->control" placeholder="Gebruikersnaam" required autofocus></li>
+                    <label for="password" class="sr-only"></label>
+                <li><input type="password" id="password" name="password"
+                           class="form-control" placeholder="Wachtwoord" required></li>
+
+                <button class="btn btn-lg btn-primary btn-block" type="submit">
+                    Inloggen
+                </button>
+            </ul>
+
+            </div>
+
+        </fieldset>
+    </form>
+</div>
+
+<!--<script type="text/javascript">-->
+<!--    function toggleContent() {-->
+<!--        var contentId = document.getElementById("toggle");-->
+<!--        contentId.style.display == "block" ? contentId.style.display == "none" :-->
+<!--            contentId.style.display = "block";-->
+<!--    }-->
+<!--</script>-->
+<!--<button onclick="toggleContent()">Toggle</button>-->
+</body>
+
+<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+
+
+>>>>>>> sprint3MergePeter
 </html>

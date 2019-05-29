@@ -1,48 +1,44 @@
-/*@author Peter Post, David Heeneman
- *
- *        Doel programma
- *
- *
- */
+
 package makeitwork.mijninzet.controller;
 
-
-import makeitwork.mijninzet.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class HomeController {
 
-    private static final String appName = "mijnInzet";
-    private static final String teamLeden = "Baseet, Bibi, David, Merel, Peter en Zafer";
+
+//    @GetMapping ("/")
+//    public String index() {
+//    return "index";
+//    }
 
     @GetMapping("/login")
     public String login(){
         return "login";
     }
-
+//
     @GetMapping("/home")
     public String home(Model model,
                        @RequestParam(value = "name", required = false,
                                defaultValue = "Guest") String name) {
+        String appName = "mijnInzet";
+        String teamLeden = "Baseet, Bibi, David, Merel, Peter en Zafer";
 
         model.addAttribute("name", name);
         model.addAttribute("title", appName);
         model.addAttribute("team", teamLeden);
-        return "home";
-    }
-    @GetMapping("/addUser")
-    public String addUser(Model model){
-        return "addUser";
-    }
+        return "/home";
 
-    @GetMapping("/jammerdan")
-    public String jammerDan(Model model){
-        return "jammerdan";
     }
+//    @GetMapping("/addUser")
+//    public String addUser(Model model){
+//        return "addUser";
+//    }
 
     @GetMapping("/globalAvalability")
     public String addAvalability(Model model) { return "globalAvalability"; }

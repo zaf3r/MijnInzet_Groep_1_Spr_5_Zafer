@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 
 button {
@@ -26,4 +27,34 @@ ul{
 
 .container {
     margin-top: 65px;
+=======
+
+
+button {
+    background-color: #fc7170;
+    border: solid blue 2px;
+}
+
+.card {
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+#header {
+    background: #191970;
+    margin: 5px 0 40px 0;
+    color: white;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+}
+
+ul{
+    list-style-type: none;
+}
+
+.container {
+    margin-top: 65px;
+>>>>>>> sprint3MergePeter
 }

@@ -2,7 +2,9 @@ package makeitwork.mijninzet.controller;
 
 
 import makeitwork.mijninzet.model.Task;
+import makeitwork.mijninzet.model.Teacher;
 import makeitwork.mijninzet.model.User;
+import makeitwork.mijninzet.repository.TeacherRepository;
 import makeitwork.mijninzet.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -16,15 +18,15 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.util.*;
 
-import static java.util.Comparator.naturalOrder;
-
 @Controller
 public class TaskController {
+
+    Principal principal;
 
     @Autowired
     private TaskRepository taskRepository;
     @Autowired
-    private UsersRepository usersRepository;
+    private TeacherRepository teacherRepository;
 
     public TaskController(TaskRepository taskRepository){
         this.taskRepository = taskRepository;
@@ -32,17 +34,24 @@ public class TaskController {
 
     @GetMapping("/taskOverview") //th:action
     public String MenuHandler(Model model){
-        model.addAttribute("allTasks", tasks2Present());
+        model.addAttribute("allTasks", allTasks());
         return "taskOverview";
     }
     @GetMapping("/showTask/{task}")  //th:action
     public String TaskDetailHandler(@ModelAttribute("task") Task taak, @RequestParam("taskId") String taakId, Model model) {
-        taak=opening(taakId);
+        taak = opening(taakId);
         model.addAttribute("taak",taak);
         return "showTask"; //html
     }
 
-    private List<Task> tasks2Present(){
+//    @PostMapping()
+//    public String ApplicationHandler(@ModelAttribute("task") Task task, @RequestParam("taskId") String taakId){
+//        Teacher teacher = teacherRepository.findByUsername(principal.getName());
+//
+//
+//    }
+
+    private List<Task> allTasks(){//haalt alles uit database
 //        alle taken uit database ophalen
         List<Task> tasks = this.taskRepository.findAll();
 //        de taken verwijderen waar user eerder op reageerde
@@ -56,10 +65,13 @@ public class TaskController {
     private Task opening(String taskId){
         return this.taskRepository.findDocumentById(taskId);
     }
+
     private List<Task> sortTasks(List<Task> tasks){
         Collections.sort(tasks,(a,b) -> {return a.getTitel().compareTo(b.getTitel());});
         return tasks;
     }
+
+    //lijst met taken waar de docent nog op kan reageren
     private List<Task> tasks2React(List<Task> tasks){
         //todo taken waar <user> eerder op reageerde uit database halen
         Set<Task> reacted = new HashSet<>();
@@ -70,6 +82,7 @@ public class TaskController {
         List<Task> tasks2Do =new ArrayList<>(alleVacatures);
         return tasks2Do;
     }
+
     private String currentUserName(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
