@@ -30,3 +30,7 @@ HELP.md
 
 ### MAC
 .DS_Store
+
+# OS generated files #
+######################
+client/.DS_Store
