@@ -33,21 +33,14 @@ public class TeacherController {
     @GetMapping("preference")
     public String addPreferences(Model model, Principal principal) {
 
-        // Get user
         User user = usersRepository.findByUsername(principal.getName());
-
-        // Get user preference
         Set<Preference> preferenceSet = findCurrentUserPreference(user);
-
-        //Query list of subjects
         List<Subject> subjectList = subjectRepository.findAll();
 
-        //Test whether the preferences are empty, if empty, add preference object with only subjects
         if(preferenceSet.isEmpty()) {
             emptyPreferenceStarter(subjectList, user);
         }
 
-        // Preparing preference Form
         List<Integer> preferenceRatingList = new ArrayList<>();
         PreferenceForm preferenceForm = new PreferenceForm(preferenceRatingList);
 
@@ -82,8 +75,9 @@ public class TeacherController {
         //Overwrite values from form
         int index = 0;
         for (Preference preference : preferenceSet) {
-                int tempRating = preferenceForm.getPreferenceRating().get(index++);
-                preference.setPreference(tempRating);
+            int tempRating = preferenceForm.getPreferenceRating().get(index);
+            preference.setPreference(tempRating);
+            ++index;
         }
 
          //Save preferences

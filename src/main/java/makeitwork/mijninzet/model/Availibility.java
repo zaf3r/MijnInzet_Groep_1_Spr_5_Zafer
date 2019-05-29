@@ -1,8 +1,11 @@
 package makeitwork.mijninzet.model;
 
+import javax.persistence.Entity;
 import java.time.LocalDate;
+
 import static java.util.Arrays.fill;
 
+@Entity(name = "availability")
 public class Availibility {
 
     private LocalDate startdate;
@@ -79,4 +82,6 @@ public class Availibility {
     private void setAvailable(Weekdays day,PartOfDay part, boolean avail) {
         this.available[day.ordinal()][part.ordinal()] = avail;
     }
+
+
 }

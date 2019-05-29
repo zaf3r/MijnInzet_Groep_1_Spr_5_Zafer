@@ -1,27 +1,81 @@
 package makeitwork.mijninzet.controller;
 
 
-import makeitwork.mijninzet.model.DayPart;
-import makeitwork.mijninzet.model.GlobalAvalability;
-import makeitwork.mijninzet.model.forms.AvalabilityForm;
+import makeitwork.mijninzet.repository.GlobalAvalabilityRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping(name="/globalAvalability")
 public class GlobalAvalabilityController {
 
-    @RequestMapping(name = "/avalabilityForm.html", method = RequestMethod.GET)
-    public ModelAndView getAvalabilityForm() {
-        ModelAndView model = new ModelAndView("AvalabilityForm");
-        return model;
-    }
+    @Autowired
+    private GlobalAvalabilityRepository glavRepo;
+
+    // deze requesthandler moet de User en bijbehorende meest recent opgeslagen availability ophalen
+//    @RequestMapping(name = "/globalAvalability.html", method = RequestMethod.GET)
+//    public String user;
+//        model.addAttribute(begindatum, einddatum, dag, dagdeel, Availibility.getAvailable);
+//        model.addAttribute(begindatum, einddatum, dag, dagdeel, Availibility.getAvailable);
+//        model.addAttribute(begindatum, einddatum, dag, dagdeel, Availibility.getAvailable);
+//        model.addAttribute(begindatum, einddatum, dag, dagdeel, Availibility.getAvailable);
+//        model.addAttribute(begindatum, einddatum, dag, dagdeel, Availibility.getAvailable);
+//        model.addAttribute(begindatum, einddatum, dag, dagdeel, Availibility.getAvailable);
+//        model.addAttribute(begindatum, einddatum, dag, dagdeel, Availibility.getAvailable);
+//        model.addAttribute(begindatum, einddatum, dag, dagdeel, Availibility.getAvailable);
+//        model.addAttribute(begindatum, einddatum, dag, dagdeel, Availibility.getAvailable);
+//        model.addAttribute(begindatum, einddatum, dag, dagdeel, Availibility.getAvailable);
+//        model.addAttribute(begindatum, einddatum, dag, dagdeel, Availibility.getAvailable);
+//        model.addAttribute(begindatum, einddatum, dag, dagdeel, Availibility.getAvailable);
+//        model.addAttribute(begindatum, einddatum, dag, dagdeel, Availibility.getAvailable);
+//        model.addAttribute(begindatum, einddatum, dag, dagdeel, Availibility.getAvailable);
+//        model.addAttribute(begindatum, einddatum, dag, dagdeel, Availibility.getAvailable);
+//        model.addAttribute(begindatum, einddatum, dag, dagdeel, Availibility.getAvailable);
+//        model.addAttribute(begindatum, einddatum, dag, dagdeel, Availibility.getAvailable);
+//        model.addAttribute(begindatum, einddatum, dag, dagdeel, Availibility.getAvailable);
+//    glavRepo.find(userName);
+//    return userName;
+//
+    //deze requestHandler moet een de exacte begin en eindatum ophalen voor het geselecteerde cohort
+//    @RequestMapping(name = "/globalAvalability.html", method = RequestMethod.GET)
+//    public
+
+
+
+//    @RequestMapping(name = "/avalabilityForm", method = RequestMethod.POST)
+//    public SortedSet<Availibility> availibilities() (@ModelAttribute("availabilities") Availibility availibility, Model model) {
+
+
+
+//        ModelAndView model = new ModelAndView ( @RequestParam("monday1") boolean MaMoAv,
+//                                                @RequestParam("monday2") boolean MaAfAv,
+//                                                @RequestParam("monday3") boolean MaEvAv,
+//
+//                                                @RequestParam("tuesday1") boolean TuMoAv,
+//                                                @RequestParam("tuesday2") boolean TuAfAv,
+//                                                @RequestParam("tuesday3") boolean TuEvAv,
+//
+//                                                @RequestParam("wednesday1") boolean WeMoAv,
+//                                                @RequestParam("wednesday2") boolean WeAfAv,
+//                                                @RequestParam("wednesday3") boolean WeEvAv,
+//
+//                                                @RequestParam("thursday1") boolean ThMoAv,
+//                                                @RequestParam("thursday2") boolean ThAfAv,
+//                                                @RequestParam("thursday3") boolean ThEvAv,
+//
+//                                                @RequestParam("friday1") boolean FrMoAv,
+//                                                @RequestParam("friday2") boolean FrAfAv,
+//                                                @RequestParam("friday3") boolean FrEvAv)
+//        model.addAttribute("naam", availibility.collection());
+//
+//        glavRepo.save(avalability);
+//        return "confirmAvailability";
+//    }
+//
+//
+//
+//
 //
 //    @RequestMapping(name = "/submitAvalabilityForm.html", method = RequestMethod.POST)
 //    public ModelAndView submitAvalabilityForm()
@@ -41,9 +95,9 @@ public class GlobalAvalabilityController {
 //                                                @RequestParam("thursday2") boolean ThAfAv,
 //                                                @RequestParam("thursday3") boolean ThEvAv,
 //
-//                                                @RequestParam("friday") boolean FrMoAv,
-//                                                @RequestParam("friday") boolean FrAfAv,
-//                                                @RequestParam("friday") boolean FrEvAv)
+//                                                @RequestParam("friday1") boolean FrMoAv,
+//                                                @RequestParam("friday2") boolean FrAfAv,
+//                                                @RequestParam("friday3") boolean FrEvAv)
 //
 //    {
 //        ModelAndView model = new ModelAndView("Avalability Submitted");
@@ -55,7 +109,7 @@ public class GlobalAvalabilityController {
 //         //   GlobalAvalability.isAvalable(1, 1).setAvalabilities(MaAfAv);
 //    }
 //        return model;
-//
+
 //
 //    @RequestMapping(name = "/incidentForm.html", method = RequestMethod.GET)
 //    public ModelAndView getIncidentForm() {
