@@ -1,67 +1,43 @@
 package makeitwork.mijninzet.model;
 
+
+import org.hibernate.annotations.SortNatural;
+
 import javax.persistence.*;
-import java.util.List;
-import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 @Entity
-@Table(name="docentt")
-public class Teacher {
+@Table(name="docent")
+public class Teacher extends User{
 
-
-    @Transient
-    private final String COLUMN_ID = "idgebruiker";
-
-    @Transient
-    private final String PK_COLUMN_TASK = "task_id";
-
-    @Id
-    @Column(name="idGebruiker")
-    private int id;
-
-    @Transient
-    private List<Teacher> teachers;
-
-    //Hybernate mapping of the tables 2× @ManyToOne with IncidentalAvalability & GlobalAvalability
-    @ManyToOne
-    @JoinColumn(name="dayParts")
-    @JoinColumn(name="incidenten")
-    public List<Teacher> getTeachers() { return teachers; }
-
-    //no-args
-    public Teacher() { }
-
-    //all-args
-    public Teacher(int id) { this.id = id; }
-
-    //getters
-    public int getId() {
-        return id;
+    public SortedSet<String> getTaskIds() {
+        return taskIds;
     }
 
-    //setters
-    public void setId(int id) {
-        this.id = id;
+    //in deze collection worden de (unieke) taskId's opgeslagen
+    //op deze wijze wordt per docent bijgehouden op welke taken
+    //gereageerd is. Moet ook de status bijgehouden worden, dan kan dat ook.
+    @ElementCollection
+    @SortNatural
+    private SortedSet<String> taskIds = new TreeSet<>();
+
+    public Teacher() {
     }
 
-//    @ManyToMany(fetch=FetchType.EAGER)
-//    @JoinTable(name="tasks_teacher", joinColumns = @JoinColumn(name=COLUMN_ID),
-//            inverseJoinColumns = @JoinColumn(name=PK_COLUMN_TASK))
-//    private List<Task> tasks;
-//
-//    public List<Task> getTasks() {
-//        return tasks;
-//    }
-//
-//    public void setTasks(List<Task> tasks) {
-//        this.tasks = tasks;
-//    }
+    public SortedSet<String> getTasks() {
+        return taskIds;
+    }
 
-    //toString
-    @Override
-    public String toString() {
-        return "Docent{" +
-                "id=" + id +
-                '}';
+    public void setTaskIds(SortedSet<String> taskIds) {
+        this.taskIds = taskIds;
+    }
+    public void addTask(String taskId){
+        SortedSet<String> tasks=getTasks();
+        if (!tasks.contains(taskId)) tasks.add(taskId);
+    }
+    public void removeTask(String taskId){
+        SortedSet<String> tasks=getTasks();
+        if (tasks.contains(taskId)) tasks.remove(taskId);
     }
 }
