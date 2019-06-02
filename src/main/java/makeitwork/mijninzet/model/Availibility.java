@@ -1,11 +1,10 @@
 package makeitwork.mijninzet.model;
 
-import javax.persistence.Entity;
 import java.time.LocalDate;
 
 import static java.util.Arrays.fill;
 
-@Entity(name = "availability")
+//@Entity(name = "availability")
 public class Availibility {
 
     private LocalDate startdate;
