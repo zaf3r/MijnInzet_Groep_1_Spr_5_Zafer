@@ -3,174 +3,90 @@
 <html lang="en">
 
 <link rel="stylesheet" type="text/css" th:href="@{/css/generic.css}"/>
-<link rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" th:href="@{/css/navbar-custom.css}"/>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" th:href="@{/css/navbar.css}"/>
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" th:href="@{/css/avalability.css}"/>
 
 <head>
 
     <meta charset="UTF-8">
     <title>Global Availability</title>
-    <style>
-        * { box-sizing: border-box; }
-        table { width: 60%; }
-        th, td { width: 10%; }
-        th {
-            height: 50px;
-            color: #185a9d;
-            background-color: #ffffb3;
-        }
-        td { background-color: #3e8e41; }
-        table, th, td {
-            font-family: arial, sans-serif;
-            border: 1px solid black;
-        }
-        table#t1 tr td.checked {background: coral;}
-        table#t2 tr th{background: coral;}
-        table#t2 tr th.checked{background: #ffffb3;}
-    </style>
+    <script type="text/javascript" src="/js/availability.js" th:src="@{/js/availability.js}"></script>
 
 </head>
 
 <body>
-<!-- horizontal menu top of page -->
-<nav class="navbar fixed-top navbar-expand-lg navbar-light">
-    <a class="navbar-brand" href="#">
-        <img src="/images/logoMiW.png" width="46" height="30" class="d-inline-block align-top" alt="">
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+<header th:insert="~{navbar :: header}"></header>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a href="/home" class="nav-link">Home</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="/globalAvalability" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Docent
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/globalAvalability">beschikbaarheid</a>
-                    <a class="dropdown-item" href="/incidents">incidenten</a>
-                </div>
-            <li class="nav-item">
-                <a href="/taskOverview" class="nav-link">Vacatures</a>
-            </li>
-            <li class="nav-item">
-                <a href="/teacher/preference" class="nav-link">Vakken</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="/manager" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Manager
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/manager/vak">vakkenbeheer</a>
-                    <a class="dropdown-item" href="#">docentenbeheer</a>
-                    <a class="dropdown-item" href="#">werktijdenbeheer</a>
-                </div>
-            </li>
-        </ul>
-        <p class="navbar-text navbar-right" th:text="'Signed in as ' + ${userName}" style="margin-right: 10px">Signed in as Anonymus</p>
+<form action="#">
+    <div class="container">
+        <section id="header" class="jumbotron text-center">
+            <h1>Uw wekelijkse beschikbaarheid</h1>
+            <p>Geef hieronder per dag aan welke dagdelen u beschikbaar bent</p>
+        </section>
+        <section>
+            <select class="custom-select" id="selectSemester">
+                <option selected>Select semester</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+            </select>
+        </section>
+
+        <section id="availability">
+            <table>
+                <tr>
+                    <th>Select All </th>
+                    <th>maandag </th>
+                    <th>dinsdag </th>
+                    <th>woensdag </th>
+                    <th>donderdag </th>
+                    <th>vrijdag </th>
+                </tr>
+                <tr>
+                    <th>ochtend </th>
+                    <td class="checked">maandagOchtend</td>
+                    <td class="checked">dinsdagOchtend</td>
+                    <td class="checked">woensdagOchtend</td>
+                    <td class="checked">donderdagOchtend</td>
+                    <td class="checked">vrijdagOchtend</td>
+
+                </tr>
+                <tr>
+                    <th>middag </th>
+                    <td class="checked">maandagMiddag</td>
+                    <td class="checked">dinsdagMiddag</td>
+                    <td class="checked">woensdagMiddag</td>
+                    <td class="checked">donderdagMiddag</td>
+                    <td class="checked">vrijdagMiddag</td>
+
+                </tr>
+                <tr>
+                    <th>avond </th>
+                    <td class="checked">maandagAvond</td>
+                    <td class="checked">dinsdagAvond</td>
+                    <td class="checked">woensdagAvond</td>
+                    <td class="checked">donderdagAvond</td>
+                    <td class="checked">vrijdagAvond</td>
+
+                </tr>
+            </table>
+        </section>
+        <section>
+            <button id="button" type="button" class="btn btn-success">Submit</button>
+        </section>
+
     </div>
-</nav>
 
-
-<div class="container">
-    <br>
-    <br>
-    <br>
-    <br>
-<h2 th:align="left" >Uw wekelijkse beschikbaarheid</h2>
-<p>Geef hieronder uw per dag aan welke dag delen u beschikbaar bent</p>
-<br>
-<form action="#" th:action="@{/globalAvalability/avalabilityForm.html}" th:object="${availibilityForm}", method = post>
-    <input type="checkbox" onClick="selectAll();"> Selecteer alle dagen<br><br>
-    <table id = "t1" align="center">
-        <tr>
-            <th></th>
-            <th>maandag</th>
-            <th>dinsdag</th>
-            <th>woensdag</th>
-            <th>donderdag</th>
-            <th>vrijdag</th>
-        </tr>
-
-        <tr>
-            <th>
-                <p>Ochtend</p>
-                <p>9:00-12:30</p>
-            </th>
-            <td class="checked"><input type="hidden" name="monday1" value="1"></td>
-            <td class="checked"><input type="hidden" name="tuesday1" value="1"></td>
-            <td class="checked"><input type="hidden" name="wednesday1" value="1"></td>
-            <td class="checked"><input type="hidden" name="thursday1" value="1"></td>
-            <td class="checked"><input type="hidden" name="friday1" value="1"></td>
-        </tr>
-
-        <tr>
-            <th>
-                <p>Middag</p>
-                <p>13:00-17:30</p>
-            </th>
-            <td class="checked"><input type="hidden" name="monday2" value="1"></td>
-            <td class="checked"><input type="hidden" name="tuesday2" value="1"></td>
-            <td class="checked"><input type="hidden" name="wednesday2" value="1"></td>
-            <td class="checked"><input type="hidden" name="thursday2" value="1"></td>
-            <td class="checked"><input type="hidden" name="friday2" value="1"></td>
-        </tr>
-
-        <tr>
-            <th>
-                <p>Avond</p>
-                <p>18:00-21:00</p>
-            </th>
-            <td class="checked"><input type="hidden" name="monday3" value="1"></td>
-            <td class="checked"><input type="hidden" name="tuesday3" value="1"></td>
-            <td class="checked"><input type="hidden" name="wednesday3" value="1"></td>
-            <td class="checked"><input type="hidden" name="thursday3" value="1"></td>
-            <td class="checked"><input type="hidden" name="friday3" value="1"></td>
-        </tr>
-
-    </table><br>
-    <input class="text-center" type="submit" onclick="alert ('Uw wekelijkse beschikbaarheid is opgeslagen in de database')" value="Opslaan">
-    <br><br>
 </form>
-</div>
 
 
-
-<script language="JavaScript">
-    // when click, color changes
-    var cell1 = document.querySelector('table#t1');
-    cell1.addEventListener('click', function(ev) {
-        if (ev.target.tagName === 'TD') {
-            ev.target.classList.toggle('checked');
-        }
-        if (ev.target.classList.contains("checked")) {
-            cell1.firstChild.value = "1";
-        } else {
-            cell1.firstChild.value = "0";
-        }
-        console.log(cell1.firstChild.value);
-    }, false);
-
-
-    //function toggle(source) {
-    function selectAll() {
-        var cell = document.querySelector('table#t1').getElementsByClassName('checked');
-        for (var i = 0, n = cell.length; i < n; i++) {
-            cell[i].classList.toggle('checked');
-        }
-    }
-
-</script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 </body>
 

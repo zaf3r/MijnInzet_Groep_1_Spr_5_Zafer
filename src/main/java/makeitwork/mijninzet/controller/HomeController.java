@@ -51,6 +51,9 @@ public class HomeController {
         model.addAttribute("userName", name);
         return "incidents"; }
 
+    @GetMapping("/incident")
+    public String addIncident(Model model) { return "incident"; }
+
     @GetMapping("/teacher")
     public String addPreferance(Model model, @RequestParam(value = "name", required = false,
             defaultValue = "Guest") String name) {
