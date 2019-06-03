@@ -48,6 +48,10 @@ public class GlobalAvalabilityController {
 //    {
 //        ModelAndView model = new ModelAndView("Avalability Submitted");
 //        model.addObject("iets");
+<<<<<<< HEAD
+=======
+//
+>>>>>>> 9d0f265b4affc23e2eb7bcaca4750abc9412d8aa
 //            // Linus: voor elke dag of dagdeel een setter van de boolean
 //          //  algemeneWeek.getDag(dagnaam "hsdhid").setOchtend(MaMoAv);
 //
