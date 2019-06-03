@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+
+
+<link rel="stylesheet" type="text/css" th:href="@{/css/generic.css}"/>
+<link rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" th:href="@{/css/navbar-custom.css}"/>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+<head>
+    <meta charset="UTF-8" />
+    <title>addCourse</title>
+
+<!--    <script type="text/javascript">-->
+
+
+<!--        function populate(s2) {-->
+<!--            var s2 = document.getElementById(s2);-->
+<!--            s2.innerHTML = "";-->
+<!--            var optionArray = ["|", "Fase1"|"Fase 1", "Fase2"|"Fase 2", "Fase3"|"Fase 3" ]-->
+<!--        }-->
+
+<!--        for(var option in optionArray) {-->
+<!--            var pair = optionArray[option].split("|");-->
+<!--            var newOption = document.createElement("option");-->
+<!--            newOption.value = pair[0];-->
+<!--            newOption.innerHTML = pair[1];-->
+<!--            s2.options.add(newOption);-->
+<!--        }-->
+
+<!--    </script>-->
+
+
+</head>
+<body>
+<!-- horizontal menu top of page -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="#">
+        <img src="/images/logoMiW.png" width="46" height="30" class="d-inline-block align-top" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a href="/home" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="/globalAvalability" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Docent
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/globalAvalability">beschikbaarheid</a>
+                    <a class="dropdown-item" href="/incidents">incidenten</a>
+                </div>
+            <li class="nav-item">
+                <a href="/taskOverview" class="nav-link">Vacatures</a>
+            </li>
+            <li class="nav-item">
+                <a href="/teacher/preference" class="nav-link">Vakken</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="/manager" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Manager
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/manager/vak">vakkenbeheer</a>
+                    <a class="dropdown-item" href="#">docentenbeheer</a>
+                    <a class="dropdown-item" href="#">werktijdenbeheer</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <p class="navbar-text navbar-right" th:text="'Signed in as ' + ${userName}" style="margin-right: 10px">Signed in as Anonymus</p>
+</nav>
+
+
+<!-- content pagina -->
+
+<div class="container">
+    <br>
+    <br>
+    <br>
+    <br>
+<h2 class="text-center">Voeg een vak toe</h2>
+<form action="#" th:object="${attr1}" th:action="@{saveCourse}" method="post" id="saveCourse">
+    <table border="1">
+        <tr>
+            <td><label th:text="Vaknaam" /></td>
+            <td><input type="text" th:field="*{courseName}" required title="Vul een vaknaam in"/></td>
+        </tr>
+        <tr>
+            <td><label th:text="Kennisgebied" /></td>
+            <td><input type="text" th:field="*{knowledgeField}" required title="Kies een kennisgebied"/></td>
+        </tr>
+        <tr>
+            <td><label th:text="Cohortnummer" /></td>
+            <td><input type="number" th:field="*{cohortNumber}" required title="Cohortnummer kan niet lager zijn dan 1"/></td>
+        </tr>
+<!--        <tr>-->
+<!--            <td><label>dropdown test</label></td>-->
+<!--            <td><select id="slct2" name="slct2" onclick="populate(s2);"></select></td>-->
+<!--        </tr>-->
+        <tr>
+            <td><input type="submit" th:onclick="alert ('Het vak is opgeslagen in de database.')" value="Opslaan" /></td>
+        </tr>
+    </table>
+</form>
+</div>
+
+</body>
+
+</html>

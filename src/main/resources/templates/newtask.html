@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nieuwe Vacature</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/navbar.css}"/>
+</head>
+<body>
+<div><h1>Voeg een nieuwe vacature toe</h1></div>
+
+<form>
+
+    <label for="Titel"></label> Titel:
+    <input type="text" id="Titel" class="titel">
+    <label for="Intro"></label> Intro:
+    <input type="text" id="Intro">
+    <label for="Uren"></label> Aantal uren:
+    <input type="text" id = "Uren" >
+    <label for="Locatie"></label> Locatie:
+    <input type="text" id="Locatie">
+    <label for ="Deadline"></label>Sluitingsdatum:
+    <input type="date" id="Deadline">
+    <label for="Beschrijving"></label> Beschrijving:
+    <textarea rows 10 cols 5 id="Beschrijving"></textarea>
+    <button type="submit">Sla op</button>
+    <button type="reset">Opnieuw</button>
+
+</form>
+
+</body>
+</html>

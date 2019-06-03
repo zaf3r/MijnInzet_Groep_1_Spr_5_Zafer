@@ -1,0 +1,35 @@
+/*horizontal menu blockmenu*/
+#mainNavbar {
+    font-size: 1.3rem;
+    font-weight: 100;
+    font-family: "Open Sans Condensed", sans-serif;
+}
+
+#mainNavbar .nav-link{
+    color: rgb(63, 61, 58);
+}
+
+#mainNavbar .nav-link:hover{
+    color: #EA1C2C;
+}
+
+#mainNavbar .navbar-brand{
+    color: #EA1C2C;
+    font-size: 1.5rem;
+}
+
+button {
+    color: rgb(63, 61, 58);
+}
+
+#navLinks {
+    padding-left: 5px;
+}
+
+#dropdownMenu {
+    position: static;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    color: #EA1C2C;
+}
