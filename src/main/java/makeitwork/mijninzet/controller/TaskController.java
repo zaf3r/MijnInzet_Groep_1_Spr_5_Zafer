@@ -1,9 +1,12 @@
 package makeitwork.mijninzet.controller;
 
 
-import makeitwork.mijninzet.model.Task;
 
+import makeitwork.mijninzet.model.Task;
+import makeitwork.mijninzet.model.Teacher;
+import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.repository.UsersRepository;
+import makeitwork.mijninzet.service.VacatureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -19,20 +22,21 @@ import java.util.*;
 @Controller
 public class TaskController {
 
-    Principal principal;
-
     @Autowired
     private TaskRepository taskRepository;
 
-    public TaskController(TaskRepository taskRepository){
-        this.taskRepository = taskRepository;
-    }
+    @Autowired
+    private UsersRepository usersRepository;
+
+    @Autowired
+    VacatureService vacatureService;
 
     @GetMapping("/taskOverview") //th:action
-    public String MenuHandler(Model model){
-        model.addAttribute("allTasks", allTasks());
+    public String MenuHandler(Model model, Principal principal){
+        model.addAttribute("allTasks", tasks2React(allTasks(), principal));
         return "taskOverview";
     }
+
     @GetMapping("/showTask/{task}")  //th:action
     public String TaskDetailHandler(@ModelAttribute("task") Task taak, @RequestParam("taskId") String taakId, Model model) {
         taak = opening(taakId);
@@ -40,19 +44,19 @@ public class TaskController {
         return "showTask"; //html
     }
 
-//    @PostMapping()
-//    public String ApplicationHandler(@ModelAttribute("task") Task task, @RequestParam("taskId") String taakId){
-//        Teacher teacher = teacherRepository.findByUsername(principal.getName());
-//
-//
-//    }
-
-    private List<Task> allTasks(){//haalt alles uit database
+    @GetMapping("/taskSave/{taskId}") //mapping bij voor de view
+    public String ApplicationHandler(@ModelAttribute("task") Task taak, @RequestParam("taskId") String taakId, Principal principal){
+        Teacher teacher = new Teacher();
+        teacher.setId(usersRepository.findByUsername(principal.getName()).getId());
+        taak = opening(taakId);
+        vacatureService.addTask(taak, teacher);
+        return "taskOverview";
+    }
+    //haalt alles uit database
+    private List<Task> allTasks(){
 //        alle taken uit database ophalen
         List<Task> tasks = this.taskRepository.findAll();
 //        de taken verwijderen waar user eerder op reageerde
-        tasks2React(tasks);
-//        taken op alfabetische volgorde zetten
         sortTasks(tasks);
 //        opgeschoonde lijst aan handler geven
         return tasks;
@@ -67,16 +71,22 @@ public class TaskController {
         return tasks;
     }
 
+    //lijst met vacatures van Docent (zit ook al in Service)
+//    private Set<Application> findApplicationByUsername(User user){
+//        Set<Application> applications = sollicitatieRepository.findAllByUser(user);
+//        return applications;
+//    }
+
     //lijst met taken waar de docent nog op kan reageren
-    private List<Task> tasks2React(List<Task> tasks){
-        //todo taken waar <user> eerder op reageerde uit database halen
-        Set<Task> reacted = new HashSet<>();
-//        statement hieronder verder uitwerken
-//        set<Tasks> reacted = this.reactedrepo.findbyUser(<currentUserName()>
-        Set<Task> alleVacatures= new HashSet<>(tasks);
-        alleVacatures.removeAll(reacted); // levert tasks op waaruit alle eerder gereageerde taken zijn verwijderd
-        List<Task> tasks2Do =new ArrayList<>(alleVacatures);
-        return tasks2Do;
+    private List<Task> tasks2React(List<Task> tasks, Principal principal){
+        // taken waar <user> eerder op reageerde uit database halen
+//        User user = usersRepository.findByUsername(principal.getName());
+        Teacher teacher = new Teacher();
+        teacher.setId(usersRepository.findByUsername(principal.getName()).getId());
+        Set<Task> listTasks = new HashSet<>(tasks);
+        Set<Task> reacted = vacatureService.getAllTasks(teacher);
+        listTasks.removeAll(reacted); // levert tasks op waaruit alle eerder gereageerde taken zijn verwijderd
+        return tasks;
     }
 
     private String currentUserName(){

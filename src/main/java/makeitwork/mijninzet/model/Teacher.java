@@ -2,6 +2,7 @@ package makeitwork.mijninzet.model;
 
 
 import org.hibernate.annotations.SortNatural;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.util.SortedSet;
@@ -9,9 +10,14 @@ import java.util.TreeSet;
 
 @Entity
 @Table(name="docent")
-public class Teacher extends User{
+public class Teacher extends User {
+
+    public Teacher() {
+        super();
+    }
 
     public SortedSet<String> getTaskIds() {
+
         return taskIds;
     }
 
@@ -22,9 +28,6 @@ public class Teacher extends User{
     @SortNatural
     private SortedSet<String> taskIds = new TreeSet<>();
 
-    public Teacher() {
-    }
-
     public SortedSet<String> getTasks() {
         return taskIds;
     }
@@ -32,12 +35,22 @@ public class Teacher extends User{
     public void setTaskIds(SortedSet<String> taskIds) {
         this.taskIds = taskIds;
     }
-    public void addTask(String taskId){
-        SortedSet<String> tasks=getTasks();
+
+    public void addTask(String taskId) {
+        SortedSet<String> tasks = getTasks();
         if (!tasks.contains(taskId)) tasks.add(taskId);
     }
-    public void removeTask(String taskId){
-        SortedSet<String> tasks=getTasks();
+
+    public void removeTask(String taskId) {
+        SortedSet<String> tasks = getTasks();
         if (tasks.contains(taskId)) tasks.remove(taskId);
     }
+
+    @Override
+    public String toString() {
+        return "Teacher{" + getId() +
+                "taskIds=" + taskIds +
+                '}';
+    }
 }
+
