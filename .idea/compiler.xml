@@ -6,28 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="mijninzet" />
-<<<<<<< HEAD
-        <module name="mijninzet (1)" />
-=======
->>>>>>> 9d0f265b4affc23e2eb7bcaca4750abc9412d8aa
+        <module name="Sprint 1" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="mijninzet" target="11" />
-<<<<<<< HEAD
-      <module name="mijninzet (1)" target="11" />
-=======
->>>>>>> 9d0f265b4affc23e2eb7bcaca4750abc9412d8aa
+      <module name="Sprint 1" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Sprint 1" options="-parameters" />
       <module name="mijninzet" options="-parameters" />
-<<<<<<< HEAD
-      <module name="mijninzet (1)" options="-parameters" />
-=======
->>>>>>> 9d0f265b4affc23e2eb7bcaca4750abc9412d8aa
     </option>
   </component>
 </project>
