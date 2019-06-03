@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" >
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/navbar.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/task.css}"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+
+</head>
+
+<body>
+
+<div th:insert="~{navbar :: header}"></div>
+    <form action="#" th:action="@{/taskOverview}" th:object="${taak}" th:method="get">
+    <div class="opsomming">
+
+        <div class="titel" th:text="*{titel}">Hier komt titel</div><br>
+        <div class="informatie"></div>
+        <div class="buttons">
+            <input type='checkbox' name='thing' value='valuable' id="thing"/><label for="thing"></label>
+            <input type='submit' name='thing' value='terug naar overzicht' id="task_db"/>
+        </div>
+    </div>
+        <div>
+        <article class="tekst"><span th:text="*{beschrijving}"/></article>
+        </div>
+        <div>
+        Op de locatie: <span th:text="*{locatie}"/><br>
+        Aantal uren: <span th:text="*{uren}"/><br>
+        Vanaf: <span th:text="*{startdatum}"></span><br>
+        </div>
+
+    </div>
+    </form>
+</body>
+</html>
