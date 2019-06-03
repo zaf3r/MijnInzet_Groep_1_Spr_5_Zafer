@@ -25,14 +25,29 @@
                 <li class="nav-item">
                     <a href="/home" class="nav-link">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a href="/globalAvalability" class="nav-link">Beschikbaarheid</a>
-                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="/globalAvalability" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Docent
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/globalAvalability">beschikbaarheid</a>
+                        <a class="dropdown-item" href="/incidents">incidenten</a>
+                    </div>
                 <li class="nav-item">
                     <a href="/taskOverview" class="nav-link">Vacatures</a>
                 </li>
                 <li class="nav-item">
                     <a href="/teacher/preference" class="nav-link">Vakken</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="/manager" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Manager
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/manager/vak">vakkenbeheer</a>
+                        <a class="dropdown-item" href="#">docentenbeheer</a>
+                        <a class="dropdown-item" href="#">werktijdenbeheer</a>
+                    </div>
                 </li>
             </ul>
         </div>

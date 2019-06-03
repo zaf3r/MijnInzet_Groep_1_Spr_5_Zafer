@@ -16,7 +16,6 @@ public class Task {
     @Id
     private String id;
 
-
     private String titel;
 
     @Indexed(direction = IndexDirection.ASCENDING)
