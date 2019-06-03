@@ -48,13 +48,18 @@ public class HomeController {
     @GetMapping("/incidents")
     public String addIncidents(Model model, @RequestParam(value = "name", required = false,
             defaultValue = "Guest") String name) {
-        model.addAttribute("userName", name); return "incidents"; }
+        model.addAttribute("userName", name);
+        return "incidents"; }
 
     @GetMapping("/teacher")
-    public String addPreferance(Model model) { return "voorkeur-vakken"; }
+    public String addPreferance(Model model, @RequestParam(value = "name", required = false,
+            defaultValue = "Guest") String name) {
+        model.addAttribute("userName", name);
+        return "voorkeur-vakken"; }
 
     @GetMapping("/manager")
     public String addCourse(Model model, @RequestParam(value = "name", required = false,
             defaultValue = "Guest") String name) {
-        model.addAttribute("userName", name); return "addCourse"; }
+        model.addAttribute("userName", name);
+        return "addCourse"; }
 }
