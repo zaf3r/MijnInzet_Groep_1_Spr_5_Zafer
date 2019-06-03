@@ -164,7 +164,9 @@ ul.navbar-nav {
 
 /***** Footer *****/
 
-footer { padding: 10px 0 10px 0; background: #f8f8f8; }
+/*footer { */
+/*    padding: 10px 0 10px 0; background: #f8f8f8; */
+/*}*/
 
 .footer-copyright { padding-top: 15px; }
 .footer-copyright a { color: #888; border-bottom: 1px dotted #888; }
