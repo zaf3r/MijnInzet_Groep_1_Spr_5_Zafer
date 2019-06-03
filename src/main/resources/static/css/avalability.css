@@ -1,0 +1,38 @@
+#header {
+    background: #957bbe;
+}
+.container {
+    margin-top: 65px;
+}
+
+#button {
+    margin-top: 30px;
+    position: relative;
+    left: 47%;
+}
+
+table {
+    margin: auto;
+    width: 90%;
+    height: 400px;
+    border: 3px solid #967bbe;
+    text-align: center;
+}
+
+tr td {
+    background-color: #ff6347;
+}
+
+th, td {
+    border: 2px solid #967bbe;
+    width: 16.6%;
+}
+
+input[type=checkbox] {
+    opacity: 0;
+}
+
+#selectSemester {
+    margin-bottom: 30px;
+    width: 30%;
+}

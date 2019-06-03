@@ -4,7 +4,6 @@ import makeitwork.mijninzet.repository.TaskRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-
 @Component
 public class DBSeeder implements CommandLineRunner {
 

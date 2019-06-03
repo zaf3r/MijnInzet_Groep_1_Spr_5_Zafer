@@ -7,7 +7,6 @@
 package makeitwork.mijninzet.controller;
 
 
-import makeitwork.mijninzet.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,6 +45,9 @@ public class HomeController {
 
     @GetMapping("/globalAvalability")
     public String addAvalability(Model model) { return "globalAvalability"; }
+
+    @GetMapping("/incident")
+    public String addIncident(Model model) { return "incident"; }
 
     @GetMapping("/teacher")
     public String addPreferance(Model model) { return "voorkeur-vakken"; }
