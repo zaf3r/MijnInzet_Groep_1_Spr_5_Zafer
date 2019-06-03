@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Voorkeur opgeven</title>
+    <script>
+    </script>
+
+</head>
+<body>
+<h1>Voorkeur vakken</h1>
+<p>Voer a.u.b uw voorkeur in hieronder (schaal 1-3)</p>
+
+<form th:object="${preferenceForm}" th:action="@{postPreferences}" method="post" id = "form">
+    <fieldset>
+        <legend>Vakken</legend>
+        <ul th:each="subject, subjectIndex : ${subjectsList}">
+            <label th:text="${subject.subjectName}"></label>
+            <div th:each="scaleValue, scaleIndex : ${preferenceScaleList}">
+                <input type="radio"
+                       th:field="${preferenceForm.preferenceRating[__${subjectIndex.index}__]}"
+                       th:value="${scaleValue.scale}" />
+                <label th:text="${scaleValue.scale}"></label>
+                <br>
+            </div>
+        </ul>
+    </fieldset>
+    <p><input type="submit" value="Submit" /></p>
+</form>
+<!--
+
+
+
+    <br>
+    <h1>Some header to separate</h1>
+    <br>
+
+
+
+
+
+
+    <form th:object="${preferenceForm}" method="post">
+        <fieldset>
+            <legend>Subject</legend>
+            <ul>
+                <li th:each="preference, preferenceStat: ${voorkeurTestsList}">\
+                    <label th:text="${preference.naamVak}"></label>
+                    <input type="radio"
+                           th:field="*{voorkeur[__${preferenceStat.index}__].voorkeurVak}"
+                           th:for th:value="${preference.voorkeurVak}" />
+                    <label th:each="voorkeur : ${preference.voorkeurSchaal}" th:text="${voorkeur.schaal}"></label>
+                    <br>
+                </li>
+            </ul>
+        </fieldset>
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
+
+    <br>
+    <h1>Some header to separate</h1>
+    <br>
+
+
+-->
+</body>
+</html>
+
+
+
+
+
+
+<!--    <form th:object="${preferenceForm}" method="post">-->
+<!--        <fieldset>-->
+<!--            <legend>Subject</legend>-->
+<!--            <ul>-->
+<!--                <li th:each="preference, preferenceStat: ${voorkeurTestsList}">\-->
+<!--                    <label th:text="${preference.naamVak}"></label>-->
+<!--                    <input type="radio"-->
+<!--                           th:field="*{voorkeur[__${preferenceStat.index}__].voorkeurVak}"-->
+<!--                           th:for th:value="${preference.voorkeurVak}" />-->
+<!--                    <label th:each="voorkeur : ${preference.voorkeurSchaal}" th:text="${voorkeur.schaal}"></label>-->
+<!--                    <br>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </fieldset>-->
+<!--        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>-->
+<!--    </form>-->
+
+<!--    <br>-->
+<!--    <h1>Some header to separate</h1>-->
+<!--    <br>-->
+
+
+<!--&ndash;&gt;-->
+<!--</body>-->
+<!--</html>-->

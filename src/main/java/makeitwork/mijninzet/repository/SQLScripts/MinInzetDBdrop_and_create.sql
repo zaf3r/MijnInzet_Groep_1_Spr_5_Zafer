@@ -1,0 +1,2 @@
+drop database MijnInzet;
+CREATE SCHEMA IF NOT EXISTS `MijnInzet` DEFAULT CHARACTER SET utf8 ;
