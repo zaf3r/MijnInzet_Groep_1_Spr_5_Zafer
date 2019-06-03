@@ -57,7 +57,7 @@ public class HomeController {
     @GetMapping("/teacher")
     public String addPreferance(Model model) { return "voorkeur-vakken"; }
 
-    @GetMapping("/manager/vak")
+    @GetMapping("/manager")
     public String addCourse(Model model, @RequestParam(value = "name", required = false,
             defaultValue = "Guest") String name) {
         model.addAttribute("userName", name); return "addCourse"; }

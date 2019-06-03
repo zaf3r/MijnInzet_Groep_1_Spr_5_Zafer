@@ -16,7 +16,28 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>Title</title>
+    <title>addCourse</title>
+
+<!--    <script type="text/javascript">-->
+
+
+<!--        function populate(s2) {-->
+<!--            var s2 = document.getElementById(s2);-->
+<!--            s2.innerHTML = "";-->
+<!--            var optionArray = ["|", "Fase1"|"Fase 1", "Fase2"|"Fase 2", "Fase3"|"Fase 3" ]-->
+<!--        }-->
+
+<!--        for(var option in optionArray) {-->
+<!--            var pair = optionArray[option].split("|");-->
+<!--            var newOption = document.createElement("option");-->
+<!--            newOption.value = pair[0];-->
+<!--            newOption.innerHTML = pair[1];-->
+<!--            s2.options.add(newOption);-->
+<!--        }-->
+
+<!--    </script>-->
+
+
 </head>
 <body>
 <!-- horizontal menu top of page -->
@@ -71,27 +92,31 @@
     <br>
     <br>
 <h2 class="text-center">Voeg een vak toe</h2>
-<form action="#" th:object="${attr1}" th:action="@{saveCourse}" method="post">
+<form action="#" th:object="${attr1}" th:action="@{saveCourse}" method="post" id="saveCourse">
     <table border="1">
         <tr>
             <td><label th:text="Vaknaam" /></td>
-            <td><input type="text" th:field="*{courseName}" /></td>
+            <td><input type="text" th:field="*{courseName}" required title="Vul een vaknaam in"/></td>
         </tr>
         <tr>
             <td><label th:text="Kennisgebied" /></td>
-            <td><input type="text" th:field="*{knowledgeField}"/></td>
+            <td><input type="text" th:field="*{knowledgeField}" required title="Kies een kennisgebied"/></td>
         </tr>
         <tr>
             <td><label th:text="Cohortnummer" /></td>
-            <td><input type="number" th:field="*{cohortNumber}"/></td>
+            <td><input type="number" th:field="*{cohortNumber}" required title="Cohortnummer kan niet lager zijn dan 1"/></td>
         </tr>
+<!--        <tr>-->
+<!--            <td><label>dropdown test</label></td>-->
+<!--            <td><select id="slct2" name="slct2" onclick="populate(s2);"></select></td>-->
+<!--        </tr>-->
         <tr>
-            <td><input type="submit" th:onclick="alert ('Het vak: ' + ${courseName}
-            + ', is opgeslagen in de database.')" value="Opslaan" /></td>
+            <td><input type="submit" th:onclick="alert ('Het vak is opgeslagen in de database.')" value="Opslaan" /></td>
         </tr>
     </table>
 </form>
 </div>
 
 </body>
+
 </html>

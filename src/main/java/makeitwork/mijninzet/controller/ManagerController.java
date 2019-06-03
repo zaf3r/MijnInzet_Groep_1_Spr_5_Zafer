@@ -16,7 +16,7 @@ public class ManagerController {
     @Autowired
     private CourseRepository courseRepo;
 
-    @RequestMapping(value = "/manager/vak", method = RequestMethod.GET)
+    @RequestMapping(value = "/vak", method = RequestMethod.GET)
     public String addCourse(Model model) {
         Course course = new Course();
         model.addAttribute("attr1", course);
@@ -24,7 +24,7 @@ public class ManagerController {
     }
 
 
-//    @RequestMapping(value="/manager/{object}", method=RequestMethod.GET)
+//    @RequestMapping(value="/{object}", method=RequestMethod.GET)
 //    public String addCourse(@PathVariable String object, Model model) {
 //        switch (object) {
 //            case "vak": {
@@ -37,12 +37,12 @@ public class ManagerController {
 //    }
 
     @RequestMapping(value = "saveCourse", method = RequestMethod.POST)
-    public String saveCourse(@ModelAttribute("attribuut") Course course, Model model) {
+    public String saveCourse(@ModelAttribute("saveCourse") Course course, Model model) {
         model.addAttribute("courseName", course.getCourseName());
         model.addAttribute("knowledgeField", course.getKnowledgeField());
         model.addAttribute("cohortNumber", course.getCohortNumber());
         courseRepo.save(course);
-        return "";
+        return "redirect:/manager/vak";
     }
 
     //ArrayList of all courses
