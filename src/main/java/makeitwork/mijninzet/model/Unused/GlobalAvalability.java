@@ -1,4 +1,4 @@
-package makeitwork.mijninzet.model;
+package makeitwork.mijninzet.model.Unused;
 
 // CONSIDERING REMOVAL
 

@@ -1,4 +1,4 @@
-package makeitwork.mijninzet.model;
+package makeitwork.mijninzet.model.Unused;
 
 import makeitwork.mijninzet.model.Availability.PartOfDay;
 import makeitwork.mijninzet.model.Availability.Weekday;
