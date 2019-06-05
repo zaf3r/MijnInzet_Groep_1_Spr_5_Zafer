@@ -1,10 +1,9 @@
 package makeitwork.mijninzet.model;
 
+// *** Dead class? ***
 
 
 import javax.persistence.*;
-import java.awt.*;
-import java.util.Arrays;
 import java.util.List;
 
 

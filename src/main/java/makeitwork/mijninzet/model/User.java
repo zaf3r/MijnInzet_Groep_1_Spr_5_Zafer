@@ -1,5 +1,8 @@
 package makeitwork.mijninzet.model;
 
+import makeitwork.mijninzet.model.Availability.Availability;
+import makeitwork.mijninzet.model.preference.Preference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -42,6 +45,7 @@ public class User {
     @Transient
     private final String PK_COLUMN_OTHER_ENTITY = "rol_id";
 
+
     //Fields that are mapped by Hibernate
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -64,6 +68,9 @@ public class User {
     @OneToMany(mappedBy = "user",cascade= CascadeType.ALL)
     private Set<Preference> preferenceSet =  new HashSet<>();
 
+    @OneToMany(mappedBy = "user",cascade= CascadeType.ALL)
+    private Set<Availability> availabilitySet =  new HashSet<>();
+
     @ManyToMany(fetch = FetchType.EAGER, cascade= {CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH, CascadeType.REFRESH})
     @JoinTable(name = JOINT_TABLE_NAME,
@@ -73,8 +80,6 @@ public class User {
 
     public User() {
     }
-
-    // CONTROLLER MET GEGEVENS EN ROL LIST?
 
     public int getId() {
         return id;
@@ -88,12 +93,12 @@ public class User {
         return password;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public void setUsername(String username) {
@@ -124,4 +129,11 @@ public class User {
         this.preferenceSet = preferenceSet;
     }
 
+    public Set<Availability> getAvailabilitySet() {
+        return availabilitySet;
+    }
+
+    public void setAvailabilitySet(Set<Availability> availabilitySet) {
+        this.availabilitySet = availabilitySet;
+    }
 }

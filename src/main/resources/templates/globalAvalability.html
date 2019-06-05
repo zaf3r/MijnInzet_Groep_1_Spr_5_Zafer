@@ -1,92 +1,118 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:for="http://www.w3.org/1999/xhtml">
 <html lang="en">
-<link rel="stylesheet" type="text/css" th:href="@{/css/avalability.css}"/>
-<link rel="stylesheet" type="text/css" th:href="@{/css/genericBQ.css}"/>
-<link rel="stylesheet" type="text/css" th:href="@{/css/navbarBQ.css}"/>
-<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
-      integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap" rel="stylesheet">
-<script type="text/javascript" src="/js/availability.js" th:src="@{/js/availability.js}"></script>
+<link rel="stylesheet" type="text/css" th:href="@{/css/generic.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/header.css}"/>
 <head>
+
     <meta charset="UTF-8">
-    <title>Global Availability</title>
+    <title>Title</title>
+    <style>
+        * { box-sizing: border-box; }
+        table { width: 60%; }
+        th, td { width: 10%; }
+        th {
+            height: 50px;
+            color: #185a9d;
+            background-color: #ffffb3;
+        }
+        td { background-color: #3e8e41; }
+        table, th, td {
+            font-family: arial, sans-serif;
+            border: 1px solid black;
+        }
+        table#deTabel tr td.false {background: coral;}
+    </style>
+
 </head>
-<header th:insert="~{navbarBQ :: header}"></header>
 
 <body>
-<form action="#">
-    <div class="container">
-        <section id="header" class="jumbotron text-center">
-            <h1>Uw wekelijkse beschikbaarheid</h1>
-            <p>Geef hieronder per dag aan welke dagdelen u beschikbaar bent</p>
-        </section>
-        <section>
-            <select class="custom-select" id="selectSemester">
-                <option selected>Select semester</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-            </select>
-        </section>
+<!-- horizontal menu top of page -->
+<div th:insert="~{navbar :: header}"></div>
+<h2 th:align="left" >Uw wekelijkse beschikbaarheid</h2>
+<p>Geef hieronder uw per dag aan welke dag delen u beschikbaar bent</p>
 
-        <section id="availability">
-            <table>
-                <tr>
-                    <th>Select All </th>
-                    <th>maandag </th>
-                    <th>dinsdag </th>
-                    <th>woensdag </th>
-                    <th>donderdag </th>
-                    <th>vrijdag </th>
-                </tr>
-                <tr>
-                    <th>ochtend </th>
-                    <td class="checked">maandagOchtend</td>
-                    <td class="checked">dinsdagOchtend</td>
-                    <td class="checked">woensdagOchtend</td>
-                    <td class="checked">donderdagOchtend</td>
-                    <td class="checked">vrijdagOchtend</td>
+<!-- Start of form v2 -->
 
-                </tr>
-                <tr>
-                    <th>middag </th>
-                    <td class="checked">maandagMiddag</td>
-                    <td class="checked">dinsdagMiddag</td>
-                    <td class="checked">woensdagMiddag</td>
-                    <td class="checked">donderdagMiddag</td>
-                    <td class="checked">vrijdagMiddag</td>
 
-                </tr>
-                <tr>
-                    <th>avond </th>
-                    <td class="checked">maandagAvond</td>
-                    <td class="checked">dinsdagAvond</td>
-                    <td class="checked">woensdagAvond</td>
-                    <td class="checked">donderdagAvond</td>
-                    <td class="checked">vrijdagAvond</td>
 
-                </tr>
-            </table>
-        </section>
-        <section>
-            <button id="button" type="button" class="btn btn-success">Submit</button>
-        </section>
+<!-- Old form -->
+<form action="#" th:action="@{/availability/postAvailabilityForm}" th:object="${availabilityForm}" method = post>
+    <input type="checkbox" onClick="selectAll();"> Selecteer alle dagen<br><br>
+    <table id = "deTabel" align="center">
+        <tr>
+            <th></th>
+            <th>maandag</th>
+            <th>dinsdag</th>
+            <th>woensdag</th>
+            <th>donderdag</th>
+            <th>vrijdag</th>
+        </tr>
 
-    </div>
-    <footer th:insert="~{footer :: footer}"></footer>
+        <tr>
+        <tr>
+            <th>
+                <p>Ochtend</p>
+                <p>9:00-12:30</p>
+            </th>
+            <td th:class="*{availabilityMonday.isMorning()}"><input type="hidden" name="mondayMo" th:value="*{availabilityMonday.isMorning()}"></td>
+            <td th:class="*{availabilityTuesday.isMorning()}"><input type="hidden" name="tuesdayMo" th:value="*{availabilityTuesday.isMorning()}"></td>
+            <td th:class="*{availabilityWednesday.isMorning()}"><input type="hidden" name="wednesdayMo" th:value="*{availabilityWednesday.isMorning()}"></td>
+            <td th:class="*{availabilityThursday.isMorning()}"><input type="hidden" name="thursdayMo" th:value="*{availabilityThursday.isMorning()}"></td>
+            <td th:class="*{availabilityFriday.isMorning()}"><input type="hidden" name="fridayMo" th:value="*{availabilityFriday.isMorning()}"></td>
+        </tr>
+
+        <tr>
+            <th>
+                <p>Middag</p>
+                <p>13:00-17:30</p>
+            </th>
+            <td th:class="*{availabilityMonday.isAfternoon()}"><input type="hidden" name="mondayAf" th:value="*{availabilityMonday.isAfternoon()}"></td>
+            <td th:class="*{availabilityTuesday.isAfternoon()}"><input type="hidden" name="tuesdayAf" th:value="*{availabilityTuesday.isAfternoon()}"></td>
+            <td th:class="*{availabilityWednesday.isAfternoon()}"><input type="hidden" name="wednesdayAf" th:value="*{availabilityWednesday.isAfternoon()}"></td>
+            <td th:class="*{availabilityThursday.isAfternoon()}"><input type="hidden" name="thursdayAf" th:value="*{availabilityThursday.isAfternoon()}"></td>
+            <td th:class="*{availabilityFriday.isAfternoon()}"><input type="hidden" name="fridayAf" th:value="*{availabilityFriday.isAfternoon()}"></td>
+        </tr>
+
+        <tr>
+            <th>
+                <p>Avond</p>
+                <p>18:00-21:00</p>
+            </th>
+            <td th:class="*{availabilityMonday.isEvening()}"><input type="hidden" name="mondayEv" th:value="*{availabilityMonday.isEvening()}"></td>
+            <td th:class="*{availabilityTuesday.isEvening()}"><input type="hidden" name="tuesdayEv" th:value="*{availabilityTuesday.isEvening()}"></td>
+            <td th:class="*{availabilityWednesday.isEvening()}"><input type="hidden" name="wednesdayEv" th:value="*{availabilityWednesday.isEvening()}"></td>
+            <td th:class="*{availabilityThursday.isEvening()}"><input type="hidden" name="thursdayEv" th:value="*{availabilityThursday.isEvening()}"></td>
+            <td th:class="*{availabilityFriday.isEvening()}"><input type="hidden" name="fridayEv" th:value="*{availabilityFriday.isEvening()}"></td>
+        </tr>
+
+    </table><br>
+    <input type="submit" onclick="alert ('Uw wekelijkse beschikbaarheid is opgeslagen in de database')" value="Opslaan">
+    <br><br>
 </form>
 
+<!-- Afwezigheid Hieronder -->
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!--<form action="#" th:action="@{/globalAvalability/incidentForm.html}" th:object="${incidents}", method = post>
+    <p>Geef hieronder uw incidentele afwezigheid door</p>
+    Afwezig:
+    <input type="date" name="incident">
+    <br><br>
+    <table id = "t2" align="center">
+        <tr>
+            <th class="checked"><input type="hidden" name="morning" value="1">ochtend</th>
+            <th class="checked"><input type="hidden" name="afternoon" value="1">middag</th>
+            <th class="checked"><input type="hidden" name="evening" value="1">avond</th>
+        </tr>
+
+
+    </table><br>
+    <input type="submit" onclick="alert ('Uw afwezigheid is doorgegeven aan de database')" value="Doorgeven">
+</form>-->
+
+<!-- Scripts -->
+
+<script type="text/javascript" src="/js/GlobalAvailability.js" th:src="@{/js/GlobalAvailability.js}"></script>
 
 </body>
 

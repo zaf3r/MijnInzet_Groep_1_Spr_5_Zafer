@@ -1,4 +1,4 @@
-package makeitwork.mijninzet.model;
+package makeitwork.mijninzet.model.preference;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -16,7 +16,7 @@ public class Subject {
     @Column(name = "naamvak")
     String subjectName;
 
-    @OneToMany(mappedBy = "subject", cascade= CascadeType.PERSIST)
+    @OneToMany(mappedBy = "subject", cascade= {CascadeType.PERSIST,CascadeType.REMOVE})
     private Set<Preference> preferenceSet = new HashSet<>();
 
     public int getSubjectId() {

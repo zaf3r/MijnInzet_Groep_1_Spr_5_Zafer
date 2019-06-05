@@ -1,6 +1,6 @@
 package makeitwork.mijninzet.repository;
 
-import makeitwork.mijninzet.model.Preference;
+import makeitwork.mijninzet.model.preference.Preference;
 import makeitwork.mijninzet.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
