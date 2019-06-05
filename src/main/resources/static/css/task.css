@@ -1,96 +1,87 @@
 
-div#main {
+.content {
+    margin-top: 80px;
 }
 
-div#content{
-    background-color: floralwhite;
-    float: left;
-    width: 100%;
-    height: 100vh;
-}
-
-.vacature {
-    background-color: floralwhite;
-    height: 250px;
-    margin: 0 auto;
-    width: 65%;
-    border-style: solid;
-    border-color: grey;
-}
-
-.Box2 {
-    background-color: floralwhite;
-    float: left;
-    width: 100%;
-    height: 70px;
-    border-bottom-style: dotted;
-    border-color: grey;
-}
-
-.titel {
-    background-color: floralwhite;
-    width: 65%;
-    height: 55px;
-    text-align: left;
-    vertical-align: center;
-    padding-top: 5px;
-    padding-left: 16px;
-    float: left;
-    font-size: 24px;
-}
-
-.locatie {
-
+#gallery {
+    margin-top: 50px;
 }
 
 div#buttons {
     width: 30%;
     float: left;
 }
+
+.card-text{
+    font-size: 14px;
+}
+
+#containerContent {
+    margin-top: 100px;
+}
+
+#boxContent {
+
+}
+
+.container-description {
+    border: 2px solid lightgrey;
+    margin-top: 10px;
+}
+
+#love {
+    color: red;
+    background-color: white;
+    border-style: none;
+    height: 50px;
+    width: 50px;
+    padding-left: 20px;
+    margin-left: 50px;
+}
+
+.job-header-bar {
+    margin-left: 50%;
+}
+
+
+
+ul {
+    list-style-type: none;
+}
+
+
 /* checkboxes */
 
-input[type=checkbox] {
-    display: none;
-}
+/*input[type=checkbox] {*/
+/*    display: none;*/
+/*}*/
 
-input[type=checkbox] + label {
-    margin: 25px;
-    width: 24px;
-    height: 24px;
-    display: inline-block;
-    background: url('https://instagram.com/static/bundles/es6/sprite_glyphs_4d61c80848f3.png/4d61c80848f3.png') no-repeat;
-    background-position: -156px -211px;
-}
+/*input[type=checkbox] + label {*/
+/*    margin: 25px;*/
+/*    width: 24px;*/
+/*    height: 24px;*/
+/*    display: inline-block;*/
+/*    background: url('https://instagram.com/static/bundles/es6/sprite_glyphs_4d61c80848f3.png/4d61c80848f3.png') no-repeat;*/
+/*    background-position: -156px -211px;*/
+/*}*/
 
-input[type=checkbox]:checked + label {
-    background-position: -130px -211px;
-}
+/*input[type=checkbox]:checked + label {*/
+/*    background-position: -130px -211px;*/
+/*}*/
 
-input[type=submit] {
+#task_db {
     background-color: yellow;
     height: 40px;
     width: 130px;
     text-align: center;
     font-size: 12px;
     border: none;
-    float: right;
     display: inline-block;
     margin: 20px;
 }
 
-input[type=submit]:hover{
+#task_db:hover{
     color: white;
-}
-
-.extraInfo {
-    background-color: ivory;
-    height: 70px;
-    width: 65%;
-    margin: 0 auto;
-    border-left: solid;
-    border-right: solid;
-    border-right-color: grey;
-    border-left-color: grey;
 }
 
 .tekst {
@@ -102,6 +93,8 @@ input[type=submit]:hover{
 }
 
 h1 {
+    font-family: "Amatic SC", cursive;
+    font-size: 60px;
     padding: 5px;
     text-align: center;
 }
@@ -110,11 +103,59 @@ p {
     padding: 5px;
 }
 
+h6{
+    font-weight: lighter;
+    color: grey;
+}
+
+h4{
+    font-family: "Open Sans", sans-serif;
+}
+
+h2{
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+    padding-top: 8px;
+}
+
+#details {
+    font-family: "Amatic SC", cursive;
+    font-size: 20px;
+    background-color: yellow;
+    height: 40px;
+    width: 130px;
+    text-align: center;
+    border: none;
+    display: inline-block;
+    margin: 20px;
+}
 
 
 
 
 /*!* checkboxes *!*/
+/*div#main {*/
+/*}*/
+
+
+
+/*.vacature {*/
+/*    background-color: floralwhite;*/
+/*    height: 250px;*/
+/*    margin: 0 auto;*/
+/*    width: 65%;*/
+/*    border-style: solid;*/
+/*    border-color: grey;*/
+/*}*/
+
+/*.Box2 {*/
+/*    background-color: floralwhite;*/
+/*    float: left;*/
+/*    width: 100%;*/
+/*    height: 70px;*/
+/*    border-bottom-style: dotted;*/
+/*    border-color: grey;*/
+/*}*/
 /*div#header {*/
 /*    background-color: purple;*/
 /*    float: left;*/

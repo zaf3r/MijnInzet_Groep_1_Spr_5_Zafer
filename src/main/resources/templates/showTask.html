@@ -10,6 +10,8 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
       integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Open+Sans&display=swap" rel="stylesheet">
+
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
@@ -17,35 +19,50 @@
 <header th:insert="~{navbarBQ :: header}"></header>
 
 <body>
-<div class="container">
-    <form action="#" th:action="@{/taskOverview}" th:object="${taak}" th:method="get">
-    <div class="opsomming">
 
-        <div class="titel" th:text="*{titel}">Hier komt titel</div><br>
-        <div class="informatie"></div>
-        <div class="buttons">
-            <input type='checkbox' name='thing' value='valuable' id="thing"/><label for="thing"></label>
+<section id="containerContent">
+    <form action="#" th:action="@{/taskOverview}" th:object="${taak}" th:method="get">        <div class="job-header">
+        <h1 class="job-header header"><span th:text="*{titel}"/></h1>
+    </div>        <div class="container">
+        <div class="job-header-bar col-md-8 justify-content-right py-5">
+            <!--                <input type='submit' name='thing' value='valuable' id="thing"/><label for="thing"></label>-->
             <input type='submit' name='thing' value='terug naar overzicht' id="task_db"/>
         </div>
+        <div class="row justify-content-md-center">
+            <div class="col col-lg-2">
+            </div>
+            <div class="col-md-8" id="boxContent">
+                <div class="container">
+                    <div class="row bg-pattern-spacing px-4 py-4">
+                        <div class="vacancy-pattern-spacing">
+                            <h2 class="details">Details</h2><br>
+                            <ul>
+                                <li class="Locatie">Locatie: <span th:text="*{locatie}"/></li>
+                                <li class="Uren">Uren: <span th:text="*{uren}"/></li>
+                                <li class="Startdatum">Start vanaf:<span th:text="*{startdatum}"/></li>
+                                <li class="Vacturenummer">Vacaturenummer: 123</li>
+                                <li class="Deadline">Reageren voor: 1 juli 2020</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-description px-4 py-5">
+                    <h2 class="description">Beschrijving</h2>
+                    <span th:text="*{beschrijvingLang}"/>
+                </div>
+            </div>
+            <div class="col col-lg-2">
+            </div>
+        </div>
     </div>
-        <div>
-        <article class="tekst"><span th:text="*{beschrijving}"/></article>
-        </div>
-        <div>
-        Op de locatie: <span th:text="*{locatie}"/><br>
-        Aantal uren: <span th:text="*{uren}"/><br>
-        Vanaf: <span th:text="*{startdatum}"></span><br>
-        </div>
-
-        <footer th:insert="~{footer :: footer}"></footer>
     </form>
-</div>
+    <form action="#" th:action="@{/taskSave/{taskId}}" th:object="${taak}" th:method="get">
+        <button type="submit" id="love" class="love"><i class="fas fa-heart"></i>
+            <input type="hidden" id="taskId" name="taskId" th:value="*{id}"></button>
+    </form>
+</section>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
+<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 </html>

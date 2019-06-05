@@ -42,7 +42,6 @@ public class User {
     @Transient
     private final String PK_COLUMN_OTHER_ENTITY = "rol_id";
 
-
     //Fields that are mapped by Hibernate
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -89,12 +88,12 @@ public class User {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getUsername() {
         return username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setUsername(String username) {
@@ -124,4 +123,5 @@ public class User {
     public void setPreferenceSet(Set<Preference> preferenceSet) {
         this.preferenceSet = preferenceSet;
     }
+
 }
