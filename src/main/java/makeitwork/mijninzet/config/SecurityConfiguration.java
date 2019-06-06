@@ -47,8 +47,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .headers()
                 .and()
                 .authorizeRequests()
+                //pagina /manager en dan hasrole of authentication met de rol.
                 .antMatchers("/login").permitAll()
                 .antMatchers("/teacher/*").hasRole("Docent")
+                .antMatchers("/manager/*").hasAuthority("MANAGER")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

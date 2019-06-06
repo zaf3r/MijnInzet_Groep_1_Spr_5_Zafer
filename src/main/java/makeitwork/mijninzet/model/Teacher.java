@@ -1,10 +1,13 @@
 package makeitwork.mijninzet.model;
 
 
+import makeitwork.mijninzet.repository.UsersRepository;
 import org.hibernate.annotations.SortNatural;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.security.Principal;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -15,6 +18,7 @@ public class Teacher extends User {
     public Teacher() {
         super();
     }
+
 
     public SortedSet<String> getTaskIds() {
 

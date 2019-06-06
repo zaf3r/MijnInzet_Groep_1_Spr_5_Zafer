@@ -8,9 +8,6 @@ import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.repository.UsersRepository;
 import makeitwork.mijninzet.service.VacatureService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import makeitwork.mijninzet.repository.TaskRepository;
@@ -20,7 +17,8 @@ import java.security.Principal;
 import java.util.*;
 
 @Controller
-public class TaskController {
+        (value ="/teacher")
+public class TaskController extends AbstractController{
 
     @Autowired
     private TaskRepository taskRepository;
@@ -33,7 +31,8 @@ public class TaskController {
 
     @GetMapping("/taskOverview") //th:action
     public String MenuHandler(Model model, Principal principal){
-        model.addAttribute("allTasks", tasks2React(allTasks(), principal));
+        User user = usersRepository.findByUsername(principal.getName());
+        model.addAttribute("allTasks", tasks2React(allTasks(), user));
         return "taskOverview";
     }
 
@@ -54,11 +53,8 @@ public class TaskController {
     }
     //haalt alles uit database
     private List<Task> allTasks(){
-//        alle taken uit database ophalen
         List<Task> tasks = this.taskRepository.findAll();
-//        de taken verwijderen waar user eerder op reageerde
         sortTasks(tasks);
-//        opgeschoonde lijst aan handler geven
         return tasks;
     }
 
@@ -78,24 +74,25 @@ public class TaskController {
 //    }
 
     //lijst met taken waar de docent nog op kan reageren
-    private List<Task> tasks2React(List<Task> tasks, Principal principal){
+    private List<Task> tasks2React(List<Task> tasks, User user){
         // taken waar <user> eerder op reageerde uit database halen
 //        User user = usersRepository.findByUsername(principal.getName());
         Teacher teacher = new Teacher();
-        teacher.setId(usersRepository.findByUsername(principal.getName()).getId());
+        teacher.setId(user.getId());
+
         Set<Task> listTasks = new HashSet<>(tasks);
         Set<Task> reacted = vacatureService.getAllTasks(teacher);
         listTasks.removeAll(reacted); // levert tasks op waaruit alle eerder gereageerde taken zijn verwijderd
         return tasks;
     }
 
-    private String currentUserName(){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (!(authentication instanceof AnonymousAuthenticationToken)) {
-            return authentication.getName();
-        } else return "";
-    }
-//
+//    private String currentUserName(){
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+//            return authentication.getName();
+//        } else return "";
+//    }
+////
 //    @PutMapping
 //    public void insert(@RequestBody Task task){
 //        this.taskRepository.insert(task);
@@ -111,6 +108,5 @@ public class TaskController {
 //        this.taskRepository.deleteById(id);
 //
 //    }
-
 
 }

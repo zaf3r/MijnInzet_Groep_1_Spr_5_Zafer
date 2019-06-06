@@ -6,10 +6,10 @@ import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.repository.TaskRepository;
 import makeitwork.mijninzet.repository.UsersRepository;
 import makeitwork.mijninzet.repository.VacatureRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
-
-import java.security.Principal;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -24,8 +24,9 @@ public class VacatureService {
     private UsersRepository usersRepository;
 
     //save Vacature in DB SQL
-    public void addTask(Task task, Teacher teacher){
+    public void addTask(Task task, @AuthenticationPrincipal Teacher teacher){
         teacher.getId();
+        ModelMapper modelMapper = new ModelMapper();
 //        if (vacatureRepository.existsById(teacher.getId()))
 //        {
 //            teacher=vacatureRepository.getOne(teacher.getId());

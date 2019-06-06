@@ -11,8 +11,6 @@ public class Application {
 //    @Column
     private Task task;
 
-//    @Column
-//    @Id
     private User user;
 
     public Task getTask() {

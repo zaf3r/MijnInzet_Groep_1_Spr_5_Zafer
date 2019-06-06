@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import makeitwork.mijninzet.repository.UsersRepository;
 
+
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
@@ -27,4 +28,5 @@ public class CustomUserDetailsService implements UserDetailsService {
 //        return new UserDetailsImp(user);
 //    }
 //}
+
 }

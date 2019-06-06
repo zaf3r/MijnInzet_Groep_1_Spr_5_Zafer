@@ -16,8 +16,7 @@ import java.util.Set;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "gebruiker")
-public class User {
-
+public class User{
 
     //Validation fields
     @Transient
@@ -77,8 +76,7 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = PK_COLUMN_OTHER_ENTITY))
     private List<Role> role;
 
-    public User() {
-    }
+    public User() {}
 
     // CONTROLLER MET GEGEVENS EN ROL LIST?
 
