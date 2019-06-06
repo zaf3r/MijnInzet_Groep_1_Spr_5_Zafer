@@ -1,7 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4b663037-915d-4af2-8830-69491ae0706f" name="Default Changelist" comment="" />
+    <list default="true" id="4b663037-915d-4af2-8830-69491ae0706f" name="Default Changelist" comment="Fixed Login Page, logo, Logout button, Vacatures &amp; Details pages.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/generic.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/generic.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/genericBQ.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/header.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/login.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/navbar-custom.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/navbar.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/navbar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/navbarBQ.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/task.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/task.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/logoMiW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/addCourse.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/addCourse.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/addUser.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/addUser.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/footer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/globalAvalability.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/globalAvalability.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/incident.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/incident.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/navbar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/navbarBQ.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/newtask.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/newtask.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/showTask.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/showTask.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/taskOverview.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/taskOverview.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/voorkeur-vakken.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/voorkeur-vakken.html" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,57 +58,13 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/home.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="44" column="88" lean-forward="true" selection-start-line="44" selection-start-column="88" selection-end-line="44" selection-end-column="88" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/navbarBQ.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="470">
-              <caret line="77" column="125" selection-start-line="77" selection-start-column="125" selection-end-line="77" selection-end-column="125" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/showTask.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-331">
-              <caret line="18" column="51" lean-forward="true" selection-start-line="18" selection-start-column="51" selection-end-line="18" selection-end-column="51" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Task.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1245">
-              <caret line="115" selection-start-line="115" selection-end-line="115" />
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/empty.html">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/login.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="28" column="31" lean-forward="true" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/login.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="94" selection-start-line="94" selection-end-line="94" />
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/profile.html">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -95,8 +76,8 @@
         <option value="JavaScript File" />
         <option value="Interface" />
         <option value="Class" />
-        <option value="CSS File" />
         <option value="HTML File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -141,15 +122,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/SQLScripts/PreferenceRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Subject.java" />
-        <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/PreferenceKey.java" />
-        <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/PreferenceRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/PreferenceForm.java" />
         <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Preference.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/header.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/css/header.css" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/css/generic.css" />
         <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/config/SecurityConfiguration.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/MongoDB/DBSeeder.java" />
@@ -163,34 +137,41 @@
         <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/GlobalAvalabilityController.java" />
         <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Availibility.java" />
         <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/CourseRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/navbar.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/incidents.html" />
         <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Course.java" />
         <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/ManagerController.java" />
         <option value="$PROJECT_DIR$/src/test/java/makeitwork/mijninzet/MijninzetApplicationTests.java" />
         <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/HomeController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/incident.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/addCourse.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/voorkeur-vakken.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/navbarBQ.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/globalAvalability.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/footer.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/css/navbarBQ.css" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/css/genericBQ.css" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/css/task.css" />
         <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/TaskController.java" />
         <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/User.java" />
         <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Teacher.java" />
         <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/VacatureRepository.java" />
         <option value="$USER_HOME$/Downloads/taskOverview.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/taskOverview.html" />
         <option value="$USER_HOME$/Downloads/showTask.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/showTask.html" />
         <option value="$USER_HOME$/Downloads/User.java" />
         <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Task.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/home.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/footer.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/index.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/css/header.css" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/css/task.css" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/css/generic.css" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/taskOverview.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/incident.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/navbar.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/showTask.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/newtask.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/voorkeur-vakken.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/css/genericBQ.css" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/navbarBQ.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/css/navbar.css" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/css/navbarBQ.css" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/globalAvalability.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/addCourse.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/addUser.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/css/login.css" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/css/login2.css" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/home.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/login.html" />
       </list>
     </option>
@@ -471,7 +452,7 @@
       <workItem from="1559503459660" duration="4308000" />
       <workItem from="1559546645581" duration="9542000" />
       <workItem from="1559570489405" duration="249000" />
-      <workItem from="1559649623383" duration="6023000" />
+      <workItem from="1559649623383" duration="13001000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <created>1556914852462</created>
@@ -606,11 +587,18 @@
       <option name="project" value="LOCAL" />
       <updated>1559727739696</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Fixed Login Page, logo, Logout button, Vacatures &amp; Details pages.">
+      <created>1559727943991</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1559727943991</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="329018000" />
+    <option name="totallyTimeSpent" value="335996000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -625,7 +613,7 @@
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24420024" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24420024" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -642,13 +630,13 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32959184" />
       <window_info anchor="bottom" id="Spring" order="7" weight="0.32857144" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49932885" weight="0.32857144" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.15838926" side_tool="true" weight="0.04249292" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.24175824" side_tool="true" weight="0.32857144" />
       <window_info anchor="bottom" id="Java Enterprise" order="10" weight="0.32857144" />
       <window_info anchor="bottom" id="Database Changes" order="11" />
-      <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.4986577" weight="0.32857144" />
+      <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.7582418" weight="0.32857144" />
       <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
       <window_info anchor="bottom" id="Messages" order="14" sideWeight="0.49798658" weight="0.31161472" />
-      <window_info active="true" anchor="bottom" id="Run Dashboard" order="15" sideWeight="0.8416107" visible="true" weight="0.33367348" />
+      <window_info anchor="bottom" id="Run Dashboard" order="15" sideWeight="0.8416107" visible="true" weight="0.33367348" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.24966443" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -729,7 +717,7 @@
     <option name="LAST_COMMIT_MESSAGE" value="Fixed Login Page, logo, Logout button, Vacatures &amp; Details pages." />
   </component>
   <component name="WindowStateProjectService">
-    <state width="370" height="390" key="Git.Branch.Popup" />
+    <state width="660" height="700" key="Git.Branch.Popup" />
     <state width="370" height="390" key="Git.Branch.Popup/1920.1080" />
     <state width="660" height="700" key="Git.Branch.Popup/3360.2100" />
     <state width="370" height="390" key="Git.Branch.Popup@1920.1080@120dpi" />
@@ -740,154 +728,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/ManagerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="43" column="32" lean-forward="true" selection-start-line="43" selection-start-column="32" selection-end-line="43" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/makeitwork/mijninzet/MijninzetApplicationTests.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="29" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/GlobalAvalabilityController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="38" selection-start-line="3" selection-start-column="38" selection-end-line="3" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/HomeController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/avalability.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/MijninzetApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/navbar.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/generic.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../mijninzet-c15-team-1-sprint3MergePeter/src/main/resources/static/css/generic.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="13" lean-forward="true" selection-end-line="87" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../mijninzet-c15-team-1-sprint3MergePeter/src/main/resources/templates/navbar2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="62" lean-forward="true" selection-end-line="88" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../mijninzet-c15-team-1-sprint3MergePeter/src/main/resources/static/css/navbar.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="26" lean-forward="true" selection-end-line="224" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../mijninzet-c15-team-1-sprint3MergePeter/src/main/resources/templates/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-622">
-          <caret line="39" selection-start-line="39" selection-end-line="89" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../mijninzet-c15-team-1-sprint3MergePeter/src/main/resources/templates/footer.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="15" lean-forward="true" selection-end-line="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/home.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/navbar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="28" selection-start-line="28" selection-end-line="36" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/addCourse.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="51" column="53" selection-start-line="51" selection-start-column="53" selection-end-line="51" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/incidents.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-97">
-          <caret line="82" selection-start-line="82" selection-end-line="82" />
-          <folding>
-            <element signature="n#style#0;n#p#0;n#nav#0;n#body#0;n#html#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../advancedProgramming1/mijninzet-c15-team-1/src/main/java/makeitwork/mijninzet/controller/TaskController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="333">
           <caret line="90" column="57" lean-forward="true" selection-end-line="97" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/navbarBQ.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2490">
-          <caret line="166" selection-start-line="166" selection-start-column="2" selection-end-line="168" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/genericBQ.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="70" selection-start-line="70" selection-end-line="70" />
         </state>
       </provider>
     </entry>
@@ -912,34 +756,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="118">
           <caret line="12" column="1" lean-forward="true" selection-end-line="232" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/incident.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-241">
-          <caret line="13" selection-start-line="13" selection-end-line="25" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/footer.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="54" selection-start-line="23" selection-start-column="54" selection-end-line="23" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/globalAvalability.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="12" column="98" selection-start-line="12" selection-start-column="98" selection-end-line="12" selection-end-column="98" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/voorkeur-vakken.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-400">
-          <caret line="23" selection-start-line="23" selection-end-line="23" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -1004,38 +820,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/taskOverview.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="614">
-          <caret line="48" column="10" selection-start-line="48" selection-start-column="10" selection-end-line="48" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/navbarBQ.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="77" column="125" selection-start-line="77" selection-start-column="125" selection-end-line="77" selection-end-column="125" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Downloads/showTask.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="15" selection-start-line="15" selection-end-line="55" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/showTask.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-331">
-          <caret line="18" column="51" lean-forward="true" selection-start-line="18" selection-start-column="51" selection-end-line="18" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/task.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="232" selection-start-line="232" selection-end-line="232" />
         </state>
       </provider>
     </entry>
@@ -1063,26 +851,199 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/home.html">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="44" column="88" lean-forward="true" selection-start-line="44" selection-start-column="88" selection-end-line="44" selection-end-column="88" />
+        <state relative-caret-position="15">
+          <caret line="3" column="38" selection-start-line="3" selection-start-column="38" selection-end-line="3" selection-end-column="38" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/login.css">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/avalability.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="94" selection-start-line="94" selection-end-line="94" />
+        <state relative-caret-position="-39" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/header.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="780">
+          <caret line="52" column="1" selection-start-line="52" selection-start-column="1" selection-end-line="52" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/home.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/incident.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-69" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/index.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/navbar-custom.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/user.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-39" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/images/logoMiW.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/task.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="900">
+          <caret line="111" selection-start-line="111" selection-end-line="111" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/footer.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="14" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1770">
+          <caret line="118" column="7" lean-forward="true" selection-start-line="118" selection-start-column="7" selection-end-line="118" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/navbar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="114" selection-start-line="7" selection-start-column="114" selection-end-line="7" selection-end-column="114" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/showTask.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="62" selection-start-line="4" selection-start-column="62" selection-end-line="4" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/newtask.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="66" selection-start-line="7" selection-start-column="66" selection-end-line="7" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/taskOverview.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="27" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/voorkeur-vakken.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="62" selection-start-line="4" selection-start-column="62" selection-end-line="4" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/navbar.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="167" selection-start-line="167" selection-end-line="167" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/generic.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="516">
+          <caret line="78" selection-start-line="78" selection-end-line="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/globalAvalability.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="27" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/addCourse.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/incident.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="39" lean-forward="true" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/genericBQ.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="62" column="3" lean-forward="true" selection-end-line="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/navbarBQ.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="6" lean-forward="true" selection-end-line="167" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/navbarBQ.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="30" column="43" lean-forward="true" selection-start-column="4" selection-end-line="75" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/addUser.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="27" lean-forward="true" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/login2.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="89" column="1" selection-start-line="89" selection-start-column="1" selection-end-line="89" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="31" lean-forward="true" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
+        <state relative-caret-position="210">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1290">
+          <caret line="86" selection-start-line="86" selection-end-line="91" selection-end-column="125" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/login.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="20" lean-forward="true" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/empty.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/profile.html">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
   <component name="masterDetails">

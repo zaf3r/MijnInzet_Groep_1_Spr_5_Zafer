@@ -2,8 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <link rel="stylesheet" type="text/css" th:href="@{/css/task.css}"/>
-<link rel="stylesheet" type="text/css" th:href="@{/css/genericBQ.css}"/>
-<link rel="stylesheet" type="text/css" th:href="@{/css/navbarBQ.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/generic.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/navbar.css}"/>
 <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
@@ -16,7 +16,7 @@
     <meta charset="UTF-8">
     <title>Home</title>
 </head>
-<header th:insert="~{navbarBQ :: header}"></header>
+<header th:insert="~{navbar :: header}"></header>
 
 <body>
 
@@ -25,7 +25,6 @@
         <h1 class="job-header header"><span th:text="*{titel}"/></h1>
     </div>        <div class="container">
         <div class="job-header-bar col-md-8 justify-content-right py-5">
-            <!--                <input type='submit' name='thing' value='valuable' id="thing"/><label for="thing"></label>-->
             <input type='submit' name='thing' value='terug naar overzicht' id="task_db"/>
         </div>
         <div class="row justify-content-md-center">
