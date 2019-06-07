@@ -1,13 +1,13 @@
 package makeitwork.mijninzet.controller;
 
 import makeitwork.mijninzet.model.User;
-import makeitwork.mijninzet.repository.UsersRepository;
+import makeitwork.mijninzet.repository.UserRepository;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 public class AbstractController {
 
-    UsersRepository usersRepository;
+    UserRepository usersRepository;
 
     public User voegUserToe(){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
