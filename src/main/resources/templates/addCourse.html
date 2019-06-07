@@ -24,28 +24,28 @@
     <br>
     <br>
     <br>
-<h2 class="text-center">Voeg een vak toe</h2>
-<form action="#" th:object="${attr1}" th:action="@{saveCourse}" method="post" id="saveCourse">
-    <table border="1">
-        <tr>
-            <td><label th:text="Vaknaam" /></td>
-            <td><input type="text" th:field="*{courseName}" required title="Vul een vaknaam in"/></td>
-        </tr>
-        <tr>
-            <td><label th:text="Kennisgebied" /></td>
-            <td><input type="text" th:field="*{knowledgeField}" required title="Kies een kennisgebied"/></td>
-        </tr>
-        <tr>
-            <td><label th:text="Cohortnummer" /></td>
-            <td><input type="number" th:field="*{cohortNumber}" required title="Cohortnummer kan niet lager zijn dan 1"/></td>
-        </tr>
-        <tr>
-            <td><input type="submit" th:onclick="alert ('Het vak is opgeslagen in de database.')" value="Opslaan" /></td>
-        </tr>
-    </table>
+    <h2 class="text-center">Voeg een vak toe</h2>
+    <form action="#" th:object="${attr1}" th:action="@{saveCourse}" method="post" id="saveCourse">
+        <table border="1">
+            <tr>
+                <td><label th:text="Vaknaam" /></td>
+                <td><input type="text" th:field="*{courseName}" required title="Vul een vaknaam in"/></td>
+            </tr>
+            <tr>
+                <td><label th:text="Kennisgebied" /></td>
+                <td><input type="text" th:field="*{knowledgeField}" required title="Kies een kennisgebied"/></td>
+            </tr>
+            <tr>
+                <td><label th:text="Cohortnummer" /></td>
+                <td><input type="number" th:field="*{cohortNumber}" required title="Cohortnummer kan niet lager zijn dan 1"/></td>
+            </tr>
+            <tr>
+                <td><input type="submit" th:onclick="alert ('Het vak is opgeslagen in de database.')" value="Opslaan" /></td>
+            </tr>
+        </table>
 
-    <footer th:insert="~{footer :: footer}"></footer>
-</form>
+        <footer th:insert="~{footer :: footer}"></footer>
+    </form>
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
