@@ -2,8 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <link rel="stylesheet" type="text/css" th:href="@{/css/task.css}"/>
-<!--<link rel="stylesheet" type="text/css" th:href="@{/css/genericBQ.css}"/>-->
-<link rel="stylesheet" type="text/css" th:href="@{/css/navbarBQ.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/navbar.css}"/>
 <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
@@ -16,7 +15,7 @@
     <title>Jouw takenoverzicht</title>
 
     </head>
-<header th:insert="~{navbarBQ :: header}"></header>
+<header th:insert="~{navbar :: header}"></header>
     <body>
 
     <div class="content">
@@ -47,8 +46,6 @@
             </div>
         </section>
     </div>
-
-    <!--    <footer th:insert="~{footer :: footer}"></footer>-->
 
     <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>

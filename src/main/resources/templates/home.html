@@ -2,8 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}"/>
-<link rel="stylesheet" type="text/css" th:href="@{/css/genericBQ.css}"/>
-<link rel="stylesheet" type="text/css" th:href="@{/css/navbarBQ.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/generic.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/navbar.css}"/>
 <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
@@ -14,7 +14,7 @@
     <meta charset="UTF-8">
     <title>Home</title>
 </head>
-<header th:insert="~{navbarBQ :: header}"></header>
+<header th:insert="~{navbar :: header}"></header>
 <body id="pageContent">
 <form action="#" th:action="@{/home}" method="get">
 
@@ -80,7 +80,6 @@
             </div>
         </div>
     </section>
-
 
     <footer th:insert="~{footer :: footer}"></footer>
 </form>
