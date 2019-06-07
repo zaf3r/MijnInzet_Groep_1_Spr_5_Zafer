@@ -7,7 +7,7 @@ public enum PartOfDay {
 
     private final String partOfDayAsString;
 
-    PartOfDay(String partOfDay) {
+    private PartOfDay(String partOfDay) {
         this.partOfDayAsString = partOfDay;
     }
 
