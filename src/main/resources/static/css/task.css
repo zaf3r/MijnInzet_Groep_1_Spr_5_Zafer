@@ -20,13 +20,11 @@ div#buttons {
     margin-top: 100px;
 }
 
-#boxContent {
-
-}
 
 .container-description {
     border: 2px solid lightgrey;
-    margin-top: 10px;
+    margin-top: 20px;
+    padding-top: 15px;
 }
 
 #love {
@@ -39,11 +37,9 @@ div#buttons {
     margin-left: 50px;
 }
 
-.job-header-bar {
-    margin-left: 50%;
-}
-
-
+/*.job-header-bar {*/
+/*    margin-left: 50%;*/
+/*}*/
 
 ul {
     list-style-type: none;
@@ -79,6 +75,14 @@ h1 {
     text-align: center;
 }
 
+h1.job-header.header {
+    margin-bottom: 40px;
+}
+
+.job-header-bar{
+    margin-left: 730px;
+}
+
 p {
     padding: 5px;
 }
@@ -110,4 +114,7 @@ h2{
     margin: 20px;
 }
 
+#lovebutton{
+    margin-left: 80px;
+}
 
