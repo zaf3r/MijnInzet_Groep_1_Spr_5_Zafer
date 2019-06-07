@@ -1,13 +1,11 @@
 package makeitwork.mijninzet.model;
 
 
-import makeitwork.mijninzet.repository.UsersRepository;
 import org.hibernate.annotations.SortNatural;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-import javax.persistence.*;
-import java.security.Principal;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.SortedSet;
 import java.util.TreeSet;
 

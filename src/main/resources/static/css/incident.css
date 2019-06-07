@@ -1,0 +1,39 @@
+#header {
+    background: #62B7C2;
+}
+
+.container {
+    margin-top: 65px;
+}
+
+#date {
+    margin-left: 40%;
+    margin-bottom: 30px;
+}
+
+.table {
+    margin: auto;
+    width: 90%;
+    height: 400px;
+    border: 3px solid #62B7C2;
+    text-align: center;
+}
+
+th, td {
+    border: 2px solid #62B7C2;
+    width: 16.6%;
+}
+
+tr td {
+    background-color: #ff6347;
+}
+
+#button {
+    margin-top: 30px;
+    position: relative;
+    left: 47%;
+}
+
+input[type=checkbox] {
+    opacity: 0;
+}

@@ -4,8 +4,6 @@ package makeitwork.mijninzet.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -21,7 +19,7 @@ public class HomeController {
     public String login(){
         return "login";
     }
-//
+
     @GetMapping("/home")
     public String home(Model model,
                        @RequestParam(value = "name", required = false,
@@ -32,17 +30,36 @@ public class HomeController {
         model.addAttribute("name", name);
         model.addAttribute("title", appName);
         model.addAttribute("team", teamLeden);
-        return "/home";
-
+        return "home";
     }
+
 //    @GetMapping("/addUser")
 //    public String addUser(Model model){
 //        return "addUser";
 //    }
 
+
     @GetMapping("/globalAvalability")
-    public String addAvalability(Model model) { return "globalAvalability"; }
+    public String addAvalability(Model model, @RequestParam(value = "name", required = false,
+            defaultValue = "Guest") String name) {
+        model.addAttribute("userName", name);
+        return "globalAvalability"; }
+
+    @GetMapping("/incident")
+    public String addIncidents(Model model, @RequestParam(value = "name", required = false,
+            defaultValue = "Guest") String name) {
+        model.addAttribute("userName", name);
+        return "incident"; }
 
     @GetMapping("/teacher")
-    public String addPreferance(Model model) { return "voorkeur-vakken"; }
+    public String addPreferance(Model model, @RequestParam(value = "name", required = false,
+            defaultValue = "Guest") String name) {
+        model.addAttribute("userName", name);
+        return "voorkeur-vakken"; }
+
+    @GetMapping("/manager")
+    public String addCourse(Model model, @RequestParam(value = "name", required = false,
+            defaultValue = "Guest") String name) {
+        model.addAttribute("userName", name);
+        return "addCourse"; }
 }

@@ -9,85 +9,80 @@
 <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
       integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap" rel="stylesheet">
 <head>
     <meta charset="UTF-8">
-    <title th:text="${title}"></title>
-<!--    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />-->
+    <title>Home</title>
 </head>
 <header th:insert="~{navbar :: header}"></header>
 <body id="pageContent">
 <form action="#" th:action="@{/home}" method="get">
 
-    <div class="container">
-        <section id="header" class="jumbotron text-center">
-        <h1> Welkom Docent</h1>
-            <p>nog een verwijzing naar de betreffende gebruiker</p>
-        </section>
+    <div class="card card-image" style="background-image: url(https://www.desktopbackground.org/download/3440x1440/2010/05/07/13609_blue-sky-with-clouds-backgrounds-church-at-prison_7000x5500_h.jpg); background-size: cover">
+        <div class="text-white text-center rgba-stylish-strong py-4 px-4">
+            <div class="py-5">
+
+                <!-- Content -->
+                <!--                <h5 class="h5 orange-text text-left"><i class="fas fa-chalkboard-teacher"></i> MijnInzet</h5>-->
+                <h2 class="card-title h1 my-4 py-2">Welkom Docent H.A. van Thienen</h2>
+                <p class="mb-4 pb-2 px-md-5 mx-md-5"></p>
+                <a class="btn peach-gradient bg-dark"><i class="fas fa-hand-point-down"></i> Mijn Pagina</a>
+
+            </div>
+        </div>
     </div>
 
-        <section id="gallery">
-            <div class="container">
-                <div class="row justify-content-around">
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4>Jouw rooster</h4><hr>
-                                <div class ="card-text">
-                                    <p>link naar zijn of haar rooster</p>
-                                    <a href="#" class="btn btn-outline-succes btn sm">Bekijken</a>
-                                    <a href="#" class="btn btn-outline-succes btn sm"><i class="far fa-heart"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4>Jouw taken</h4><hr>
-                                <div class ="card-text">
-                                    <p>link naar zijn of haar takenoverzicht</p>
-                                    <a href="#"
-                                       class="btn btn-outline-succes btn sm">Bekijken</a>
-                                    <a href="#" class="btn btn-outline-succes btn sm"><i class="far fa-heart"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4>Evenementen</h4><hr>
-                                <div class ="card-text">
-                                    <p>de agenda van de HvA</p>
-                                    <a href="http://www.hva.nl/over-de-hva/nieuws-en-agenda/agenda/agenda.html"
-                                    class="btn btn-outline-succes btn sm">Bekijken</a>
-                                    <a href="#" class="btn btn-outline-succes btn sm"><i class="far fa-heart"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4>Vakantiedagen</h4><hr>
-                                <div class ="card-text justify-content-center">
-                                    <ul>
-                                        <li> Nieuwsjaarsdag: 1 januari 2020</li>
-                                        <li> Goede Vrijdag: 19 april 2020</li>
-                                        <li> Pasen: 24 t/m 25 april 2020</li>
-                                    <li> Koningsdag: 27 april 2020</li>
-                                    </ul>
-                                </div>
-                            </div>
+    <section id="gallery">
+        <div class="container">
+            <div class="row justify-content-around">
+
+                <div class="col-md-3">
+                    <div class="card mb-4 text-white bg-secondary">
+                        <img class="card-img-top" src="http://placeimg.com/290/180/tech" alt="Card image cap">
+                        <div class="card-body">
+                            <h3 class="card-title text-light">Agenda</h3>
+                            <p class="card-text">Bekijk uw rooster.</p>
+                            <a href="#" class="btn btn-outline-light btn-sm">ROOSTER</a>
                         </div>
                     </div>
                 </div>
+                <div class="col-md-3">
+                    <div class="card mb-4 text-white bg-secondary">
+                        <img class="card-img-top" src="http://placeimg.com/290/180/architecture" alt="Card image cap">
+                        <div class="card-body">
+                            <h3 class="card-title text-light">Takenoverzicht</h3>
+                            <p class="card-text">Bekijk uw takenoverzicht.</p>
+                            <a href="#" class="btn btn-outline-light btn-sm">TAKEN</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card mb-4 text-white bg-secondary">
+                        <img class="card-img-top" src="//placeimg.com/290/180/any" alt="Card image cap">
+                        <div class="card-body">
+                            <h3 class="card-title text-light">Evenementen</h3>
+                            <p class="card-text">Aankomende evenementen.</p>
+                            <a href="#" class="btn btn-outline-light btn-sm">EVENEMENTEN</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card mb-4 text-white bg-secondary">
+                        <img class="card-img-top" src="http://placeimg.com/290/180/nature" alt="Card image cap">
+                        <div class="card-body">
+                            <h3 class="card-title text-light">Vakantiedagen</h3>
+                            <p class="card-text">Bekijk uw vakantiedagen.</p>
+                            <a href="#" class="btn btn-outline-light btn-sm">VAKANTIE</a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-        </section>
-    
-</div>
+        </div>
+    </section>
+
+    <footer th:insert="~{footer :: footer}"></footer>
 </form>
-</body>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -95,7 +90,12 @@
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+
+
 </html>
+
+
 
 
 

@@ -7,26 +7,21 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import makeitwork.mijninzet.repository.UsersRepository;
-
+import makeitwork.mijninzet.repository.UserRepository;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
-    private UsersRepository usersRepository;
+    private UserRepository userRepository;
+
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = usersRepository.findByUsername(username);
-        UserDetailsImp userPrincipal = new UserDetailsImp(user);
-        return userPrincipal;
+    public UserDetails loadUserByUsername(String username) {
+        User user = userRepository.findByUsername(username);
+        if (user == null) {
+            throw new UsernameNotFoundException(username);
+        }
+        return new UserDetailsImp(user);
     }
-//        if (user == null) {
-//            throw new UsernameNotFoundException(username);
-//        }
-//        return new UserDetailsImp(user);
-//    }
-//}
-
 }

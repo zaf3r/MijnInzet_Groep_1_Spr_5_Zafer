@@ -1,0 +1,53 @@
+.body {
+    background-color: white;
+    border-style: solid;
+    border-bottom-color: #4CAF50;
+}
+
+.navbar {
+    background-color: white;
+}
+
+.logo {
+    border-style: solid;
+    border-color: white;
+    padding: 3px;
+}
+
+a {
+    padding: 8px;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    border: 1px none;
+    float: right;
+
+}
+li {
+    float: right;
+    border-bottom: 1px none;
+}
+li a {
+    vertical-align:center;
+    margin-right: 2px;
+    width: 4em;
+    height: 4em;
+    font-size: 20px;
+    font-family: "Times New Roman";
+    color: black;
+    text-decoration: none;
+}
+li a:hover {
+    font-size: 1.2em;
+    color: black;
+}
+li:last-child {
+    border-bottom: none;
+}
+.active {
+    background-color: #4CAF50;
+    color: white;
+}

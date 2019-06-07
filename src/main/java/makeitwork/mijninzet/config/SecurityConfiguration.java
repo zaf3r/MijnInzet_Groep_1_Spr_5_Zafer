@@ -13,11 +13,11 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import makeitwork.mijninzet.repository.UsersRepository;
+import makeitwork.mijninzet.repository.UserRepository;
 
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebSecurity
-@EnableJpaRepositories(basePackageClasses = UsersRepository.class)
+@EnableJpaRepositories(basePackageClasses = UserRepository.class)
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
@@ -34,6 +34,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     DaoAuthenticationProvider authProvider() {
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
         daoAuthenticationProvider.setUserDetailsService(this.userDetailsService);
+        daoAuthenticationProvider.setUserDetailsService(userDetailsService);
         daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
         return daoAuthenticationProvider;
     }
@@ -47,11 +48,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .headers()
                 .and()
                 .authorizeRequests()
-                //pagina /manager en dan hasrole of authentication met de rol.
                 .antMatchers("/login").permitAll()
-                .antMatchers("/teacher/*").hasAuthority("DOCENT")
-                .antMatchers("/manager/*").hasAuthority("MANAGER")
-                .antMatchers("/roosteraar/*").hasAuthority("ROOSTERAAR")
+                .antMatchers("/teacher/*").hasRole("Docent")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
