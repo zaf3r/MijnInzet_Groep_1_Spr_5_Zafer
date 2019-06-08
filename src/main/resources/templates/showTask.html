@@ -30,7 +30,7 @@
     <div class="container">
     <form action="#" th:action="@{/taskSave/{taskId}}" th:object="${taak}" th:method="get">
         <div class="job-header-bar col-md-8 justify-content-right">
-        <button type="submit" id="love" class="love"><i class="fas fa-heart" style="font-size: 1.73em;"></i>
+        <button type="submit" id="love" class="love"><i class="fas fa-thumbs-up" style="font-size: 2.5em;"></i>
             <input type="hidden" id="taskId" name="taskId" th:value="*{id}"></button>
         </div>
     </form>
@@ -47,13 +47,12 @@
                     <div class="row bg-pattern-spacing px-4">
                         <div class="vacancy-pattern-spacing">
                             <h2 class="details">Details</h2><br>
-                            <ul>
-                                <li class="Locatie"><strong>Locatie:</strong> <span th:text="*{locatie}"/></li>
-                                <li class="Uren"><strong>Uren:</strong> <span th:text="*{uren}"/></li>
-                                <li class="Startdatum"><strong>Start vanaf:</strong><span th:text="*{startdatum}"/></li>
-                                <li class="Vacturenummer"><strong>Vacaturenummer:</strong>123</li>
-                                <li class="Deadline"><strong>Reageren voor:</strong> 1 juli 2020</li>
-                            </ul>
+                            <span class="Locatie"><strong>Locatie:</strong> <span th:text="*{locatie}"/></span><br>
+                            <span class="Uren"><strong>Uren:</strong> <span th:text="*{uren}"/></span><br>
+                                <span class="Startdatum"><strong>Start vanaf:</strong><span th:text="*{startdatum}"/></span><br>
+                                <span class="Vacturenummer"><strong>Vacaturenummer:</strong>123</span><br>
+                                <span class="Deadline"><strong>Reageren binnen:</strong> 1 juli 2020</span>
+
                         </div>
                     </div>
                 </div>

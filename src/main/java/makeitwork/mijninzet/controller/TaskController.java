@@ -51,6 +51,13 @@ public class TaskController extends AbstractController {
         return "redirect:/taskOverview";
     }
 
+    @GetMapping("/myTasks")
+    public String MyTaskHandler(Model model, Principal principal) {
+        User user = usersRepository.findByUsername(principal.getName());
+        model.addAttribute("myTasks", myTaskList(user));
+        return "myTasks";
+    }
+
     //haalt alles uit database
     private List<Task> allTasks() {
         List<Task> tasks = this.taskRepository.findAll();
@@ -91,11 +98,30 @@ public class TaskController extends AbstractController {
         return possibleTasks;
     }
 
-
+    private List<Task> myTaskList(User user) {
+        List<Task> tasks = allTasks();
+        List<Task> myTasks = vacatureService.getAllTasks(user);
+        List<Task> possibleTasks = new ArrayList<>();
+        for (Task t : myTasks) {
+            if (!doesContaine(t, tasks)) {
+                possibleTasks.add(t);
+            }
+        }
+        return possibleTasks;
+    }
 
     public boolean isContained(Task t, List<Task> listTask) {
         for (Task t2 : listTask) {
             if (t.getId().equals(t2.getId())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean doesContaine(Task t, List<Task> listTask) {
+        for (Task t2 : listTask) {
+            if (t.getId() == (t2.getId())) {
                 return true;
             }
         }
