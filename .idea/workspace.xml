@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="56c729df-caca-42c4-bc44-05fe1b4b4197" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/myTasks.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/TaskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/TaskController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/service/VacatureService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/service/VacatureService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/task.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/task.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/myTasks.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/myTasks.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/showTask.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/showTask.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -39,11 +39,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/TaskController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
-              <caret line="105" column="38" selection-start-line="105" selection-start-column="38" selection-end-line="105" selection-end-column="38" />
+            <state relative-caret-position="232">
+              <caret line="63" column="33" selection-start-line="63" selection-start-column="33" selection-end-line="63" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2268#2269#0" expanded="true" />
@@ -54,34 +54,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/config/SecurityConfiguration.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="19" column="58" selection-start-line="19" selection-start-column="58" selection-end-line="19" selection-end-column="58" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/home.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="433">
-              <caret line="56" column="26" lean-forward="true" selection-start-line="56" selection-start-column="26" selection-end-line="56" selection-end-column="26" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#form#0;n#body#0;n#html#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/showTask.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="327">
-              <caret line="42" column="38" lean-forward="true" selection-start-line="42" selection-start-column="38" selection-end-line="42" selection-end-column="38" />
+            <state relative-caret-position="129">
+              <caret line="24" column="66" selection-start-line="24" selection-start-column="66" selection-end-line="24" selection-end-column="66" />
               <folding>
                 <element signature="n#style#0;n#i#0;n#button#0;n#div#0;n#form#0;n#div#0;n#section#0;n#body#0;n#html#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -92,8 +68,25 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/myTasks.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="227">
-              <caret line="27" column="100" selection-start-line="27" selection-start-column="100" selection-end-line="27" selection-end-column="100" />
+            <state relative-caret-position="144">
+              <caret line="41" column="108" selection-start-line="41" selection-start-column="108" selection-end-line="41" selection-end-column="108" />
+              <folding>
+                <element signature="n#style#0;n#i#0;n#button#0;n#div#0;n#form#0;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/service/VacatureService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-72">
+              <caret line="38" column="44" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="44" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1386#1387#0" expanded="true" />
+                <element signature="e#1448#1449#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -101,24 +94,19 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/taskOverview.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="377">
-              <caret line="28" column="55" lean-forward="true" selection-start-line="28" selection-start-column="55" selection-end-line="28" selection-end-column="55" />
+            <state relative-caret-position="293">
+              <caret line="29" column="60" selection-start-line="29" selection-start-column="60" selection-end-line="29" selection-end-column="60" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/task.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="566">
-              <caret line="117" column="22" lean-forward="true" selection-start-line="117" selection-start-column="22" selection-end-line="117" selection-end-column="22" />
+            <state relative-caret-position="325">
+              <caret line="134" column="23" selection-start-line="134" selection-start-column="23" selection-end-line="134" selection-end-column="23" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/user.css">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -218,15 +206,15 @@
         <option value="$PROJECT_DIR$/src/main/resources/templates/navbar.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/voorkeur-vakken.html" />
         <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/User.java" />
-        <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/service/VacatureService.java" />
         <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/VacatureRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Task.java" />
         <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/config/SecurityConfiguration.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/css/task.css" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/showTask.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/home.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/showTask.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/myTasks.html" />
+        <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/service/VacatureService.java" />
         <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/TaskController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/css/task.css" />
       </list>
     </option>
   </component>
@@ -497,6 +485,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.MijninzetApplication (1)" />
+        <item itemvalue="Spring Boot.MijninzetApplication (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -539,7 +528,7 @@
       <workItem from="1559570489405" duration="249000" />
       <workItem from="1559649623383" duration="13352000" />
       <workItem from="1559899183994" duration="9300000" />
-      <workItem from="1559989154428" duration="2659000" />
+      <workItem from="1559989154428" duration="10299000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <created>1556914852462</created>
@@ -702,11 +691,18 @@
       <option name="project" value="LOCAL" />
       <updated>1559927848625</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="compleet met mijntaken">
+      <created>1559998549652</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1559998549652</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="353817000" />
+    <option name="totallyTimeSpent" value="361457000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -860,7 +856,8 @@
     <MESSAGE value="-Clean HTML files&#10;-Clean CSS files&#10;-Delete dead code and unused files&#10;-Meaningful names" />
     <MESSAGE value="ole" />
     <MESSAGE value="compleet met task save" />
-    <option name="LAST_COMMIT_MESSAGE" value="compleet met task save" />
+    <MESSAGE value="compleet met mijntaken" />
+    <option name="LAST_COMMIT_MESSAGE" value="compleet met mijntaken" />
   </component>
   <component name="WindowStateProjectService">
     <state width="373" height="393" key="Git.Branch.Popup" />
@@ -1022,13 +1019,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1977">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/TeacherController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-697">
@@ -1040,13 +1030,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-922">
           <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/navbar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="33" column="43" lean-forward="true" selection-start-line="33" selection-start-column="43" selection-end-line="33" selection-end-column="43" />
         </state>
       </provider>
     </entry>
@@ -1108,18 +1091,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/service/VacatureService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-47">
-          <caret line="31" column="26" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1431#1432#0" expanded="true" />
-            <element signature="e#1493#1494#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Task.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="790">
@@ -1177,9 +1148,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/navbar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="33" column="43" lean-forward="true" selection-start-line="33" selection-start-column="43" selection-end-line="33" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="529">
+          <caret line="39" column="65" selection-start-line="39" selection-start-column="53" selection-end-line="39" selection-end-column="65" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#form#0;n#body#0;n#html#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/config/SecurityConfiguration.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
+        <state relative-caret-position="-51">
           <caret line="19" column="58" selection-start-line="19" selection-start-column="58" selection-end-line="19" selection-end-column="58" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1187,59 +1175,73 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/user.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/task.css">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="566">
-          <caret line="117" column="22" lean-forward="true" selection-start-line="117" selection-start-column="22" selection-end-line="117" selection-end-column="22" />
+        <state relative-caret-position="145">
+          <caret line="33" column="18" lean-forward="true" selection-start-line="33" selection-start-column="18" selection-end-line="33" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/user.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-155" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/taskOverview.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="29" column="60" selection-start-line="29" selection-start-column="60" selection-end-line="29" selection-end-column="60" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/showTask.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="42" column="38" lean-forward="true" selection-start-line="42" selection-start-column="38" selection-end-line="42" selection-end-column="38" />
+        <state relative-caret-position="129">
+          <caret line="24" column="66" selection-start-line="24" selection-start-column="66" selection-end-line="24" selection-end-column="66" />
           <folding>
             <element signature="n#style#0;n#i#0;n#button#0;n#div#0;n#form#0;n#div#0;n#section#0;n#body#0;n#html#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/taskOverview.html">
+    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/service/VacatureService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="28" column="55" lean-forward="true" selection-start-line="28" selection-start-column="55" selection-end-line="28" selection-end-column="55" />
+        <state relative-caret-position="-72">
+          <caret line="38" column="44" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1386#1387#0" expanded="true" />
+            <element signature="e#1448#1449#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/home.html">
+    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/TaskController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="56" column="26" lean-forward="true" selection-start-line="56" selection-start-column="26" selection-end-line="56" selection-end-column="26" />
+        <state relative-caret-position="232">
+          <caret line="63" column="33" selection-start-line="63" selection-start-column="33" selection-end-line="63" selection-end-column="33" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#form#0;n#body#0;n#html#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#2268#2269#0" expanded="true" />
+            <element signature="e#2335#2336#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/myTasks.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="27" column="100" selection-start-line="27" selection-start-column="100" selection-end-line="27" selection-end-column="100" />
+        <state relative-caret-position="144">
+          <caret line="41" column="108" selection-start-line="41" selection-start-column="108" selection-end-line="41" selection-end-column="108" />
+          <folding>
+            <element signature="n#style#0;n#i#0;n#button#0;n#div#0;n#form#0;n#div#0;n#div#0;n#section#0;n#div#0;n#body#0;n#html#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/TaskController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/task.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="105" column="38" selection-start-line="105" selection-start-column="38" selection-end-line="105" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2268#2269#0" expanded="true" />
-            <element signature="e#2335#2336#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="325">
+          <caret line="134" column="23" selection-start-line="134" selection-start-column="23" selection-end-line="134" selection-end-column="23" />
         </state>
       </provider>
     </entry>
