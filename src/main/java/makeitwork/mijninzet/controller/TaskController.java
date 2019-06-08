@@ -8,9 +8,7 @@ import makeitwork.mijninzet.service.VacatureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.ArrayList;
@@ -58,6 +56,14 @@ public class TaskController extends AbstractController {
         return "myTasks";
     }
 
+    @PostMapping("/taskDelete/{taskId}")
+    public String DeleteTaskHandler(@ModelAttribute("myTask") Task myTask, @RequestParam("taskId") String taakId, Principal principal){
+        myTask = opening(taakId);
+        System.out.println(myTask);
+        vacatureService.removeTask(myTask, usersRepository.findByUsername(principal.getName()));
+        return "redirect:/myTasks";
+    }
+
     //haalt alles uit database
     private List<Task> allTasks() {
         List<Task> tasks = this.taskRepository.findAll();
@@ -98,7 +104,7 @@ public class TaskController extends AbstractController {
         return possibleTasks;
     }
 
-    private List<Task> myTaskList(User user) {
+    public List<Task> myTaskList(User user) {
         List<Task> tasks = allTasks();
         List<Task> myTasks = vacatureService.getAllTasks(user);
         List<Task> possibleTasks = new ArrayList<>();

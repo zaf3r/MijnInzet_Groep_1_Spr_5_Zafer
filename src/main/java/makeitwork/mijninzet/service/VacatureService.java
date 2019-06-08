@@ -34,10 +34,10 @@ public class VacatureService {
     //todo teller bijhouden??
     //wordt een taak uit zijn eigen lijst verwijderd
     public void removeTask(Task task, User user) {
-        if (vacatureRepository.existsById(user.getId())) {
-//            teacher = vacatureRepository.getOne(teacher.getId());
-            user.removeTask(task.getId());
-        }
+//        if (vacatureRepository.existsById(user.getId())) {
+////            teacher = vacatureRepository.getOne(teacher.getId());
+        System.out.println("Task: " + task);
+        user.removeTask(task.getId());
         vacatureRepository.save(user);
     }
     //MongoDB

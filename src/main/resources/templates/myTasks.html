@@ -38,9 +38,18 @@
                                 </div>
                             </div>
                         </form>
+
+                    <form action="#" th:action="@{/taskDelete/{taskId}}" th:object="${myTasks}" method="post">
+                                <div class="btn">
+                                    <button type="submit" id="dislike" class="love"><i class="fas fa-thumbs-down" style="font-size: 2.5em;"></i>
+                                        <input type="hidden" id="taskId" name="taskId" th:value="${task.id}"></button>
+                                </div>
+                                </form>
+                            </div>
+                        </form>
                     </div>
-                </div>
             </div>
+
     </section>
 </div>
 

@@ -37,15 +37,15 @@
 
         <form action="#" th:action="@{/taskOverview}" th:object="${taak}" th:method="get">
         <div class="job-header-bar col-md-8 justify-content-right py-1">
-            <input type='submit' name='thing' value='terug naar overzicht' id="task_db" align="right"/>
+            <input type='submit' name='thing' value='terug naar overzicht' id="saveTask" align="right"/>
         </div>
         <div class="row justify-content-md-center">
             <div class="col col-lg-2">
             </div>
             <div class="col-md-8" id="boxContent">
-                <div class="container">
+                <div class="container" id="detailsBox">
                     <div class="row bg-pattern-spacing px-4">
-                        <div class="vacancy-pattern-spacing">
+                        <div class="vacancy-pattern-spacing" id="detailsTekst">
                             <h2 class="details">Details</h2><br>
                             <span class="Locatie"><strong>Locatie:</strong> <span th:text="*{locatie}"/></span><br>
                             <span class="Uren"><strong>Uren:</strong> <span th:text="*{uren}"/></span><br>
