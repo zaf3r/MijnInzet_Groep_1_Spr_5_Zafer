@@ -24,9 +24,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 mb-4" th:each="task : ${myTasks}">
-<!--                    <div class="card">-->
+                    <div class="card-body" id = "cardTask">
                         <form action="#" th:action="@{/myTasks}"  th:object="${myTasks}" method="get">
-                            <div class="card-body">
+
                                 <h4><span th:text="${task.titel}"/></h4>
                                 <h6>HvA</h6>
                                 <div class="card-text">
@@ -36,20 +36,17 @@
                                     Startdatum    : <span th:text="${task.startdatum}"> niet bekend</span><br>
                                     Einddatum: <span th:text="${task.einddatum}"></span>
                                 </div>
-                            </div>
                         </form>
-
-                    <form action="#" th:action="@{/taskDelete/{taskId}}" th:object="${myTasks}" method="post">
+                        <form action="#" th:action="@{/taskDelete/{taskId}}" th:object="${myTasks}" method="post">
                                 <div class="btn">
-                                    <button type="submit" id="dislike" class="love"><i class="fas fa-thumbs-down" style="font-size: 2.5em;"></i>
+                                    <button type="submit" id="dislike" class="love"><i class="fas fa-thumbs-down" style="font-size: 1.8em;"></i>
                                         <input type="hidden" id="taskId" name="taskId" th:value="${task.id}"></button>
                                 </div>
-                                </form>
-                            </div>
                         </form>
                     </div>
+                </div>
             </div>
-
+        </div>
     </section>
 </div>
 

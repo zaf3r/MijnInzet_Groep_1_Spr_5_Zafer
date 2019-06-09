@@ -3,7 +3,6 @@ package makeitwork.mijninzet.service;
 import makeitwork.mijninzet.model.Task;
 import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.repository.TaskRepository;
-import makeitwork.mijninzet.repository.UserRepository;
 import makeitwork.mijninzet.repository.VacatureRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,8 +18,6 @@ public class VacatureService {
     private VacatureRepository vacatureRepository;
     @Autowired
     private TaskRepository taskRepository;
-    @Autowired
-    private UserRepository usersRepository;
 
     //save Vacature in DB SQL
     public void addTask(Task task, User user){

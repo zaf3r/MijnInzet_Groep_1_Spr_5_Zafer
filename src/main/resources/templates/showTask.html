@@ -17,9 +17,10 @@
     <title>Home</title>
 </head>
 <header th:insert="~{navbar :: header}"></header>
-
+<script th:inline="javascript">
+    var sluitdatum = /*[[${task.sluitdatum}]]*/ 'sluitdatum';
+</script>
 <body>
-
 <section id="containerContent">
 
     <form action="#" th:action="@{/taskOverview}" th:object="${taak}" th:method="get">
@@ -49,9 +50,37 @@
                             <h2 class="details">Details</h2><br>
                             <span class="Locatie"><strong>Locatie:</strong> <span th:text="*{locatie}"/></span><br>
                             <span class="Uren"><strong>Uren:</strong> <span th:text="*{uren}"/></span><br>
-                                <span class="Startdatum"><strong>Start vanaf:</strong><span th:text="*{startdatum}"/></span><br>
-                                <span class="Vacturenummer"><strong>Vacaturenummer:</strong>123</span><br>
-                                <span class="Deadline"><strong>Reageren binnen:</strong> 1 juli 2020</span>
+                            <span class="Startdatum"><strong>Start vanaf:</strong><span th:text="*{startdatum}"/></span><br>
+                            <span class="Reageren voor"><strong>Reageren voor: </strong><span th:text="*{sluitdatum}"/></span><br>
+                            <span class="Deadline"><strong>Let op: </strong>nog <span th:text="${deadline}"/> dagen om te solliciteren
+<!--                                <script>-->
+<!--                                    const _MS_PER_DAY = 1000 * 60 * 60 * 24;-->
+<!--                                    var date1 = new Date();-->
+<!--                                     date1.getDay();-->
+<!--                                     date1.getMonth()+1;-->
+<!--                                     date1.getFullYear();-->
+<!--                                     date1.getHours();-->
+<!--                                     date1.getMinutes();-->
+<!--                                     date1.getSeconds();-->
+<!--                                     // get total seconds between two dates&ndash;&gt;-->
+<!--                                     var res = Math.abs(date1 - sluitdatum) / 1000;-->
+<!--                                     var days = Math.floor(res/_MS_PER_DAY);-->
+<!--                                     document.write(days + " dagen");-->
+<!--                                     </script>-->
+                                </span>
+
+<!--                                    <span th:data-sluitdatum="*{sluitdatum}" onshow="getDate()"/></span>-->
+<!--                            <script>-->
+<!--                                function getDate() {-->
+<!--                                    var sluitdatum = document.querySelectorAll('span')[10].getAttribute('sluitdatum');-->
+                            <!--                                    var date1 = new Date();-->
+
+<!--                                    // get total seconds between two dates-->
+<!--                                    var res = Math.abs(date1 - sluitdatum) / 1000;-->
+<!--                                    var days = Math.floor(res / 86400);-->
+<!--                                    document.write(days + " dagen");-->
+<!--                                }-->
+<!--                            </script>-->
 
                         </div>
                     </div>
@@ -64,11 +93,12 @@
             <div class="col col-lg-2">
             </div>
         </div>
-    </div>
     </form>
+    </div>
 </section>
 
 </body>
+
 <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 </html>

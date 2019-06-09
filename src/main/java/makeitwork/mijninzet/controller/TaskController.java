@@ -8,9 +8,14 @@ import makeitwork.mijninzet.service.VacatureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -39,6 +44,7 @@ public class TaskController extends AbstractController {
     public String TaskDetailHandler(@ModelAttribute("task") Task taak, @RequestParam("taskId") String taakId, Model model) {
         taak = opening(taakId);
         model.addAttribute("taak", taak);
+        model.addAttribute("deadline", returnDays(taak));
         return "showTask"; //html
     }
 
@@ -81,12 +87,6 @@ public class TaskController extends AbstractController {
         });
         return tasks;
     }
-
-    //lijst met vacatures van Docent (zit ook al in Service)
-//    private Set<Application> findApplicationByUsername(User user){
-//        Set<Application> applications = sollicitatieRepository.findAllByUser(user);
-//        return applications;
-//    }
 
     //lijst met taken waar de docent nog op kan reageren
     private List<Task> tasks2React(User user) {
@@ -133,15 +133,20 @@ public class TaskController extends AbstractController {
         }
         return false;
     }
+
+    public long returnDays(Task task){
+    LocalDate deadline = task.getSluitdatum();
+    LocalDate today = LocalDate.now();
+    long elapsedDays = ChronoUnit.DAYS.between(today, deadline);
+        return elapsedDays;
+    }
 }
 
 
-//    private String currentUserName(){
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        if (!(authentication instanceof AnonymousAuthenticationToken)) {
-//            return authentication.getName();
-//        } else return "";
-//    }
+
+
+
+
 ////
 //    @PutMapping
 //    public void insert(@RequestBody Task task){
