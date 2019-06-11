@@ -71,8 +71,12 @@ public class User {
     @OneToMany(mappedBy = "user",cascade= CascadeType.ALL)
     private Set<Availability> availabilitySet =  new HashSet<>();
 
+/*    @OneToMany(mappedBy = "user",cascade= CascadeType.ALL)
+    private Set<Incident> incidentSet =  new HashSet<>();*/
+
     @ManyToMany(fetch = FetchType.EAGER, cascade= {CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH, CascadeType.REFRESH})
+
     @JoinTable(name = JOINT_TABLE_NAME,
             joinColumns = @JoinColumn(name = COLUMN_ID),
             inverseJoinColumns = @JoinColumn(name = PK_COLUMN_OTHER_ENTITY))

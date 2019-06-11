@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Controller
@@ -91,6 +92,32 @@ public class AvailabilityController {
         return "redirect:/availability/availabilityForm";
     }
 
+    @GetMapping("incidentsForm")
+    public String getIncidentsForm() {
+
+        SimpleDateFormat dayRetriever = new SimpleDateFormat("dd-MM");
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR, 2019);
+        cal.set(Calendar.WEEK_OF_YEAR, 23);
+        cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+        String monday = dayRetriever.format(cal.getTime());
+        cal.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY);
+        String tuesday = dayRetriever.format(cal.getTime());
+        cal.set(Calendar.DAY_OF_WEEK, Calendar.WEDNESDAY);
+        String wednesday = dayRetriever.format(cal.getTime());
+        cal.set(Calendar.DAY_OF_WEEK, Calendar.THURSDAY);
+        String thursday = dayRetriever.format(cal.getTime());
+        cal.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
+        String friday = dayRetriever.format(cal.getTime());
+
+        //Be able to get all dates (MM-dd) of a week
+
+
+        return "incidents-form";
+    }
+
+
+
     /**
      * The first time a user enters the availability page, availabilities are prepared for the form.
      * @param user current session user
@@ -114,4 +141,6 @@ public class AvailabilityController {
         availability.setEvening(evening);
         availability.setUser(user);
     }
+
+
 }
