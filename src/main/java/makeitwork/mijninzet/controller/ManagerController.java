@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.List;
+
 @Controller
 @RequestMapping(value = "/manager", method = RequestMethod.GET)
 public class ManagerController {
@@ -48,12 +50,25 @@ public class ManagerController {
 //                List<Subject> subjectList = subRepo.findAll();
                 KnowledgeArea area = new KnowledgeArea();
                 model.addAttribute("attr2", area);
+                model.addAttribute("subjects", getSubjectList());
 //                Subject newSub = new Subject();
 //                model.addAttribute("attr3", newSub);
                 return ("courseManagement");
             }
         }
         return "";
+    }
+
+    @RequestMapping(value = "/kennisgebied/{subject}", method = RequestMethod.GET)
+    public String subjectListHandler(Model model){
+        model.addAttribute("subjects", getSubjectList());
+        return "courseManagement";
+    }
+
+    public List<Subject> getSubjectList() {
+        List<Subject> allSubjects = subRepo.findAllByOrderBySubjectIdAsc();
+        System.out.println(allSubjects.size() + "===================");
+        return allSubjects;
     }
 
     @RequestMapping(value = "saveCourse", method = RequestMethod.POST)

@@ -2,10 +2,8 @@ package makeitwork.mijninzet.model;
 
 import makeitwork.mijninzet.model.preference.Subject;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -16,7 +14,7 @@ public class KnowledgeArea {
     private int knowledgeAreaId;
 
     private String knowledgeArea;
-//
+
 //    @OneToMany(mappedBy = "knowledgeArea", cascade= {CascadeType.PERSIST,CascadeType.REMOVE})
 //    private Set<Subject> subjectSet = new HashSet<>();
 
