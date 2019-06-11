@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<link rel="stylesheet" type="text/css" th:href="@{/css/generic.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/navbar.css}"/>
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap" rel="stylesheet">
+<head>
+    <meta charset="UTF-8">
+    <title>Kennisgebieden management</title>
+</head>
+<body>
+
+<div th:insert="~{navbar :: header}"></div>
+
+<div class="container">
+    <br>
+    <br>
+    <br>
+    <br>
+    <h2 class="text-center">Voeg een nieuw kennisgebied toe</h2>
+    <form action="#" th:object="${attr2}" th:action="@{saveKnowledgeArea}" method="post" id="saveKnowledgeArea">
+        <label th:text="kennisgebied"/>
+        <input type="text" th:field="*{knowledgeArea}" required title="Vul een kennisgebied in "/>
+        <input type="submit" th:onclick="alert ('Het kennisgebied is opgeslagen in de database.')" value="Opslaan" />
+    </form>
+</div>
+<br>
+
+<!--<div class="container">-->
+<!--<h2 class="text-center">Voeg een nieuw vak toe</h2>-->
+<!--<form action="#" th:object="${attr3}" th:action="@{saveSubject}" method="post" id="saveSubject">-->
+<!--    <label th:text="vak"/>-->
+<!--    <input type="text" th:field="*{subject}" required title="Vul een vaknaam in "/>-->
+<!--    <input type="submit" th:onclick="alert ('Het vak is opgeslagen in de database.')" value="Opslaan" />-->
+<!--</form>-->
+<!--</div>-->
+<!--<br>-->
+
+<div class="container">
+    <h2 class="text-center">Selecteer een kennisgebied</h2>
+    <select name="selectKennis" id="selectKennis" multiple="multiple">
+        <option value="1">Fase 1</option>
+        <option value="2">Fase 2</option>
+        <option value="3">Fase 3</option>
+    </select>
+
+<!--    <select th:field="*{selectKennis}">-->
+<!--        <di th:each="area: ${areaList}" th:value="${club.getId()}" th:text="${club.getNaam()}">-->
+<!--    </select>>-->
+</div>
+<br>
+
+<div class="container">
+    <h2 class="text-center">Voeg vakken toe aan kennisgebied</h2>
+
+    <table>
+        <tr collspan="2">
+            <td>
+                <div>
+                    <select name="selectSubject" id="move1"  multiple="multiple" size="7">
+<!--                        <option th:each="subject: ${subject}" th:value="${club.getId()}" th:text="${club.getNaam()}">-->
+                        <option value="1">Programming</option>
+                        <option value="2">Object Oriented Programming</option>
+                        <option value="3">Advanced Programming</option>
+                        <option value="4">Design Patterns</option>
+                    </select>
+                </div>
+            </td>
+
+            <td width="100" align="center">
+                <input type="button" value=">" onclick = "rightSingle()" /><br>
+<!--                <input type="button" value=">>" onclick = "rightAll()"/><br>-->
+                <input type="button" value="<" onclick = "leftSingle()"/><br>
+<!--                <input type="button" value="<<" onclick = "leftAll()"/>-->
+            </td>
+
+            <td>
+                <div>
+                    <select name="selectSubject" id="move2"  multiple="multiple" size="7">
+                        <option value="1">Programming2</option>
+                        <option value="2">Object Oriented Programming2</option>
+                        <option value="3">Advanced Programming2</option>
+                        <option value="4">Design Patterns2</option>
+                    </select>
+                </div>
+            </td>
+        <tr>
+    </table>
+
+</div>
+<br>
+<footer th:insert="~{footer :: footer}"></footer>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+<script>
+
+    ///Get drop-down list object
+
+    oListbox = document.getElementById("selectAge");
+    var ListUtil = new Object();
+    var selectbtn = document.getElementById("selectbtn");
+    function getSelAge (){
+        //Access option
+        alert(oListbox.options[1].firstChild.nodeValue); //Displayed content
+        alert(oListbox.options[1].getAttribute("value"));//Corresponding value
+        alert("Get its position in the collection== " + oListbox.options[2].index); //Get its position in the collection
+        alert("Get the number of elements in the collection== " + oListbox.options.length); //Get the number of elements in the collection
+
+    }
+
+
+    /*******************************************************************/
+    //Input parameter, drop-down box object
+    ListUtil.getSelectIndexes = function (oListbox){
+
+        var arrIndexes =  new Array();
+        for(var i=0 ; i<oListbox.options.length;i++){
+            //If the item is selected, add the corresponding index to the array.
+            if(oListbox.options[i].selected){
+                arrIndexes.push(i);
+            }
+        }
+        return  arrIndexes; //Returns the selected option index
+    }
+
+
+    /*******Mobile option***************************************************************************************/
+
+
+        //Get drop down box
+
+    var move1Listbox = document.getElementById("move1"); //left drop down box
+    var move2Listbox = document.getElementById("move2"); //right drop down box
+
+    //Move one or more selected options
+    ListUtil.move = function(oListboxFrom ,oListboxTo){
+        //var idx1 = oListboxFrom.selectedIndex;
+        var arrIndexes = ListUtil.getSelectIndexes(oListboxFrom);
+        var oOption ;
+
+        if(arrIndexes.length == 0 ){
+            alert("Please select at least one option!");
+            return ;
+        }else{
+            for(var i=oListboxFrom.options.length-1;i>=0;i--){
+                oOption = oListboxFrom.options[i];
+                if(oOption.selected && oOption != null ){
+                    oListboxTo.appendChild(oOption);
+                }
+            }
+        }
+    }
+
+
+    //single select to right
+    function rightSingle(){
+        ListUtil.move(move1Listbox,move2Listbox);
+    };
+
+    //single select to left
+    function leftSingle(){
+        ListUtil.move(move2Listbox,move1Listbox);
+    }
+
+</script>
+
+</html>

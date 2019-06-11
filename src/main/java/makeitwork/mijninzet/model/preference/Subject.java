@@ -19,6 +19,10 @@ public class Subject {
     @OneToMany(mappedBy = "subject", cascade= {CascadeType.PERSIST,CascadeType.REMOVE})
     private Set<Preference> preferenceSet = new HashSet<>();
 
+//    //CourseManagement
+//    @ManyToOne(cascade = CascadeType.PERSIST)
+//    private KnowledgeArea area;
+
     public int getSubjectId() {
         return subjectId;
     }
@@ -42,4 +46,8 @@ public class Subject {
     public void setPreferenceSet(Set<Preference> preferenceSet) {
         this.preferenceSet = preferenceSet;
     }
+
+//    //CourseManager
+//    public KnowledgeArea getArea() { return area; }
+//    public void setArea(KnowledgeArea area) { this.area = area; }
 }
