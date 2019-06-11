@@ -61,5 +61,5 @@ public class HomeController {
     public String addCourse(Model model, @RequestParam(value = "name", required = false,
             defaultValue = "Guest") String name) {
         model.addAttribute("userName", name);
-        return "addCourse"; }
+        return "courseManagement"; }
 }
