@@ -20,17 +20,30 @@ div#buttons {
     margin-top: 100px;
 }
 
-#boxContent {
-
-}
 
 .container-description {
     border: 2px solid lightgrey;
-    margin-top: 10px;
+    margin-top: 20px;
+    padding-top: 15px;
 }
 
+#detailsBox{
+    background-image: url("https://images.homedepot-static.com/productImages/9513d7c0-6365-4903-b136-0bb9d93c7e3a/svn/brewster-wallpaper-wv8103-64_600.jpg");
+    background-size: cover;
+    /*https://images.unsplash.com/photo-1509697452888-7cdcf2c98813?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80*/
+    /*https://images.unsplash.com/6/blurred_lines.jpeg?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80*/
+    padding-bottom: 3px;
+}
+
+/*#detailsTekst{*/
+/*    color:white;*/
+/*}*/
+
+#detailsTekst{
+    padding-bottom: 5px;
+}
 #love {
-    color: red;
+    color: midnightblue;
     background-color: white;
     border-style: none;
     height: 50px;
@@ -39,28 +52,22 @@ div#buttons {
     margin-left: 50px;
 }
 
-.job-header-bar {
-    margin-left: 50%;
-}
+/*.job-header-bar {*/
+/*    margin-left: 50%;*/
+/*}*/
 
-
-
-ul {
-    list-style-type: none;
-}
-
-#task_db {
+#saveTask {
     background-color: yellow;
     height: 40px;
-    width: 130px;
+    width: 170px;
     text-align: center;
-    font-size: 12px;
+    font-size: 15px;
     border: none;
     display: inline-block;
-    margin: 20px;
+    margin: 10px;
 }
 
-#task_db:hover{
+#saveTask:hover{
     color: white;
 }
 
@@ -77,6 +84,14 @@ h1 {
     font-size: 60px;
     padding: 5px;
     text-align: center;
+}
+
+h1.job-header.header {
+    margin-bottom: 40px;
+}
+
+.job-header-bar{
+    margin-left: 735px;
 }
 
 p {
@@ -98,6 +113,10 @@ h2{
     padding-top: 8px;
 }
 
+h2.description {
+    margin-bottom: 12px;
+}
+
 #details {
     font-family: "Amatic SC", cursive;
     font-size: 20px;
@@ -110,4 +129,13 @@ h2{
     margin: 20px;
 }
 
+#dislike{
+    color: midnightblue;
+    background-color: white;
+    border-style: none;
+}
 
+#cardTask{
+    border: grey 1px solid;
+
+}

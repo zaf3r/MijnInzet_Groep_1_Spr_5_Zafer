@@ -1,5 +1,6 @@
 package makeitwork.mijninzet.config;
 
+import makeitwork.mijninzet.repository.UserRepository;
 import makeitwork.mijninzet.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -13,7 +14,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import makeitwork.mijninzet.repository.UserRepository;
 
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebSecurity
@@ -34,7 +34,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     DaoAuthenticationProvider authProvider() {
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
         daoAuthenticationProvider.setUserDetailsService(this.userDetailsService);
-        daoAuthenticationProvider.setUserDetailsService(userDetailsService);
         daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
         return daoAuthenticationProvider;
     }
@@ -48,8 +47,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .headers()
                 .and()
                 .authorizeRequests()
+                //pagina /manager en dan hasrole of authentication met de rol.
                 .antMatchers("/login").permitAll()
-                .antMatchers("/teacher/*").hasRole("Docent")
+                .antMatchers("/teacher/*").hasAuthority("DOCENT")
+                .antMatchers("/manager/*").hasAuthority("MANAGER")
+                .antMatchers("/roosteraar/*").hasAuthority("ROOSTERAAR")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

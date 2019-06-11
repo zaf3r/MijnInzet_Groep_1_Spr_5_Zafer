@@ -1,20 +1,20 @@
 package makeitwork.mijninzet.model;
 
-import makeitwork.mijninzet.model.Availability.Availability;
 import makeitwork.mijninzet.model.preference.Preference;
+import org.hibernate.annotations.SortNatural;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "gebruiker")
-public class User {
+public class User{
 
+//    @Transient
+//    Role roleName;
 
     //Validation fields
     @Transient
@@ -45,7 +45,6 @@ public class User {
     @Transient
     private final String PK_COLUMN_OTHER_ENTITY = "rol_id";
 
-
     //Fields that are mapped by Hibernate
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -65,11 +64,12 @@ public class User {
     @Column(name = COLUMN_ACTIVE)
     private int active;
 
-    @OneToMany(mappedBy = "user",cascade= CascadeType.ALL)
-    private Set<Preference> preferenceSet =  new HashSet<>();
+//    @NotNull
+//    @Column(name="Naam")
+//    private String naam;
 
     @OneToMany(mappedBy = "user",cascade= CascadeType.ALL)
-    private Set<Availability> availabilitySet =  new HashSet<>();
+    private Set<Preference> preferenceSet =  new HashSet<>();
 
     @ManyToMany(fetch = FetchType.EAGER, cascade= {CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH, CascadeType.REFRESH})
@@ -78,8 +78,19 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = PK_COLUMN_OTHER_ENTITY))
     private List<Role> role;
 
-    public User() {
-    }
+    //contracturen?
+//    @Transient
+//    private String roleType = roleName.getRoleName();
+
+    public User() {}
+
+//    public User(String naam, String roleType){
+//        this.naam = naam;
+//        this.roleType = roleType;
+//
+//    }
+
+    // CONTROLLER MET GEGEVENS EN ROL LIST?
 
     public int getId() {
         return id;
@@ -93,12 +104,12 @@ public class User {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getUsername() {
         return username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setUsername(String username) {
@@ -129,11 +140,55 @@ public class User {
         this.preferenceSet = preferenceSet;
     }
 
-    public Set<Availability> getAvailabilitySet() {
-        return availabilitySet;
+//    public String getNaam() {
+//        return naam;
+//    }
+
+//    public String getRoleType() {
+//        return roleType;
+//    }
+
+    // todo vanaf hier voor Docent --> moet nog op een andere manier
+
+
+    //in deze collection worden de (unieke) taskId's opgeslagen
+    //op deze wijze wordt per docent bijgehouden op welke taken
+    //gereageerd is. Moet ook de status bijgehouden worden, dan kan dat ook.
+    @ElementCollection
+    @SortNatural
+//    @Column(name="task")
+    private SortedSet<String> taskIds = new TreeSet<>();
+
+    public SortedSet<String> getTasks() {
+        return taskIds;
     }
 
-    public void setAvailabilitySet(Set<Availability> availabilitySet) {
-        this.availabilitySet = availabilitySet;
+    public SortedSet<String> getTaskIds() {
+
+        return taskIds;
+    }
+
+    public void setTaskIds(SortedSet<String> taskIds) {
+        this.taskIds = taskIds;
+    }
+
+    public void addTask(String taskId) {
+        SortedSet<String> tasks = getTasks();
+        if (!tasks.contains(taskId)) tasks.add(taskId);
+    }
+
+    public void removeTask(String taskId) {
+        SortedSet<String> tasks = getTasks();
+        if (tasks.contains(taskId)) tasks.remove(taskId);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", active=" + active +
+                ", role=" + role +
+                '}';
     }
 }
