@@ -58,7 +58,7 @@ public class HomeController {
         return "voorkeur-vakken"; }
 
     @GetMapping("/manager")
-    public String addCourse(Model model, @RequestParam(value = "name", required = false,
+    public String addSubject(Model model, @RequestParam(value = "name", required = false,
             defaultValue = "Guest") String name) {
         model.addAttribute("userName", name);
         return "courseManagement"; }

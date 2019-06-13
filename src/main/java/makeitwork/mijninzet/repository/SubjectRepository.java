@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface SubjectRepository extends JpaRepository<Subject, Integer> {
     public List<Subject> findAllByOrderBySubjectIdAsc();
+
 }
