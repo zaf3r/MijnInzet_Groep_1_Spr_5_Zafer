@@ -6,6 +6,7 @@
 <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap" rel="stylesheet">
+<link rel="script" th:href="@{js/courseToKa.js}"/>
 <head>
     <meta charset="UTF-8">
     <title>Kennisgebieden management</title>
@@ -46,9 +47,6 @@
         <option value="3">Fase 3</option>
     </select>
 
-<!--    <select th:field="*{selectKennis}">-->
-<!--        <di th:each="area: ${areaList}" th:value="${club.getId()}" th:text="${club.getNaam()}">-->
-<!--    </select>>-->
 </div>
 <br>
 
@@ -58,21 +56,17 @@
     <table>
         <tr collspan="2">
             <td>
-                <div>
-                    <select name="selectSubject" id="move1"  multiple="multiple" size="7">
-<!--                        <option th:each="subject: ${subject}" th:value="${club.getId()}" th:text="${club.getNaam()}">-->
-                        <option value="1">Programming</option>
-                        <option value="2">Object Oriented Programming</option>
-                        <option value="3">Advanced Programming</option>
-                        <option value="4">Design Patterns</option>
+                <form action="#" th:object="${subjects}" th:action="@{/kennisgebied/{subject}}" method="get">
+                    <select  id="move1" name="subjectName" multiple="multiple" size="7">
+                        <option th:each="subject: ${subjects}" th:value="${subject.subjectId}" th:text="${subject.subjectName}"></option>
                     </select>
-                </div>
+                </form>
             </td>
 
             <td width="100" align="center">
-                <input type="button" value=">" onclick = "rightSingle()" /><br>
+                <input type="button" value=">" id="addTo" onclick = "rightSingle()" /><br>
 <!--                <input type="button" value=">>" onclick = "rightAll()"/><br>-->
-                <input type="button" value="<" onclick = "leftSingle()"/><br>
+                <input type="button" value="<" id="deleteFrom" onclick = "leftSingle()"/><br>
 <!--                <input type="button" value="<<" onclick = "leftAll()"/>-->
             </td>
 

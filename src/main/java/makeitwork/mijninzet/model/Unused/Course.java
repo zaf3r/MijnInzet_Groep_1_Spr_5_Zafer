@@ -1,4 +1,4 @@
-package makeitwork.mijninzet.model;
+package makeitwork.mijninzet.model.Unused;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

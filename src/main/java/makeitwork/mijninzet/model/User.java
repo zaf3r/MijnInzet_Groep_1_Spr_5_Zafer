@@ -9,7 +9,6 @@ import javax.validation.constraints.Size;
 import java.util.*;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "gebruiker")
 public class User{
 
