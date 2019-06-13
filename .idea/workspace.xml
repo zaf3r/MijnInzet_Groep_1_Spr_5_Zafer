@@ -394,7 +394,21 @@
     </option>
     <option name="contentProportion" value="0.28140295" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Spring Boot.MijninzetApplication">
+    <configuration name="MijninzetApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="mijninzet" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="makeitwork.mijninzet.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="makeitwork.mijninzet.MijninzetApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MijninzetApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="mijninzet-c15-team-1" />
       <extension name="coverage">
@@ -410,6 +424,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.MijninzetApplication (1)" />
         <item itemvalue="Spring Boot.MijninzetApplication" />
       </list>
     </recent_temporary>
