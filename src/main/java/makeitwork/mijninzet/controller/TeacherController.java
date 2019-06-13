@@ -1,9 +1,13 @@
 package makeitwork.mijninzet.controller;
 
 import makeitwork.mijninzet.model.*;
+import makeitwork.mijninzet.model.preference.Preference;
+import makeitwork.mijninzet.model.preference.PreferenceForm;
+import makeitwork.mijninzet.model.preference.PreferenceScale;
+import makeitwork.mijninzet.model.preference.Subject;
 import makeitwork.mijninzet.repository.PreferenceRepository;
 import makeitwork.mijninzet.repository.SubjectRepository;
-import makeitwork.mijninzet.repository.UsersRepository;
+import makeitwork.mijninzet.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +26,7 @@ public class TeacherController {
     final private List<PreferenceScale> preferenceScaleList = getPreferenceScaleList();
 
     @Autowired
-    UsersRepository usersRepository;
+    UserRepository userRepository;
 
     @Autowired
     SubjectRepository subjectRepository;
@@ -34,7 +38,7 @@ public class TeacherController {
     public String addPreferences(Model model, Principal principal) {
 
         // Get user
-        User user = usersRepository.findByUsername(principal.getName());
+        User user = userRepository.findByUsername(principal.getName());
 
         // Get user preference
         Set<Preference> preferenceSet = findCurrentUserPreference(user);
@@ -74,7 +78,7 @@ public class TeacherController {
                                   Principal principal) {
 
         //loading in user
-        User user = usersRepository.findByUsername(principal.getName());
+        User user = userRepository.findByUsername(principal.getName());
 
         //loading preference
         Set<Preference> preferenceSet = preferenceRepository.findAllByUser(user);

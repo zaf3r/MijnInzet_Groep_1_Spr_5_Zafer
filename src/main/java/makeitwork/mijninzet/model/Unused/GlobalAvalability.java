@@ -1,14 +1,12 @@
-package makeitwork.mijninzet.model;
+package makeitwork.mijninzet.model.Unused;
 
-import javax.persistence.*;
-import java.util.List;
+// CONSIDERING REMOVAL
 
-
-@Entity
-@Table (name = "globale_beschikbaarheid")
+/*@Entity
+@Table (name = "globale_beschikbaarheid")*/
 public class GlobalAvalability {
 
-    //attributen
+    /*//attributen
     @Transient
     public final int TOTALNUMBEROFDAYPARTS = 15;
 
@@ -68,5 +66,5 @@ public class GlobalAvalability {
                 ", dayPart=" + dayPart +
                 ", avalable=" + avalable +
                 '}';
-    }
+    }*/
 }

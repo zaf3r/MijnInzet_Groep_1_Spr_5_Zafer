@@ -1,4 +1,4 @@
-package makeitwork.mijninzet.model;
+package makeitwork.mijninzet.model.preference;
 
 public class PreferenceScale {
 

@@ -1,13 +1,8 @@
 package makeitwork.mijninzet.model;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.IndexDirection;
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Objects;
 
 
 @Document(collection="Vacature")
@@ -18,26 +13,26 @@ public class Task {
 
     private String titel;
 
-    @Indexed(direction = IndexDirection.ASCENDING)
-
     private String locatie;
 
     private String beschrijving;
 
-    private LocalDate startdatum;
+    private String beschrijvingLang;
+
+    private String startdatum;
+
+    private LocalDate einddatum;
 
     private LocalDate sluitdatum;
 
     private int uren;
 
-
- //todo   private InfoBy contactPerson;
-
+    private InfoBy contactPerson;//nog naar het Nederland vertalen
 
     public Task() {
     }
 
-    public Task(String title, String description, int uren, LocalDate startDate) {
+    public Task(String title, String description, int uren, String startDate) {
         this.titel = title;
         this.beschrijving = description;
         this.uren = uren;
@@ -73,8 +68,11 @@ public class Task {
         return beschrijving;
     }
 
+    public String getBeschrijvingLang() {
+        return beschrijvingLang;
+    }
 
-    public LocalDate getStartdatum() {
+    public String getStartdatum() {
         return startdatum;
     }
 
@@ -86,9 +84,9 @@ public class Task {
         return uren;
     }
 
-  //todo  public InfoBy getContactPerson() {
-    //    return contactPerson;
-   // }
+    public InfoBy getContactPerson() {
+        return contactPerson;
+    }
 
     public String getId() {
         return id;
@@ -98,22 +96,8 @@ public class Task {
         this.sluitdatum = sluitdatum;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Task task = (Task) o;
-        return uren == task.uren &&
-                titel.equals(task.titel) &&
-                locatie.equals(task.locatie) &&
-                beschrijving.equals(task.beschrijving) &&
-                startdatum.equals(task.startdatum) &&
-                sluitdatum.equals(task.sluitdatum);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(titel, locatie, beschrijving, startdatum, sluitdatum, uren);
+    public LocalDate getEinddatum() {
+        return einddatum;
     }
 
     @Override

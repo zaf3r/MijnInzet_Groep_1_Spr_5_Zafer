@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<link rel="stylesheet" type="text/css" th:href="@{/css/task.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/navbar.css}"/>
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+      integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Open+Sans&display=swap" rel="stylesheet">
+<head>
+    <meta charset="UTF-8">
+    <title>Jouw takenoverzicht</title>
+
+</head>
+<header th:insert="~{navbar :: header}"></header>
+<body>
+
+<div class="content">
+    <h1>Mijn taken</h1>
+    <section id="gallery">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4" th:each="task : ${myTasks}">
+                    <div class="card-body" id = "cardTask">
+                        <form action="#" th:action="@{/myTasks}"  th:object="${myTasks}" method="get">
+
+                                <h4><span th:text="${task.titel}"/></h4>
+                                <h6>HvA</h6>
+                                <div class="card-text">
+<!--                                    <span th:text="${task.beschrijving}"/><hr>-->
+                                </div>
+                                <div class="extraInfo">
+                                    Startdatum    : <span th:text="${task.startdatum}"> niet bekend</span><br>
+                                    Einddatum: <span th:text="${task.einddatum}"></span>
+                                </div>
+                        </form>
+                        <form action="#" th:action="@{/taskDelete/{taskId}}" th:object="${myTasks}" method="post">
+                                <div class="btn">
+                                    <button type="submit" id="dislike" class="love"><i class="fas fa-thumbs-down" style="font-size: 1.8em;"></i>
+                                        <input type="hidden" id="taskId" name="taskId" th:value="${task.id}"></button>
+                                </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
+

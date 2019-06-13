@@ -1,29 +1,17 @@
-package makeitwork.mijninzet.model;
+package makeitwork.mijninzet.model.Unused;
 
+import makeitwork.mijninzet.model.Availability.PartOfDay;
+import makeitwork.mijninzet.model.Availability.Weekday;
 
-import javax.persistence.*;
-import java.io.Serializable;
 import java.time.LocalDate;
 import static java.util.Arrays.fill;
 
-@Entity
-public class Availibility implements Comparable<Availibility>, Serializable {
+public class Availibility {
 
-    @Id
-    @Column
     private LocalDate startdate;
-
-    @Id
-    @Column
     private LocalDate enddate;
-
-    @Transient
-    private int MAX_DAYS_WEEK=Weekdays.values().length;
-
-    @Transient
+    private int MAX_DAYS_WEEK= Weekday.values().length;
     private int MAX_PART_OF_DAYS= PartOfDay.values().length;
-
-    @Transient
     private boolean[][] available = new boolean[MAX_DAYS_WEEK][MAX_PART_OF_DAYS];
 
     //no arg constructor, the availibility is set to false
@@ -42,10 +30,10 @@ public class Availibility implements Comparable<Availibility>, Serializable {
     }
     //constructor for a period (start-end) of time and certains days of the week. For these days the Availibility
     // for all the parts of the day is set true. Fot the other days the avaibility is set to false.
-    public Availibility(LocalDate startdate, LocalDate enddate, Weekdays[] days) {
+    public Availibility(LocalDate startdate, LocalDate enddate, Weekday[] days) {
         this(startdate, enddate, false);
         //this loop iterates over all the elements of the array
-        for (Weekdays day : days
+        for (Weekday day : days
         //this loop iterates over all the elements of the enum
         ) { for (PartOfDay part : PartOfDay.values()
             ) {
@@ -60,7 +48,7 @@ public class Availibility implements Comparable<Availibility>, Serializable {
         //this loop iterates over all the elements of the array
         for (PartOfDay part : parts)
         //this loop iterates over all the elements of the enum
-        { for (Weekdays day : Weekdays.values())
+        { for (Weekday day : Weekday.values())
             {
                 setAvailable(day, part, true);
             }
@@ -68,7 +56,7 @@ public class Availibility implements Comparable<Availibility>, Serializable {
     }
     public Availibility(LocalDate startdate,
                         LocalDate enddate,
-                        Weekdays day,
+                        Weekday day,
                         PartOfDay partOfDay){
         this(startdate,enddate,day,partOfDay,true);
 
@@ -76,7 +64,7 @@ public class Availibility implements Comparable<Availibility>, Serializable {
     //constructor for a period (start-end) of time and a specific day and part of the day.
     public Availibility(LocalDate startdate,
                         LocalDate enddate,
-                        Weekdays day,
+                        Weekday day,
                         PartOfDay partOfDay,
                         boolean avail){
         this.startdate = startdate;
@@ -91,16 +79,7 @@ public class Availibility implements Comparable<Availibility>, Serializable {
 
     // a certain cell of the array is set to false or true. Remember that an array starts with and address [0][0]
     //The ordinal of an enum starts also with [0]. In loops and addressing arrays that's very convinient.
-    private void setAvailable(Weekdays day,PartOfDay part, boolean avail) {
+    private void setAvailable(Weekday day, PartOfDay part, boolean avail) {
         this.available[day.ordinal()][part.ordinal()] = avail;
-    }
-
-    public LocalDate getStartdate() {
-        return startdate;
-    }
-
-    @Override
-    public int compareTo(Availibility a) {
-        return this.getStartdate().isAfter(a.getStartdate())?10:this.getStartdate().isBefore(a.getStartdate())?-10:0;
     }
 }

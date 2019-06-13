@@ -1,11 +1,13 @@
-package makeitwork.mijninzet.model;
+package makeitwork.mijninzet.model.preference;
+
+import makeitwork.mijninzet.model.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "voorkeur")
+@Table(name = "voorkeur", uniqueConstraints = {@UniqueConstraint(columnNames = {"codevak","idgebruiker"})})
 public class Preference implements Serializable {
 
     @Id

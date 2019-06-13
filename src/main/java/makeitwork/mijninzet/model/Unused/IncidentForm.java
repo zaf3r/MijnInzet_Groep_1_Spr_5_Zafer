@@ -1,4 +1,4 @@
-package makeitwork.mijninzet.model.forms;
+package makeitwork.mijninzet.model.Unused;
 
 import java.util.List;
 
