@@ -28,17 +28,24 @@
 </div>
 <br>
 
-
-
 <div class="container">
     <h2 class="text-center">Selecteer een kennisgebied</h2>
-    <select name="selectKennis" id="selectKennis" multiple="multiple">
-        <option value="1">Fase 1</option>
-        <option value="2">Fase 2</option>
-        <option value="3">Fase 3</option>
-    </select>
+
+    <table>
+        <tr collspan="2">
+            <td>
+                <form action="#" th:object="${knowledgeArea}" th:action="@{deleteKnowledgeArea}" method="post">
+                <select  name="subjectName" multiple="multiple" size="7">
+                        <option th:each="KnowledgeArea: ${KnowledgeAreas}" th:value="${KnowledgeArea.knowledgeAreaId}" th:text="${KnowledgeArea.knowledgeArea}"></option>
+                    </select>
+                <br><input type="submit" th:onclick="confirmPlease()" value="Delete" />
+                </form>
+            </td>
+        <tr>
+    </table>
 
 </div>
+
 <br>
 
 <div class="container">

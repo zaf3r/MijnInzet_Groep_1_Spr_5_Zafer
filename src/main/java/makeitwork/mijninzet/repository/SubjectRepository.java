@@ -10,3 +10,4 @@ public interface SubjectRepository extends JpaRepository<Subject, Integer> {
     Subject findBySubjectId(int id);
 
 }
+

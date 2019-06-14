@@ -40,13 +40,10 @@ public class ManagerController {
             }
             //in managementController
             case "kennisgebied": {
-//                List<KnowledgeArea> areaList = areaRepo.findAll();
-//                List<Subject> subjectList = subRepo.findAll();
                 KnowledgeArea area = new KnowledgeArea();
                 model.addAttribute("attr2", area);
+                model.addAttribute("KnowledgeAreas", getKnowledgeAreaList());
                 model.addAttribute("subjects", getSubjectList());
-//                Subject newSub = new Subject();
-//                model.addAttribute("attr3", newSub);
                 return ("courseManagement");
             }
         }
@@ -65,6 +62,12 @@ public class ManagerController {
         List<Subject> allSubjects = subRepo.findAllByOrderBySubjectIdAsc();
         System.out.println(allSubjects.size() + "===================");
         return allSubjects;
+    }
+
+    public List<KnowledgeArea> getKnowledgeAreaList() {
+        List<KnowledgeArea> allKnowledgeAreas = areaRepo.findAllByOrderByKnowledgeAreaIdAsc();
+        System.out.println(allKnowledgeAreas.size() + "===================");
+        return allKnowledgeAreas;
     }
 
     //in Subject controller
@@ -101,5 +104,16 @@ public class ManagerController {
         return "redirect:/manager/kennisgebied";
     }
 
+    //in knowledgeAreaController / courceManagement
+//    @RequestMapping(value = "knowledgeArea", method = RequestMethod.POST)
+//    public String deleteKnowledgeArea(@ModelAttribute("deleteKnowledgeArea") KnowledgeArea area, Model model){
+//
+//
+//        int subjectid = Integer.parseInt(area.getKnowledgeArea());
+//        //KnowledgeArea deleteKnowledgeArea = areaRepo.findByKnowledgeAreaId();
+//        //areaRepo.delete(deleteKnowledgeArea);
+//
+//        return "redirect:/manager/kennisgebied";
+//    }
 
 }
