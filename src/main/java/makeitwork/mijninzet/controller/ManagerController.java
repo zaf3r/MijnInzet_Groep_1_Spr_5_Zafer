@@ -29,14 +29,6 @@ public class ManagerController {
     @Autowired
     private SubjectRepository subRepo;
 
-//    @RequestMapping(value = "/vak", method = RequestMethod.GET)
-//    public String addCourse(Model model) {
-//        Course course = new Course();
-//        model.addAttribute("attr1", course);
-//        return ("addCourse");
-//    }
-
-
     @RequestMapping(value="/{object}", method=RequestMethod.GET)
     public String addSubject(@PathVariable String object, Model model) {
         switch (object) {
@@ -47,13 +39,9 @@ public class ManagerController {
                 return ("addSubject");
             }
             case "kennisgebied": {
-//                List<KnowledgeArea> areaList = areaRepo.findAll();
-//                List<Subject> subjectList = subRepo.findAll();
                 KnowledgeArea area = new KnowledgeArea();
                 model.addAttribute("attr2", area);
-                model.addAttribute("subjects", getSubjectList());
-//                Subject newSub = new Subject();
-//                model.addAttribute("attr3", newSub);
+                model.addAttribute("KnowledgeAreas", getKnowledgeAreaList());
                 return ("courseManagement");
             }
         }
@@ -70,6 +58,12 @@ public class ManagerController {
         List<Subject> allSubjects = subRepo.findAllByOrderBySubjectIdAsc();
         System.out.println(allSubjects.size() + "===================");
         return allSubjects;
+    }
+
+    public List<KnowledgeArea> getKnowledgeAreaList() {
+        List<KnowledgeArea> allKnowledgeAreas = areaRepo.findAllByOrderByKnowledgeAreaIdAsc();
+        System.out.println(allKnowledgeAreas.size() + "===================");
+        return allKnowledgeAreas;
     }
 
     @RequestMapping(value = "saveSubject", method = RequestMethod.POST)

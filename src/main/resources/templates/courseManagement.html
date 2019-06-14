@@ -28,17 +28,21 @@
 </div>
 <br>
 
-
-
 <div class="container">
     <h2 class="text-center">Selecteer een kennisgebied</h2>
-    <select name="selectKennis" id="selectKennis" multiple="multiple">
-        <option value="1">Fase 1</option>
-        <option value="2">Fase 2</option>
-        <option value="3">Fase 3</option>
-    </select>
+
+    <table>
+        <tr collspan="2">
+            <td>
+                <select  name="subjectName" multiple="multiple" size="7">
+                        <option th:each="KnowledgeArea: ${KnowledgeAreas}" th:value="${KnowledgeArea.knowledgeAreaId}" th:text="${KnowledgeArea.knowledgeArea}"></option>
+                    </select>
+            </td>
+        <tr>
+    </table>
 
 </div>
+
 <br>
 
 <div class="container">
@@ -50,10 +54,10 @@
                 <form action="#" th:object="${subjects}" th:action="@{/kennisgebied/{subject}}" method="get">
                     <select  id="move1" name="subjectName" multiple="multiple" size="7">
                         <option th:each="subject: ${subjects}" th:value="${subject.subjectId}" th:text="${subject.subjectName}"></option>
-<!--                        <option value="1">Programming</option>-->
-<!--                        <option value="2">Object Oriented Programming</option>-->
-<!--                        <option value="3">Advanced Programming</option>-->
-<!--&lt;!&ndash;                        <option value="4">Design Patterns</option>&ndash;&gt;-->
+                        <option value="1">Programming</option>
+                        <option value="2">Object Oriented Programming</option>
+                        <option value="3">Advanced Programming</option>
+                        <option value="4">Design Patterns</option>
                     </select>
                 </form>
             </td>
