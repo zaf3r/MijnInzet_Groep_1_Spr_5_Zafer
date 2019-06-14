@@ -1,6 +1,5 @@
 package makeitwork.mijninzet.controller;
 
-import makeitwork.mijninzet.model.Course;
 import makeitwork.mijninzet.model.KnowledgeArea;
 import makeitwork.mijninzet.model.preference.Subject;
 import makeitwork.mijninzet.repository.CourseRepository;
@@ -29,23 +28,17 @@ public class ManagerController {
     @Autowired
     private SubjectRepository subRepo;
 
-//    @RequestMapping(value = "/vak", method = RequestMethod.GET)
-//    public String addCourse(Model model) {
-//        Course course = new Course();
-//        model.addAttribute("attr1", course);
-//        return ("addCourse");
-//    }
-
-
     @RequestMapping(value="/{object}", method=RequestMethod.GET)
     public String addSubject(@PathVariable String object, Model model) {
         switch (object) {
+            //in Subject controller
             case "vak": {
                 Subject subject = new Subject();
                 model.addAttribute("attr3", subject);
                 model.addAttribute("subjects", getSubjectList());
                 return ("addSubject");
             }
+            //in managementController
             case "kennisgebied": {
 //                List<KnowledgeArea> areaList = areaRepo.findAll();
 //                List<Subject> subjectList = subRepo.findAll();
@@ -60,18 +53,21 @@ public class ManagerController {
         return "";
     }
 
-    @RequestMapping(value = "/kennisgebied/{subject}", method = RequestMethod.GET)
-    public String subjectListHandler(Model model){
-        model.addAttribute("subjects", getSubjectList());
-        return "courseManagement";
-    }
+//    //in Subject controller
+//    @RequestMapping(value = "/kennisgebied/{subject}", method = RequestMethod.GET)
+//    public String subjectListHandler(Model model){
+//        model.addAttribute("subjects", getSubjectList());
+//        return "courseManagement";
+//    }
 
+    //in Subject controller & in ManagementController
     public List<Subject> getSubjectList() {
         List<Subject> allSubjects = subRepo.findAllByOrderBySubjectIdAsc();
         System.out.println(allSubjects.size() + "===================");
         return allSubjects;
     }
 
+    //in Subject controller
     @RequestMapping(value = "saveSubject", method = RequestMethod.POST)
     public String saveSubject(@ModelAttribute("saveSubject") Subject subject, Model model) {
         model.addAttribute("subjectName", subject.getSubjectName());
@@ -79,26 +75,24 @@ public class ManagerController {
         return "redirect:/manager/vak";
     }
 
+    //in Subject controller
     @RequestMapping(value = "deleteSubject", method = RequestMethod.POST)
     public String subjectDelete(@ModelAttribute("deleteSubject") Subject subject, Model model){
-        model.addAttribute("subject", subject.getSubjectId());
-        subRepo.delete(subject);
+        //model.addAttribute("subject", subject.getSubjectId());
+
+        int subjectid = Integer.parseInt(subject.getSubjectName());
+        Subject deletedSubject = subRepo.findBySubjectId(subjectid);
+        subRepo.delete(deletedSubject);
         return "redirect:/manager/vak";
     }
 
+    //in managementController
     @RequestMapping(value = "saveKnowledgeArea", method = RequestMethod.POST)
     public String saveArea(@ModelAttribute("saveKnowledgeArea") KnowledgeArea area, Model model) {
         model.addAttribute("knowledgeArea", area.getKnowledgeArea());
         areaRepo.save(area);
         return "redirect:/manager/kennisgebied";
     }
-
-//    @RequestMapping(value = "saveSubject", method = RequestMethod.POST)
-//    public String saveSubject(@ModelAttribute("saveSubject") Subject newSub, Model model) {
-//        model.addAttribute("subject", newSub.getSubjectName());
-//        subRepo.save(newSub);
-//        return "redirect:/manager/courseManagement";
-//    }
 
 
 }
