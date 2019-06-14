@@ -37,7 +37,12 @@ public class Task {
         this.beschrijving = description;
         this.uren = uren;
         this.startdatum = startDate;
-
+    }
+    public Task(String id, String title, String description, int uren) {
+        this.id=id;
+        this.titel = title;
+        this.beschrijving = description;
+        this.uren = uren;
     }
 
     public void setTitel(String title) {
