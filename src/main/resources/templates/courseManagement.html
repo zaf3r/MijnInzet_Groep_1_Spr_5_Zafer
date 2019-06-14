@@ -29,15 +29,7 @@
 </div>
 <br>
 
-<!--<div class="container">-->
-<!--<h2 class="text-center">Voeg een nieuw vak toe</h2>-->
-<!--<form action="#" th:object="${attr3}" th:action="@{saveSubject}" method="post" id="saveSubject">-->
-<!--    <label th:text="vak"/>-->
-<!--    <input type="text" th:field="*{subject}" required title="Vul een vaknaam in "/>-->
-<!--    <input type="submit" th:onclick="alert ('Het vak is opgeslagen in de database.')" value="Opslaan" />-->
-<!--</form>-->
-<!--</div>-->
-<!--<br>-->
+
 
 <div class="container">
     <h2 class="text-center">Selecteer een kennisgebied</h2>
@@ -71,14 +63,12 @@
             </td>
 
             <td>
-                <div>
-                    <select name="selectSubject" id="move2"  multiple="multiple" size="7">
-                        <option value="1">Programming2</option>
-                        <option value="2">Object Oriented Programming2</option>
-                        <option value="3">Advanced Programming2</option>
-                        <option value="4">Design Patterns2</option>
-                    </select>
-                </div>
+                <form action= "#" th:action="@{/kennisgebied/{ka}}" th:object="${attr2}" th:method="get">
+                <select name="selectSubject" id="move2"  multiple="multiple" size="7" th:width="100" th:height="100">
+                </select>
+                    <button type="submit" id="kaId" name = "kaId" th:value="*{knowledgeArea}">Opslaan</button>
+                    </form>
+
             </td>
         <tr>
     </table>
@@ -97,7 +87,9 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 </body>
+<!--<select th:field="*{vak}" class = "form-control" name="selectSubject" id="move2"  multiple="multiple" size="7">&ndash;&gt;-->
 
+    <!--                        <input type="" th:field="*{subjects}"/>-->
 <script>
 
     ///Get drop-down list object

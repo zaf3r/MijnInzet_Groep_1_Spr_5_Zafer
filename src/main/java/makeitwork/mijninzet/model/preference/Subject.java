@@ -5,13 +5,11 @@ import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "vak")
+@Embeddable
 public class Subject {
 
     @Id
@@ -68,4 +66,5 @@ public class Subject {
     public KnowledgeArea getKnowledgeArea() {
         return knowledgeArea;
     }
+
 }
