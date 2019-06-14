@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<link rel="stylesheet" type="text/css" th:href="@{/css/cohort.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/generic.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/navbar.css}"/>
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+      integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="/js/cohort.js" th:src="@{/js/cohort.js}"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Cohort</title>
+</head>
+<body>
+<header th:insert="~{navbar :: header}"></header>
+<div class="container">
+    <form action="#">
+        <div>Add New Cohort: <input type="text" id="txtName"/></div>
+        <div>
+            <label for="from">Start Date: </label>
+            <input type="text" id="from" name="from">
+            <label for="to"> End Date: </label>
+            <input type="text" id="to" name="to">
+        </div>
+        <div>
+            <input type="button" value="add" onclick = "addNewSelections()"/>
+        </div>
+        <div>
+            <label for="addNew">All Cohort: </label>
+            <select name="moreselAge" id="addNew">
+                <option value="1" selected>1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+            </select>
+            <input type="button" value="delete" onclick = "deleteselections()"/>
+        </div>
+        <p>Add subjects to selected cohort</p>
+        <p>
+        <table>
+            <tr collspan="2">
+                <td>
+                    <div>
+                        <select name="moreselAge" id="move1"  multiple="multiple" size="7">
+                            <option value="1">11</option>
+                            <option value="2">12</option>
+                            <option value="3">13</option>
+                            <option value="4">14</option>
+                            <option value="5">15</option>
+                            <option value="6">16</option>
+                            <option value="7">17</option>
+                            <option value="8">18</option>
+
+                        </select>
+                    </div>
+
+                </td>
+                <td width="100" align="center">
+                    <input type="button" value=">" onclick = "rightSingle()" /><br>
+                    <input type="button" value=">>" onclick = "rightAll()"/><br>
+                    <input type="button" value="<" onclick = "leftSingle()"/><br>
+                    <input type="button" value="<<" onclick = "leftAll()"/>
+                </td>
+
+                <td>
+                    <div>
+                        <select name="moreselAge" id="move2"  multiple="multiple" size="7">
+                            <option value="1">111</option>
+                            <option value="2">222</option>
+                            <option value="3">333</option>
+                            <option value="4">444</option>
+                            <option value="5">555</option>
+                            <option value="6">666</option>
+                            <option value="7">777</option>
+                            <option value="8">888</option>
+
+                        </select>
+                    </div>
+                </td>
+            <tr>
+        </table>
+        <div> <button id="button" type="button" class="btn btn-success">Submit</button></div>
+
+    </form>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+</html>
