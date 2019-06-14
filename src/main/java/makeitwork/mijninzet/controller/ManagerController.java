@@ -99,7 +99,7 @@ public class ManagerController {
     //in knowledgeAreaController
     @RequestMapping(value = "saveKnowledgeArea", method = RequestMethod.POST)
     public String saveArea(@ModelAttribute("saveKnowledgeArea") KnowledgeArea area, Model model) {
-        model.addAttribute("knowledgeArea", area.getKnowledgeArea());
+        model.addAttribute("knowledgeArea", area.getKnowledgeArea(knowledgeAreaId));
         areaRepo.save(area);
         return "redirect:/manager/kennisgebied";
     }
