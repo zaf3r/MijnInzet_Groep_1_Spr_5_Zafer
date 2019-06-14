@@ -8,11 +8,6 @@ import java.util.Set;
 @Entity
 @Table(name = "beschikbaarheid")
 public class Availability {
-
-    //To do
-    @Transient
-    private String cohort;
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "idbeschikbaarheid")
@@ -22,6 +17,7 @@ public class Availability {
     @JoinColumn(name = "idgebruiker")
     private User user;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "dag")
     private Weekday weekday;
 

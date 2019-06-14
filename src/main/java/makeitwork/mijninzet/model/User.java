@@ -1,6 +1,8 @@
 package makeitwork.mijninzet.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import makeitwork.mijninzet.model.Availability.Availability;
+import makeitwork.mijninzet.model.Incident.Incident;
 import makeitwork.mijninzet.model.preference.Preference;
 
 import javax.persistence.*;
@@ -65,14 +67,17 @@ public class User {
     @Column(name = COLUMN_ACTIVE)
     private int active;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user",cascade= CascadeType.ALL)
     private Set<Preference> preferenceSet =  new HashSet<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user",cascade= CascadeType.ALL)
     private Set<Availability> availabilitySet =  new HashSet<>();
 
-/*    @OneToMany(mappedBy = "user",cascade= CascadeType.ALL)
-    private Set<Incident> incidentSet =  new HashSet<>();*/
+    @JsonIgnore
+    @OneToMany(mappedBy = "user",cascade= CascadeType.ALL)
+    private Set<Incident> incidentSet =  new HashSet<>();
 
     @ManyToMany(fetch = FetchType.EAGER, cascade= {CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH, CascadeType.REFRESH})
@@ -139,5 +144,13 @@ public class User {
 
     public void setAvailabilitySet(Set<Availability> availabilitySet) {
         this.availabilitySet = availabilitySet;
+    }
+
+    public Set<Incident> getIncidentSet() {
+        return incidentSet;
+    }
+
+    public void setIncidentSet(Set<Incident> incidentSet) {
+        this.incidentSet = incidentSet;
     }
 }

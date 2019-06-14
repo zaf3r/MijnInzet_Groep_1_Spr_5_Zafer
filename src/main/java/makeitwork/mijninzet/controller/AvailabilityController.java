@@ -116,8 +116,6 @@ public class AvailabilityController {
         return "incidents-form";
     }
 
-
-
     /**
      * The first time a user enters the availability page, availabilities are prepared for the form.
      * @param user current session user
@@ -141,6 +139,4 @@ public class AvailabilityController {
         availability.setEvening(evening);
         availability.setUser(user);
     }
-
-
 }
