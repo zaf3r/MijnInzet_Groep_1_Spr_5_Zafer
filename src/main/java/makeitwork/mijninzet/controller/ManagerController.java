@@ -80,9 +80,16 @@ public class ManagerController {
     public String subjectDelete(@ModelAttribute("deleteSubject") Subject subject, Model model){
         //model.addAttribute("subject", subject.getSubjectId());
 
+        //if pleaseConfirm() = true -> deleteSubject Else -> redirect
         int subjectid = Integer.parseInt(subject.getSubjectName());
         Subject deletedSubject = subRepo.findBySubjectId(subjectid);
         subRepo.delete(deletedSubject);
+//        if (pleaseConfirm().equals(true)) {
+//            subRepo.delete(deletedSubject);
+//        }
+//        else {
+//            return "redirect:/manager/vak";
+//        }
         return "redirect:/manager/vak";
     }
 

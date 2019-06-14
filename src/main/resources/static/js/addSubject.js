@@ -6,5 +6,6 @@ function confirmPlease() {
         else {
             //do not execute submit
             window.location.href="http://localhost:8080/manager/vak";
+            return false;
         }
 }
