@@ -2,16 +2,22 @@ package makeitwork.mijninzet.controller;
 
 
 import makeitwork.mijninzet.model.Task;
-import makeitwork.mijninzet.repository.UserRepository;
+import makeitwork.mijninzet.model.TaskDTO;
+import makeitwork.mijninzet.model.User;
+import makeitwork.mijninzet.repository.TaskRepository;
+import makeitwork.mijninzet.repository.UsersRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import makeitwork.mijninzet.repository.TaskRepository;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.print.attribute.standard.Destination;
 import java.util.*;
 
 @Controller
@@ -20,7 +26,7 @@ public class TaskController {
     @Autowired
     private TaskRepository taskRepository;
     @Autowired
-    private UserRepository userRepository;
+    private UsersRepository usersRepository;
 
     public TaskController(TaskRepository taskRepository){
         this.taskRepository = taskRepository;
@@ -72,6 +78,22 @@ public class TaskController {
             return authentication.getName();
         } else return "";
     }
+//todo TaskDTO vullen
+//task ophalen
+
+
+    private TaskDTO fillTaskDTO(Task task, User user, TaskDTO taskDTO){
+        ModelMapper modelMapper = new ModelMapper();
+
+        modelMapper.addMappings(mapper ->{
+            mapper(user-> user.getId)})
+        modelMapper.addMappings(mapper -> {
+                    mapper.map(src -> src.getBillingAddress().getStreet(),
+                            Destination::setBillingStreet);
+
+    }
+//todo entity vullen
+
 //
 //    @PutMapping
 //    public void insert(@RequestBody Task task){
