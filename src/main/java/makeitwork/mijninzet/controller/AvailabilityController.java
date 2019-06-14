@@ -78,10 +78,8 @@ public class AvailabilityController {
 
         setValuesAvailability(AVAILABILITY_LOADER.findMonday(availabilitySet),
                 mondayMo, mondayAf, mondayEv, user);
-
         setValuesAvailability(AVAILABILITY_LOADER.findTuesday(availabilitySet),
                 tuesdayMo, tuesdayAf, tuesdayEv, user);
-
         setValuesAvailability(AVAILABILITY_LOADER.findWednesday(availabilitySet),
                 wednesdayMo, wednesdayAf, wednesdayEv, user);
         setValuesAvailability(AVAILABILITY_LOADER.findThursday(availabilitySet),

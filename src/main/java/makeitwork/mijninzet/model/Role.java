@@ -14,7 +14,6 @@ public class Role {
     @Column(name = "Rol")
     private String roleName;
 
-
     public Role() {
     }
 
@@ -36,5 +35,13 @@ public class Role {
 
     public void setRoleName(String roleName) {
         this.roleName = roleName;
+    }
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "roleId=" + roleId +
+                ", roleName='" + roleName + '\'' +
+                '}';
     }
 }

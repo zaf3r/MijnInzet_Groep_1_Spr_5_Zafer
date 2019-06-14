@@ -2,8 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}"/>
-<link rel="stylesheet" type="text/css" th:href="@{/css/genericBQ.css}"/>
-<link rel="stylesheet" type="text/css" th:href="@{/css/navbarBQ.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/generic.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/navbar.css}"/>
 <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
@@ -14,16 +14,16 @@
     <meta charset="UTF-8">
     <title>Home</title>
 </head>
-<header th:insert="~{navbarBQ :: header}"></header>
+<header th:insert="~{navbar :: header}"></header>
 <body id="pageContent">
 <form action="#" th:action="@{/home}" method="get">
 
-    <div class="card card-image" style="background-image: url(https://www.desktopbackground.org/download/3440x1440/2010/05/07/13609_blue-sky-with-clouds-backgrounds-church-at-prison_7000x5500_h.jpg); background-size: cover">
+    <div class="card card-image" style="background-image: url(https://images.homedepot-static.com/productImages/9513d7c0-6365-4903-b136-0bb9d93c7e3a/svn/brewster-wallpaper-wv8103-64_600.jpg); background-size: cover">
         <div class="text-white text-center rgba-stylish-strong py-4 px-4">
             <div class="py-5">
 
                 <!-- Content -->
-<!--                <h5 class="h5 orange-text text-left"><i class="fas fa-chalkboard-teacher"></i> MijnInzet</h5>-->
+                <!--                <h5 class="h5 orange-text text-left"><i class="fas fa-chalkboard-teacher"></i> MijnInzet</h5>-->
                 <h2 class="card-title h1 my-4 py-2">Welkom Docent H.A. van Thienen</h2>
                 <p class="mb-4 pb-2 px-md-5 mx-md-5"></p>
                 <a class="btn peach-gradient bg-dark"><i class="fas fa-hand-point-down"></i> Mijn Pagina</a>
@@ -52,7 +52,7 @@
                         <div class="card-body">
                             <h3 class="card-title text-light">Takenoverzicht</h3>
                             <p class="card-text">Bekijk uw takenoverzicht.</p>
-                            <a href="#" class="btn btn-outline-light btn-sm">TAKEN</a>
+                            <a href="/myTasks" class="btn btn-outline-light btn-sm">TAKEN</a>
                         </div>
                     </div>
                 </div>
@@ -81,7 +81,6 @@
         </div>
     </section>
 
-
     <footer th:insert="~{footer :: footer}"></footer>
 </form>
 
@@ -95,6 +94,8 @@
 
 
 </html>
+
+
 
 
 

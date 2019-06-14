@@ -19,7 +19,7 @@ public class Task {
 
     private String beschrijvingLang;
 
-    private LocalDate startdatum;
+    private String startdatum;
 
     private LocalDate einddatum;
 
@@ -32,7 +32,7 @@ public class Task {
     public Task() {
     }
 
-    public Task(String title, String description, int uren, LocalDate startDate) {
+    public Task(String title, String description, int uren, String startDate) {
         this.titel = title;
         this.beschrijving = description;
         this.uren = uren;
@@ -79,7 +79,7 @@ public class Task {
         return beschrijvingLang;
     }
 
-    public LocalDate getStartdatum() {
+    public String getStartdatum() {
         return startdatum;
     }
 
