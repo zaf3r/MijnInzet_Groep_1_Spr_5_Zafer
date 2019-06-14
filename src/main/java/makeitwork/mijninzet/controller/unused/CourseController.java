@@ -1,6 +1,7 @@
-package makeitwork.mijninzet.controller;
+package makeitwork.mijninzet.controller.unused;
 
-import makeitwork.mijninzet.model.Course;
+import makeitwork.mijninzet.controller.AbstractController;
+import makeitwork.mijninzet.model.Unused.Course;
 import makeitwork.mijninzet.repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
