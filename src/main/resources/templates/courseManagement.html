@@ -34,7 +34,7 @@
     <table>
         <tr collspan="2">
             <td>
-                <form action="#" th:object="${knowledgeArea}" th:action="@{deleteKnowledgeArea}" method="post">
+                <form action="#" th:object="${KnowledgeAreas}" th:action="@{deleteKnowledgeArea}" method="post">
                 <select  name="subjectName" multiple="multiple" size="7">
                         <option th:each="KnowledgeArea: ${KnowledgeAreas}" th:value="${KnowledgeArea.knowledgeAreaId}" th:text="${KnowledgeArea.knowledgeArea}"></option>
                     </select>

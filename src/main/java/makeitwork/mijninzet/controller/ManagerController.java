@@ -38,7 +38,7 @@ public class ManagerController {
                 model.addAttribute("subjects", getSubjectList());
                 return ("addSubject");
             }
-            //in managementController
+            //in knowledgeAreaController
             case "kennisgebied": {
                 KnowledgeArea area = new KnowledgeArea();
                 model.addAttribute("attr2", area);
@@ -96,7 +96,7 @@ public class ManagerController {
         return "redirect:/manager/vak";
     }
 
-    //in managementController
+    //in knowledgeAreaController
     @RequestMapping(value = "saveKnowledgeArea", method = RequestMethod.POST)
     public String saveArea(@ModelAttribute("saveKnowledgeArea") KnowledgeArea area, Model model) {
         model.addAttribute("knowledgeArea", area.getKnowledgeArea());
@@ -104,16 +104,14 @@ public class ManagerController {
         return "redirect:/manager/kennisgebied";
     }
 
-    //in knowledgeAreaController / courceManagement
-//    @RequestMapping(value = "knowledgeArea", method = RequestMethod.POST)
-//    public String deleteKnowledgeArea(@ModelAttribute("deleteKnowledgeArea") KnowledgeArea area, Model model){
-//
-//
-//        int subjectid = Integer.parseInt(area.getKnowledgeArea());
-//        //KnowledgeArea deleteKnowledgeArea = areaRepo.findByKnowledgeAreaId();
-//        //areaRepo.delete(deleteKnowledgeArea);
-//
-//        return "redirect:/manager/kennisgebied";
-//    }
+    //in knowledgeAreaController
+    @RequestMapping(value = "deleteKnowledgeArea", method = RequestMethod.POST)
+    public String deleteKnowledgeArea(@ModelAttribute("deleteKnowledgeArea") KnowledgeArea area, Model model){
+        int knowledgeAreaId = Integer.parseInt(area.getKnowledgeArea());
+        KnowledgeArea deleteKnowledgeArea = areaRepo.findByKnowledgeAreaId(knowledgeAreaId);
+        areaRepo.delete(deleteKnowledgeArea);
+
+        return "redirect:/manager/kennisgebied";
+    }
 
 }
