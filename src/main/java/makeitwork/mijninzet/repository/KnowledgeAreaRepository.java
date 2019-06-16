@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface KnowledgeAreaRepository extends JpaRepository<KnowledgeArea, Integer> {
     public List<KnowledgeArea> findAllByOrderByKnowledgeAreaIdAsc();
+    KnowledgeArea findByKnowledgeAreaId(int id);
 }
