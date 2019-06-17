@@ -44,6 +44,10 @@
                        onchange="this.setCustomValidity('')"/><br><br>
             </p>
             <p>
+                <label for="welkeRol"><b></b></label>
+                <select class="inp" id="welkeRol" name="welkeRol"></select>
+            </p>
+            <p>
                 <label class="label" for="gebruiker">gebruikernaam</label>
                 <input type="text" class="inp" id="gebruiker" name="gebruiker" required
                        oninvalid="this.setCustomValidity('Een unieke gebruikersnaam opgeven is verplicht.')"
@@ -86,6 +90,28 @@
 <footer th:insert="~{footer :: footer}"></footer>
 <script>
     // registreer eventhandlers
+    $(document).ready(function () {
+        $.ajax({
+            type: "POST",
+            url: "/allRoles",
+            data: "{}",
+            success: function (data) {
+                var s = '<option value="-1">Welke functie gaat de collega vervullen?</option>';
+                for (var i = 0; i < data.length; i++) {
+                    // s += '<option value="' + data[i].roleId + '">' + data[i].roleName + '</option>';
+                    s += '<option value= "data[i].name" </option>';
+                }
+                $("#welkeRol").html(s);
+            }
+        });
+    });
+
+
+
+
+
+
+
     $("#gebruiker").on("focusout", function (event) {
        payload = JSON.stringify({ username: event.target.value });
        $.ajax({

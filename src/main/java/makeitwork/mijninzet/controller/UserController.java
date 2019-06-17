@@ -1,8 +1,11 @@
 package makeitwork.mijninzet.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import com.mongodb.BasicDBObject;
+import makeitwork.mijninzet.model.Role;
 import makeitwork.mijninzet.model.User;
+import makeitwork.mijninzet.repository.RoleRepository;
 import makeitwork.mijninzet.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -13,12 +16,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Set;
 
 @RestController
 public class UserController {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    RoleRepository roleRepository;
 
     public UserController() {
     }
@@ -71,10 +79,10 @@ public class UserController {
     }
     @PostMapping("/newUser")
     public @ResponseBody String newUser(@RequestBody String requestPayload){
-        System.out.printf("inhoud requestPayload = %s\n",requestPayload);
         User newUser=new User();
         newUser=deSerializeUser(requestPayload);
         var user=userRepository.save(newUser);
+        user=userRepository.findByUsername(newUser.getUsername());
         var output = new BasicDBObject();
         if (user != null) {
             output.put("exists", true);
@@ -90,8 +98,18 @@ public class UserController {
             user = objectMapper.readValue(requestPayload, User.class);
         }catch (IOException e){};
         user.setPassword(user.encryptPassword(user.getPassword()));
-        System.out.printf("user object: %s",user);
         return user;
+    }
+    @PostMapping("/allRoles")
+    public @ResponseBody String allRoles(){
+        List<Role> allRoles=roleRepository.findAll();
+        var output=new BasicDBObject();
+        for (Role rol:allRoles
+             ) {var name= rol.getRoleName();
+            System.out.printf("%s\n",name);
+                output.put("name",name);
+        }
+        return output.toJson();
     }
 
 }
