@@ -1,5 +1,8 @@
 package makeitwork.mijninzet.model.preference;
 
+import makeitwork.mijninzet.model.KnowledgeArea;
+import org.hibernate.annotations.SortNatural;
+
 import javax.persistence.*;
 import java.util.*;
 
@@ -19,7 +22,12 @@ public class Subject {
     private Set<Preference> preferenceSet = new HashSet<>();
 
     @Transient
-    private List<Subject> allSubjects = new ArrayList<>();
+    private SortedSet<Subject> allSubjects = new TreeSet<>();
+
+    @ElementCollection
+    @SortNatural
+    @Column (name = "kennisgebieden")
+    private SortedSet<KnowledgeArea> listKnowledgeAreas = new TreeSet<>();
 
     public int getSubjectId() {
         return subjectId;
@@ -45,7 +53,7 @@ public class Subject {
         this.preferenceSet = preferenceSet;
     }
 
-    public List<Subject> getAllSubjects() {
+    public SortedSet<Subject> getAllSubjects() {
         return allSubjects;
     }
 

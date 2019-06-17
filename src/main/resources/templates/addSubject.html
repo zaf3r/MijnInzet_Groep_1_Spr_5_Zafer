@@ -29,17 +29,12 @@
 <br>
 
 <div class="container">
-    <h2 class="text-center">Voeg vakken toe aan kennisgebied</h2>
+    <h2 class="text-center">Selecteer kennisgebieden toe</h2>
 
     <table>
         <tr collspan="2">
             <td>
-                <form action="#" th:object="${subjects}" th:action="@{deleteSubject}" method="post">
-                    <select  id="move1" name="subjectName" multiple="multiple" size="7">
-                        <option th:each="subject: ${subjects}" th:value="${subject.subjectId}" th:text="${subject.subjectName}"></option>
-                        <br><input type="submit" th:onclick="confirmPlease()" value="Delete" />
-                    </select>
-                </form>
+
             </td>
         <tr>
     </table>
@@ -62,3 +57,9 @@
 
 
 </html>
+<form action="#" th:object="${subjects}" th:action="@{deleteSubject}" method="post">
+    <select  id="move1" name="subjectName" multiple="multiple" size="7">
+        <option th:each="subject: ${subjects}" th:value="${subject.subjectId}" th:text="${subject.subjectName}"></option>
+        <br><input type="submit" th:onclick="confirmPlease()" value="Delete" />
+    </select>
+</form>

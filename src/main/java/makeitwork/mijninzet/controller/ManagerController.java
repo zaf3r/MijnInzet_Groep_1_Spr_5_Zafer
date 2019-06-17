@@ -19,8 +19,6 @@ import java.util.List;
 @RequestMapping(value = "/manager", method = RequestMethod.GET)
 public class ManagerController {
 
-    @Autowired
-    private CourseRepository courseRepo;
 
     @Autowired
     private KnowledgeAreaRepository areaRepo;
