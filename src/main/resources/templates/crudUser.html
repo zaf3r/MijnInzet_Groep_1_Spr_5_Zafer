@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" th:href="@{/css/genericBQ.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/navbarBQ.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/crudUser.css}"/>
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+      integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap" rel="stylesheet">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<header th:insert="~{navbarBQ :: header}"></header>
+<div class="box1">
+    <br><br><br><br><br><br><br><br><br><br><br><br>
+    <form>
+        <label class="label" for="gebruiker">gebruikernaam</label>
+        <input type="text" class="inp" id="gebruiker" name="gebruiker" placeholder="vul gebruikersnaam in" required/>
+        <span style="display: none;" id="userNameMsg">De gebruikersnaam bestaat. Kies een andere naam</span><br>
+        <label class="label" for="vnaam">voornaam</label>
+        <input type="text" class="inp" id="vnaam" name="vnaam" placeholder="voornaam" required/><br>
+        <label class="label" for="voorvoegsel">voorvoegsel(s)</label>
+        <input type="text" class="inp" id="voorvoegsel" name="voorvoegsel" placeholder="voorvoegsel"><br>
+        <label class="label" for="anaam">achternaam</label>
+        <input type="text" class="inp" id="anaam" name="anaam" placeholder="achternaam" required/><br>
+        <label class="label" for="email">email</label>
+        <input type="email" class="inp" id="email" name="email" required="required" placeholder="emailadres"><br>
+        <span style="display: none;" id="eAddressMsg">Het emailadres is al aanwezig. Gebruik een ander emailadres. </span><br>
+        <label class="label" for="pwd">password</label>
+        <input type="password" class="inp" id="pwd" name="pwd" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Password moet bestaan uit minimaal 8 posities" required><br>
+        <input type="checkbox" name="juiste_gegevens" value="juiste_gegevens">Alle gegevens zijn juist
+    </form>
+</div>
+<footer th:insert="~{footer :: footer}"></footer>
+<script>
+    // registreer eventhandlers
+    $("#gebruiker").on("focusout", function (event) {
+       payload = JSON.stringify({ username: event.target.value });
+       $.ajax({
+           type: 'POST',
+           url: '/checkUserName',
+           contentType: 'application/json; charset=utf-8',
+           dataType: 'json',
+           data: payload
+       }).done( function (response) {
+           userNameErr = $("#userNameMsg");
+           if (response["exists"]) {
+               userNameErr.show();
+           } else {
+               userNameErr.hide();
+           }
+       })
+    });
+    $("#email").on("focusout", function (event) {
+        payload = JSON.stringify({email: event.target.value });
+        $.ajax({
+            type: 'POST',
+            url: '/checkEmail',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            data: payload
+        }).done( function (response) {
+            eAddressErr = $("#eAddressMsg");
+            if (response["exists"]) {
+                eAddressErr.show();
+            } else {
+                eAddressErr.hide();
+            }
+        })
+    });
+
+
+    document.getElementById('vnaam').addEventListener('focusout', checkNaam);
+    document.getElementById('anaam').addEventListener('focusout', checkNaam);
+    document.getElementById('pwd').addEventListener('focusout', checkPwd);
+
+
+
+    function checkPwd(){};
+
+    }
+</script>
+</body>
+</html>

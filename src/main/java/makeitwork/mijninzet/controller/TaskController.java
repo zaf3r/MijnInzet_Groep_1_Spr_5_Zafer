@@ -139,26 +139,6 @@ public class TaskController extends AbstractController {
     }
 }
 
-
-
-
-
-
-////
-//    @PutMapping
-//    public void insert(@RequestBody Task task){
-//        this.taskRepository.insert(task);
-//    }
-//
-//    @PostMapping
-//    public void update(@RequestBody Task task){
-//        this.taskRepository.save(task);
-//    }
-
-//    @DeleteMapping("/{id}")
-//    public void delete(@PathVariable ("id") String id){
-//        this.taskRepository.deleteById(id)
-// }
 //        tasks.forEach((i)->myTasks.remove(i));
 ////         tasks.removeAll(myTasks); // levert tasks op waaruit alle eerder gereageerde taken zijn verwijderd
 //        List<Task> diff = tasks.stream().filter(e -> !myTasks.contains(e)).collect(Collectors.toList());

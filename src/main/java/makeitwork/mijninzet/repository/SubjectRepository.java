@@ -2,10 +2,14 @@ package makeitwork.mijninzet.repository;
 
 import makeitwork.mijninzet.model.preference.Subject;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface SubjectRepository extends JpaRepository<Subject, Integer> {
-    public List<Subject> findAllByOrderBySubjectIdAsc();
+    List<Subject> findAllByOrderBySubjectIdAsc();
+    Subject findBySubjectId(int id);
 
 }
+

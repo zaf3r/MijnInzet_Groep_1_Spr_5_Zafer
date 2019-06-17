@@ -1,15 +1,10 @@
 package makeitwork.mijninzet.model.preference;
 
-import makeitwork.mijninzet.model.KnowledgeArea;
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
-
 import javax.persistence.*;
 import java.util.*;
 
 @Entity
 @Table(name = "vak")
-@Embeddable
 public class Subject {
 
     @Id
@@ -22,11 +17,6 @@ public class Subject {
 
     @OneToMany(mappedBy = "subject", cascade= {CascadeType.PERSIST,CascadeType.REMOVE})
     private Set<Preference> preferenceSet = new HashSet<>();
-
-    @ManyToOne
-    @JoinColumn(name = "naam", nullable = false)
-    @NotFound(action= NotFoundAction.IGNORE)
-    private KnowledgeArea knowledgeArea;
 
     @Transient
     private List<Subject> allSubjects = new ArrayList<>();
@@ -55,16 +45,17 @@ public class Subject {
         this.preferenceSet = preferenceSet;
     }
 
-//    //CourseManager
-//    public KnowledgeArea getArea() { return area; }
-//    public void setArea(KnowledgeArea area) { this.area = area; }
-
     public List<Subject> getAllSubjects() {
         return allSubjects;
     }
 
-    public KnowledgeArea getKnowledgeArea() {
-        return knowledgeArea;
+    @Override
+    public String toString() {
+        return "Subject{" +
+                "subjectId=" + subjectId +
+                ", subjectName='" + subjectName + '\'' +
+                ", preferenceSet=" + preferenceSet +
+                ", allSubjects=" + allSubjects +
+                '}';
     }
-
 }

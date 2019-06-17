@@ -5,42 +5,38 @@ import makeitwork.mijninzet.model.preference.Subject;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.SortedSet;
-import java.util.TreeSet;
 
 @Entity
-@Table(name ="kennisgebied")
 public class KnowledgeArea {
 
     @Id
-    @Column(name = "naam", unique = true)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private int knowledgeAreaId;
+
     private String knowledgeArea;
 
-    @Transient
-    private Subject vak;
-
-    @OneToMany
-    @ElementCollection
-    private Set<Subject> subjects = new HashSet<>();
+//    @OneToMany(mappedBy = "knowledgeArea", cascade= {CascadeType.PERSIST,CascadeType.REMOVE})
+//    private Set<Subject> subjectSet = new HashSet<>();
 
     //constructors
     public KnowledgeArea() {}
 
+    public KnowledgeArea(String knowledgeArea, Set<Subject> subjectSet) {
+        this.knowledgeArea = knowledgeArea;
+//        this.subjectSet = subjectSet;
+    }
+
     //getters & setters
+    public int getKnowledgeAreaId() { return knowledgeAreaId; }
+
     public String getKnowledgeArea() { return knowledgeArea; }
     public void setKnowledgeArea(String knowledgeArea) { this.knowledgeArea = knowledgeArea; }
 
-    public Subject getVak() {
-        return vak;
-    }
-
-    public Set<Subject> getSubjects() {
-        return subjects;
-    }
-
-//    public void addSubject(int subjectId){
-//        Set <Subject> subjects = getSubjects();
-//        if (!subjects.contains(subjectId)) subjects.add(subjectId);
-//    }
-
+//    public Set<Subject> getSubjectSet() { return subjectSet; }
+//    public void setSubjectSet(Set<Subject> subjectSet) { this.subjectSet = subjectSet; }
 }
+
+
+
+
+
