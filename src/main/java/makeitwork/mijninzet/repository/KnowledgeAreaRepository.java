@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface KnowledgeAreaRepository extends JpaRepository<KnowledgeArea, Integer> {
-    public List<KnowledgeArea> findAllByOrderByKnowledgeAreaIdAsc();
+public interface KnowledgeAreaRepository extends JpaRepository<KnowledgeArea, String> {
+    List<KnowledgeArea> findAllByOrderByKnowledgeAreaIdAsc();
     KnowledgeArea findByKnowledgeAreaId(int id);
 }

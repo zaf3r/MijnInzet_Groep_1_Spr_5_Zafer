@@ -2,6 +2,7 @@ package makeitwork.mijninzet.model;
 
 import makeitwork.mijninzet.model.preference.Preference;
 import org.hibernate.annotations.SortNatural;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -9,7 +10,6 @@ import javax.validation.constraints.Size;
 import java.util.*;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "gebruiker")
 public class User{
 
@@ -33,6 +33,18 @@ public class User{
 
     @Transient
     private final String COLUMN_ID = "idgebruiker";
+
+    @Transient
+    private final String COLUMN_EMAIL="email";
+
+    @Transient
+    private final String COLUMN_SURNAME="voornaam";
+
+    @Transient
+    private final String COLUMN_PREFIX="voorvoegsel";
+
+    @Transient
+    private final String COLUMN_FAMILYNAME="achternaam";
 
     @Transient
     private final String COLUMN_ACTIVE = "actief";
@@ -59,6 +71,20 @@ public class User{
     @NotNull(message=COLUMN_USERNAME+VERPLICHT)
     @Column(name = COLUMN_USERNAME)
     private String username;
+
+    @Column(name = COLUMN_SURNAME)
+    private String surname;
+
+    @Column(name = COLUMN_PREFIX)
+    private String namePrefix;
+
+    @NotNull(message=COLUMN_FAMILYNAME+VERPLICHT)
+    @Column(name = COLUMN_FAMILYNAME)
+    private String familyName;
+
+    @NotNull(message=COLUMN_EMAIL+VERPLICHT)
+    @Column(name = COLUMN_EMAIL)
+    private String email;
 
     @NotNull(message = COLUMN_ACTIVE+VERPLICHT)
     @Column(name = COLUMN_ACTIVE)
@@ -132,6 +158,38 @@ public class User{
         this.active = active;
     }
 
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getNamePrefix() {
+        return namePrefix;
+    }
+
+    public void setNamePrefix(String namePrefix) {
+        this.namePrefix = namePrefix;
+    }
+
+    public String getFamilyName() {
+        return familyName;
+    }
+
+    public void setFamilyName(String familyName) {
+        this.familyName = familyName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public Set<Preference> getPreferenceSet() {
         return preferenceSet;
     }
@@ -147,6 +205,9 @@ public class User{
 //    public String getRoleType() {
 //        return roleType;
 //    }
+    public String encryptPassword (String plain_password){
+        return BCrypt.hashpw(plain_password, BCrypt.gensalt());
+    }
 
     // todo vanaf hier voor Docent --> moet nog op een andere manier
 
@@ -156,7 +217,7 @@ public class User{
     //gereageerd is. Moet ook de status bijgehouden worden, dan kan dat ook.
     @ElementCollection
     @SortNatural
-//    @Column(name="task")
+//  @Column(name="task")
     private SortedSet<String> taskIds = new TreeSet<>();
 
     public SortedSet<String> getTasks() {
@@ -186,7 +247,12 @@ public class User{
     public String toString() {
         return "User{" +
                 "id=" + id +
+                ", password='" + password + '\'' +
                 ", username='" + username + '\'' +
+                ", surname='" + surname + '\'' +
+                ", namePrefix='" + namePrefix + '\'' +
+                ", familyName='" + familyName + '\'' +
+                ", email='" + email + '\'' +
                 ", active=" + active +
                 ", role=" + role +
                 '}';

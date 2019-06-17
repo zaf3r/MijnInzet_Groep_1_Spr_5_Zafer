@@ -34,15 +34,27 @@
     <table>
         <tr collspan="2">
             <td>
-                <form action="#" th:object="${KnowledgeAreas}" th:action="@{deleteKnowledgeArea}" method="post">
-                <select  name="subjectName" multiple="multiple" size="7">
+                <form>
+                    <select  name="subjectName" multiple="multiple" size="7">
                         <option th:each="KnowledgeArea: ${KnowledgeAreas}" th:value="${KnowledgeArea.knowledgeAreaId}" th:text="${KnowledgeArea.knowledgeArea}"></option>
                     </select>
-                <br><input type="submit" th:onclick="confirmPlease()" value="Delete" />
                 </form>
             </td>
         <tr>
     </table>
+    
+<!--    <table>-->
+<!--        <tr collspan="2">-->
+<!--            <td>-->
+<!--                <form action="#" th:object="${KnowledgeAreas}" th:action="@{deleteKnowledgeArea}" method="post">-->
+<!--                <select  name="subjectName" multiple="multiple" size="7">-->
+<!--                        <option th:each="KnowledgeArea: ${KnowledgeAreas}" th:value="${KnowledgeArea.knowledgeAreaId}" th:text="${KnowledgeArea.knowledgeArea}"></option>-->
+<!--                    </select>-->
+<!--                <br><input type="submit" th:onclick="confirmPlease()" value="Delete" />-->
+<!--                </form>-->
+<!--            </td>-->
+<!--        <tr>-->
+<!--    </table>-->
 
 </div>
 
