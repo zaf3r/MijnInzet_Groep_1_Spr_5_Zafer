@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface IncidentRepository extends JpaRepository<Incident, Long> {
-    List<Incident> findAllByYearAndWeeknumberAAndUser(int year, int weeknumber, User user);
+    List<Incident> findAllByYearAndWeeknumberAndUser(int year, int weeknumber, User user);
 }

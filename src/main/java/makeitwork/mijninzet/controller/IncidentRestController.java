@@ -1,5 +1,6 @@
 package makeitwork.mijninzet.controller;
 
+import makeitwork.mijninzet.model.Availability.Weekday;
 import makeitwork.mijninzet.model.Incident.Incident;
 import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.repository.IncidentRepository;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -31,12 +33,12 @@ public class IncidentRestController {
                                                   Principal principal) {
 
         User user = userRepository.findByUsername(principal.getName());
-        List<Incident> incidentList = incidentRepository.findAllByYearAndWeeknumberAAndUser(year,weekNumber,user);
+        List<Incident> incidentList = incidentRepository.findAllByYearAndWeeknumberAndUser(year,weekNumber,user);
 
         if(incidentList.isEmpty()) {
-            return incidentList;
+            return emptyIncidentStarter(year,weekNumber);
         } else {
-            return null;
+            return incidentList;
         }
     }
 
@@ -53,4 +55,16 @@ public class IncidentRestController {
         System.out.println("This endpoint doesn't save anything for now");
     }
 
+    public List<Incident> emptyIncidentStarter(int year, int weeknumber) {
+        List<Incident> incidentList = new ArrayList<>();
+
+        for (Weekday weekday : Weekday.values()) {
+            Incident tempIncident = new Incident();
+            tempIncident.setWeekday(weekday);
+            tempIncident.setWeeknumber(weeknumber);
+            tempIncident.setYear(year);
+            incidentList.add(tempIncident);
+        }
+        return incidentList;
+    }
 }
