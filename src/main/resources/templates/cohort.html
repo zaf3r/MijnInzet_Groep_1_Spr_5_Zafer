@@ -23,29 +23,54 @@
 <body>
 <header th:insert="~{navbar :: header}"></header>
 <div class="container">
-    <form action="#">
-        <div>Add New Cohort: <input type="text" id="txtName"/></div>
+
+    <form action="#" th:object="${attr1}" th:action="@{saveCohort}" method="post" id="saveCohort">
+        <div>Add New Cohort:
+            <input type="text" th:field="*{cohortName}" required title="Vul een vaknaam in "/>
+        </div>
         <div>
             <label for="from">Start Date: </label>
-            <input type="text" id="from" name="from">
+            <input type="text" id="from" name="from" th:field="*{startDate}" required title="Vul een datum in "/>
             <label for="to"> End Date: </label>
-            <input type="text" id="to" name="to">
+            <input type="text" id="to" name="to" th:field="*{endDate}" required title="Vul een datum in "/>
         </div>
+
+        <input type="submit" th:onclick="alert ('Het cohort is opgeslagen in de database.')" value="Opslaan" />
+    </form>
+
+<!--        <div>Add New Cohort: <input type="text" id="txtName"/></div>-->
+<!--        <div>-->
+<!--            <label for="from">Start Date: </label>-->
+<!--            <input type="text" id="from" name="from">-->
+<!--            <label for="to"> End Date: </label>-->
+<!--            <input type="text" id="to" name="to">-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <input type="button" value="add" onclick = "addNewSelections()"/>-->
+<!--        </div>-->
+
+
         <div>
-            <input type="button" value="add" onclick = "addNewSelections()"/>
-        </div>
-        <div>
-            <label for="addNew">All Cohort: </label>
-            <select name="moreselAge" id="addNew">
-                <option value="1" selected>1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-            </select>
-            <input type="button" value="delete" onclick = "deleteselections()"/>
+            <label for="allCohorts">All Cohort: </label>
+            <table id="allCohorts">
+                <tr collspan="2">
+                    <td>
+                        <form action="#" th:object="${cohorts}" th:action="@{deleteCohort}" method="post">
+                            <select  name="cohortName" multiple="multiple" size="7">
+                                <option th:each="cohort: ${cohorts}" th:value="${cohort.cohortId}" th:text="${cohort.cohortName}"></option>
+                                <input type="submit" th:onclick="" value="Delete" />
+                            </select>
+                        </form>
+                    </td>
+                <tr>
+            </table>
+
+<!--            <select name="moreselAge" id="addNew">-->
+<!--                <option value="1" selected>1</option>-->
+<!--                <option value="2">2</option>-->
+<!--               -->
+<!--            </select>-->
+<!--            <input type="button" value="delete" onclick = "deleteselections()"/>-->
         </div>
         <p>Add subjects to selected cohort</p>
         <p>
@@ -76,24 +101,29 @@
 
                 <td>
                     <div>
-                        <select name="moreselAge" id="move2"  multiple="multiple" size="7">
-                            <option value="1">111</option>
-                            <option value="2">222</option>
-                            <option value="3">333</option>
-                            <option value="4">444</option>
-                            <option value="5">555</option>
-                            <option value="6">666</option>
-                            <option value="7">777</option>
-                            <option value="8">888</option>
+                        <form action="#" th:object="${subjects}" th:action="@{/kennisgebied/{subject}}" method="get">
+                            <select  id="movel" name="subjectName" multiple="multiple" size="7">
+                                <option th:each="subject: ${subjects}" th:value="${subject.subjectId}" th:text="${subject.subjectName}"></option>
+                            </select>
+                        </form>
+<!--                        <select name="moreselAge" id="move2"  multiple="multiple" size="7">-->
+<!--                            <option value="1">111</option>-->
+<!--                            <option value="2">222</option>-->
+<!--                            <option value="3">333</option>-->
+<!--                            <option value="4">444</option>-->
+<!--                            <option value="5">555</option>-->
+<!--                            <option value="6">666</option>-->
+<!--                            <option value="7">777</option>-->
+<!--                            <option value="8">888</option>-->
 
-                        </select>
+<!--                        </select>-->
                     </div>
                 </td>
             <tr>
         </table>
         <div> <button id="button" type="button" class="btn btn-success">Submit</button></div>
 
-    </form>
+
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
