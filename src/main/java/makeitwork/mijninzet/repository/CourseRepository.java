@@ -1,6 +1,6 @@
 package makeitwork.mijninzet.repository;
 
-import makeitwork.mijninzet.model.Course;
+import makeitwork.mijninzet.model.Unused.Course;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

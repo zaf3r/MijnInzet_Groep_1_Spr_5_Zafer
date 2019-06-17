@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" th:href="@{/css/navbar.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/crudUser.css}"/>
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+      integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap" rel="stylesheet">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous">
+    </script>
+    <script src="~/jquery.validate.js"></script>
+</head>
+<body>
+<header th:insert="~{navbar :: header}"></header>
+<div class="box1">
+    <form id="usrForm" action="/newUser" method="POST">
+        <br><br><br><br><br><br>
+        <fieldset>
+<!--            todo rol gebruiker invoeren-->
+            <p>
+                <label class="label" for="vnaam">voornaam</label>
+                <input type="text" class="inp" id="vnaam" name="vnaam" placeholder="voornaam"/><br>
+            </p>
+            <p>
+                <label class="label" for="voorvoegsel">voorvoegsel(s)</label>
+                <input type="text" class="inp" id="voorvoegsel" name="voorvoegsel" placeholder="voorvoegsel"><br>
+            </p>
+            <p>
+                <label class="label" for="anaam">achternaam</label>
+                <input type="text" class="inp" id="anaam" name="anaam" minlength="4" placeholder="achternaam"/><br><br>
+            </p>
+            <p>
+                <label class="label" for="gebruiker">gebruikernaam</label>
+                <input type="text" class="inp" id="gebruiker" name="gebruiker"/>
+                <span style="display: none;"
+                      id="userNameMsg"> De gebruikersnaam bestaat. Kies een andere naam</span><br>
+            </p>
+            <p>
+                <label class="label" for="email">email</label>
+                <input type="email" class="inp" id="email" name="email" placeholder="emailadres"/>
+                <span style="display: none;"
+                      id="eAddressMsg"> Het emailadres is al aanwezig. Gebruik een ander emailadres. </span><br><br>
+            </p>
+            <p>
+                <label class="label" for="pwd">password</label>
+                <input type="password" class="inp" id="pwd" name="pwd"/><br>
+            </p>
+            <p>
+                <label class="label" for="pwd">bevestig password</label>
+                <input type="password" class="inp" id="confirm_pwd" name="confirm_pwd"/><br><br>
+            </p>
+            <p>
+                <input type="submit" name="opslaan" id="opslaan" value="opslaan nieuwe collega"/><br><br>
+                <span style="display: none;"
+                      id="successMsg"> De nieuwe collega heeft toegang tot het systeem </span>
+                <span style="display: none;"
+                      id="failureMsg"> Er is iets fout gegaan. De nieuwe collega heeft geen toegang. </span><br><br>
+            </p>
+        </fieldset>
+    </form>
+</div>
+<footer th:insert="~{footer :: footer}"></footer>
+<script>
+    // registreer eventhandlers
+    $("#gebruiker").on("focusout", function (event) {
+       payload = JSON.stringify({ username: event.target.value });
+       $.ajax({
+           type: 'POST',
+           url: '/checkUserName',
+           contentType: 'application/json; charset=utf-8',
+           dataType: 'json',
+           data: payload
+       }).done( function (response) {
+           userNameErr = $("#userNameMsg");
+           if (response["exists"]) {
+               userNameErr.show();
+           } else {
+               userNameErr.hide();
+           }
+       })
+    });
+    $("#email").on("focusout", function (event) {
+        payload = JSON.stringify({email: event.target.value });
+        $.ajax({
+            type: 'POST',
+            url: '/checkEmail',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            data: payload
+        }).done( function (response) {
+            eAddressErr = $("#eAddressMsg");
+            if (response["exists"]) {
+                eAddressErr.show();
+            } else {
+                eAddressErr.hide();
+            }
+        })
+    });
+    //veld validatie
+    $.validator.setDefaults({
+        submitHandler: function() {
+            alert("submitted!");
+        }
+    });
+    $().ready(function() {
+        //validate form on commit
+        $("#usrForm").validate();
+
+        //validate fields on key-out etc.
+        $("#usrForm").validate({
+            rules: {
+                vnaam: "required",
+                anaam: "required",
+                gebruiker: {
+                    required: true,
+                    minLength: 4
+                },
+                email: {
+                    required: true,
+                    email: true
+                },
+                pwd: {
+                    required: true,
+                    minLength: 8
+                },
+                comnfirm_pwd: {
+                    required: true,
+                    minLength: 8,
+                    equalTo: "#pwd"
+                },
+            },
+            messages: {
+                vnaam: "geef uw voornaam",
+                anaam: "geef uw achternaam",
+                gebruiker: {
+                    required: "een unieke gebruikersnaam is verplicht",
+                    minlength: "uw gebruikersnaam moet minimaal 4 posities lang zijn"
+                },
+                email: {
+                    required: "uw emailadres is verplicht"
+                },
+                pwd: {
+                    required: "u moet verplicht een password opgeven",
+                    minlength: "uw password moet minimaal 8 karakters lang zijn"
+                },
+                confirm_pwd: {
+                    required: "geef nogmaals uw password in",
+                    minlength: "uw password moet minimaal 8 karakters lang zijn",
+                    equalTo: "Dit password is niet gelijk aan het bovenstaande password"
+                },
+            }
+        });
+        $("#gebruiker").focus(function () {
+            var voornaam = $("#vnaam").val();
+            var achternaam = $("#anaam").val();
+            if (voornaam && achternaam && !this.value) {
+                this.value = voornaam + achternaam
+            }
+        });
+        $("#opslaan").click(function () {
+            var user = {
+                username: $("#gebruiker").val(),
+                password: $("#pwd").val(),
+                surname: $("#vnaam").val(),
+                namePrefix: $("#voorvoegsel").val(),
+                familyName: $("#anaam").val(),
+                email: $("#email").val(),
+                active: "1"
+            }
+            payload = JSON.stringify({user});
+            $.ajax({
+                type: 'POST',
+                url: '/newUser',
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                data: payload
+            }).done(function (response) {
+                success = $("#succesMsg");
+                failure = $("#failureMsg");
+                if (response["exists"]) {
+                    success.show();
+                } else {
+                    failure.show();
+                }
+            })
+        });
+    });
+</script>
+</body>
+</html>

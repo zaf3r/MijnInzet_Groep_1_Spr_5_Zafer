@@ -1,4 +1,4 @@
-package makeitwork.mijninzet.model;
+package makeitwork.mijninzet.model.Unused;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +13,7 @@ public class Course {
     private int courseId;
 
     private String courseName;
-    private String knowledgeField;
+    private String knowledgeField;//mischien een eigen classe?
     private int cohortNumber;
 
     public Course() { }
@@ -28,10 +28,15 @@ public class Course {
     public int getCourseId() { return courseId; }
 
     public String getCourseName() { return courseName; }
+
     public void setCourseName(String courseName) { this.courseName = courseName; }
+
     public String getKnowledgeField() { return knowledgeField; }
+
     public void setKnowledgeField(String knowledgeField) { this.knowledgeField = knowledgeField; }
+
     public int getCohortNumber() { return cohortNumber; }
+
     public void setCohortNumber(int cohortNumber) { this.cohortNumber = cohortNumber; }
 
 }
