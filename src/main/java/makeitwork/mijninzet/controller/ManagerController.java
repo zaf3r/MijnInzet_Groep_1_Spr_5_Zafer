@@ -8,10 +8,7 @@ import makeitwork.mijninzet.repository.SubjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,8 +16,6 @@ import java.util.List;
 @RequestMapping(value = "/manager", method = RequestMethod.GET)
 public class ManagerController {
 
-    @Autowired
-    private CourseRepository courseRepo;
 
     @Autowired
     private KnowledgeAreaRepository areaRepo;
@@ -36,6 +31,7 @@ public class ManagerController {
                 Subject subject = new Subject();
                 model.addAttribute("attr3", subject);
                 model.addAttribute("subjects", getSubjectList());
+                model.addAttribute("KnowledgeAreas", getKnowledgeAreaList());
                 return ("addSubject");
             }
             //in knowledgeAreaController
@@ -71,10 +67,19 @@ public class ManagerController {
     }
 
     //in Subject controller
-    @RequestMapping(value = "saveSubject", method = RequestMethod.POST)
-    public String saveSubject(@ModelAttribute("saveSubject") Subject subject, Model model) {
-        model.addAttribute("subjectName", subject.getSubjectName());
+//    @RequestMapping(value = "saveSubject", method = RequestMethod.POST)
+//    public String saveSubject(@ModelAttribute("saveSubject") Subject subject, Model model) {
+//        model.addAttribute("subjectName", subject.getSubjectName());
+//        subRepo.save(subject);
+//        return "redirect:/manager/vak";
+//    }
+
+    @PostMapping("saveSubject")
+    @ResponseBody
+    public String SaveSubjectHandler( @RequestBody Subject form){
+        Subject subject = form;
         subRepo.save(subject);
+
         return "redirect:/manager/vak";
     }
 

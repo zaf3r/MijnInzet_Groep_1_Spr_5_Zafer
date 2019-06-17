@@ -23,26 +23,27 @@
 <form action="#" th:object="${attr3}" th:action="@{saveSubject}" method="post" id="saveSubject">
     <label th:text="vak"/>
     <input type="text" th:field="*{subjectName}" required title="Vul een vaknaam in "/>
-    <input type="submit" th:onclick="alert ('Het vak is opgeslagen in de database.')" value="Opslaan" />
+
 </form>
 </div>
 <br>
 
 <div class="container">
-    <h2 class="text-center">Voeg vakken toe aan kennisgebied</h2>
-
+    <h2 class="text-center">Selecteer kennisgebieden toe</h2>
     <table>
         <tr collspan="2">
             <td>
-                <form action="#" th:object="${subjects}" th:action="@{deleteSubject}" method="post">
-                    <select  id="move1" name="subjectName" multiple="multiple" size="7">
-                        <option th:each="subject: ${subjects}" th:value="${subject.subjectId}" th:text="${subject.subjectName}"></option>
-                        <br><input type="submit" th:onclick="confirmPlease()" value="Delete" />
+<!--                <form action="#" th:object="${KnowledgeAreas}" th:action="@{deleteKnowledgeArea}" method="post">-->
+                    <select  name="subjectName" multiple="multiple" size="7">
+                        <option th:each="KnowledgeArea: ${KnowledgeAreas}" th:value="${KnowledgeArea.knowledgeAreaId}"
+                                th:text="${KnowledgeArea.knowledgeArea}"></option>
                     </select>
-                </form>
+                    <input type="submit" th:onclick="alert ('Het vak is opgeslagen in de database.')" value="Opslaan" />
+<!--                </form>-->
             </td>
         <tr>
     </table>
+
 </div>
 <br>
 
