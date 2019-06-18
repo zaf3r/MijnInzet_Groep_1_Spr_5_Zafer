@@ -1,8 +1,8 @@
 package makeitwork.mijninzet.controller;
 
-import makeitwork.mijninzet.model.Availability.Availability;
-import makeitwork.mijninzet.model.Availability.AvailabilityForm;
-import makeitwork.mijninzet.model.Availability.Weekday;
+import makeitwork.mijninzet.model.Availability.GlobalAvailability.Availability;
+import makeitwork.mijninzet.model.Availability.GlobalAvailability.AvailabilityForm;
+import makeitwork.mijninzet.model.Availability.GlobalAvailability.Weekday;
 import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.repository.AvailabilityRepository;
 import makeitwork.mijninzet.repository.UserRepository;
@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/availability")
@@ -90,30 +90,6 @@ public class AvailabilityController {
 
         availabilityRepository.saveAll(availabilitySet);
         return "redirect:/availability/availabilityForm";
-    }
-
-    @GetMapping("incidentsForm")
-    public String getIncidentsForm() {
-
-        SimpleDateFormat dayRetriever = new SimpleDateFormat("dd-MM");
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.YEAR, 2019);
-        cal.set(Calendar.WEEK_OF_YEAR, 23);
-        cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-        String monday = dayRetriever.format(cal.getTime());
-        cal.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY);
-        String tuesday = dayRetriever.format(cal.getTime());
-        cal.set(Calendar.DAY_OF_WEEK, Calendar.WEDNESDAY);
-        String wednesday = dayRetriever.format(cal.getTime());
-        cal.set(Calendar.DAY_OF_WEEK, Calendar.THURSDAY);
-        String thursday = dayRetriever.format(cal.getTime());
-        cal.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
-        String friday = dayRetriever.format(cal.getTime());
-
-        //Be able to get all dates (MM-dd) of a week
-
-
-        return "incidents-form";
     }
 
     /**

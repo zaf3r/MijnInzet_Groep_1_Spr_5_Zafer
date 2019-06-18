@@ -1,6 +1,6 @@
 package makeitwork.mijninzet.repository;
 
-import makeitwork.mijninzet.model.Incident.Incident;
+import makeitwork.mijninzet.model.Availability.Incident.Incident;
 import makeitwork.mijninzet.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

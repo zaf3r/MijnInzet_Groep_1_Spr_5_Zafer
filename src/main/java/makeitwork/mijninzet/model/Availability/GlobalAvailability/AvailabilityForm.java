@@ -1,4 +1,4 @@
-package makeitwork.mijninzet.model.Availability;
+package makeitwork.mijninzet.model.Availability.GlobalAvailability;
 
 public class AvailabilityForm {
 

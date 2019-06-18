@@ -1,7 +1,7 @@
 package makeitwork.mijninzet.model.Unused;
 
-import makeitwork.mijninzet.model.Availability.PartOfDay;
-import makeitwork.mijninzet.model.Availability.Weekday;
+import makeitwork.mijninzet.model.Availability.GlobalAvailability.PartOfDay;
+import makeitwork.mijninzet.model.Availability.GlobalAvailability.Weekday;
 
 import java.time.LocalDate;
 import static java.util.Arrays.fill;

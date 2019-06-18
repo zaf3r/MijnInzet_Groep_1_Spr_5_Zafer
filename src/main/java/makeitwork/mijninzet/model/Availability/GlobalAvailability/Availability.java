@@ -1,4 +1,4 @@
-package makeitwork.mijninzet.model.Availability;
+package makeitwork.mijninzet.model.Availability.GlobalAvailability;
 
 import makeitwork.mijninzet.model.User;
 

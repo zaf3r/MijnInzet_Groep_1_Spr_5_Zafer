@@ -1,6 +1,6 @@
-package makeitwork.mijninzet.model.Incident;
+package makeitwork.mijninzet.model.Availability.Incident;
 
-import makeitwork.mijninzet.model.Availability.Weekday;
+import makeitwork.mijninzet.model.Availability.GlobalAvailability.Weekday;
 import makeitwork.mijninzet.model.User;
 
 import javax.persistence.*;

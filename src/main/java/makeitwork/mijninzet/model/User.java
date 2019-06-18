@@ -1,8 +1,8 @@
 package makeitwork.mijninzet.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import makeitwork.mijninzet.model.Availability.Availability;
-import makeitwork.mijninzet.model.Incident.Incident;
+import makeitwork.mijninzet.model.Availability.GlobalAvailability.Availability;
+import makeitwork.mijninzet.model.Availability.Incident.Incident;
 import makeitwork.mijninzet.model.preference.Preference;
 
 import javax.persistence.*;
