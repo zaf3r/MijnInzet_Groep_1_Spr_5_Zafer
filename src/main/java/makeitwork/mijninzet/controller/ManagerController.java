@@ -1,15 +1,21 @@
 package makeitwork.mijninzet.controller;
 
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mongodb.BasicDBObject;
 import makeitwork.mijninzet.model.KnowledgeArea;
+import makeitwork.mijninzet.model.SubjectResponse;
+import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.model.preference.Subject;
-import makeitwork.mijninzet.repository.CourseRepository;
 import makeitwork.mijninzet.repository.KnowledgeAreaRepository;
 import makeitwork.mijninzet.repository.SubjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -74,13 +80,27 @@ public class ManagerController {
 //        return "redirect:/manager/vak";
 //    }
 
-    @PostMapping("saveSubject")
-    @ResponseBody
-    public String SaveSubjectHandler( @RequestBody Subject form){
-        Subject subject = form;
+    @PostMapping("saveKnowledgeandCourse")
+    public @ResponseBody String SaveSubjectHandler(@RequestBody String data, Subject subject){
+//        SubjectResponse response = new SubjectResponse();
+//        System.out.println(response);
+        subject=deSerializeUser(data, subject);
         subRepo.save(subject);
+        var output = new BasicDBObject();
+//        if (user != null) {
+//            output.put("exists", true);
+//        } else {
+//            output.put("exists", false);
+//        }
+        return output.toJson();
+    }
 
-        return "redirect:/manager/vak";
+    public Subject deSerializeUser(String requestPayload, Subject subject){
+        ObjectMapper objectmapper = new ObjectMapper();
+        try {
+            subject = objectmapper.readValue(requestPayload, Subject.class);
+        } catch (Exception e){};
+        return subject;
     }
 
     //in Subject controller

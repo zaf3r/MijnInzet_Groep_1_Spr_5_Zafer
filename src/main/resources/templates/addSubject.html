@@ -6,25 +6,26 @@
 <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!--<script-->
+<!--        src="https://code.jquery.com/jquery-3.4.1.js"-->
+<!--        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="-->
+<!--        crossorigin="anonymous">-->
+<!--</script>-->
 <head>
     <meta charset="UTF-8">
-    <title>vakkenbeheer</title>
+    <title>Vakkenbeheer</title>
 </head>
 <body>
 
 <div th:insert="~{navbar :: header}"></div>
-
-<br>
-<br>
-<br>
-<br>
+<form id="usrForm" action="/saveKnowledgeandCourse" method="POST">
 <div class="container">
-<h2 class="text-center">Voeg een nieuw vak toe</h2>
-<form action="#" th:object="${attr3}" th:action="@{saveSubject}" method="post" id="saveSubject">
-    <label th:text="vak"/>
-    <input type="text" th:field="*{subjectName}" required title="Vul een vaknaam in "/>
-
-</form>
+    <h2 class="text-center">Voeg een nieuw vak toe</h2>
+    <form action="#" th:object="${attr3}" th:action="@{saveSubject}" method="post" id="saveSubject">
+        <label th:text="vak"/>
+        <input id ="inputWaarde" type="text" th:field="*{subjectName}" required title="Vul een vaknaam in "/>
+    </form>
 </div>
 <br>
 
@@ -33,17 +34,15 @@
     <table>
         <tr collspan="2">
             <td>
-<!--                <form action="#" th:object="${KnowledgeAreas}" th:action="@{deleteKnowledgeArea}" method="post">-->
-                    <select  name="subjectName" multiple="multiple" size="7">
-                        <option th:each="KnowledgeArea: ${KnowledgeAreas}" th:value="${KnowledgeArea.knowledgeAreaId}"
-                                th:text="${KnowledgeArea.knowledgeArea}"></option>
-                    </select>
-                    <input type="submit" th:onclick="alert ('Het vak is opgeslagen in de database.')" value="Opslaan" />
-<!--                </form>-->
+                <select id="menu" name="subjectName" multiple="multiple" size="7">
+                    <option th:each="KnowledgeArea: ${KnowledgeAreas}" th:value="${KnowledgeArea.knowledgeAreaId}"
+                            th:text="${KnowledgeArea.knowledgeArea}"></option>
+                </select>
+                <input type="submit" id="btn" value="Opslaan" />
             </td>
         <tr>
     </table>
-
+    <p id="uitkomst">Het volgende is opgeslagen: </p>
 </div>
 <br>
 
@@ -59,6 +58,8 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 <script type="text/javascript" src="/js/addSubject.js" th:src="@{/js/addSubject.js}"></script>
+
+    </form>
 </body>
 
 
