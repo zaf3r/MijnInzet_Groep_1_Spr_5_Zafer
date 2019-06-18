@@ -2,6 +2,23 @@ var week;
 var year;
 var requestUrl;
 
+var mondayMo = document.querySelector("#mondayMo");
+var mondayAf = document.querySelector("#mondayAf");
+var mondayEv = document.querySelector("#mondayEv");
+var tuesdayMo = document.querySelector("#tuesdayMo");
+var tuesdayAf = document.querySelector("#tuesdayAf");
+var tuesdayEv = document.querySelector("#tuesdayEv");
+var wednesdayMo = document.querySelector("#wednesdayMo");
+var wednesdayAf = document.querySelector("#wednesdayAf");
+var wednesdayEv = document.querySelector("#wednesdayEv");
+var thursdayMo = document.querySelector("#thursdayMo");
+var thursdayAf = document.querySelector("#thursdayAf");
+var thursdayEv = document.querySelector("#thursdEv");
+var fridayMo = document.querySelector("#fridayMo");
+var fridayAf = document.querySelector("#fridayAf");
+var fridayEv = document.querySelector("#fridayEv");
+
+
 $(function() {
     var weekpicker = $("#weekpicker1").weekpicker();
 
