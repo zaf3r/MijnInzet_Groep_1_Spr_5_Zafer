@@ -2,7 +2,7 @@ package makeitwork.mijninzet.controller;
 
 import makeitwork.mijninzet.model.Availability.GlobalAvailability.Availability;
 import makeitwork.mijninzet.model.Availability.GlobalAvailability.AvailabilityForm;
-import makeitwork.mijninzet.model.Availability.GlobalAvailability.Weekday;
+import makeitwork.mijninzet.model.Availability.Weekday;
 import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.repository.AvailabilityRepository;
 import makeitwork.mijninzet.repository.UserRepository;

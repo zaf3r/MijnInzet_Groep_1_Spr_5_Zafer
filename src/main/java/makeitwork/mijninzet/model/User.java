@@ -1,22 +1,21 @@
 package makeitwork.mijninzet.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import makeitwork.mijninzet.model.Availability.GlobalAvailability.Availability;
-import makeitwork.mijninzet.model.Availability.Incident.Incident;
 import makeitwork.mijninzet.model.preference.Preference;
+import org.hibernate.annotations.SortNatural;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "gebruiker")
-public class User {
+public class User{
 
+//    @Transient
+//    Role roleName;
 
     //Validation fields
     @Transient
@@ -37,6 +36,18 @@ public class User {
     private final String COLUMN_ID = "idgebruiker";
 
     @Transient
+    private final String COLUMN_EMAIL="email";
+
+    @Transient
+    private final String COLUMN_SURNAME="voornaam";
+
+    @Transient
+    private final String COLUMN_PREFIX="voorvoegsel";
+
+    @Transient
+    private final String COLUMN_FAMILYNAME="achternaam";
+
+    @Transient
     private final String COLUMN_ACTIVE = "actief";
 
 
@@ -46,7 +57,6 @@ public class User {
 
     @Transient
     private final String PK_COLUMN_OTHER_ENTITY = "rol_id";
-
 
     //Fields that are mapped by Hibernate
     @Id
@@ -63,32 +73,51 @@ public class User {
     @Column(name = COLUMN_USERNAME)
     private String username;
 
+    @Column(name = COLUMN_SURNAME)
+    private String surname;
+
+    @Column(name = COLUMN_PREFIX)
+    private String namePrefix;
+
+    @NotNull(message=COLUMN_FAMILYNAME+VERPLICHT)
+    @Column(name = COLUMN_FAMILYNAME)
+    private String familyName;
+
+    @NotNull(message=COLUMN_EMAIL+VERPLICHT)
+    @Column(name = COLUMN_EMAIL)
+    private String email;
+
     @NotNull(message = COLUMN_ACTIVE+VERPLICHT)
     @Column(name = COLUMN_ACTIVE)
     private int active;
 
-    @JsonIgnore
+//    @NotNull
+//    @Column(name="Naam")
+//    private String naam;
+
     @OneToMany(mappedBy = "user",cascade= CascadeType.ALL)
     private Set<Preference> preferenceSet =  new HashSet<>();
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "user",cascade= CascadeType.ALL)
-    private Set<Availability> availabilitySet =  new HashSet<>();
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "user",cascade= CascadeType.ALL)
-    private Set<Incident> incidentSet =  new HashSet<>();
-
     @ManyToMany(fetch = FetchType.EAGER, cascade= {CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH, CascadeType.REFRESH})
-
     @JoinTable(name = JOINT_TABLE_NAME,
             joinColumns = @JoinColumn(name = COLUMN_ID),
             inverseJoinColumns = @JoinColumn(name = PK_COLUMN_OTHER_ENTITY))
     private List<Role> role;
 
-    public User() {
-    }
+    //contracturen?
+//    @Transient
+//    private String roleType = roleName.getRoleName();
+
+    public User() {}
+
+//    public User(String naam, String roleType){
+//        this.naam = naam;
+//        this.roleType = roleType;
+//
+//    }
+
+    // CONTROLLER MET GEGEVENS EN ROL LIST?
 
     public int getId() {
         return id;
@@ -102,12 +131,12 @@ public class User {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getUsername() {
         return username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setUsername(String username) {
@@ -130,6 +159,38 @@ public class User {
         this.active = active;
     }
 
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getNamePrefix() {
+        return namePrefix;
+    }
+
+    public void setNamePrefix(String namePrefix) {
+        this.namePrefix = namePrefix;
+    }
+
+    public String getFamilyName() {
+        return familyName;
+    }
+
+    public void setFamilyName(String familyName) {
+        this.familyName = familyName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public Set<Preference> getPreferenceSet() {
         return preferenceSet;
     }
@@ -138,19 +199,63 @@ public class User {
         this.preferenceSet = preferenceSet;
     }
 
-    public Set<Availability> getAvailabilitySet() {
-        return availabilitySet;
+//    public String getNaam() {
+//        return naam;
+//    }
+
+    //    public String getRoleType() {
+//        return roleType;
+//    }
+    public String encryptPassword (String plain_password){
+        return BCrypt.hashpw(plain_password, BCrypt.gensalt());
     }
 
-    public void setAvailabilitySet(Set<Availability> availabilitySet) {
-        this.availabilitySet = availabilitySet;
+    // todo vanaf hier voor Docent --> moet nog op een andere manier
+
+
+    //in deze collection worden de (unieke) taskId's opgeslagen
+    //op deze wijze wordt per docent bijgehouden op welke taken
+    //gereageerd is. Moet ook de status bijgehouden worden, dan kan dat ook.
+    @ElementCollection
+    @SortNatural
+//  @Column(name="task")
+    private SortedSet<String> taskIds = new TreeSet<>();
+
+    public SortedSet<String> getTasks() {
+        return taskIds;
     }
 
-    public Set<Incident> getIncidentSet() {
-        return incidentSet;
+    public SortedSet<String> getTaskIds() {
+
+        return taskIds;
     }
 
-    public void setIncidentSet(Set<Incident> incidentSet) {
-        this.incidentSet = incidentSet;
+    public void setTaskIds(SortedSet<String> taskIds) {
+        this.taskIds = taskIds;
+    }
+
+    public void addTask(String taskId) {
+        SortedSet<String> tasks = getTasks();
+        if (!tasks.contains(taskId)) tasks.add(taskId);
+    }
+
+    public void removeTask(String taskId) {
+        SortedSet<String> tasks = getTasks();
+        if (tasks.contains(taskId)) tasks.remove(taskId);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", password='" + password + '\'' +
+                ", username='" + username + '\'' +
+                ", surname='" + surname + '\'' +
+                ", namePrefix='" + namePrefix + '\'' +
+                ", familyName='" + familyName + '\'' +
+                ", email='" + email + '\'' +
+                ", active=" + active +
+                ", role=" + role +
+                '}';
     }
 }

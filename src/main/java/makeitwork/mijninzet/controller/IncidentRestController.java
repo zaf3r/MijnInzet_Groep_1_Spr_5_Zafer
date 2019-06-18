@@ -1,6 +1,6 @@
 package makeitwork.mijninzet.controller;
 
-import makeitwork.mijninzet.model.Availability.GlobalAvailability.Weekday;
+import makeitwork.mijninzet.model.Availability.Weekday;
 import makeitwork.mijninzet.model.Availability.Incident.Incident;
 import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.repository.IncidentRepository;

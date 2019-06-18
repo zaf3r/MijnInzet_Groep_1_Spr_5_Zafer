@@ -1,4 +1,4 @@
-package makeitwork.mijninzet.model.Availability.GlobalAvailability;
+package makeitwork.mijninzet.model.Availability;
 
 public enum PartOfDay {
     OCHTEND("ochtend"),

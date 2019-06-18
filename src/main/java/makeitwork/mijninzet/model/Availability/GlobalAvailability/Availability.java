@@ -1,5 +1,6 @@
 package makeitwork.mijninzet.model.Availability.GlobalAvailability;
 
+import makeitwork.mijninzet.model.Availability.Weekday;
 import makeitwork.mijninzet.model.User;
 
 import javax.persistence.*;

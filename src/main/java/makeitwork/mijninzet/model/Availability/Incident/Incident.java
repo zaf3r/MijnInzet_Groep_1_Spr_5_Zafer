@@ -1,12 +1,14 @@
 package makeitwork.mijninzet.model.Availability.Incident;
 
-import makeitwork.mijninzet.model.Availability.GlobalAvailability.Weekday;
+import makeitwork.mijninzet.model.Availability.DayFinder;
+import makeitwork.mijninzet.model.Availability.Weekday;
 import makeitwork.mijninzet.model.User;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-public class Incident {
+public class Incident implements DayFinder<Incident> {
 
     @Id
     @Column(name = "incident_id")
@@ -98,5 +100,15 @@ public class Incident {
 
     public void setEvening(boolean evening) {
         this.evening = evening;
+    }
+
+    @Override
+    public Incident findDay(Weekday weekday, List<Incident> dayList) {
+        for (Incident incident: dayList) {
+            if(incident.getWeekday()==weekday) {
+                return incident;
+            }
+        }
+        return null;
     }
 }
