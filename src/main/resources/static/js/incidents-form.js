@@ -1,23 +1,24 @@
 var week;
 var year;
 var requestUrl;
+var postUrl;
+var btn = document.querySelector("#btn");
 
-var mondayMo = document.querySelector("#mondayMo");
-var mondayAf = document.querySelector("#mondayAf");
-var mondayEv = document.querySelector("#mondayEv");
-var tuesdayMo = document.querySelector("#tuesdayMo");
-var tuesdayAf = document.querySelector("#tuesdayAf");
-var tuesdayEv = document.querySelector("#tuesdayEv");
-var wednesdayMo = document.querySelector("#wednesdayMo");
-var wednesdayAf = document.querySelector("#wednesdayAf");
-var wednesdayEv = document.querySelector("#wednesdayEv");
-var thursdayMo = document.querySelector("#thursdayMo");
-var thursdayAf = document.querySelector("#thursdayAf");
-var thursdayEv = document.querySelector("#thursdEv");
-var fridayMo = document.querySelector("#fridayMo");
-var fridayAf = document.querySelector("#fridayAf");
-var fridayEv = document.querySelector("#fridayEv");
-
+var mondayMo = document.querySelector('input[name="mondayMo"]');
+var mondayAf = document.querySelector('input[name="mondayAf"]');
+var mondayEv = document.querySelector('input[name="mondayEv"]');
+var tuesdayMo = document.querySelector('input[name="tuesdayMo"]');
+var tuesdayAf = document.querySelector('input[name="tuesdayAf"]');
+var tuesdayEv = document.querySelector('input[name="tuesdayEv"]');
+var wednesdayMo = document.querySelector('input[name="wednesdayMo"]');
+var wednesdayAf = document.querySelector('input[name="wednesdayAf"]');
+var wednesdayEv = document.querySelector('input[name="wednesdayEv"]');
+var thursdayMo = document.querySelector('input[name="thursdayMo"]');
+var thursdayAf = document.querySelector('input[name="thursdayAf"]');
+var thursdayEv = document.querySelector('input[name="thursdayEv"]');
+var fridayMo = document.querySelector('input[name="fridayMo"]');
+var fridayAf = document.querySelector('input[name="fridayAf"]');
+var fridayEv = document.querySelector('input[name="fridayEv"]');
 
 $(function() {
     var weekpicker = $("#weekpicker1").weekpicker();
@@ -43,6 +44,13 @@ $(function() {
      $(function () {
          $.getJSON(requestUrl, function (data) {
              console.log(data);
+
+             loadMonday(data);
+             loadTuesday(data);
+             loadWednesday(data);
+             loadThursday(data);
+             loadFriday(data);
+
              if(data.length === 0){
                  console.log("I'm empty, but you should still update");
              }
@@ -51,3 +59,73 @@ $(function() {
          })
      });
  }
+
+ function loadMonday(incidentArray) {
+     incidentArray.forEach(function(day) {
+         if(day.weekday === "MONDAY") {
+             mondayMo.value = day.morning;
+             mondayMo.parentNode.classList = day.morning;
+             mondayAf.value = day.afternoon;
+             mondayAf.parentNode.classList = day.evening;
+             mondayEv.value = day.afternoon;
+             mondayEv.parentNode.classList = day.evening;
+            }
+        }
+     )
+ }
+
+function loadTuesday(incidentArray) {
+    incidentArray.forEach(function(day) {
+            if(day.weekday === "TUESDAY") {
+                tuesdayMo.value = day.morning;
+                tuesdayMo.parentNode.classList = day.morning;
+                tuesdayAf.value = day.afternoon;
+                tuesdayAf.parentNode.classList = day.evening;
+                tuesdayEv.value = day.afternoon;
+                tuesdayEv.parentNode.classList = day.evening;
+            }
+        }
+    )
+}
+
+function loadWednesday(incidentArray) {
+    incidentArray.forEach(function(day) {
+            if(day.weekday === "WEDNESDAY") {
+                wednesdayMo.value = day.morning;
+                wednesdayMo.parentNode.classList = day.morning;
+                wednesdayAf.value = day.afternoon;
+                wednesdayAf.parentNode.classList = day.evening;
+                wednesdayEv.value = day.afternoon;
+                wednesdayEv.parentNode.classList = day.evening;
+            }
+        }
+    )
+}
+
+function loadThursday(incidentArray) {
+    incidentArray.forEach(function(day) {
+            if(day.weekday === "THURSDAY") {
+                thursdayMo.value = day.morning;
+                thursdayMo.parentNode.classList = day.morning;
+                thursdayAf.value = day.afternoon;
+                thursdayAf.parentNode.classList = day.evening;
+                thursdayEv.value = day.afternoon;
+                thursdayEv.parentNode.classList = day.evening;
+            }
+        }
+    )
+}
+
+function loadFriday(incidentArray) {
+    incidentArray.forEach(function(day) {
+            if(day.weekday === "FRIDAY") {
+                fridayMo.value = day.morning;
+                fridayMo.parentNode.classList = day.morning;
+                fridayAf.value = day.afternoon;
+                fridayAf.parentNode.classList = day.evening;
+                fridayEv.value = day.afternoon;
+                fridayEv.parentNode.classList = day.evening;
+            }
+        }
+    )
+}
