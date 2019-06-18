@@ -6,10 +6,13 @@ import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.io.IOException;
 
 @RestController
 public class UserController {
@@ -68,6 +71,7 @@ public class UserController {
     }
     @PostMapping("/newUser")
     public @ResponseBody String newUser(@RequestBody String requestPayload){
+        System.out.printf("inhoud requestPayload = %s\n",requestPayload);
         User newUser=new User();
         newUser=deSerializeUser(requestPayload);
         var user=userRepository.save(newUser);
@@ -80,12 +84,13 @@ public class UserController {
         return output.toJson();
     }
     public User deSerializeUser(String requestPayload){
-        ObjectMapper objectmapper = new ObjectMapper();
+        ObjectMapper objectMapper=new ObjectMapper();
         User user = new User();
         try {
-            user = objectmapper.readValue(requestPayload, User.class);
-        } catch (Exception e){};
+            user = objectMapper.readValue(requestPayload, User.class);
+        }catch (IOException e){};
         user.setPassword(user.encryptPassword(user.getPassword()));
+        System.out.printf("user object: %s",user);
         return user;
     }
 
