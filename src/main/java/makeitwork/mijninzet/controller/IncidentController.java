@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
+import java.util.Calendar;
 
 @Controller
 @RequestMapping("availability")
@@ -20,6 +21,8 @@ public class IncidentController {
     @GetMapping("incidentsForm")
     public String getIncidentsFormHandler(Model model, Principal principal) {
         User user = userRepository.findByUsername(principal.getName());
+        Calendar calendar = Calendar.getInstance();
+        
 
 
         return "incidents-form";
