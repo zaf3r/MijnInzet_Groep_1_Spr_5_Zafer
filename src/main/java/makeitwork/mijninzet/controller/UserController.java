@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -101,15 +102,10 @@ public class UserController {
         return user;
     }
     @PostMapping("/allRoles")
-    public @ResponseBody String allRoles(){
+    public @ResponseBody String allRoles(@RequestBody String requestPayload){
         List<Role> allRoles=roleRepository.findAll();
-        var output=new BasicDBObject();
-        for (Role rol:allRoles
-             ) {var name= rol.getRoleName();
-            System.out.printf("%s\n",name);
-                output.put("name",name);
-        }
-        return output.toJson();
+        Gson output= new Gson();
+        return output.toJson(allRoles);
     }
 
 }
