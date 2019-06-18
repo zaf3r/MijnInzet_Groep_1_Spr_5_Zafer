@@ -10,3 +10,11 @@ $( function() {
         changeYear: true
     });
 } );
+
+// window.onload = function(){
+//     var option =
+// }
+
+function changNum(Num) {
+    location.href = "http://localhost:8080/manager/cohort";
+}

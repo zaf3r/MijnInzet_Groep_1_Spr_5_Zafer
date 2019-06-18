@@ -31,8 +31,6 @@ public class VacatureService {
     //todo teller bijhouden??
     //wordt een taak uit zijn eigen lijst verwijderd
     public void removeTask(Task task, User user) {
-//        if (vacatureRepository.existsById(user.getId())) {
-////            teacher = vacatureRepository.getOne(teacher.getId());
         System.out.println("Task: " + task);
         user.removeTask(task.getId());
         vacatureRepository.save(user);
@@ -55,7 +53,7 @@ public class VacatureService {
     //stel taak is komen te vervallen, moet deze taak overal uit de DB (bij teacher) verwijderd worden.
     public void removeTaskFromOverview(Task task){
 
-//        for (Teacher teacher: vacatureRepository.findAll()) {
+//        for (User user: vacatureRepository.findAll()) {
 //            removeTask(task,teacher);
 //        }
         taskRepository.delete(task);

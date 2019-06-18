@@ -24,14 +24,10 @@ public class Cohort {
     private final String PK_COLUMN_OTHER_ENTITY = "codevak";
 
     @Transient
-    private List<Cohort> allCohorts = new ArrayList<>();
+    private SortedSet<Cohort> allCohorts = new TreeSet<>();
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "cohortId")
-    private int cohortId;
-
-    @Column(name = "cohortNaam")
+    @Column(name = "cohortNaam", nullable = false)
     private String cohortName;
 
     @Column(name = "startDate")
@@ -42,39 +38,22 @@ public class Cohort {
     @DateTimeFormat(pattern = "MM/dd/yyyy")
     private LocalDate endDate;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade= {CascadeType.PERSIST, CascadeType.MERGE,
-            CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinTable(name = JOINT_TABLE_NAME,
-            joinColumns = @JoinColumn(name = COLUMN_ID),
-            inverseJoinColumns = @JoinColumn(name = PK_COLUMN_OTHER_ENTITY))
-    private List<Subject> subject;
+    @ElementCollection
+    @SortNatural
+    private SortedSet<Integer> knowledgeAreaIds = new TreeSet<>();
 
-//    @ElementCollection
-//    @SortNatural
-//    private SortedSet<Integer> subjectIds = new TreeSet<>();
-//
-//    public SortedSet<Integer> getSubjects() {
-//        return subjectIds;
-//    }
-//
-//    public SortedSet<Integer> getSubjectIds() {
-//
-//        return subjectIds;
-//    }
-//
-//    public void setSubjectIds(SortedSet<Integer> subjectIds) {
-//        this.subjectIds = subjectIds;
-//    }
-//
-//    public void addSubject(int subjectId) {
-//        SortedSet<Integer> subjects = getSubjects();
-//        if (!subjects.contains(subjectId)) subjects.add(subjectId);
-//    }
-//
-//    public void removeSubject(int subjectId) {
-//        SortedSet<String> tasks = getTasks();
-//        if (tasks.contains(taskId)) tasks.remove(taskId);
-//    }
+    public SortedSet<Integer> getKnowledgeAreas() {
+        return knowledgeAreaIds;
+    }
+
+    public void setKnowledgeAreas(SortedSet<Integer> knowledgeAreaIds) {
+        this.knowledgeAreaIds = knowledgeAreaIds;
+    }
+
+    public void addKnowledgeArea(int knowledgeAreaId) {
+        SortedSet<Integer> knowledgeAreas = getKnowledgeAreas();
+        if (!knowledgeAreas.contains(knowledgeAreaId)) knowledgeAreas.add(knowledgeAreaId);
+    }
 
     public Cohort() {}
 
@@ -83,10 +62,6 @@ public class Cohort {
         this.startDate = startDate;
         this.endDate = endDate;
     }
-
-    public int getCohortId() { return cohortId; }
-
-    public void setCohortId(int cohortId) { this.cohortId = cohortId; }
 
     public String getCohortName() { return cohortName; }
 
@@ -100,18 +75,16 @@ public class Cohort {
 
     public void setEndDate(LocalDate endDate) { this.endDate = endDate; }
 
-    public List<Subject> getSubject() { return subject; }
+    public void setAllCohorts(SortedSet<Cohort> allCohorts) { this.allCohorts = allCohorts; }
 
-    public void setSubject(List<Subject> subject) { this.subject = subject; }
-
-    public List<Cohort> allCohorts(){ return allCohorts; }
+    public SortedSet<Cohort> getAllCohorts() { return allCohorts; }
 
     @Override
     public String toString() {
         return "Cohort{" +
-                "cohortId=" + cohortId +
-                ", cohortName='" + cohortName + '\'' +
-                ", subject=" + subject +
+                "cohortName='" + cohortName + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
                 '}';
     }
 }

@@ -38,16 +38,6 @@
         <input type="submit" th:onclick="alert ('Het cohort is opgeslagen in de database.')" value="Opslaan" />
     </form>
 
-<!--        <div>Add New Cohort: <input type="text" id="txtName"/></div>-->
-<!--        <div>-->
-<!--            <label for="from">Start Date: </label>-->
-<!--            <input type="text" id="from" name="from">-->
-<!--            <label for="to"> End Date: </label>-->
-<!--            <input type="text" id="to" name="to">-->
-<!--        </div>-->
-<!--        <div>-->
-<!--            <input type="button" value="add" onclick = "addNewSelections()"/>-->
-<!--        </div>-->
 
 
         <div>
@@ -57,7 +47,7 @@
                     <td>
                         <form action="#" th:object="${cohorts}" th:action="@{deleteCohort}" method="post">
                             <select  name="cohortName" multiple="multiple" size="7">
-                                <option th:each="cohort: ${cohorts}" th:value="${cohort.cohortId}" th:text="${cohort.cohortName}"></option>
+                                <option th:each="cohort: ${cohorts}" th:value="${cohort.cohortName}" th:text="${cohort.cohortName}"></option>
                                 <input type="submit" th:onclick="" value="Delete" />
                             </select>
                         </form>
@@ -65,15 +55,19 @@
                 <tr>
             </table>
 
-<!--            <select name="moreselAge" id="addNew">-->
-<!--                <option value="1" selected>1</option>-->
-<!--                <option value="2">2</option>-->
-<!--               -->
-<!--            </select>-->
-<!--            <input type="button" value="delete" onclick = "deleteselections()"/>-->
+
         </div>
         <p>Add subjects to selected cohort</p>
-        <p>
+        <div>
+            <form action="#" th:object="${cohorts} ${knowledgeAreas}" th:action="@{showKnowledgeArea}" method="post">
+                <select name="cohortName" id="cohortList" onchange="changeNum(this.value)">
+                    <option th:each="cohort: ${cohorts}" th:value="${cohort.cohortName}" th:text="${cohort.cohortName}"></option>
+                </select>
+                <select  id="knowledgeAreaList" name="knowledgeAreaName" multiple="multiple" size="7">
+                    <option th:each="knowledgeArea: ${knowledgeAreas}" th:value="${knowledgeArea.knowledgeAreaId}" th:text="${knowledgeArea.knowledgeArea}"></option>
+                </select>
+            </form>
+        </div>
         <table>
             <tr collspan="2">
                 <td>
@@ -106,17 +100,7 @@
                                 <option th:each="subject: ${subjects}" th:value="${subject.subjectId}" th:text="${subject.subjectName}"></option>
                             </select>
                         </form>
-<!--                        <select name="moreselAge" id="move2"  multiple="multiple" size="7">-->
-<!--                            <option value="1">111</option>-->
-<!--                            <option value="2">222</option>-->
-<!--                            <option value="3">333</option>-->
-<!--                            <option value="4">444</option>-->
-<!--                            <option value="5">555</option>-->
-<!--                            <option value="6">666</option>-->
-<!--                            <option value="7">777</option>-->
-<!--                            <option value="8">888</option>-->
 
-<!--                        </select>-->
                     </div>
                 </td>
             <tr>
