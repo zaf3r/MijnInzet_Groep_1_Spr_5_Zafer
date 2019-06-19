@@ -3,6 +3,8 @@ var year;
 var requestUrl;
 var postUrl;
 var btn = document.querySelector("#btn");
+var jsonPost = new Object();
+var allRows = document.querySelectorAll('td');
 
 var mondayMo = document.querySelector('input[name="mondayMo"]');
 var mondayAf = document.querySelector('input[name="mondayAf"]');
@@ -39,6 +41,26 @@ $(function() {
     })
 
 });
+
+
+/*
+$(function() {
+
+    btn.addEventListener("onclick", function () {
+        jsonPost.mondayMo = mondayMo;
+
+
+        });
+
+        $.post(postUrl, function (data) {
+
+
+            console.log(data);
+        }).fail("Posting failed");
+    });
+});
+*/
+
  function requestCall() {
 
      $(function () {
