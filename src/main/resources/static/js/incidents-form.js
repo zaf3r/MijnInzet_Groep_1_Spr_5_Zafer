@@ -124,8 +124,8 @@ function loadTuesday(incidentArray) {
                 tuesdayMo.value = day.morning;
                 tuesdayMo.parentNode.classList = day.morning;
                 tuesdayAf.value = day.afternoon;
-                tuesdayAf.parentNode.classList = day.evening;
-                tuesdayEv.value = day.afternoon;
+                tuesdayAf.parentNode.classList = day.afternoon;
+                tuesdayEv.value = day.evening;
                 tuesdayEv.parentNode.classList = day.evening;
             }
         }
@@ -138,8 +138,8 @@ function loadWednesday(incidentArray) {
                 wednesdayMo.value = day.morning;
                 wednesdayMo.parentNode.classList = day.morning;
                 wednesdayAf.value = day.afternoon;
-                wednesdayAf.parentNode.classList = day.evening;
-                wednesdayEv.value = day.afternoon;
+                wednesdayAf.parentNode.classList = day.afternoon;
+                wednesdayEv.value = day.evening;
                 wednesdayEv.parentNode.classList = day.evening;
             }
         }
@@ -152,8 +152,8 @@ function loadThursday(incidentArray) {
                 thursdayMo.value = day.morning;
                 thursdayMo.parentNode.classList = day.morning;
                 thursdayAf.value = day.afternoon;
-                thursdayAf.parentNode.classList = day.evening;
-                thursdayEv.value = day.afternoon;
+                thursdayAf.parentNode.classList = day.afternoon;
+                thursdayEv.value = day.evening;
                 thursdayEv.parentNode.classList = day.evening;
             }
         }
@@ -166,8 +166,8 @@ function loadFriday(incidentArray) {
                 fridayMo.value = day.morning;
                 fridayMo.parentNode.classList = day.morning;
                 fridayAf.value = day.afternoon;
-                fridayAf.parentNode.classList = day.evening;
-                fridayEv.value = day.afternoon;
+                fridayAf.parentNode.classList = day.afternoon;
+                fridayEv.value = day.evening;
                 fridayEv.parentNode.classList = day.evening;
             }
         }
