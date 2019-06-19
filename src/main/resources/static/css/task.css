@@ -51,6 +51,22 @@ div#buttons {
     padding-left: 20px;
     margin-left: 50px;
 }
+.tooltiptext {
+    display: none;
+    width: 120px;
+    background-color: white;
+    border: solid 2px midnightblue;
+    color: midnightblue;
+    z-index: 1;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+}
+
+#love:hover + .tooltiptext {
+    display: block;
+
+}
 
 /*.job-header-bar {*/
 /*    margin-left: 50%;*/
@@ -138,4 +154,9 @@ h2.description {
 #cardTask{
     border: grey 1px solid;
 
+}
+
+#message {
+    width: 200px;
+    height: 200px;
 }

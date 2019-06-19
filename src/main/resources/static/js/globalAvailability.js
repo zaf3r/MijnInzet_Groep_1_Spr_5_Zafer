@@ -1,76 +1,76 @@
-var cell;
+var m;
 function dealclick() {
-    var row, column;
+    var r, c;
     var check = false;
 
-    outer: for (var y = 0; y < cell.length; ++y) {
-        for (var x = 0; x < cell[y].length; ++x) {
-            if (cell[y][x] == this) {
-                row = y;
-                column = x;
-                f(cell[row][column]);
+    outer: for (var y = 0; y < m.length; ++y) {
+        for (var x = 0; x < m[y].length; ++x) {
+            if (m[y][x] == this) {
+                r = y;
+                c = x;
+                f(m[r][c]);
                 break outer;
             }
         }
     }
-    if (row == 0 && column == 0) {
+    if (r == 0 && c == 0) {
 
-        for (var y = 1; y < cell.length; ++y) {
-            for (var x = 1; x < cell[y].length; ++x) {
-                if (cell[y][x].classList.contains('false')) {
-                    f(cell[y][x]);
+        for (var y = 1; y < m.length; ++y) {
+            for (var x = 1; x < m[y].length; ++x) {
+                if (m[y][x].classList.contains('false')) {
+                    f(m[y][x]);
                     check = true;
                 } else {}
             }
         }
         if (!check) {
-            for (var y = 0; y < cell.length; ++y) {
-                for (var x = 0; x < cell[y].length; ++x) {
-                    f(cell[y][x]);
+            for (var y = 0; y < m.length; ++y) {
+                for (var x = 0; x < m[y].length; ++x) {
+                    f(m[y][x]);
                 }
             }
         }
-    } else if (row == 0) {
-        for (var y = 1; y < cell.length; ++y) {
-            if (cell[y][column].classList.contains('false')) {
-                f(cell[y][column]);
+    } else if (r == 0) {
+        for (var y = 1; y < m.length; ++y) {
+            if (m[y][c].classList.contains('false')) {
+                f(m[y][c]);
                 check = true;
             } else {}
         }
         if (!check) {
-            for (var y = 1; y < cell.length; ++y) {
-                f(cell[y][column]);
+            for (var y = 1; y < m.length; ++y) {
+                f(m[y][c]);
             }
         }
-    } else if (column == 0) {
-        for (var x = 1; x < cell[0].length; ++x) {
-            if (cell[row][x].classList.contains('false')) {
-                f(cell[row][x]);
+    } else if (c == 0) {
+        for (var x = 1; x < m[0].length; ++x) {
+            if (m[r][x].classList.contains('false')) {
+                f(m[r][x]);
                 check = true;
             } else {}
         }
         if (!check) {
-            for (var x = 1; x < cell[0].length; ++x) {
-                f(cell[row][x]);
+            for (var x = 1; x < m[0].length; ++x) {
+                f(m[r][x]);
             }
         }
     } else {}
 }
 
-window.onload = function tableCell(){
-    cell = new Array();
-    var table=document.getElementById('deTabel');
-    var rows=table.rows;
-    var rowLength=rows.length;
+window.onload = function tabCell(){
+    m = new Array();
+    var tab=document.getElementById('deTabel');
+    var rows=tab.rows;
+    var rlen=rows.length;
 
-    for (var i = 0; i <rowLength; i++) {
+    for (var i = 0; i <rlen; i++) {
         var cells=rows[i].cells;
-        var cellsArray = new Array();
+        var cbs = new Array();
         for (var j = 0; j < cells.length; j++) {
             cells[j].onclick=dealclick;
-            cellsArray.push(cells[j]);
+            cbs.push(cells[j]);
         }
-        cell.push(cellsArray);
+        m.push(cbs);
     }
 }
 

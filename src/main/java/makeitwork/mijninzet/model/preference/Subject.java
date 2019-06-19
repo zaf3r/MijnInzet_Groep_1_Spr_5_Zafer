@@ -1,13 +1,10 @@
 package makeitwork.mijninzet.model.preference;
 
-import makeitwork.mijninzet.model.KnowledgeArea;
-import org.hibernate.annotations.SortNatural;
-
 import javax.persistence.*;
 import java.util.*;
 
 @Entity
-@Table(name = "vak")
+@Table(name = "vak", uniqueConstraints={@UniqueConstraint(columnNames={"naamvak"})})
 public class Subject {
 
     @Id
@@ -23,11 +20,6 @@ public class Subject {
 
     @Transient
     private SortedSet<Subject> allSubjects = new TreeSet<>();
-
-    @ElementCollection
-    @SortNatural
-    @Column (name = "kennisgebieden")
-    private SortedSet<KnowledgeArea> listKnowledgeAreas = new TreeSet<>();
 
     public int getSubjectId() {
         return subjectId;
@@ -55,15 +47,5 @@ public class Subject {
 
     public SortedSet<Subject> getAllSubjects() {
         return allSubjects;
-    }
-
-    @Override
-    public String toString() {
-        return "Subject{" +
-                "subjectId=" + subjectId +
-                ", subjectName='" + subjectName + '\'' +
-                ", preferenceSet=" + preferenceSet +
-                ", allSubjects=" + allSubjects +
-                '}';
     }
 }

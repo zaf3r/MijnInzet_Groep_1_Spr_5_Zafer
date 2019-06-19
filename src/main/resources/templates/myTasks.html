@@ -38,10 +38,28 @@
                                 </div>
                         </form>
                         <form action="#" th:action="@{/taskDelete/{taskId}}" th:object="${myTasks}" method="post">
-                                <div class="btn">
-                                    <button type="submit" id="dislike" class="love"><i class="fas fa-thumbs-down" style="font-size: 1.8em;"></i>
-                                        <input type="hidden" id="taskId" name="taskId" th:value="${task.id}"></button>
+                                <div class = "card">
+                                    <div class="card-header" id="headingOne">
+                                     <div class="btn">
+                                         <p>
+                                         <button class="btn btn-warning" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Taak verwijderen</button>
+                                         </p>
+                                         <div class="row">
+                                             <div class="col">
+                                                 <div class="collapse multi-collapse" id="multiCollapseExample2">
+                                                     <div class="card card-body">
+                                                        <button type="submit" id="dislike" class="love" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"><i class="fas fa-thumbs-down" style="font-size: 1.8em;"></i>
+                                                        <input type="hidden" id="taskId" name="taskId" th:value="${task.id}"></button>
+                                                                <p>Wilt u een notifactie sturen met reden?</p>
+                                                                 <input type = "textfield" id = "message"/>
+                                                         <button type="submit" id="verstuur" onclick="myFunction()"> Verstuur </button>
+                                                     </div>
+                                                </div>
+                                             </div>
+                                        </div>
+                                     </div>
                                 </div>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -58,6 +76,30 @@
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+<script>
+
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i =0; i < acc.length; i++){
+        acc[i].addEventListener("click", function(){
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+                panel.style.display = "none";
+            } else {
+                panel.style.display = "block";
+            }
+        });
+    }
+
+
+    function myFunction() {
+        alert("De taak is verwijderd!");
+    }
+</script>
 </body>
 </html>
 

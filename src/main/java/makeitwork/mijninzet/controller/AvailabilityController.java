@@ -1,7 +1,7 @@
 package makeitwork.mijninzet.controller;
 
-import makeitwork.mijninzet.model.Availability.Availability;
-import makeitwork.mijninzet.model.Availability.AvailabilityForm;
+import makeitwork.mijninzet.model.Availability.GlobalAvailability.Availability;
+import makeitwork.mijninzet.model.Availability.GlobalAvailability.AvailabilityForm;
 import makeitwork.mijninzet.model.Availability.Weekday;
 import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.repository.AvailabilityRepository;
@@ -15,7 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
-import java.util.*;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/availability")

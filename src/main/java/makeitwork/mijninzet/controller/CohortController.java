@@ -1,10 +1,10 @@
 package makeitwork.mijninzet.controller;
 
 import makeitwork.mijninzet.model.Cohort;
-import makeitwork.mijninzet.model.KnowledgeArea;
+
 import makeitwork.mijninzet.model.preference.Subject;
 import makeitwork.mijninzet.repository.CohortRepository;
-import makeitwork.mijninzet.repository.KnowledgeAreaRepository;
+
 import makeitwork.mijninzet.repository.SubjectRepository;
 import makeitwork.mijninzet.service.CohortService;
 import org.springframework.beans.factory.annotation.Autowired;

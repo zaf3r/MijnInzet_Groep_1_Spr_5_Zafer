@@ -202,7 +202,7 @@ public class User{
 //        return naam;
 //    }
 
-//    public String getRoleType() {
+    //    public String getRoleType() {
 //        return roleType;
 //    }
     public String encryptPassword (String plain_password){
