@@ -10,4 +10,6 @@ public class UserFrontend {
     public String newUserForm (Model model){
         return "crudUser";
     }
+
+
 }

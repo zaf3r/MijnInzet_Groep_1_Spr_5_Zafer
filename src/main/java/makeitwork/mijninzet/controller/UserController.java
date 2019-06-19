@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @RestController
@@ -82,8 +83,9 @@ public class UserController {
     public @ResponseBody String newUser(@RequestBody String requestPayload){
         User newUser=new User();
         newUser=deSerializeUser(requestPayload);
-        var user=userRepository.save(newUser);
-        user=userRepository.findByUsername(newUser.getUsername());
+        System.out.printf("\n\nnew user:  %s\n\n",newUser);
+        if (userBestaat(newUser)==true) updateUser(newUser); else {storeUser(newUser);}
+        var user=userRepository.findByUsername(newUser.getUsername());
         var output = new BasicDBObject();
         if (user != null) {
             output.put("exists", true);
@@ -107,5 +109,52 @@ public class UserController {
         Gson output= new Gson();
         return output.toJson(allRoles);
     }
-
+    @PostMapping("/newUserRole")
+    public @ResponseBody String userRole(@RequestBody String requestPayload) {
+        String[] items = requestPayload.split(",");
+        for (var i = 0; i < items.length; i++) {
+            var word = items[i];
+            var index = word.indexOf(":");
+            items[i] = word.substring(index+2);
+            word=items[i];
+            items[i]=word.replace("}","");
+            word=items[i];
+            items[i]=word.replace("\"","");
+        }
+//        Optional<Role> role= roleRepository.findById(Integer.parseInt(items[1]));
+//        User user=userRepository.findByUsername(items[0]);
+////        List<Role> roles=user.getRole();
+////        roles.add(role.get());
+////        user.setRole(roles);
+//        userRepository.save(user);
+//        System.out.printf("%s",user);
+        return "crudUser";
+    }
+    private Boolean userBestaat(User user){
+        Boolean bestaat=false;
+        if (userRepository.findByUsername(user.getUsername())!=null) bestaat=true;
+        if (userRepository.findByEmail(user.getEmail())!=null) bestaat=true;
+        return bestaat;
+    }
+    private void updateUser(User user){
+        User thatUser=new User();
+        thatUser=null;
+        System.out.printf("\n\nuser:  %s\n\n",user);
+        thatUser= userRepository.findByUsername(user.getUsername());
+        if (thatUser==null) thatUser= userRepository.findByUsername(user.getEmail());
+        userRepository.deleteById(thatUser.getId());
+        thatUser.setEmail(user.getEmail());
+        thatUser.setPassword(user.getPassword());
+        thatUser.setFamilyName(user.getFamilyName());
+        thatUser.setNamePrefix(user.getNamePrefix());
+        thatUser.setSurname(user.getSurname());
+        thatUser.setActive(user.getActive());
+        thatUser.setUsername(user.getUsername());
+        System.out.printf("\n\nthatUser:  %s\n\n",thatUser);
+        storeUser(thatUser);
+    }
+    private void storeUser(User user){
+        userRepository.save(user);
+    }
 }
+
