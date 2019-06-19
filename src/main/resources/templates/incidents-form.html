@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="">
+<head>
+    <meta charset="UTF-8">
+    <title>Incident form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/pingcheng/bootstrap4-datetimepicker/master/build/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/avalability.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/generic.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/navbar.css}"/>
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap" rel="stylesheet">
+
+</head>
+<header th:insert="~{navbar :: header}"></header>
+<body>
+<br>
+<br>
+<br>
+</div>
+</div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <h1 class="text-center my-3">Selecteer een week</h1>
+        </div>
+
+        <div class="col-auto">
+            <div class="input-group date align-items-center">
+                <div id="weekpicker1"></div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <form action="#" th:object="${incidentForm}" method = post>
+        <table id = "deTabel">
+            <tr>
+                <th>Select All</th>
+                <th>maandag</th>
+                <th>dinsdag</th>
+                <th>woensdag</th>
+                <th>donderdag</th>
+                <th>vrijdag</th>
+            </tr>
+
+            <tr>
+                <th>
+                    <p>Ochtend</p>
+                    <p>9:00-12:30</p>
+                </th>
+                <td th:class="*{incidentMonday.isMorning()}"><input type="hidden" name="mondayMo" th:value="*{incidentMonday.isMorning()}"></td>
+                <td th:class="*{incidentTuesday.isMorning()}"><input type="hidden" name="tuesdayMo" th:value="*{incidentTuesday.isMorning()}"></td>
+                <td th:class="*{incidentWednesday.isMorning()}"><input type="hidden" name="wednesdayMo" th:value="*{incidentWednesday.isMorning()}"></td>
+                <td th:class="*{incidentThursday.isMorning()}"><input type="hidden" name="thursdayMo" th:value="*{incidentThursday.isMorning()}"></td>
+                <td th:class="*{incidentFriday.isMorning()}"><input type="hidden" name="fridayMo" th:value="*{incidentFriday.isMorning()}"></td>
+            </tr>
+
+            <tr>
+                <th>
+                    <p>Middag</p>
+                    <p>13:00-17:30</p>
+                </th>
+                <td th:class="*{incidentMonday.isAfternoon()}"><input type="hidden" name="mondayAf" th:value="*{incidentMonday.isAfternoon()}"></td>
+                <td th:class="*{incidentTuesday.isAfternoon()}"><input type="hidden" name="tuesdayAf" th:value="*{incidentTuesday.isAfternoon()}"></td>
+                <td th:class="*{incidentWednesday.isAfternoon()}"><input type="hidden" name="wednesdayAf" th:value="*{incidentWednesday.isAfternoon()}"></td>
+                <td th:class="*{incidentThursday.isAfternoon()}"><input type="hidden" name="thursdayAf" th:value="*{incidentThursday.isAfternoon()}"></td>
+                <td th:class="*{incidentFriday.isAfternoon()}"><input type="hidden" name="fridayAf" th:value="*{incidentFriday.isAfternoon()}"></td>
+            </tr>
+
+            <tr>
+                <th>
+                    <p>Avond</p>
+                    <p>18:00-21:00</p>
+                </th>
+                <td th:class="*{incidentMonday.isEvening()}"><input type="hidden" name="mondayEv" th:value="*{incidentMonday.isEvening()}"></td>
+                <td th:class="*{incidentTuesday.isEvening()}"><input type="hidden" name="tuesdayEv" th:value="*{incidentTuesday.isEvening()}"></td>
+                <td th:class="*{incidentWednesday.isEvening()}"><input type="hidden" name="wednesdayEv" th:value="*{incidentWednesday.isEvening()}"></td>
+                <td th:class="*{incidentThursday.isEvening()}"><input type="hidden" name="thursdayEv" th:value="*{incidentThursday.isEvening()}"></td>
+                <td th:class="*{incidentFriday.isEvening()}"><input type="hidden" name="fridayEv" th:value="*{incidentFriday.isEvening()}"></td>
+            </tr>
+        </table>
+
+        <button id="button" type="button" class="btn btn-success" onclick="alert ('Uw incidenten zijn opgeslagen')">Opslaan</button>
+    </form>
+</div>
+
+<!-- Scripts below -->
+
+<script type="text/javascript" src="/js/GlobalAvailability.js" th:src="@{/js/GlobalAvailability.js}"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.rawgit.com/pingcheng/bootstrap4-datetimepicker/master/build/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="https://cdn.rawgit.com/trco/bootstrap-weekpicker/master/src/bootstrap-weekpicker.min.js"></script>
+<script type="text/javascript" src="/js/incidents-form.js" th:src="@{/js/incidents-form.js}"></script>
+
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+    var message = /*[[${message}]]*/ 'default';
+    console.log(message);
+
+    /*]]>*/
+</script>
+
+</body>
+</html>

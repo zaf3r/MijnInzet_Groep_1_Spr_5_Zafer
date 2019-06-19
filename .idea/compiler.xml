@@ -8,7 +8,6 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Sprint 1" />
         <module name="mijninzet-c15-team-1" />
-        <module name="mijninzet" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
