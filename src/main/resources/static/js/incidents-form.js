@@ -2,9 +2,10 @@ var week;
 var year;
 var requestUrl;
 var postUrl;
-var btn = document.querySelector("#btn");
+var btn;
 var jsonPost = new Object();
 var allRows = document.querySelectorAll('td');
+var weekpicker;
 
 var mondayMo = document.querySelector('input[name="mondayMo"]');
 var mondayAf = document.querySelector('input[name="mondayAf"]');
@@ -23,7 +24,7 @@ var fridayAf = document.querySelector('input[name="fridayAf"]');
 var fridayEv = document.querySelector('input[name="fridayEv"]');
 
 $(function() {
-    var weekpicker = $("#weekpicker1").weekpicker();
+    weekpicker = $("#weekpicker1").weekpicker();
 
     week = weekpicker.getWeek();
     year = weekpicker.getYear();
@@ -43,23 +44,41 @@ $(function() {
 });
 
 
-/*
 $(function() {
+    btn = $("#button").on("click", function () {
+        jsonPost.id = 0;
+        jsonPost.week = weekpicker.getWeek();
+        jsonPost.year = weekpicker.getYear();
 
-    btn.addEventListener("onclick", function () {
-        jsonPost.mondayMo = mondayMo;
+        jsonPost.mondayMo = mondayMo.value;
+        jsonPost.mondayAf = mondayAf.value;
+        jsonPost.mondayEv = mondayEv.value;
 
+        jsonPost.tuesdayMo = tuesdayMo.value;
+        jsonPost.tuesdayAf = tuesdayAf.value;
+        jsonPost.tuesdayEv = tuesdayEv.value;
 
+        jsonPost.wednesdayMo = wednesdayMo.value;
+        jsonPost.wednesdayAf = wednesdayAf.value;
+        jsonPost.wednesdayEv = wednesdayEv.value;
+
+        jsonPost.thursdayMo = thursdayMo.value;
+        jsonPost.thursdayAf = thursdayAf.value;
+        jsonPost.thursdayEv = thursdayEv.value;
+
+        jsonPost.fridayMo = fridayMo.value;
+        jsonPost.fridayAf = fridayAf.value;
+        jsonPost.mondayEv = fridayEv.value;
+
+        postUrl = "http://localhost:8080/api/saveIncidents/"+jsonPost;
+
+        console.log(jsonPost);
         });
-
-        $.post(postUrl, function (data) {
-
-
-            console.log(data);
-        }).fail("Posting failed");
-    });
+    $.post(postUrl, function (data) {
+        console.log(data);
+    }).fail("Posting failed")
+        .done(alert("Uw incidenten zijn opgeslagen! Bedankt voor het doorgeven"))
 });
-*/
 
  function requestCall() {
 

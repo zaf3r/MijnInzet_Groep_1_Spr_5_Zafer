@@ -1,5 +1,6 @@
 package makeitwork.mijninzet.controller;
 
+import makeitwork.mijninzet.model.Availability.Incident.IncidentJsonHolder;
 import makeitwork.mijninzet.model.Availability.Weekday;
 import makeitwork.mijninzet.model.Availability.Incident.Incident;
 import makeitwork.mijninzet.model.User;
@@ -42,15 +43,12 @@ public class IncidentRestController {
         }
     }
 
-    @PostMapping("saveIncidents/{incidentList}")
-    public void saveIncidentListHandler(@PathVariable("incidentList") List<Incident> incidentList,
+    @PostMapping("saveIncidents/{incidents}")
+    public void saveIncidentListHandler(@PathVariable("incidents")IncidentJsonHolder incidentJsonHolder,
                                         Principal principal) {
 
         User user = userRepository.findByUsername(principal.getName());
-
-        for (Incident incident:incidentList) {
-            incident.setUser(user);
-        }
+        System.out.println(incidentJsonHolder);
 
         System.out.println("This endpoint doesn't save anything for now");
     }
