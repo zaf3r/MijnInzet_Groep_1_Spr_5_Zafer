@@ -32,26 +32,6 @@ public class UserController {
     public UserController() {
     }
 
-    @PostMapping("/updateUser")
-    public String updateUser(Model model){
-        model.addAttribute("status","Voor uw gebruikersnaam en wachtwoord in");
-        return "crudUser";
-    }
-    @PostMapping("/retrieveUser")
-    public String retreiveUser(Model model){
-        model.addAttribute("status","Uw gegevens zijn:");
-        return "crudUser";
-    }
-    @PostMapping("/deleteUser")
-    public String deleteUser(Model model){
-        model.addAttribute("status","Deze gebruiker is verwijderd");
-        return "crudUser";
-    }
-    @PostMapping("/blockUser")
-    public String blockUser(Model model){
-        model.addAttribute("status","Deze gebruiker kan niet meer inloggen");
-        return "crudUser";
-    }
     @PostMapping("/checkUserName")
     public @ResponseBody String nameCorrect(@RequestBody String requestPayload){
         var input = BasicDBObject.parse(requestPayload);
@@ -131,16 +111,10 @@ public class UserController {
         User thatUser=new User();
         thatUser=null;
         thatUser= userRepository.findByUsername(user.getUsername());
-        if (thatUser==null) thatUser= userRepository.findByUsername(user.getEmail());
+        if (thatUser==null) thatUser= userRepository.findByEmail(user.getEmail());
         userRepository.deleteById(thatUser.getId());
-        thatUser.setEmail(user.getEmail());
-        thatUser.setPassword(user.getPassword());
-        thatUser.setFamilyName(user.getFamilyName());
-        thatUser.setNamePrefix(user.getNamePrefix());
-        thatUser.setSurname(user.getSurname());
-        thatUser.setActive(user.getActive());
-        thatUser.setUsername(user.getUsername());
-        storeUser(thatUser);
+        user.setId(thatUser.getId());
+        storeUser(user);
     }
     private void storeUser(User user){
         userRepository.save(user);
