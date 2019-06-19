@@ -1,13 +1,12 @@
 package makeitwork.mijninzet.model;
 
-import makeitwork.mijninzet.model.preference.Subject;
+
 import org.hibernate.annotations.SortNatural;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.SortedSet;
 import java.util.TreeSet;
 
