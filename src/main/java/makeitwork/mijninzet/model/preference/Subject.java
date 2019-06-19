@@ -1,7 +1,5 @@
 package makeitwork.mijninzet.model.preference;
 
-import makeitwork.mijninzet.model.KnowledgeArea;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -60,15 +58,5 @@ public class Subject {
 
     public List<Subject> getAllSubjects() {
         return allSubjects;
-    }
-
-    @Override
-    public String toString() {
-        return "Subject{" +
-                "subjectId=" + subjectId +
-                ", subjectName='" + subjectName + '\'' +
-                ", preferenceSet=" + preferenceSet +
-                ", allSubjects=" + allSubjects +
-                '}';
     }
 }
