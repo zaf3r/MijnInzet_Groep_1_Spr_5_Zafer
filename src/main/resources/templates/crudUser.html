@@ -67,7 +67,7 @@
                                oninvalid="this.setCustomValidity('Een unieke gebruikersnaam opgeven is verplicht.')"
                                onchange="this.setCustomValidity('')"/>
                         <span style="display: none;"
-                              id="userNameMsg">De gebruikersnaam bestaat. Kies een andere naam</span>
+                              id="userNameMsg">De gebruikersnaam bestaat. <br>De gegevens van deze gebruiker zullen worden bijgewerkt.</span>
                     </div>
                 </div>
 
@@ -78,7 +78,7 @@
                                oninvalid="this.setCustomValidity('Uw email-adres opgeven is verplicht.')"
                                onchange="this.setCustomValidity('')"/>
                         <span style="display: none;"
-                              id="eAddressMsg"> Het emailadres is al aanwezig. Gebruik een ander emailadres. </span>
+                              id="eAddressMsg"> Het emailadres is al aanwezig. <br>De gegevens van de gebruiker met dit email-adres worden bijgewerkt.</span>
                     </div>
                 </div>
 
@@ -219,14 +219,11 @@
             dataType: 'json',
             data: payload
         }).done(function (response) {
-            success = $("#succesMsg");
-            failure = $("#failureMsg");
             if (response["exists"]) {
                 if (actief==0){$("#opslaan").text("verwijderd")}
                 if (actief==1){$("#opslaan").text("opgeslagen")}
             } else {
                 $("#opslaan").text("niet gelukt")
-                failure.show();
             }
         })
         $.ajax({
@@ -236,11 +233,18 @@
             dataType: 'json',
             data: roleNewUser
         })
-        function myFunction() {
-            $("#opslaan").text("Opslaan gegevens");
-        }
+
         event.preventDefault();
     });
+</script>
+<script>
+    function textFunction() {
+        document.getElementById('usrForm').reset();
+        $("#userNameMsg").hide();
+        $("#eAddressMsg").hide();
+        $("#userVerwijderen").hide();
+        $("#opslaan").text("Opslaan gegevens")
+    }
 </script>
 </body>
 </html>
