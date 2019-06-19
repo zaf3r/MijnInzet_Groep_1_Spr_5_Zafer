@@ -2,7 +2,6 @@ var week;
 var year;
 var requestUrl;
 var postUrl;
-var btn;
 var jsonPost = new Object();
 var allRows = document.querySelectorAll('td');
 var weekpicker;
@@ -39,13 +38,16 @@ $(function() {
         requestUrl = "http://localhost:8080/api/findincident/"+year+"/"+week;
 
         requestCall();
-    })
+    });
+
+    var btn = $("#button").on("click", function () {
+        postCall();
+    });
 
 });
 
 
-$(function() {
-    btn = $("#button").on("click", function () {
+function postCall() {
         jsonPost.id = 0;
         jsonPost.week = weekpicker.getWeek();
         jsonPost.year = weekpicker.getYear();
@@ -68,17 +70,29 @@ $(function() {
 
         jsonPost.fridayMo = fridayMo.value;
         jsonPost.fridayAf = fridayAf.value;
-        jsonPost.mondayEv = fridayEv.value;
+        jsonPost.fridayEv = fridayEv.value;
 
-        postUrl = "http://localhost:8080/api/saveIncidents/"+jsonPost;
+        var jsonObject = JSON.stringify(jsonPost);
 
+        postUrl = "http://localhost:8080/api/saveIncidents/";
         console.log(jsonPost);
-        });
-    $.post(postUrl, function (data) {
-        console.log(data);
+
+    $.ajax({
+        type: "POST",
+        contentType : 'application/json; charset=utf-8',
+        dataType : 'json',
+        url: postUrl,
+        data:jsonObject,
+        success :function(result) {
+            console.log(result);
+            alert("Uw incidenten zijn opgeslagen! Bedankt voor het doorgeven");
+        }});
+
+    /*$.post(postUrl, function (data) {
+
     }).fail("Posting failed")
-        .done(alert("Uw incidenten zijn opgeslagen! Bedankt voor het doorgeven"))
-});
+        .done(alert("Uw incidenten zijn opgeslagen! Bedankt voor het doorgeven"))*/
+}
 
  function requestCall() {
 

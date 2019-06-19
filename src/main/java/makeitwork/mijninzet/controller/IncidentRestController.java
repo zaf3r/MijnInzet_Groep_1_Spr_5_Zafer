@@ -43,14 +43,17 @@ public class IncidentRestController {
         }
     }
 
-    @PostMapping("saveIncidents/{incidents}")
-    public void saveIncidentListHandler(@PathVariable("incidents")IncidentJsonHolder incidentJsonHolder,
+    @PostMapping("/saveIncidents")
+    public void saveIncidentListHandler(@RequestBody IncidentJsonHolder incidentJsonHolder,
                                         Principal principal) {
+        System.out.println("Hi, my name is jeff");
 
         User user = userRepository.findByUsername(principal.getName());
+        Incident monday;
+
+
         System.out.println(incidentJsonHolder);
 
-        System.out.println("This endpoint doesn't save anything for now");
     }
 
     public List<Incident> emptyIncidentStarter(int year, int weeknumber) {
@@ -64,5 +67,9 @@ public class IncidentRestController {
             incidentList.add(tempIncident);
         }
         return incidentList;
+    }
+
+    public Incident setValuesIncident(Weekday weekday, boolean morning, boolean afternoon, boolean evening ) {
+
     }
 }
