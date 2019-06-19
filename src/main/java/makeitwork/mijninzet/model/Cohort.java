@@ -76,6 +76,11 @@ public class Cohort {
         if (!subjects.contains(subjectName)) subjects.add(subjectName);
     }
 
+    public void removeSubject(String subjectName) {
+        SortedSet<String> subjects = getSubjectNames();
+        if (subjects.contains(subjectName)) subjects.remove(subjectName);
+    }
+
     @Override
     public String toString() {
         return "Cohort{" +

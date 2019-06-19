@@ -39,4 +39,9 @@ public class CohortService {
         cohort.addSubject(subject.getSubjectName());
         cohortRepository.save(cohort);
     }
+
+    public void removeSubject(Cohort cohort, Subject subject){
+        cohort.removeSubject(subject.getSubjectName());
+        cohortRepository.save(cohort);
+    }
 }
