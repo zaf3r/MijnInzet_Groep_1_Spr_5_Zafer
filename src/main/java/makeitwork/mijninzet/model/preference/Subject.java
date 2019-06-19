@@ -1,45 +1,26 @@
 package makeitwork.mijninzet.model.preference;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import makeitwork.mijninzet.model.KnowledgeArea;
-
 import javax.persistence.*;
 import java.util.*;
 
 @Entity
-@Table(name = "vak")
+@Table(name = "vak", uniqueConstraints={@UniqueConstraint(columnNames={"naamvak"})})
 public class Subject {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "codevak", nullable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "codevak")
     int subjectId;
 
     @Column(name = "naamvak")
     String subjectName;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "subject", cascade= {CascadeType.PERSIST,CascadeType.REMOVE})
     private Set<Preference> preferenceSet = new HashSet<>();
 
     @Transient
-    @JsonIgnore
-    private List<Subject> allSubjects = new ArrayList<>();
+    private SortedSet<Subject> allSubjects = new TreeSet<>();
 
-    @ManyToMany
-    private List<KnowledgeArea> knowledgeAreas;
-
-    @Transient
-    private KnowledgeArea ka;
-
-    public Subject(){};
-
-    public Subject(String subjectName) {
-        this.subjectName = subjectName;
-
-    }
-
-    //getter en setters
     public int getSubjectId() {
         return subjectId;
     }
@@ -64,18 +45,8 @@ public class Subject {
         this.preferenceSet = preferenceSet;
     }
 
-    public List<KnowledgeArea> getKnowledgeAreas() {
-        return knowledgeAreas;
-    }
-
-    public void setKnowledgeAreas(List<KnowledgeArea> knowledgeAreas) {
-        this.knowledgeAreas = knowledgeAreas;
-    }
-
-    public void addKnowledgeToSubject(int id){
-        Subject newSubject = new Subject();
-        KnowledgeArea knowledgeArea = new KnowledgeArea();
-        newSubject.getKnowledgeAreas().add(knowledgeArea);
+    public SortedSet<Subject> getAllSubjects() {
+        return allSubjects;
     }
 
     @Override
@@ -85,7 +56,6 @@ public class Subject {
                 ", subjectName='" + subjectName + '\'' +
                 ", preferenceSet=" + preferenceSet +
                 ", allSubjects=" + allSubjects +
-                ", knowledgeAreas=" + knowledgeAreas +
                 '}';
     }
 }

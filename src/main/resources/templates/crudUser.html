@@ -18,7 +18,6 @@
             integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
             crossorigin="anonymous">
     </script>
-    <script src="~/jquery.validate.js"></script>
 </head>
 <body>
 <header th:insert="~{navbar :: header}"></header>
@@ -26,7 +25,6 @@
     <form id="usrForm" action="/newUser" method="POST">
         <br><br><br><br><br><br>
         <fieldset>
-<!--            todo rol gebruiker invoeren-->
             <p>
                 <label class="label" for="vnaam">voornaam</label>
                 <input type="text" class="inp" id="vnaam" name="vnaam" placeholder="geef uw voornaam" required
@@ -40,8 +38,12 @@
             <p>
                 <label class="label" for="anaam">achternaam</label>
                 <input type="text" class="inp" id="anaam" name="anaam" minlength="4" placeholder="geef uw achternaam" required
-                       oninvalid="this.setCustomValidity('Uw achternaam opgeven is verplicht.')"
+                       oninvalid="this.setCustomValidity('Uw achternaam (minimaal 4 letters) opgeven is verplicht.')"
                        onchange="this.setCustomValidity('')"/><br><br>
+            </p>
+            <p>
+                <label for="welkeRol"><b></b></label>
+                <select class="inp" id="welkeRol" name="welkeRol"></select>
             </p>
             <p>
                 <label class="label" for="gebruiker">gebruikernaam</label>
@@ -49,7 +51,7 @@
                        oninvalid="this.setCustomValidity('Een unieke gebruikersnaam opgeven is verplicht.')"
                        onchange="this.setCustomValidity('')"/>
                 <span style="display: none;"
-                      id="userNameMsg"> De gebruikersnaam bestaat. Kies een andere naam</span><br>
+                      id="userNameMsg">De gebruikersnaam bestaat. Kies een andere naam</span><br>
             </p>
             <p>
                 <label class="label" for="email">email</label>
@@ -66,12 +68,16 @@
                        onchange="this.setCustomValidity('')"/><br>
             </p>
             <p>
-                <label class="label" for="pwd">bevestig password</label>
+                <label class="label" for="confirm_pwd">bevestig password</label>
                 <input type="password" class="inp" id="confirm_pwd" name="confirm_pwd"
                        minlength="8"
                        required
                        oninvalid="this.setCustomValidity('Geef het password opnieuw in (minimaal 8 tekens.')"
                        onchange="this.setCustomValidity('')"/><br><br>
+            </p>
+            <p name="userVerwijderen" id="userVerwijderen" style="display:none">
+                <label for="userVerwijderen"> collega geen toegang meer geven?</label>
+                <input type="checkbox" name="userDelete" id="userDelete" \>
             </p>
             <p>
                 <input type="submit" name="opslaan" id="opslaan" value="opslaan nieuwe collega"/><br><br>
@@ -84,8 +90,25 @@
     </form>
 </div>
 <footer th:insert="~{footer :: footer}"></footer>
+
 <script>
     // registreer eventhandlers
+    $(document).ready(function () {
+        $.ajax({
+            type: "POST",
+            url: "/allRoles",
+            contentType: "application/json; charset-utf-8",
+            dataType: "json",
+            data: "{}",
+            success: function (response) {
+                $("#welkeRol").empty();
+                $("#welkeRol").append('<option value="-1">Welke functie gaat de collega vervullen?</option>')
+                $.each(response,function(i,item){
+                    $("#welkeRol").append('<option value="'+ response[i].roleId +'">' + response[i].roleName + '</option>');
+                });
+            }
+        });
+    });
     $("#gebruiker").on("focusout", function (event) {
        payload = JSON.stringify({ username: event.target.value });
        $.ajax({
@@ -96,8 +119,10 @@
            data: payload
        }).done( function (response) {
            userNameErr = $("#userNameMsg");
+           verwijderen=$("#userVerwijderen");
            if (response["exists"]) {
                userNameErr.show();
+               verwijderen.show();
            } else {
                userNameErr.hide();
            }
@@ -113,8 +138,10 @@
             data: payload
         }).done( function (response) {
             eAddressErr = $("#eAddressMsg");
+            verwijderen=$("#userVerwijderen");
             if (response["exists"]) {
                 eAddressErr.show();
+                verwijderen.show();
             } else {
                 eAddressErr.hide();
             }
@@ -128,6 +155,8 @@
         }
     });
     $("#usrForm").submit(function () {
+        var actief="1";
+        if ($("#userDelete").is(":checked()")) {actief="0"};
         var payload =JSON.stringify({
             username: $("#gebruiker").val(),
             password: $("#pwd").val(),
@@ -135,7 +164,11 @@
             namePrefix: $("#voorvoegsel").val(),
             familyName: $("#anaam").val(),
             email: $("#email").val(),
-            active: "1"
+            active: actief
+        });
+        var roleNewUser=JSON.stringify({
+            username: $("#gebruiker").val(),
+            roleId: $("#welkeRol").val()
         });
         $.ajax({
             type: 'POST',
@@ -151,6 +184,13 @@
             } else {
                 failure.show();
             }
+        })
+        $.ajax({
+            type: 'POST',
+            url: '/newUserRole',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            data: roleNewUser
         })
         event.preventDefault();
     });

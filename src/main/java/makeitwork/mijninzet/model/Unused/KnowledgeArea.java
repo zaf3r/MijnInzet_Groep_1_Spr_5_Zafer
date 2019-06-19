@@ -1,4 +1,4 @@
-package makeitwork.mijninzet.model;
+package makeitwork.mijninzet.model.Unused;
 
 import makeitwork.mijninzet.model.preference.Subject;
 
@@ -9,13 +9,15 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
+@Table(name = "knowledge_area", uniqueConstraints={@UniqueConstraint(columnNames={"kennisgebied"})})
 public class KnowledgeArea {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private int knowledgeAreaId;
+    int knowledgeAreaId;
 
-    private String knowledgeArea;
+    @Column(name = "kennisgebied")
+    String knowledgeArea;
 
     @ManyToMany
     @Column (name = "Vakkenlijst", nullable = false)
