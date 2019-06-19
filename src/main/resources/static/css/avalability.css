@@ -49,6 +49,7 @@ input[type=checkbox] {
 
 h1#incidents {
     padding: 15px;
+    padding-top: 40px;
     margin-top: 25px;
 }
 
