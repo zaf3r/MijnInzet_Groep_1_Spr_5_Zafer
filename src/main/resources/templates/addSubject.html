@@ -38,7 +38,7 @@
                 <form onsubmit="return confirm('Weet u zeker dat u het vak wilt verwijderen?');" action="#" th:object="${subjects}" th:action="@{deleteSubject}" method="post">
                     <select  id="move1" name="subjectName" multiple="multiple" size="7">
                         <option th:each="subject: ${subjects}" th:value="${subject.subjectId}" th:text="${subject.subjectName}"></option>
-                        <br><input type="submit" value="Delete" />
+                        <br><input type="submit" value="Delete"/>
                     </select>
                 </form>
             </td>
