@@ -48,14 +48,4 @@ public class Subject {
     public SortedSet<Subject> getAllSubjects() {
         return allSubjects;
     }
-
-    @Override
-    public String toString() {
-        return "Subject{" +
-                "subjectId=" + subjectId +
-                ", subjectName='" + subjectName + '\'' +
-                ", preferenceSet=" + preferenceSet +
-                ", allSubjects=" + allSubjects +
-                '}';
-    }
 }

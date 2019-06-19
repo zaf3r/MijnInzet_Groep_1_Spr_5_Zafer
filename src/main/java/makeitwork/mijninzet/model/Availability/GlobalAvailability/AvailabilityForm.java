@@ -1,4 +1,4 @@
-package makeitwork.mijninzet.model.Availability;
+package makeitwork.mijninzet.model.Availability.GlobalAvailability;
 
 public class AvailabilityForm {
 
@@ -46,6 +46,17 @@ public class AvailabilityForm {
 
     public void setAvailabilityFriday(Availability availabilityFriday) {
         this.availabilityFriday = availabilityFriday;
+    }
+
+    @Override
+    public String toString() {
+        return "AvailabilityForm{" +
+                "availabilityMonday=" + availabilityMonday +
+                ", availabilityTuesday=" + availabilityTuesday +
+                ", availabilityWednesday=" + availabilityWednesday +
+                ", availabilityThursday=" + availabilityThursday +
+                ", availabilityFriday=" + availabilityFriday +
+                '}';
     }
 }
 

@@ -61,13 +61,4 @@ public class Preference implements Serializable {
     public void setPreference(int preference) {
         this.preference = preference;
     }
-
-    @Override
-    public String toString() {
-        return "Preference{" +
-                "subject=" + subject +
-                ", user=" + user +
-                ", preference=" + preference +
-                '}';
-    }
 }
