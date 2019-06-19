@@ -43,8 +43,6 @@ public class IncidentController {
 
         IncidentForm incidentForm = loadFormData(incidentList);
 
-        System.out.println(incidentForm);
-
         model.addAttribute("incidentForm",incidentForm);
 
         return "incidents-form";
