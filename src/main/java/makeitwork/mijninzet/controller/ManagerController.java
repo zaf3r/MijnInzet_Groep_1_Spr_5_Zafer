@@ -7,10 +7,7 @@ import makeitwork.mijninzet.repository.SubjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.script.Invocable;
 import javax.script.ScriptEngine;
@@ -39,7 +36,6 @@ public class ManagerController {
             case "vak": {
                 Subject subject = new Subject();
                 model.addAttribute("attr3", subject);
-                model.addAttribute("KnowledgeAreas", getKnowledgeAreaList());
                 model.addAttribute("subjects", getSubjectList());
                 return ("addSubject");
             }
@@ -75,13 +71,23 @@ public class ManagerController {
         return allKnowledgeAreas;
     }
 
-    //in Subject controller
+    // in Subject controller
     @RequestMapping(value = "saveSubject", method = RequestMethod.POST)
     public String saveSubject(@ModelAttribute("saveSubject") Subject subject, Model model) {
         model.addAttribute("subjectName", subject.getSubjectName());
         subRepo.save(subject);
         return "redirect:/manager/vak";
     }
+
+    //deze code werkt niet
+//    @PostMapping("saveSubject")
+//    @ResponseBody
+//    public String SaveSubjectHandler( @RequestBody Subject form){
+//        Subject subject = form;
+//        subRepo.save(subject);
+//
+//        return "redirect:/manager/vak";
+//    }
 
     //in Subject controller
     @RequestMapping(value = "deleteSubject", method = RequestMethod.POST)
@@ -111,15 +117,6 @@ public class ManagerController {
         return "redirect:/manager/vak";
     }
 
-
-//        if (invocable.invokeFunction(confirmPlease(boolean delete)).equals(true)) {
-//            subRepo.delete(deletedSubject);
-//        }
-//        else {
-//            return "redirect:/manager/vak";
-//        }
-//        return "redirect:/manager/vak";
-//    }
 
     public static boolean confirmPlease(boolean delete){
         return delete;

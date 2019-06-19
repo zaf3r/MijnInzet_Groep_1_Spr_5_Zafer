@@ -1,21 +1,33 @@
 package makeitwork.mijninzet.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import com.mongodb.BasicDBObject;
+import makeitwork.mijninzet.model.Role;
 import makeitwork.mijninzet.model.User;
+import makeitwork.mijninzet.repository.RoleRepository;
 import makeitwork.mijninzet.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 @RestController
 public class UserController {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    RoleRepository roleRepository;
 
     public UserController() {
     }
@@ -71,6 +83,7 @@ public class UserController {
         User newUser=new User();
         newUser=deSerializeUser(requestPayload);
         var user=userRepository.save(newUser);
+        user=userRepository.findByUsername(newUser.getUsername());
         var output = new BasicDBObject();
         if (user != null) {
             output.put("exists", true);
@@ -80,13 +93,19 @@ public class UserController {
         return output.toJson();
     }
     public User deSerializeUser(String requestPayload){
-        ObjectMapper objectmapper = new ObjectMapper();
+        ObjectMapper objectMapper=new ObjectMapper();
         User user = new User();
         try {
-            user = objectmapper.readValue(requestPayload, User.class);
-        } catch (Exception e){};
+            user = objectMapper.readValue(requestPayload, User.class);
+        }catch (IOException e){};
         user.setPassword(user.encryptPassword(user.getPassword()));
         return user;
+    }
+    @PostMapping("/allRoles")
+    public @ResponseBody String allRoles(@RequestBody String requestPayload){
+        List<Role> allRoles=roleRepository.findAll();
+        Gson output= new Gson();
+        return output.toJson(allRoles);
     }
 
 }
