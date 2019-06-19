@@ -37,3 +37,8 @@ public class KnowledgeArea {
 //    public Set<Subject> getSubjectSet() { return subjectSet; }
 //    public void setSubjectSet(Set<Subject> subjectSet) { this.subjectSet = subjectSet; }
 }
+
+
+
+
+

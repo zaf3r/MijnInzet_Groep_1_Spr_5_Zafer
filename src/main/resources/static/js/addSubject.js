@@ -1,11 +1,16 @@
+
+//dead code
+
 function confirmPlease() {
-    var r = confirm('Weet u zeker dat u het vak wilt verwijderen?')
-        if (r==true){
-            return true;
+    //var myClass = Java.type("main.java.makeitwork.mijninzet.ManagerController")
+    var myClass = confirm('Weet u zeker dat u het vak wilt verwijderen?')
+    {
+        if (myClass == true) {
+            //delete
+            return true
+        } else {
+            //do nothing
+            return false
         }
-        else {
-            //do not execute submit
-            window.location.href="http://localhost:8080/manager/vak";
-            return false;
-        }
+    }
 }

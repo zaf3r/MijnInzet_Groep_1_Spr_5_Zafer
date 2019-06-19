@@ -7,10 +7,14 @@ import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+
+import javax.script.Invocable;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 
 import javax.validation.ValidationException;
 import javax.validation.constraints.NotNull;
@@ -20,8 +24,6 @@ import java.util.List;
 @RequestMapping(value = "/manager", method = RequestMethod.GET)
 public class ManagerController {
 
-    @Autowired
-    private CourseRepository courseRepo;
 
     @Autowired
     private SubjectRepository subRepo;
@@ -61,7 +63,6 @@ public class ManagerController {
         }
     }
 
-
     //in Subject controller
     @RequestMapping(value = "deleteSubject", method = RequestMethod.POST)
     public String subjectDelete(@ModelAttribute("deleteSubject") Subject subject, Model model){
@@ -69,6 +70,10 @@ public class ManagerController {
         Subject deletedSubject = subRepo.findBySubjectId(subjectid);
         subRepo.delete(deletedSubject);
         return "redirect:/manager/vak";
+    }
+
+    public static boolean confirmPlease(boolean delete){
+        return delete;
     }
 
 }

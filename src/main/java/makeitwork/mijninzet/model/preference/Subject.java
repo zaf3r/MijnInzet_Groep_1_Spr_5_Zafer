@@ -1,10 +1,7 @@
 package makeitwork.mijninzet.model.preference;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "vak", uniqueConstraints={@UniqueConstraint(columnNames={"naamvak"})})
@@ -21,12 +18,8 @@ public class Subject {
     @OneToMany(mappedBy = "subject", cascade= {CascadeType.PERSIST,CascadeType.REMOVE})
     private Set<Preference> preferenceSet = new HashSet<>();
 
-//    //CourseManagement
-//    @ManyToOne(cascade = CascadeType.PERSIST)
-//    private KnowledgeArea area;
-
     @Transient
-    private List<Subject> allSubjects = new ArrayList<>();
+    private SortedSet<Subject> allSubjects = new TreeSet<>();
 
     public int getSubjectId() {
         return subjectId;
@@ -52,11 +45,7 @@ public class Subject {
         this.preferenceSet = preferenceSet;
     }
 
-//    //CourseManager
-//    public KnowledgeArea getArea() { return area; }
-//    public void setArea(KnowledgeArea area) { this.area = area; }
-
-    public List<Subject> getAllSubjects() {
+    public SortedSet<Subject> getAllSubjects() {
         return allSubjects;
     }
 
