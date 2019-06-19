@@ -1,7 +1,5 @@
 package makeitwork.mijninzet.model.preference;
 
-import makeitwork.mijninzet.model.KnowledgeArea;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -9,7 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "vak")
+@Table(name = "vak", uniqueConstraints={@UniqueConstraint(columnNames={"naamvak"})})
 public class Subject {
 
     @Id

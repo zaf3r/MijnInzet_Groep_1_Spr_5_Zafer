@@ -23,13 +23,14 @@
 <form action="#" th:object="${attr3}" th:action="@{saveSubject}" method="post" id="saveSubject">
     <label th:text="vak"/>
     <input type="text" th:field="*{subjectName}" required title="Vul een vaknaam in "/>
-    <input type="submit" th:onclick="alert ('Het vak is opgeslagen in de database.')" value="Opslaan" />
+<!--    <input type="submit" th:onclick="alert ('Het vak is opgeslagen in de database.')" value="Opslaan" />-->
+    <input type="submit" value="Opslaan" />
 </form>
 </div>
 <br>
 
 <div class="container">
-    <h2 class="text-center">Voeg vakken toe aan kennisgebied</h2>
+    <h2 class="text-center">Lijst vakken</h2>
 
     <table>
         <tr collspan="2">

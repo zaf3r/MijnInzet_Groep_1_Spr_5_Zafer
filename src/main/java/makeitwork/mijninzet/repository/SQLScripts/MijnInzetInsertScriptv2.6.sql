@@ -28,7 +28,7 @@ INSERT INTO `mijninzet`.`vak` (`codeVak`, `naamvak`) VALUES ('5', 'Complex progr
 INSERT INTO `mijninzet`.`vak` (`codeVak`, `naamvak`) VALUES ('6', 'Data structures');
 INSERT INTO `mijninzet`.`vak` (`codeVak`, `naamvak`) VALUES ('7', 'Test driven development');
 
-INSERT INTO `MijnInzet`.`knowledge_area` (`knowledge_area_id`, `knowledge_area`) VALUES ('1', 'Software Engineering');
-INSERT INTO `MijnInzet`.`knowledge_area` (`knowledge_area_id`, `knowledge_area`) VALUES ('2', 'Databases');
-INSERT INTO `MijnInzet`.`knowledge_area` (`knowledge_area_id`, `knowledge_area`) VALUES ('3', 'Git');
-INSERT INTO `MijnInzet`.`knowledge_area` (`knowledge_area_id`, `knowledge_area`) VALUES ('4', 'Mickey Mouse tekenen');
+INSERT INTO `MijnInzet`.`knowledge_area` (`knowledge_area_id`, `kennisgebied`) VALUES ('1', 'Software Engineering');
+INSERT INTO `MijnInzet`.`knowledge_area` (`knowledge_area_id`, `kennisgebied`) VALUES ('2', 'Databases');
+INSERT INTO `MijnInzet`.`knowledge_area` (`knowledge_area_id`, `kennisgebied`) VALUES ('3', 'Git');
+INSERT INTO `MijnInzet`.`knowledge_area` (`knowledge_area_id`, `kennisgebied`) VALUES ('4', 'Mickey Mouse tekenen');

@@ -1,4 +1,4 @@
-package makeitwork.mijninzet.model;
+package makeitwork.mijninzet.model.Unused;
 
 import makeitwork.mijninzet.model.preference.Subject;
 
@@ -7,13 +7,15 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Table(name = "knowledge_area", uniqueConstraints={@UniqueConstraint(columnNames={"kennisgebied"})})
 public class KnowledgeArea {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private int knowledgeAreaId;
+    int knowledgeAreaId;
 
-    private String knowledgeArea;
+    @Column(name = "kennisgebied")
+    String knowledgeArea;
 
 //    @OneToMany(mappedBy = "knowledgeArea", cascade= {CascadeType.PERSIST,CascadeType.REMOVE})
 //    private Set<Subject> subjectSet = new HashSet<>();
