@@ -3,7 +3,9 @@ package makeitwork.mijninzet.model.Unused;
 import makeitwork.mijninzet.model.preference.Subject;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -17,15 +19,16 @@ public class KnowledgeArea {
     @Column(name = "kennisgebied")
     String knowledgeArea;
 
-//    @OneToMany(mappedBy = "knowledgeArea", cascade= {CascadeType.PERSIST,CascadeType.REMOVE})
-//    private Set<Subject> subjectSet = new HashSet<>();
+    @ManyToMany
+    @Column (name = "Vakkenlijst", nullable = false)
+    private List<Subject> subjects = new ArrayList<>();
 
     //constructors
     public KnowledgeArea() {}
 
-    public KnowledgeArea(String knowledgeArea, Set<Subject> subjectSet) {
+    public KnowledgeArea(String knowledgeArea) {
         this.knowledgeArea = knowledgeArea;
-//        this.subjectSet = subjectSet;
+
     }
 
     //getters & setters
@@ -36,6 +39,16 @@ public class KnowledgeArea {
 
 //    public Set<Subject> getSubjectSet() { return subjectSet; }
 //    public void setSubjectSet(Set<Subject> subjectSet) { this.subjectSet = subjectSet; }
+
+
+    @Override
+    public String toString() {
+        return "KnowledgeArea{" +
+                "knowledgeAreaId=" + knowledgeAreaId +
+                ", knowledgeArea='" + knowledgeArea + '\'' +
+                ", subjects=" + subjects +
+                '}';
+    }
 }
 
 
