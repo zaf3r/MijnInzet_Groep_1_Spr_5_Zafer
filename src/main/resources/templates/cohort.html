@@ -68,6 +68,7 @@
                             <select  id="selectedSubjectList" name="selectedSubjectList" multiple="multiple" size="7" style="width: 250px">
                                 <option th:each="subject: ${subjects}" th:value="${subject.subjectId}" th:text="${subject.subjectName}"></option>
                             </select>
+                            <div><input type="submit" th:onclick="" value=">>" /></div>
                         </form>
                     </div>
 
@@ -77,10 +78,11 @@
                     <div>
                         <label for="subjectName">Possible Subjects</label>
                         <form action="#" th:object="${possibleSubjects}" th:action="@{addSubjects}" method="post">
-                            <input type="submit" th:onclick="" value="<<" />
+
                             <select  id="subjectName" name="subjectName" multiple="multiple" size="7" style="width: 250px">
                                 <option th:each="subject: ${possibleSubjects}" th:value="${subject.subjectId}" th:text="${subject.subjectName}"></option>
                             </select>
+                            <div><input type="submit" th:onclick="" value="<<" /></div>
 
                         </form>
 

@@ -1,13 +1,12 @@
 package makeitwork.mijninzet.model;
 
-import makeitwork.mijninzet.model.preference.Subject;
+
 import org.hibernate.annotations.SortNatural;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -74,6 +73,11 @@ public class Cohort {
     public void addSubject(String subjectName) {
         SortedSet<String> subjects = getSubjectNames();
         if (!subjects.contains(subjectName)) subjects.add(subjectName);
+    }
+
+    public void removeSubject(String subjectName) {
+        SortedSet<String> subjects = getSubjectNames();
+        if (subjects.contains(subjectName)) subjects.remove(subjectName);
     }
 
     @Override

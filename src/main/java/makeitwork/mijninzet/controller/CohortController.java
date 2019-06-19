@@ -93,6 +93,17 @@ public class CohortController {
         return "redirect:/manager/cohort";
     }
 
+    @PostMapping("/removeSubjects")
+    public String removeSubjectHandler(@RequestParam("selectedSubjectList") int subjectId){
+        Cohort cohort = coRepo.findByCohortName(selectedCohort);
+        Subject subject = subRepo.findBySubjectId(subjectId);
+
+        cohortService.removeSubject(cohort, subject);
+        subjectList(cohort);
+
+        return "redirect:/manager/cohort";
+    }
+
     public void subjectList(Cohort cohort){
         selectedSubjectList = selectedSubjects(cohort);
         possibleSubjectList = possibleSubjects(cohort);
