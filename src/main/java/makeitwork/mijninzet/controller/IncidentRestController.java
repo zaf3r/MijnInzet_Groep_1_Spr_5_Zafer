@@ -39,7 +39,6 @@ public class IncidentRestController {
         List<Incident> incidentList = incidentRepository.findAllByYearAndWeeknumberAndUser(year,weekNumber,user);
 
         if(incidentList.isEmpty()) {
-            System.out.println("it's empty");
             return emptyIncidentStarter(year,weekNumber, user);
         } else {
             return incidentList;
@@ -97,7 +96,6 @@ public class IncidentRestController {
         List<Incident> incidentList = incidentRepository.findAllByYearAndWeeknumberAndUser(year,weekNumber,user);
 
         if(incidentList.isEmpty()){
-            System.out.println("I am empty");
             incidentList = incidentStarterList(weekNumber,year, user);
         }
 
