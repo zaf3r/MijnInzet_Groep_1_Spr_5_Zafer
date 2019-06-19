@@ -1,5 +1,6 @@
-package makeitwork.mijninzet.model.Availability;
+package makeitwork.mijninzet.model.Availability.GlobalAvailability;
 
+import makeitwork.mijninzet.model.Availability.Weekday;
 import makeitwork.mijninzet.model.User;
 
 import javax.persistence.*;
@@ -8,11 +9,6 @@ import java.util.Set;
 @Entity
 @Table(name = "beschikbaarheid")
 public class Availability {
-
-    //To do
-    @Transient
-    private String cohort;
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "idbeschikbaarheid")
@@ -22,6 +18,7 @@ public class Availability {
     @JoinColumn(name = "idgebruiker")
     private User user;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "dag")
     private Weekday weekday;
 
