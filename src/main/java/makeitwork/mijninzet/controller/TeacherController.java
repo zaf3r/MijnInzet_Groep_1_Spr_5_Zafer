@@ -37,27 +37,19 @@ public class TeacherController {
     @GetMapping("preference")
     public String addPreferences(Model model, Principal principal) {
 
-        // Get user
         User user = userRepository.findByUsername(principal.getName());
 
-        // Get user preference
         Set<Preference> preferenceSet = findCurrentUserPreference(user);
 
-        //Query list of subjects
         List<Subject> subjectList = subjectRepository.findAll();
 
-        //Test whether the preferences are empty, if empty, add preference object with only subjects
         if(preferenceSet.isEmpty()) {
-            emptyPreferenceStarter(subjectList, user);
+            preferenceSet = emptyPreferenceStarter(subjectList, user);
         }
 
         // Preparing preference Form
         List<Integer> preferenceRatingList = new ArrayList<>();
         PreferenceForm preferenceForm = new PreferenceForm(preferenceRatingList);
-
-        //TESTING
-        List<Preference> preferenceList = geneRateInputForm(user);
-        System.out.println(preferenceList);
 
         //Loading the preference form with data - FIX THIS PART
         for (Preference preference: preferenceSet) {
@@ -127,8 +119,7 @@ public class TeacherController {
      * @param subjectList List of subjects retrieved from mysql
      * @param user current session user
      */
-    public void emptyPreferenceStarter(List<Subject> subjectList, User user)  {
-        //Initialize empty hashSet
+    public Set<Preference> emptyPreferenceStarter(List<Subject> subjectList, User user)  {
         Set<Preference> preferenceSet = new HashSet<>();
 
         //Iterate over each subject for inserting info in Mysql
@@ -138,7 +129,7 @@ public class TeacherController {
             tempPreference.setUser(user);
             preferenceSet.add(tempPreference);
         }
-        preferenceRepository.saveAll(preferenceSet);
+        return preferenceSet;
     }
 
     public List<Preference> geneRateInputForm(User user) {

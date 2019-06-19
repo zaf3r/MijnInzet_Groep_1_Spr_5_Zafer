@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8175d43-72dc-4eb9-b4d5-0b902cb96db8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/mijninzet-c15-team-1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mijninzet-c15-team-1.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/incidents-form.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/incidents-form.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/TeacherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/TeacherController.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -73,15 +72,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/SQLScripts/MijnInzetInsertScriptv2.6.sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="44" selection-start-line="15" selection-start-column="44" selection-end-line="15" selection-end-column="44" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Availability/DayFinder.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="136">
@@ -90,7 +80,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/incidents-form.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="304">
@@ -102,8 +92,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/IncidentController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="680">
-              <caret line="40" column="53" selection-start-line="40" selection-start-column="53" selection-end-line="40" selection-end-column="53" />
+            <state relative-caret-position="331">
+              <caret line="55" column="35" lean-forward="true" selection-start-line="55" selection-start-column="35" selection-end-line="55" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/TeacherController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1467">
+              <caret line="54" column="59" selection-start-line="54" selection-start-column="42" selection-end-line="54" selection-end-column="59" />
             </state>
           </provider>
         </entry>
@@ -146,7 +145,6 @@
       <find>auto</find>
       <find>disabled</find>
       <find>voer</find>
-      <find>system</find>
       <find>preferenceList</find>
       <find>dtype</find>
       <find>inheri</find>
@@ -172,6 +170,7 @@
       <find>var day</find>
       <find>incidentArray</find>
       <find>Load</find>
+      <find>system</find>
     </findStrings>
     <replaceStrings>
       <replace>incident</replace>
@@ -191,14 +190,13 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="sprint-4-incidents-feature" />
+        <entry key="$PROJECT_DIR$" value="sprint4" />
       </map>
     </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/resources/static/css/task.css" />
         <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/TaskController.java" />
         <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Teacher.java" />
         <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/VacatureRepository.java" />
@@ -245,10 +243,11 @@
         <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Availability/Incident/IncidentForm.java" />
         <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Availability/Incident/Incident.java" />
         <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Availability/Incident/IncidentStarterMethods.java" />
-        <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/IncidentController.java" />
         <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/IncidentRestController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/incidents-form.js" />
+        <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/IncidentController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/TeacherController.java" />
       </list>
     </option>
   </component>
@@ -736,11 +735,25 @@
       <option name="project" value="LOCAL" />
       <updated>1560954176550</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="- bugfix incident-form.js">
+      <created>1560980416781</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1560980416781</updated>
+    </task>
+    <task id="LOCAL-00034" summary="- minor clean-up incidentcontroller">
+      <created>1560981834732</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1560981834732</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="439830000" />
+    <option name="totallyTimeSpent" value="441127000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -755,7 +768,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3033557" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3033557" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -778,7 +791,7 @@
       <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.4986577" weight="0.32719547" />
       <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
       <window_info anchor="bottom" id="Messages" order="14" sideWeight="0.49798658" weight="0.31161472" />
-      <window_info active="true" anchor="bottom" id="Run Dashboard" order="15" sideWeight="0.8416107" visible="true" weight="0.33286119" />
+      <window_info anchor="bottom" id="Run Dashboard" order="15" sideWeight="0.8416107" visible="true" weight="0.33286119" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.24966443" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -871,8 +884,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Voorkeur class deleted since it is obsolete now" />
-    <MESSAGE value="Merge branch 'sprint2' of https://gitlab.fdmci.hva.nl/thieh/mijninzet-c15-team-1 into sprint2&#10;&#10;# Conflicts:&#10;#&#9;.idea/modules.xml&#10;#&#9;.idea/workspace.xml" />
     <MESSAGE value="globalAvalability.html" />
     <MESSAGE value="- updated frontend voorkeur-vakken" />
     <MESSAGE value="Merge branch 'sprint3' of gitlab.fdmci.hva.nl:thieh/mijninzet-c15-team-1 into sprint3Peter&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
@@ -896,27 +907,34 @@
     <MESSAGE value="- data is properly loaded into the form now" />
     <MESSAGE value="- fixed issue with stackoverflow error preferences" />
     <MESSAGE value="- data sends now, but 405 error&#10;- added wrapper for json data" />
-    <option name="LAST_COMMIT_MESSAGE" value="- data sends now, but 405 error&#10;- added wrapper for json data" />
+    <MESSAGE value="- bugfix incident-form.js" />
+    <MESSAGE value="- minor clean-up incidentcontroller" />
+    <option name="LAST_COMMIT_MESSAGE" value="- minor clean-up incidentcontroller" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="433" height="453" key="Git.Branch.Popup" />
-    <state width="433" height="453" key="Git.Branch.Popup/1920.1080" />
+    <state width="437" height="457" key="Git.Branch.Popup" />
+    <state width="437" height="457" key="Git.Branch.Popup/1920.1080" />
     <state width="660" height="700" key="Git.Branch.Popup/3360.2100" />
-    <state width="433" height="453" key="Git.Branch.Popup@1920.1080@120dpi" />
+    <state width="437" height="457" key="Git.Branch.Popup@1920.1080@120dpi" />
     <state width="660" height="700" key="Git.Branch.Popup@3360.2100@192dpi" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/IncidentController.java</url>
+          <line>31</line>
+          <properties />
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1428">
-          <caret line="84" column="53" selection-start-line="84" selection-start-column="53" selection-end-line="84" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/bootstrap-weekpicker.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
@@ -1156,13 +1174,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/IncidentController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="40" column="53" selection-start-line="40" selection-start-column="53" selection-end-line="40" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Availability/Incident/IncidentForm.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1037">
@@ -1209,6 +1220,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
           <caret line="173" column="5" lean-forward="true" selection-start-line="173" selection-start-column="5" selection-end-line="173" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/IncidentController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="55" column="35" lean-forward="true" selection-start-line="55" selection-start-column="35" selection-end-line="55" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/TeacherController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1467">
+          <caret line="54" column="59" selection-start-line="54" selection-start-column="42" selection-end-line="54" selection-end-column="59" />
         </state>
       </provider>
     </entry>
