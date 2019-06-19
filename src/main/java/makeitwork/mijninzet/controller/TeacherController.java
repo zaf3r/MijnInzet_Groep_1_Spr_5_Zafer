@@ -129,6 +129,7 @@ public class TeacherController {
             tempPreference.setUser(user);
             preferenceSet.add(tempPreference);
         }
+        preferenceRepository.saveAll(preferenceSet);
         return preferenceSet;
     }
 
