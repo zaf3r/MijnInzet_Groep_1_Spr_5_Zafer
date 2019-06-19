@@ -2,7 +2,6 @@ package makeitwork.mijninzet.controller;
 
 import makeitwork.mijninzet.model.KnowledgeArea;
 import makeitwork.mijninzet.model.preference.Subject;
-import makeitwork.mijninzet.repository.CourseRepository;
 import makeitwork.mijninzet.repository.KnowledgeAreaRepository;
 import makeitwork.mijninzet.repository.SubjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,14 +12,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.script.Invocable;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+
 import java.util.List;
 
 @Controller
 @RequestMapping(value = "/manager", method = RequestMethod.GET)
 public class ManagerController {
 
-    @Autowired
-    private CourseRepository courseRepo;
 
     @Autowired
     private KnowledgeAreaRepository areaRepo;
@@ -35,6 +39,7 @@ public class ManagerController {
             case "vak": {
                 Subject subject = new Subject();
                 model.addAttribute("attr3", subject);
+                model.addAttribute("KnowledgeAreas", getKnowledgeAreaList());
                 model.addAttribute("subjects", getSubjectList());
                 return ("addSubject");
             }
@@ -80,20 +85,44 @@ public class ManagerController {
 
     //in Subject controller
     @RequestMapping(value = "deleteSubject", method = RequestMethod.POST)
-    public String subjectDelete(@ModelAttribute("deleteSubject") Subject subject, Model model){
+    public String subjectDelete(@ModelAttribute("deleteSubject") Subject subject, Model model) {
         //model.addAttribute("subject", subject.getSubjectId());
 
         //if pleaseConfirm() = true -> deleteSubject Else -> redirect
         int subjectid = Integer.parseInt(subject.getSubjectName());
         Subject deletedSubject = subRepo.findBySubjectId(subjectid);
         subRepo.delete(deletedSubject);
-//        if (pleaseConfirm().equals(true)) {
+
+
+//        //invoking JavaScript
+//        ScriptEngine engine = new ScriptEngineManager().getEngineByName("confirm");
+//        try {
+//            engine.eval(new FileReader("addSubject.js"));
+//            Invocable invocable = (Invocable) engine;
+//            invocable.invokeFunction("confirmPlease");
+//            if (confirmPlease(true)) {
+//                subRepo.delete(deletedSubject);
+//            } else {
+//                return "redirect:/manager/vak";
+//            }
+//        } catch (ScriptException | FileNotFoundException | NoSuchMethodException e) {
+//            e.printStackTrace();
+//        }
+        return "redirect:/manager/vak";
+    }
+
+
+//        if (invocable.invokeFunction(confirmPlease(boolean delete)).equals(true)) {
 //            subRepo.delete(deletedSubject);
 //        }
 //        else {
 //            return "redirect:/manager/vak";
 //        }
-        return "redirect:/manager/vak";
+//        return "redirect:/manager/vak";
+//    }
+
+    public static boolean confirmPlease(boolean delete){
+        return delete;
     }
 
     //in knowledgeAreaController
