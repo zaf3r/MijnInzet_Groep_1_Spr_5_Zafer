@@ -111,4 +111,18 @@ public class Incident implements DayFinder<Incident> {
         }
         return null;
     }
+
+    @Override
+    public String toString() {
+        return "Incident{" +
+                "id=" + id +
+                ", user=" + user +
+                ", year=" + year +
+                ", weeknumber=" + weeknumber +
+                ", weekday=" + weekday +
+                ", morning=" + morning +
+                ", afternoon=" + afternoon +
+                ", evening=" + evening +
+                '}';
+    }
 }

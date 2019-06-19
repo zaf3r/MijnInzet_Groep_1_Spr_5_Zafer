@@ -47,4 +47,15 @@ public class IncidentForm {
     public void setIncidentFriday(Incident incidentFriday) {
         this.incidentFriday = incidentFriday;
     }
+
+    @Override
+    public String toString() {
+        return "IncidentForm{" +
+                "incidentMonday=" + incidentMonday +
+                ", incidentTuesday=" + incidentTuesday +
+                ", incidentWednesday=" + incidentWednesday +
+                ", incidentThursday=" + incidentThursday +
+                ", incidentFriday=" + incidentFriday +
+                '}';
+    }
 }
