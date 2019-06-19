@@ -3,7 +3,6 @@ var year;
 var requestUrl;
 var postUrl;
 var jsonPost = new Object();
-var allRows = document.querySelectorAll('td');
 var weekpicker;
 
 var mondayMo = document.querySelector('input[name="mondayMo"]');
@@ -48,7 +47,6 @@ $(function() {
 
 
 function postCall() {
-        jsonPost.id = 0;
         jsonPost.week = weekpicker.getWeek();
         jsonPost.year = weekpicker.getYear();
 
@@ -83,17 +81,8 @@ function postCall() {
         dataType : 'json',
         url: postUrl,
         data:jsonObject,
-        success :function(result) {
-            console.log(result);
-            alert("Uw incidenten zijn opgeslagen! Bedankt voor het doorgeven");
-        }});
-
-    /*$.post(postUrl, function (data) {
-
-    }).fail("Posting failed")
-        .done(alert("Uw incidenten zijn opgeslagen! Bedankt voor het doorgeven"))*/
+        }).done(alert("Uw incidenten voor het jaar " + jsonPost.year + ", week " + jsonPost.week + " zijn opgeslagen"));
 }
-
  function requestCall() {
 
      $(function () {

@@ -2,7 +2,6 @@ package makeitwork.mijninzet.model.Availability.Incident;
 
 public class IncidentJsonHolder {
 
-    private int id;
     private int week;
     private int year;
     private boolean mondayMo;
@@ -20,14 +19,6 @@ public class IncidentJsonHolder {
     private boolean fridayMo;
     private boolean fridayAf;
     private boolean fridayEv;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public int getWeek() {
         return week;
@@ -168,7 +159,6 @@ public class IncidentJsonHolder {
     @Override
     public String toString() {
         return "IncidentJsonHolder{" +
-                "id=" + id +
                 ", week=" + week +
                 ", year=" + year +
                 ", mondayMo=" + mondayMo +
