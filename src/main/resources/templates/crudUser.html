@@ -109,7 +109,8 @@
 
                 <div class="form-group row">
                     <div class="col-sm-10">
-                        <button type="submit" name="opslaan" id="opslaan" class="btn btn-primary">Opslaan nieuwe collega</button>
+                        <button type="submit" name="opslaan" id="opslaan" class="btn btn-warning">Opslaan gegevens</button>
+                        <button type="reset" name="resetForm" id="resetForm" class="btn btn-warning" onclick="textFunction()">Pagina opnieuw laden</button>
                         <span style="display: none;"
                               id="successMsg"> De nieuwe collega heeft toegang tot het systeem </span>
                         <span style="display: none;"
@@ -221,8 +222,10 @@
             success = $("#succesMsg");
             failure = $("#failureMsg");
             if (response["exists"]) {
-                success.show();
+                if (actief==0){$("#opslaan").text("verwijderd")}
+                if (actief==1){$("#opslaan").text("opgeslagen")}
             } else {
+                $("#opslaan").text("niet gelukt")
                 failure.show();
             }
         })
@@ -233,6 +236,9 @@
             dataType: 'json',
             data: roleNewUser
         })
+        function myFunction() {
+            $("#opslaan").text("Opslaan gegevens");
+        }
         event.preventDefault();
     });
 </script>
