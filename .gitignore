@@ -27,3 +27,11 @@ HELP.md
 
 ### VS Code ###
 .vscode/
+
+### MAC
+.DS_Store
+
+# OS generated files #
+######################
+client/.DS_Store
+.DS_Store

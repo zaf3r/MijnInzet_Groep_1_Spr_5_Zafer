@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<link rel="stylesheet" type="text/css" th:href="@{/css/generic.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/navbar.css}"/>
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap" rel="stylesheet">
+<head>
+    <meta charset="UTF-8">
+    <title>Kennisgebieden management</title>
+</head>
+<body>
+
+<div th:insert="~{navbar :: header}"></div>
+
+<div class="container">
+    <br>
+    <br>
+    <br>
+    <br>
+    <h2 class="text-center">Voeg een nieuw kennisgebied toe</h2>
+    <form action="#" th:object="${attr2}" th:action="@{saveKnowledgeArea}" method="post" id="saveKnowledgeArea">
+        <label th:text="kennisgebied"/>
+        <input type="text" th:field="*{knowledgeArea}" required title="Vul een kennisgebied in "/>
+        <input type="submit"  value="Opslaan" />
+<!--        <input type="submit" th:onclick="alert ('Het kennisgebied is opgeslagen in de database.')" value="Opslaan" />-->
+<!--        <input type="submit" value="Opslaan" />-->
+    </form>
+</div>
+<br>
+
+<div class="container">
+    <h2 class="text-center">Selecteer een kennisgebied</h2>
+
+    <table>
+        <tr collspan="2">
+            <td>
+                <form action="#" th:object="${KnowledgeAreas}" th:action="@{deleteKnowledgeArea}" method="post">
+                <select  name="subjectName" multiple="multiple" size="7">
+                        <option th:each="KnowledgeArea: ${KnowledgeAreas}" th:value="${KnowledgeArea.knowledgeAreaId}" th:text="${KnowledgeArea.knowledgeArea}"></option>
+                    </select>
+                <br><input type="submit" value="Delete" />
+<!--                    <br><input type="submit" th:onclick="confirmPlease()" value="Delete" />-->
+                </form>
+
+<!--                DELETE-->
+<!--                <form action="#" th:object="${subjects}" th:action="@{deleteSubject}" method="post">-->
+<!--                    <select  id="move1" name="subjectName" multiple="multiple" size="7">-->
+<!--                        <option th:each="subject: ${subjects}" th:value="${subject.subjectId}" th:text="${subject.subjectName}"></option>-->
+<!--                        <br><input type="submit" th:onclick="confirmPlease()" value="Delete" />-->
+<!--                    </select>-->
+<!--                </form>-->
+
+
+            </td>
+        <tr>
+    </table>
+
+</div>
+
+<br>
+
+<div class="container">
+    <h2 class="text-center">Voeg vakken toe aan kennisgebied</h2>
+
+    <table>
+        <tr collspan="2">
+            <td>
+                <form action="#" th:object="${subjects}" th:action="@{/kennisgebied/{subject}}" method="get">
+                    <select  id="move1" name="subjectName" multiple="multiple" size="7">
+                        <option th:each="subject: ${subjects}" th:value="${subject.subjectId}" th:text="${subject.subjectName}"></option>
+                    </select>
+                </form>
+            </td>
+
+            <td width="100" align="center">
+                <input type="button" value=">" onclick = "rightSingle()" /><br>
+<!--                <input type="button" value=">>" onclick = "rightAll()"/><br>-->
+                <input type="button" value="<" onclick = "leftSingle()"/><br>
+<!--                <input type="button" value="<<" onclick = "leftAll()"/>-->
+            </td>
+
+            <td>
+                <div>
+                    <select name="selectSubject" id="move2"  multiple="multiple" size="7">
+                        <option value="1">Programming2</option>
+                    </select>
+                </div>
+            </td>
+        <tr>
+    </table>
+
+</div>
+<br>
+<footer th:insert="~{footer :: footer}"></footer>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<script type="text/javascript" src="/js/courseManagement.js" th:src="@{/js/courseManagement.js}"></script>
+
+</body>
+
+
+
+</html>

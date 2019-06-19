@@ -1,29 +1,31 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:for="http://www.w3.org/1999/xhtml">
 <html lang="en">
 <link rel="stylesheet" type="text/css" th:href="@{/css/avalability.css}"/>
-<link rel="stylesheet" type="text/css" th:href="@{/css/genericBQ.css}"/>
-<link rel="stylesheet" type="text/css" th:href="@{/css/navbarBQ.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/generic.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/navbar.css}"/>
 <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
       integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap" rel="stylesheet">
-<script type="text/javascript" src="/js/availability.js" th:src="@{/js/availability.js}"></script>
+
 <head>
     <meta charset="UTF-8">
-    <title>Global Availability</title>
+    <title>beschikbaarheid</title>
+
 </head>
-<header th:insert="~{navbarBQ :: header}"></header>
+<header th:insert="~{navbar :: header}"></header>
 
 <body>
-<form action="#">
-    <div class="container">
-        <section id="header" class="jumbotron text-center">
-            <h1>Uw wekelijkse beschikbaarheid</h1>
-            <p>Geef hieronder per dag aan welke dagdelen u beschikbaar bent</p>
-        </section>
+<div class="container">
+    <section id="header" class="jumbotron text-center">
+        <h1>Uw wekelijkse beschikbaarheid</h1>
+        <p>Geef hieronder per dag aan welke dagdelen u beschikbaar bent</p>
+    </section>
+
+
         <section>
             <select class="custom-select" id="selectSemester">
                 <option selected>Select semester</option>
@@ -32,55 +34,63 @@
                 <option value="3">Three</option>
             </select>
         </section>
+    <form action="#" th:action="@{/availability/postAvailabilityForm}" th:object="${availabilityForm}" method = post>
+    <table id = "deTabel">
+        <tr>
+            <th>Select All</th>
+            <th>maandag</th>
+            <th>dinsdag</th>
+            <th>woensdag</th>
+            <th>donderdag</th>
+            <th>vrijdag</th>
+        </tr>
 
-        <section id="availability">
-            <table>
-                <tr>
-                    <th>Select All </th>
-                    <th>maandag </th>
-                    <th>dinsdag </th>
-                    <th>woensdag </th>
-                    <th>donderdag </th>
-                    <th>vrijdag </th>
-                </tr>
-                <tr>
-                    <th>ochtend </th>
-                    <td class="checked">maandagOchtend</td>
-                    <td class="checked">dinsdagOchtend</td>
-                    <td class="checked">woensdagOchtend</td>
-                    <td class="checked">donderdagOchtend</td>
-                    <td class="checked">vrijdagOchtend</td>
+        <tr>
+            <th>
+                <p>Ochtend</p>
+                <p>9:00-12:30</p>
+            </th>
+            <td th:class="*{availabilityMonday.isMorning()}"><input type="hidden" name="mondayMo" th:value="*{availabilityMonday.isMorning()}"></td>
+            <td th:class="*{availabilityTuesday.isMorning()}"><input type="hidden" name="tuesdayMo" th:value="*{availabilityTuesday.isMorning()}"></td>
+            <td th:class="*{availabilityWednesday.isMorning()}"><input type="hidden" name="wednesdayMo" th:value="*{availabilityWednesday.isMorning()}"></td>
+            <td th:class="*{availabilityThursday.isMorning()}"><input type="hidden" name="thursdayMo" th:value="*{availabilityThursday.isMorning()}"></td>
+            <td th:class="*{availabilityFriday.isMorning()}"><input type="hidden" name="fridayMo" th:value="*{availabilityFriday.isMorning()}"></td>
+        </tr>
 
-                </tr>
-                <tr>
-                    <th>middag </th>
-                    <td class="checked">maandagMiddag</td>
-                    <td class="checked">dinsdagMiddag</td>
-                    <td class="checked">woensdagMiddag</td>
-                    <td class="checked">donderdagMiddag</td>
-                    <td class="checked">vrijdagMiddag</td>
+        <tr>
+            <th>
+                <p>Middag</p>
+                <p>13:00-17:30</p>
+            </th>
+            <td th:class="*{availabilityMonday.isAfternoon()}"><input type="hidden" name="mondayAf" th:value="*{availabilityMonday.isAfternoon()}"></td>
+            <td th:class="*{availabilityTuesday.isAfternoon()}"><input type="hidden" name="tuesdayAf" th:value="*{availabilityTuesday.isAfternoon()}"></td>
+            <td th:class="*{availabilityWednesday.isAfternoon()}"><input type="hidden" name="wednesdayAf" th:value="*{availabilityWednesday.isAfternoon()}"></td>
+            <td th:class="*{availabilityThursday.isAfternoon()}"><input type="hidden" name="thursdayAf" th:value="*{availabilityThursday.isAfternoon()}"></td>
+            <td th:class="*{availabilityFriday.isAfternoon()}"><input type="hidden" name="fridayAf" th:value="*{availabilityFriday.isAfternoon()}"></td>
+        </tr>
 
-                </tr>
-                <tr>
-                    <th>avond </th>
-                    <td class="checked">maandagAvond</td>
-                    <td class="checked">dinsdagAvond</td>
-                    <td class="checked">woensdagAvond</td>
-                    <td class="checked">donderdagAvond</td>
-                    <td class="checked">vrijdagAvond</td>
+        <tr>
+            <th>
+                <p>Avond</p>
+                <p>18:00-21:00</p>
+            </th>
+            <td th:class="*{availabilityMonday.isEvening()}"><input type="hidden" name="mondayEv" th:value="*{availabilityMonday.isEvening()}"></td>
+            <td th:class="*{availabilityTuesday.isEvening()}"><input type="hidden" name="tuesdayEv" th:value="*{availabilityTuesday.isEvening()}"></td>
+            <td th:class="*{availabilityWednesday.isEvening()}"><input type="hidden" name="wednesdayEv" th:value="*{availabilityWednesday.isEvening()}"></td>
+            <td th:class="*{availabilityThursday.isEvening()}"><input type="hidden" name="thursdayEv" th:value="*{availabilityThursday.isEvening()}"></td>
+            <td th:class="*{availabilityFriday.isEvening()}"><input type="hidden" name="fridayEv" th:value="*{availabilityFriday.isEvening()}"></td>
+        </tr>
+    </table>
 
-                </tr>
-            </table>
-        </section>
-        <section>
-            <button id="button" type="button" class="btn btn-success">Submit</button>
-        </section>
+        <button id="button" type="submit" class="btn btn-success" onclick="alert ('Uw wekelijkse beschikbaarheid is opgeslagen in de database')">Opslaan</button>
+<!--        <input type="submit" onclick="alert ('Uw wekelijkse beschikbaarheid is opgeslagen in de database')" value="Opslaan">-->
 
-    </div>
-    <footer th:insert="~{footer :: footer}"></footer>
+
 </form>
+</div>
+<footer th:insert="~{footer :: footer}"></footer>
 
-
+<script type="text/javascript" src="/js/GlobalAvailability.js" th:src="@{/js/GlobalAvailability.js}"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"

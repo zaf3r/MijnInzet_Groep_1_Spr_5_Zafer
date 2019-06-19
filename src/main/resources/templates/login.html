@@ -1,11 +1,28 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
+<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/generic.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/navbar.css}"/>
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
 <head>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}"/>
-    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Inloggen</title>
+</head>
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<link rel="stylesheet" type="text/css" th:href="@{/css/login2.css}"/>
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+<head>
+
     <meta charset="UTF-8">
     <title>Inloggen</title>
 </head>
@@ -13,9 +30,6 @@
     .background-image {
         background-image: url("https://images.unsplash.com/photo-1498079022511-d15614cb1c02?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80");
         background-size: cover;
-        /*("https://assets-cdn-folia.boondrive.com/1240x698/10961_1515492443852_math-1500720_1920.jpg");*/
-
-        /*https://images.unsplash.com/photo-1512847930783-39fdc971594b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60*/
         position: fixed;
         margin: 0;
         left: 0;
@@ -32,14 +46,6 @@
         filter: blur(3px);
     }
 
-    /* img {
-      background: url("https://assets-cdn-folia.boondrive.com/1240x698/10961_1515492443852_math-1500720_1920.jpg");
-       filter: blur(8px);
-      height: 100vh;
-
-      background-size: cover;
-    } */
-
     .content {
         position: fixed;
         left: 0;
@@ -47,12 +53,6 @@
         z-index: 9999;
         margin-left: 20px;
         margin-right: 20px;
-        /* height: 200px;
-        width: 70%;
-        background-color: white;
-        margin: 0 auto;
-        display: inline block;
-        margin-top: 75px; */
     }
 
     h3{
@@ -81,6 +81,10 @@
         position: center;
     }
 
+    .btn-lg {
+        padding: 0rem 0rem;
+    }
+
     ul {
         list-style-type: none;
         position: center;
@@ -101,6 +105,7 @@
         font-size: 16px;
         margin-top: 2px;
         border: none;
+        margin: 10px 0 auto;
     }
 
     .btn {
@@ -132,11 +137,11 @@
             <div class="form-group">
                 <ul>
                     <label for="username" class="sr-only"></label>
-                <li> <input type="text" id="username" name="username" class="<form>
-                    </form->control" placeholder="Gebruikersnaam" required autofocus></li>
+                <li> <input type="text" id="username" name="username"
+                            class="form-control" placeholder="Gebruikersnaam" required autofocus></li>
                     <label for="password" class="sr-only"></label>
                 <li><input type="password" id="password" name="password"
-                           class="form-control" placeholder="Wachtwoord" required></li>
+                           class="form-control" placeholder="Wachtwoord" required ></li>
 
                 <button class="btn btn-lg btn-primary btn-block" type="submit">
                     Inloggen
@@ -149,14 +154,6 @@
     </form>
 </div>
 
-<!--<script type="text/javascript">-->
-<!--    function toggleContent() {-->
-<!--        var contentId = document.getElementById("toggle");-->
-<!--        contentId.style.display == "block" ? contentId.style.display == "none" :-->
-<!--            contentId.style.display = "block";-->
-<!--    }-->
-<!--</script>-->
-<!--<button onclick="toggleContent()">Toggle</button>-->
 </body>
 
 <script src="https://code.jquery.com/jquery-2.1.4.js"></script>

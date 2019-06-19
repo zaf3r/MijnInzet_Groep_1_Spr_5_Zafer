@@ -2,28 +2,49 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}"/>
-<link rel="stylesheet" type="text/css" th:href="@{/css/genericBQ.css}"/>
-<link rel="stylesheet" type="text/css" th:href="@{/css/navbarBQ.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/generic.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/navbar.css}"/>
 <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
       integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/javascript" src="/js/home.js" th:src="@{/js/home.js}"></script>
+<script>
+    $('.smooth').on('click', function() {
+        $.smoothScroll({
+            scrollElement: $('body'),
+            scrollTarget: '#' + this.id
+        });
+
+        return false;
+    });
+
+    $(window).scroll(function() {
+        if($(window).scrollTop() + $(window).height() == $(document).height()) {
+            alert("bottom!");
+        }
+    });
+
+
+</script>
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
 </head>
-<header th:insert="~{navbarBQ :: header}"></header>
+<header th:insert="~{navbar :: header}"></header>
 <body id="pageContent">
 <form action="#" th:action="@{/home}" method="get">
 
-    <div class="card card-image" style="background-image: url(https://www.desktopbackground.org/download/3440x1440/2010/05/07/13609_blue-sky-with-clouds-backgrounds-church-at-prison_7000x5500_h.jpg); background-size: cover">
+    <div class="card card-image" style="background-image: url(https://images.homedepot-static.com/productImages/9513d7c0-6365-4903-b136-0bb9d93c7e3a/svn/brewster-wallpaper-wv8103-64_600.jpg); background-size: cover">
         <div class="text-white text-center rgba-stylish-strong py-4 px-4">
             <div class="py-5">
 
                 <!-- Content -->
-                <h5 class="h5 orange-text text-left"><i class="fas fa-chalkboard-teacher"></i> MijnInzet</h5>
+                <!--                <h5 class="h5 orange-text text-left"><i class="fas fa-chalkboard-teacher"></i> MijnInzet</h5>-->
                 <h2 class="card-title h1 my-4 py-2">Welkom Docent H.A. van Thienen</h2>
                 <p class="mb-4 pb-2 px-md-5 mx-md-5"></p>
                 <a class="btn peach-gradient bg-dark"><i class="fas fa-hand-point-down"></i> Mijn Pagina</a>
@@ -34,7 +55,7 @@
 
     <section id="gallery">
         <div class="container">
-            <div class="row justify-content-around">
+            <div class="row justify-content-around" id="scroll-down">
 
                 <div class="col-md-3">
                     <div class="card mb-4 text-white bg-secondary">
@@ -42,17 +63,17 @@
                         <div class="card-body">
                             <h3 class="card-title text-light">Agenda</h3>
                             <p class="card-text">Bekijk uw rooster.</p>
-                            <a href="#" class="btn btn-outline-light btn-sm">ROOSTER</a>
+                            <a href="#rooster" class="btn btn-outline-light btn-sm">ROOSTER</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="card mb-4 text-white bg-secondary">
-                        <img class="card-img-top" src="http://placeimg.com/290/180/people/sepia" alt="Card image cap">
+                        <img class="card-img-top" src="http://placeimg.com/290/180/architecture" alt="Card image cap">
                         <div class="card-body">
                             <h3 class="card-title text-light">Takenoverzicht</h3>
                             <p class="card-text">Bekijk uw takenoverzicht.</p>
-                            <a href="#" class="btn btn-outline-light btn-sm">TAKEN</a>
+                            <a href="/myTasks" class="btn btn-outline-light btn-sm">TAKEN</a>
                         </div>
                     </div>
                 </div>
@@ -62,7 +83,7 @@
                         <div class="card-body">
                             <h3 class="card-title text-light">Evenementen</h3>
                             <p class="card-text">Aankomende evenementen.</p>
-                            <a href="#" class="btn btn-outline-light btn-sm">EVENEMENTEN</a>
+                            <a href="#evenementen" class="btn btn-outline-light btn-sm">EVENEMENTEN</a>
                         </div>
                     </div>
                 </div>
@@ -72,17 +93,154 @@
                         <div class="card-body">
                             <h3 class="card-title text-light">Vakantiedagen</h3>
                             <p class="card-text">Bekijk uw vakantiedagen.</p>
-                            <a href="#" class="btn btn-outline-light btn-sm">VAKANTIE</a>
+                            <a href="#vakantie" class="btn btn-outline-light btn-sm">VAKANTIE</a>
                         </div>
                     </div>
                 </div>
 
             </div>
         </div>
+            <div id="page1">
+                <a id="rooster" class="smooth"></a>
+                <div id="container" class="container-fluid bg-warning" style="padding-top:140px;padding-bottom:140px">
+
+                    <h3 align="center">Aan uw rooster voor schooljaar 2019 - 2020 voor MakeItWork wordt momenteel hard gewerkt.</h3>
+<!--                    <button id="xhr">XHR</button>-->
+<!--                    <p id="quote">Quote Goes Here...</p>-->
+                </div>
+            </div>
+        <section id="galleryEvenementen">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 mb-3">
+                        <a id="evenementen" class="smooth"></a>
+                        <div class="card">
+                            <div class="thumbnail">
+                                <a href="http://www.hva.nl/united/subsites/nl/ondernemerschap/evenementen/evenementen/2019/06/hackathon-duurzaam-reizen.html?origin=s2o1He9vR3qsGOSeJOxyPA">
+                                <img class="evenement" src ="http://www.hva.nl/binaries/content/gallery/subsites/ondernemerschap/afbeeldingen/evenementen/overig/copy-of-hackathon-ondernemerschap.jpg?1553092449806"
+                                     align="left"></a>
+                            </div>
+
+                            <div class="card-body">
+                                    <h3>Hacketon</h3>
+                                <small>Evenement
+                                    <span class="inner-spacer">|</span>
+                                    14-15 juni
+                                    <span class="inner-spacer">|</span>
+                                    15:00<br>
+                                </small>
+                                    <div class="card-text">
+                                        Wil jij meedenken over het verminderen van de CO2 uitstoot en het verbeteren van mobiliteit omtrent duurzaam reizen met de trein?
+                                        Geef je dan snel op voor onze hackathon: duurzaam reizen op 14 &amp;15 juni!
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="col-lg-4 mb-3">
+                        <div class="card">
+                            <div class="thumbnail">
+                                <a href="http://www.hva.nl/united/hva/nl/evenementen/evenementen/2019/06/we-make-the-city-2019.html?origin=s2o1He9vR3qsGOSeJOxyPA">
+                                <img class="evenement" src="https://waag.org/sites/waag/files/wemakethecity-0.jpeg" align="left"></a>
+                            </div>
+
+                            <div class="card-body">
+
+                                <h3>Festival WeMakeThe.City 2019</h3>
+                                <small>Evenement
+                                    <span class="inner-spacer">|</span>
+                                    17-23 juni
+                                    <span class="inner-spacer">|</span>
+                                    09:00<br>
+                                </small>
+                                <div class="card-text">
+                                    Van maandag 17 t/m zondag 23 juni 2019 vindt in de Metropoolregio Amsterdam voor de tweede keer het internationale stedelijk
+                                    innovatiefestival WeMakeThe.City plaats. De HvA is kernpartner van het festival.
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    <div class="col-lg-4 mb-3">
+                        <div class="card">
+                            <div class="thumbnail">
+                                <a href="http://www.hva.nl/united/hva/nl/evenementen/evenementen/2019/06/stad-in-beweging.html?origin=s2o1He9vR3qsGOSeJOxyPA">
+                                <img class="evenement" src ="https://images.unsplash.com/photo-1519134855683-11ea296ec3e1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2718&q=80"
+                                     align="left"></a>
+                            </div>
+
+                            <div class="card-body">
+                                <h3>Stad in Beweging</h3>
+                                <small>Evenement
+                                    <span class="inner-spacer">|</span>
+                                    18 juni
+                                    <span class="inner-spacer">|</span>
+                                    09:00 - 12:30<br>
+                                </small>
+                                <div class="card-text">
+                                    Met zijn fietspaden, vele parken en overvloedige water biedt Amsterdam legio
+                                    mogelijkheden aan inwoners die graag bewegen. Toch zitten nog te veel Amsterdammers
+                                    te vaak stil. Hoe kan, bij het inrichten van de stad, ...
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 mb-3">
+                        <div class="card">
+                            <div class="thumbnail">
+                                <img class="evenement" src="http://www.hva.nl/binaries/threecolumnlandscape/content/gallery/hva/gedeelde-content/events/2019/06/graffiti--at--matteo-paganelli-2018.-courtesy-of-unsplash.-1051x540.jpg" align="left">
+                            </div>
+
+                            <div class="card-body">
+                                <h3>CONNECTING COLLEGE AND COMMUNITY</h3>
+                                <small>Evenement
+                                    <span class="inner-spacer">|</span>
+                                    18 juni
+                                    <span class="inner-spacer">|</span>
+                                    13:30<br>
+                                </small>
+                                <div class="card-text">
+                                    In 2050 wordt Amsterdam niet langer gekenmerkt door één enkele sociaal-culturele meerderheid.
+                                    De groeiende diversiteit in demografie zorgt alleen nog niet voor een inclusieve samenleving
+                                    met gelijke kansen voor iedereen. Wat betekent dit voor het onderwijs?
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 mb-3">
+                        <div class="card">
+                            <div class="thumbnail">
+                                <img class="evenement" src="http://www.hva.nl/binaries/threecolumnlandscape/content/gallery/subsites/kc-be-carem/publicatie-afbeeldingen/mens-versus-machine.jpg" align="left">
+                            </div>
+
+                            <div class="card-body">
+                                <h3>MENS VS MACHINE OP DE WERKVLOER</h3>
+                                <small>Evenement
+                                    <span class="inner-spacer">|</span>
+                                    18 juni
+                                    <span class="inner-spacer">|</span>
+                                    13:30 = 16:30<br>
+                                </small>
+                                <div class="card-text">
+                                    Technologie heeft de werkvloer ingrijpend veranderd dus het is lastig voor te stellen
+                                    hoe door verdere ontwikkeling van AI, automatisering en robotisering de werkvloer er
+                                    over 10 of 20 jaar uitziet. Op welke manier zullen mens en machine zich verhouden in
+                                    de (nabije) toekomst en wat betekent dit eigenlijk voor jouw functie en of organisatie?
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+        </section>
+
+            <div id="page3">
+                <a id="vakantie" class="smooth" ></a>
+                <div id="containerVakantie" class="container-fluid bg-info" style="padding-top:140px;padding-bottom:140px">
+                <img src = "https://www.omnius.nl/app/uploads/2018/09/Untitled-1-1.jpg" align="center">
+                </div>
+            </div>
+
     </section>
 
-
-    <footer th:insert="~{footer :: footer}"></footer>
 </form>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -93,8 +251,10 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 
-
+<!--<footer th:insert="~{footer :: footer}"></footer>-->
 </html>
+
+
 
 
 
