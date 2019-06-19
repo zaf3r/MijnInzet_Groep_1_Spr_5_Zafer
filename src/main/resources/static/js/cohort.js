@@ -15,6 +15,6 @@ $( function() {
 //     var option =
 // }
 
-function changNum(Num) {
+function changeCohort(cohort) {
     location.href = "http://localhost:8080/manager/cohort";
 }

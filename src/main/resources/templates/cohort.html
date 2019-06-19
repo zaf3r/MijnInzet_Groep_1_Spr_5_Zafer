@@ -45,10 +45,10 @@
             <table id="allCohorts">
                 <tr collspan="2">
                     <td>
-                        <form action="#" th:object="${cohorts}" th:action="@{deleteCohort}" method="post">
-                            <select  name="cohortName" multiple="multiple" size="7">
+                        <form action="#" th:object="${cohorts}" th:action="@{showSubjects}" method="post">
+                            <select  name="cohortName" multiple="multiple" size="7" style="width: 250px">
                                 <option th:each="cohort: ${cohorts}" th:value="${cohort.cohortName}" th:text="${cohort.cohortName}"></option>
-                                <input type="submit" th:onclick="" value="Delete" />
+                                <input type="submit" th:onclick="" value="Select" />
                             </select>
                         </form>
                     </td>
@@ -57,55 +57,38 @@
 
 
         </div>
-        <p>Add subjects to selected cohort</p>
-        <div>
-            <form action="#" th:object="${cohorts} ${knowledgeAreas}" th:action="@{showKnowledgeArea}" method="post">
-                <select name="cohortName" id="cohortList" onchange="changeNum(this.value)">
-                    <option th:each="cohort: ${cohorts}" th:value="${cohort.cohortName}" th:text="${cohort.cohortName}"></option>
-                </select>
-                <select  id="knowledgeAreaList" name="knowledgeAreaName" multiple="multiple" size="7">
-                    <option th:each="knowledgeArea: ${knowledgeAreas}" th:value="${knowledgeArea.knowledgeAreaId}" th:text="${knowledgeArea.knowledgeArea}"></option>
-                </select>
-            </form>
-        </div>
+        <p>Add sknowledgeAreas to selected cohort</p>
+
         <table>
             <tr collspan="2">
                 <td>
                     <div>
-                        <select name="moreselAge" id="move1"  multiple="multiple" size="7">
-                            <option value="1">11</option>
-                            <option value="2">12</option>
-                            <option value="3">13</option>
-                            <option value="4">14</option>
-                            <option value="5">15</option>
-                            <option value="6">16</option>
-                            <option value="7">17</option>
-                            <option value="8">18</option>
-
-                        </select>
+                        <label for="selectedSubjectList">Selected Subjects</label>
+                        <form action="#" th:object="${subjects}" th:action="@{removeSubjects}" method="post">
+                            <select  id="selectedSubjectList" name="selectedSubjectList" multiple="multiple" size="7" style="width: 250px">
+                                <option th:each="subject: ${subjects}" th:value="${subject.subjectId}" th:text="${subject.subjectName}"></option>
+                            </select>
+                        </form>
                     </div>
 
-                </td>
-                <td width="100" align="center">
-                    <input type="button" value=">" onclick = "rightSingle()" /><br>
-                    <input type="button" value=">>" onclick = "rightAll()"/><br>
-                    <input type="button" value="<" onclick = "leftSingle()"/><br>
-                    <input type="button" value="<<" onclick = "leftAll()"/>
                 </td>
 
                 <td>
                     <div>
-                        <form action="#" th:object="${subjects}" th:action="@{/kennisgebied/{subject}}" method="get">
-                            <select  id="movel" name="subjectName" multiple="multiple" size="7">
-                                <option th:each="subject: ${subjects}" th:value="${subject.subjectId}" th:text="${subject.subjectName}"></option>
+                        <label for="subjectName">Possible Subjects</label>
+                        <form action="#" th:object="${possibleSubjects}" th:action="@{addSubjects}" method="post">
+                            <input type="submit" th:onclick="" value="<<" />
+                            <select  id="subjectName" name="subjectName" multiple="multiple" size="7" style="width: 250px">
+                                <option th:each="subject: ${possibleSubjects}" th:value="${subject.subjectId}" th:text="${subject.subjectName}"></option>
                             </select>
+
                         </form>
 
                     </div>
                 </td>
             <tr>
         </table>
-        <div> <button id="button" type="button" class="btn btn-success">Submit</button></div>
+
 
 
 </div>

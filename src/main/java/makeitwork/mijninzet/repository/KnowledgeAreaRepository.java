@@ -9,8 +9,7 @@ import java.util.List;
 import java.util.SortedSet;
 
 @Repository
-public interface KnowledgeAreaRepository extends JpaRepository<KnowledgeArea, String> {
+public interface KnowledgeAreaRepository extends JpaRepository<KnowledgeArea, Integer> {
     List<KnowledgeArea> findAllByOrderByKnowledgeAreaIdAsc();
-    SortedSet<KnowledgeArea> findByCohort(Cohort cohort);
 
 }

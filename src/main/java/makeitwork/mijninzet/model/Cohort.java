@@ -40,20 +40,12 @@ public class Cohort {
 
     @ElementCollection
     @SortNatural
-    private SortedSet<Integer> knowledgeAreaIds = new TreeSet<>();
+    @Column(name = "naamvak")
+    private SortedSet<String> subjectNames = new TreeSet<>();
 
-    public SortedSet<Integer> getKnowledgeAreas() {
-        return knowledgeAreaIds;
-    }
+    public SortedSet<String> getSubjectNames() { return subjectNames; }
 
-    public void setKnowledgeAreas(SortedSet<Integer> knowledgeAreaIds) {
-        this.knowledgeAreaIds = knowledgeAreaIds;
-    }
-
-    public void addKnowledgeArea(int knowledgeAreaId) {
-        SortedSet<Integer> knowledgeAreas = getKnowledgeAreas();
-        if (!knowledgeAreas.contains(knowledgeAreaId)) knowledgeAreas.add(knowledgeAreaId);
-    }
+    public void setSubjectNames(SortedSet<String> subjectNames) { this.subjectNames = subjectNames; }
 
     public Cohort() {}
 
@@ -78,6 +70,11 @@ public class Cohort {
     public void setAllCohorts(SortedSet<Cohort> allCohorts) { this.allCohorts = allCohorts; }
 
     public SortedSet<Cohort> getAllCohorts() { return allCohorts; }
+
+    public void addSubject(String subjectName) {
+        SortedSet<String> subjects = getSubjectNames();
+        if (!subjects.contains(subjectName)) subjects.add(subjectName);
+    }
 
     @Override
     public String toString() {

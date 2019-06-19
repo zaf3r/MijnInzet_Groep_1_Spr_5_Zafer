@@ -6,21 +6,14 @@ import makeitwork.mijninzet.model.preference.Subject;
 import makeitwork.mijninzet.repository.CohortRepository;
 import makeitwork.mijninzet.repository.KnowledgeAreaRepository;
 import makeitwork.mijninzet.repository.SubjectRepository;
+import makeitwork.mijninzet.service.CohortService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import javax.persistence.Column;
-import javax.validation.constraints.Null;
-import java.security.Principal;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import org.springframework.web.bind.annotation.*;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.SortedSet;
+
 
 @Controller
 @RequestMapping("/manager")
@@ -31,58 +24,79 @@ public class CohortController {
     @Autowired
     private CohortRepository coRepo;
     @Autowired
-    private KnowledgeAreaRepository knRepo;
+    private CohortService cohortService;
+
+    private String selectedCohort;
+    private List<Subject> possibleSubjectList;
+    private List<Subject> selectedSubjectList;
 
     @GetMapping("/cohort")
-    public String addCohortHandler(Model model, Principal principal){
+    public String CohortHandler(Model model){
         Cohort cohort = new Cohort();
-        Cohort selectedCohort = coRepo.findByCohortName(principal.getName());
-        if (selectedCohort == null){
-
-        }
 
         model.addAttribute("attr1", cohort);
         model.addAttribute("cohorts", getAllCohorts());
-        model.addAttribute("knowledgeAreas", getKnowledgeAreaList(selectedCohort));
-        model.addAttribute("subjects", getSubjectList());
+        model.addAttribute("subjects", selectedSubjectList);
+        model.addAttribute("possibleSubjects", possibleSubjectList);
         return "cohort";
     }
 
-    public List<Subject> getSubjectList() {
-        List<Subject> allSubjects = subRepo.findAllByOrderBySubjectIdAsc();
-        return allSubjects;
-    }
-
-    public SortedSet<KnowledgeArea> getKnowledgeAreaList(Cohort cohort){
-        SortedSet<KnowledgeArea> allKnowledgeAreas = knRepo.findByCohort(cohort);
-        return allKnowledgeAreas;
-    }
-
-//    public SortedSet<Cohort> getAllCohorts(){
-//        SortedSet<Cohort> allCohorts = coRepo.findAllByOrderByCohortIdAsc();
-//        return allCohorts;
-//    }
 
     public List<Cohort> getAllCohorts(){
         List<Cohort> allcohorts = coRepo.findAll();
         return allcohorts;
     }
 
+    public List<Subject> getAllSubjects(){
+        List<Subject> allSubjects = subRepo.findAll();
+        return allSubjects;
+    }
+
+    public List<Subject> selectedSubjects(Cohort cohort){
+        List<Subject> selectedSubjects = cohortService.getAllSubjects(cohort);
+        return selectedSubjects;
+    }
+
+    public List<Subject> possibleSubjects(Cohort cohort){
+        List<Subject> possibleSubjects = new ArrayList<>();
+        List<Subject> subjects = getAllSubjects();
+        for (Subject s : subjects){
+            if (!selectedSubjects(cohort).contains(s)){
+                possibleSubjects.add(s);
+            }
+        }
+        return possibleSubjects;
+    }
+
     @PostMapping("/saveCohort")
     public String saveCohort(@ModelAttribute("saveCohort")Cohort cohort, Model model) {
-
-        model.addAttribute("cohortName", cohort.getCohortName());
-        model.addAttribute("startDate", cohort.getStartDate());
-        model.addAttribute("endDate", cohort.getEndDate());
-
-
         coRepo.save(cohort);
         return "redirect:/manager/cohort";
     }
 
-//    @PostMapping("/showKnowledgeArea")
-//    public String showKnowledgeArea(@ModelAttribute("showKnowledgeArea")Cohort cohort, Model model){
-//
-//    }
+    @PostMapping("/showSubjects")
+    public String showSubjects(@RequestParam("cohortName") String cohortName){
+        Cohort cohort = coRepo.findByCohortName(cohortName);
+        selectedCohort = cohortName;
+        subjectList(cohort);
+        return "redirect:/manager/cohort";
+    }
+
+    @PostMapping("/addSubjects")
+    public String addSubjectHandler(@RequestParam("subjectName") int subjectId ){
+        Cohort cohort = coRepo.findByCohortName(selectedCohort);
+        Subject subject = subRepo.findBySubjectId(subjectId);
+
+        cohortService.addSubject(cohort, subject);
+        subjectList(cohort);
+
+        return "redirect:/manager/cohort";
+    }
+
+    public void subjectList(Cohort cohort){
+        selectedSubjectList = selectedSubjects(cohort);
+        possibleSubjectList = possibleSubjects(cohort);
+    }
+
 
 }
