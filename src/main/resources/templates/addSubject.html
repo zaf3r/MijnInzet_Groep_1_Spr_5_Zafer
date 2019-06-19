@@ -24,7 +24,12 @@
     <h2 class="text-center">Voeg een nieuw vak toe</h2>
     <form action="#" th:object="${attr3}" th:action="@{saveSubject}" method="post" id="saveSubject">
         <label th:text="vak"/>
-        <input id ="inputWaarde" type="text" th:field="*{subjectName}" required title="Vul een vaknaam in "/>
+        <input id ="inputWaarde" type="text" th:field="*{subjectName}" required title="Vul een vaknaam in "
+               oninvalid=  "this.setCustomValidity('Een unieke gebruikersnaam opgeven is verplicht.')"
+        onchange="this.setCustomValidity('')"/>
+        <span style="display: none;"
+              id="subjectName"> Deze vaknaam bestaat al. Kies een andere naam</span>
+        <input type = "hidden" id="subjectId" value = "subjectId"/>
     </form>
 </div>
 <br>
@@ -36,9 +41,15 @@
             <td>
                 <select id="menu" name="subjectName" multiple="multiple" size="7">
                     <option th:each="KnowledgeArea: ${KnowledgeAreas}" th:value="${KnowledgeArea.knowledgeAreaId}"
-                            th:text="${KnowledgeArea.knowledgeArea}"></option>
+                            th:text="${KnowledgeArea.knowledgeArea}">
+                        <input type = "hidden" id="knowledgeArea" th:value = '${KnowledgeArea.getKnowledgeArea()}'/>
+                    </option>
                 </select>
-                <input type="submit" id="btn" value="Opslaan" />
+                <input type="submit" id="btn" value="Opslaan"/>
+                <span style="display: none;"
+                      id="successMsg"> De nieuwe collega heeft toegang tot het systeem </span>
+                <span style="display: none;"
+                      id="failureMsg"> Er is iets fout gegaan. De nieuwe collega heeft geen toegang. </span>
             </td>
         <tr>
     </table>
@@ -60,6 +71,64 @@
 <script type="text/javascript" src="/js/addSubject.js" th:src="@{/js/addSubject.js}"></script>
 
     </form>
+
+<!--<script>-->
+<!--    $("#inputWaarde").on("focusout", function(e) {-->
+<!--        payload = JSON.stringify({ vaknaam: e.target.value });-->
+<!--        $.ajax({-->
+<!--            type: 'POST',-->
+<!--            url:'/checkVaknaam',-->
+<!--            contentType: 'application/json; charset=utf-8',-->
+<!--            dataType: 'json',-->
+<!--            data: payload-->
+<!--        }).done (function (response) {-->
+<!--            subjectName = $("#subjectName");-->
+<!--            if (response ["exists"]) {-->
+<!--                subjectName.show();-->
+<!--            } else {-->
+<!--                subjectName.hide();-->
+<!--            }-->
+
+<!--        })-->
+<!--    })-->
+
+<!--    $("#menu").on("focusout", function(e) {-->
+<!--        var type = document.getElementById("menu").value;-->
+<!--        payload = JSON.stringify({ menuKeuze: type });-->
+<!--        $.ajax({-->
+<!--            type: 'POST',-->
+<!--            url: '/checkKeuze',-->
+<!--            contentType: 'application/json; charset=utf-8',-->
+<!--            dataType: 'json',-->
+<!--            data: payload-->
+<!--        })-->
+<!--    });-->
+
+<!--    $("#usrForm").submit(function(){-->
+<!--        var payload = JSON.stringify({-->
+<!--            vaknaam: $("#inputWaarde").val(),-->
+<!--            menukeuze: $("#menu").val(),-->
+<!--        })-->
+<!--        $.ajax ({-->
+<!--            type: 'POST',-->
+<!--            url: 'saveKnowledgeandCourse',-->
+<!--            contentType: 'application/json: charset=utf-8',-->
+<!--            dataType: 'json',-->
+<!--            data: payload-->
+<!--        }).done (function(response){-->
+<!--            success = $("#succesMsg");-->
+<!--            failure = $("#failureMsg");-->
+<!--            if(response ["exists"]) {-->
+<!--                success.show();-->
+<!--            } else {-->
+<!--                failure.show();-->
+<!--            }-->
+<!--            })-->
+<!--        });-->
+<!--    -->
+
+
+<!--</script>-->
 </body>
 
 

@@ -2,20 +2,17 @@ package makeitwork.mijninzet.controller;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import com.mongodb.BasicDBObject;
 import makeitwork.mijninzet.model.KnowledgeArea;
-import makeitwork.mijninzet.model.SubjectResponse;
-import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.model.preference.Subject;
 import makeitwork.mijninzet.repository.KnowledgeAreaRepository;
 import makeitwork.mijninzet.repository.SubjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -24,7 +21,7 @@ public class ManagerController {
 
 
     @Autowired
-    private KnowledgeAreaRepository areaRepo;
+    private KnowledgeAreaRepository areaRepository;
 
     @Autowired
     private SubjectRepository subRepo;
@@ -67,7 +64,7 @@ public class ManagerController {
     }
 
     public List<KnowledgeArea> getKnowledgeAreaList() {
-        List<KnowledgeArea> allKnowledgeAreas = areaRepo.findAllByOrderByKnowledgeAreaIdAsc();
+        List<KnowledgeArea> allKnowledgeAreas = areaRepository.findAllByOrderByKnowledgeAreaIdAsc();
         System.out.println(allKnowledgeAreas.size() + "===================");
         return allKnowledgeAreas;
     }
@@ -81,25 +78,41 @@ public class ManagerController {
 //    }
 
     @PostMapping("saveKnowledgeandCourse")
-    public @ResponseBody String SaveSubjectHandler(@RequestBody String data, Subject subject){
-//        SubjectResponse response = new SubjectResponse();
-//        System.out.println(response);
-        subject=deSerializeUser(data, subject);
-        subRepo.save(subject);
+    public @ResponseBody Subject SaveSubjectHandler(@RequestBody Subject data, @RequestParam("naam") String naam){
+        System.out.printf("inhoud requestPayload = %s\n",data);
+
+        Subject ret = data;
+        // Haalt de naam niet op van het kennisgebied
+        //nog zorgen dat een arraytlsit wordt meegegeven client kant naar back-end
+        // kan ook de info terug weglaten
         var output = new BasicDBObject();
-//        if (user != null) {
-//            output.put("exists", true);
-//        } else {
-//            output.put("exists", false);
-//        }
-        return output.toJson();
+        try {
+//            Subject newSubject = mapper.readValue(data, Subject.class);
+            System.out.println("new subject is: " + data);
+            var subject = subRepo.save(data);
+
+            ret = subject;
+
+            if (subject != null) {
+                output.put("exists", true);
+            } else {
+                output.put("exists", false);
+            }
+        } catch (Exception IO) {
+            IO.printStackTrace();
+            IO.getMessage();
+        }
+        return ret;
     }
 
-    public Subject deSerializeUser(String requestPayload, Subject subject){
+    private Subject deSerializeUser(String requestPayload){
         ObjectMapper objectmapper = new ObjectMapper();
+        Subject subject = new Subject();
         try {
             subject = objectmapper.readValue(requestPayload, Subject.class);
-        } catch (Exception e){};
+        } catch (Exception e){
+            System.out.println("***********" + e.getMessage() + "***********");
+        }
         return subject;
     }
 
@@ -125,7 +138,7 @@ public class ManagerController {
     @RequestMapping(value = "saveKnowledgeArea", method = RequestMethod.POST)
     public String saveArea(@ModelAttribute("saveKnowledgeArea") KnowledgeArea area, Model model) {
         model.addAttribute("knowledgeArea", area.getKnowledgeArea());
-        areaRepo.save(area);
+        areaRepository.save(area);
         return "redirect:/manager/kennisgebied";
     }
 
@@ -133,8 +146,8 @@ public class ManagerController {
     @RequestMapping(value = "deleteKnowledgeArea", method = RequestMethod.POST)
     public String deleteKnowledgeArea(@ModelAttribute("deleteKnowledgeArea") KnowledgeArea area, Model model){
         int knowledgeAreaId = Integer.parseInt(area.getKnowledgeArea());
-        KnowledgeArea deleteKnowledgeArea = areaRepo.findByKnowledgeAreaId(knowledgeAreaId);
-        areaRepo.delete(deleteKnowledgeArea);
+        KnowledgeArea deleteKnowledgeArea = areaRepository.findByKnowledgeAreaId(knowledgeAreaId);
+        areaRepository.delete(deleteKnowledgeArea);
 
         return "redirect:/manager/kennisgebied";
     }

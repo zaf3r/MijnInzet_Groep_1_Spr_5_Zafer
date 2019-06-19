@@ -1,7 +1,7 @@
 package makeitwork.mijninzet.model.preference;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import makeitwork.mijninzet.model.KnowledgeArea;
-import org.hibernate.annotations.SortNatural;
 
 import javax.persistence.*;
 import java.util.*;
@@ -11,24 +11,35 @@ import java.util.*;
 public class Subject {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "codevak")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "codevak", nullable = false)
     int subjectId;
 
     @Column(name = "naamvak")
     String subjectName;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "subject", cascade= {CascadeType.PERSIST,CascadeType.REMOVE})
     private Set<Preference> preferenceSet = new HashSet<>();
 
     @Transient
-    private SortedSet<Subject> allSubjects = new TreeSet<>();
+    @JsonIgnore
+    private List<Subject> allSubjects = new ArrayList<>();
 
-    @ElementCollection
-    @SortNatural
-    @Column (name = "kennisgebieden")
-    private SortedSet<KnowledgeArea> listKnowledgeAreas = new TreeSet<>();
+    @ManyToMany
+    private List<KnowledgeArea> knowledgeAreas;
 
+    @Transient
+    private KnowledgeArea ka;
+
+    public Subject(){};
+
+    public Subject(String subjectName) {
+        this.subjectName = subjectName;
+
+    }
+
+    //getter en setters
     public int getSubjectId() {
         return subjectId;
     }
@@ -53,8 +64,18 @@ public class Subject {
         this.preferenceSet = preferenceSet;
     }
 
-    public SortedSet<Subject> getAllSubjects() {
-        return allSubjects;
+    public List<KnowledgeArea> getKnowledgeAreas() {
+        return knowledgeAreas;
+    }
+
+    public void setKnowledgeAreas(List<KnowledgeArea> knowledgeAreas) {
+        this.knowledgeAreas = knowledgeAreas;
+    }
+
+    public void addKnowledgeToSubject(int id){
+        Subject newSubject = new Subject();
+        KnowledgeArea knowledgeArea = new KnowledgeArea();
+        newSubject.getKnowledgeAreas().add(knowledgeArea);
     }
 
     @Override
@@ -64,6 +85,7 @@ public class Subject {
                 ", subjectName='" + subjectName + '\'' +
                 ", preferenceSet=" + preferenceSet +
                 ", allSubjects=" + allSubjects +
+                ", knowledgeAreas=" + knowledgeAreas +
                 '}';
     }
 }
