@@ -1,6 +1,5 @@
-package makeitwork.mijninzet.repository;
+package makeitwork.mijninzet.model.Unused;
 
-import makeitwork.mijninzet.model.KnowledgeArea;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
