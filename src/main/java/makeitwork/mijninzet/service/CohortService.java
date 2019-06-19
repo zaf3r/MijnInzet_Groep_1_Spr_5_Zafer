@@ -2,11 +2,10 @@ package makeitwork.mijninzet.service;
 
 import makeitwork.mijninzet.model.Cohort;
 
-import makeitwork.mijninzet.model.Task;
-import makeitwork.mijninzet.model.User;
+
 import makeitwork.mijninzet.model.preference.Subject;
 import makeitwork.mijninzet.repository.CohortRepository;
-import makeitwork.mijninzet.repository.KnowledgeAreaRepository;
+
 import makeitwork.mijninzet.repository.SubjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
