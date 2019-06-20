@@ -32,15 +32,13 @@ public class IncidentController {
     @GetMapping("incidentsForm")
     public String getIncidentsFormHandler(Model model, Principal principal) {
         User user = userRepository.findByUsername(principal.getName());
-        List<Incident> incidentList;
                 Calendar calendar = Calendar.getInstance();
         int weekNumber = calendar.get(Calendar.WEEK_OF_YEAR);
         int year = calendar.get(Calendar.YEAR);
+        List<Incident> incidentList = incidentRepository.findAllByYearAndWeeknumberAndUser(year,weekNumber,user);
 
-        if(incidentRepository.findAllByYearAndWeeknumberAndUser(year,weekNumber,user).isEmpty()){
+        if(incidentList.isEmpty()){
             incidentList = incidentStarterList(weekNumber,year);
-        } else {
-            incidentList = incidentRepository.findAllByYearAndWeeknumberAndUser(year,weekNumber,user);
         }
 
         IncidentForm incidentForm = loadFormData(incidentList);
