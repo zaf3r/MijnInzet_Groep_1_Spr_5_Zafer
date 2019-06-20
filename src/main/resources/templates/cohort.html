@@ -40,7 +40,7 @@
             <input type="text" id="from" name="from" th:field="*{startDate}" required title="Vul een datum in "/>
             <label for="to">Einddatum: </label>
             <input type="text" id="to" name="to" th:field="*{endDate}" required title="Vul een datum in "/>
-            <input type="submit" value="Opslaan" id="opslaanCohort" />
+            <input type="submit" th:onclick="" value="Opslaan" />
         </div>
     </form>
 
@@ -75,7 +75,7 @@
                             <select  id="selectedSubjectList" name="selectedSubjectList" multiple="multiple" size="7" style="width: 250px">
                                 <option th:each="subject: ${subjects}" th:value="${subject.subjectId}" th:text="${subject.subjectName}"></option>
                             </select>
-                            <div><input type="submit" th:onclick="" value=">>" /></div>
+                            <input type="submit" th:onclick="" value=">" id="remove"/>
                         </form>
                     </div>
 
@@ -90,8 +90,6 @@
                             <select  id="subjectName" name="subjectName" multiple="multiple" size="7" style="width: 250px">
                                 <option th:each="subject: ${possibleSubjects}" th:value="${subject.subjectId}" th:text="${subject.subjectName}"></option>
                             </select>
-                            <div><input type="submit" th:onclick="" value="<<" /></div>
-
                         </form>
 
                     </div>

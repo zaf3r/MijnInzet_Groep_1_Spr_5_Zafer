@@ -15,12 +15,12 @@ import java.util.TreeSet;
 @Table(name = "cohort")
 public class Cohort {
 
-    @Transient
-    private final String JOINT_TABLE_NAME = "vakken_cohort";
-    @Transient
-    private final String COLUMN_ID = "cohortId";
-    @Transient
-    private final String PK_COLUMN_OTHER_ENTITY = "codevak";
+//    @Transient
+//    private final String JOINT_TABLE_NAME = "vakken_cohort";
+////    @Transient
+////    private final String COLUMN_ID = "cohortId";
+//    @Transient
+//    private final String PK_COLUMN_OTHER_ENTITY = "codevak";
 
     @Transient
     private SortedSet<Cohort> allCohorts = new TreeSet<>();
@@ -68,6 +68,22 @@ public class Cohort {
     public void removeSubject(String subjectName) {
         SortedSet<String> subjects = getSubjectNames();
         if (subjects.contains(subjectName)) subjects.remove(subjectName);
+    }
+
+    public void setAllCohorts(SortedSet<Cohort> allCohorts) {
+        this.allCohorts = allCohorts;
+    }
+
+    public void setCohortName(String cohortName) {
+        this.cohortName = cohortName;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
     }
 
     @Override
