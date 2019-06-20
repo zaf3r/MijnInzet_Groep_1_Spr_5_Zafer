@@ -78,4 +78,24 @@ public class Cohort {
                 ", endDate=" + endDate +
                 '}';
     }
+
+    public SortedSet<Cohort> getAllCohorts() {
+        return allCohorts;
+    }
+
+    public void setAllCohorts(SortedSet<Cohort> allCohorts) {
+        this.allCohorts = allCohorts;
+    }
+
+    public void setCohortName(String cohortName) {
+        this.cohortName = cohortName;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
 }
