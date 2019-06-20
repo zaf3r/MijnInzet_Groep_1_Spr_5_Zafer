@@ -1,6 +1,5 @@
 package makeitwork.mijninzet.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.mongodb.BasicDBObject;
 import makeitwork.mijninzet.model.Role;
@@ -9,14 +8,11 @@ import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.repository.RoleRepository;
 import makeitwork.mijninzet.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -88,16 +84,21 @@ public class UserController {
     }
     @PostMapping("/newUserRole")
     public @ResponseBody String userRole(@RequestBody String requestPayload) {
-//        Temp temp=deSerializeTemp(requestPayload);
-//        Optional<Role> role= roleRepository.findById(temp.getRoleId());
-//        System.out.printf("\n\nde username: %s\n",temp.getUserName());
-//        var user=userRepository.findByUsername(temp.getUserName());
-//        if (user==null) user=userRepository.findByEmail(temp.getEmail());
-//        System.out.printf("\n\nde user is: %s\n",user);
+        Temp temp=deSerializeTemp(requestPayload);
+        System.out.printf("\ntemp is: %s\n",temp);
+        Optional<Role> role= roleRepository.findById(temp.getRoleId());
+        System.out.printf("\nde role is: %s\n",role);
+        try {
+            wait(10000);
+        } catch (Exception e){e.getMessage();}
+        var user=userRepository.findByUsername(temp.getUserName());
+        System.out.printf("\n\nde user is: %s\n",user);
 //        List<Role> roles=new ArrayList<>();
 //        System.out.printf("\n\nde rol is: %s\n\n",role.get());
 //        roles.add(role.get());
+//        System.out.printf("\nde rollen zijn: %s\n",roles);
 //        user.setRole(roles);
+//        System.out.printf("\ngebruiker met rollen\n",user);
 //        userRepository.save(user);
         return "crudUser";
     }
