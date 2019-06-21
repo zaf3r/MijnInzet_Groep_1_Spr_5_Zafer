@@ -8,7 +8,10 @@ import makeitwork.mijninzet.service.VacatureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
 import java.time.LocalDate;
@@ -66,7 +69,6 @@ public class TaskController extends AbstractController {
         vacatureService.removeTask(myTask, usersRepository.findByUsername(principal.getName()));
         return "redirect:/myTasks";
     }
-
     //haalt alles uit database
     private List<Task> allTasks() {
         List<Task> tasks = this.taskRepository.findAll();
