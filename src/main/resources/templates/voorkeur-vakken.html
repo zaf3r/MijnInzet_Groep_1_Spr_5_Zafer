@@ -14,6 +14,13 @@
     <meta charset="UTF-8">
     <title>Voorkeur opgeven</title>
 </head>
+
+
+<!--Bas working on this, don't change!!-->
+<!--<div th:if="${roleUser.roleName == 'Docent'}">-->
+<!--    <header th:insert="~{navbarDocent :: header}"></header>-->
+<!--</div>-->
+
 <header th:insert="~{navbar :: header}"></header>
 
 <body>
@@ -50,7 +57,7 @@
             </tbody>
         </table>
         <br>
-        <input class="save" type="submit" value="Oplaan voorkeuren">
+        <input class="save" id="submitButton" type="submit" value="Oplaan voorkeuren">
     </form>
     <br>
     <br>
