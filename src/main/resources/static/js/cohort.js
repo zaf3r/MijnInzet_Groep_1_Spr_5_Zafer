@@ -11,10 +11,3 @@ $( function() {
     });
 } );
 
-// window.onload = function(){
-//     var option =
-// }
-
-function changeCohort(cohort) {
-    location.href = "http://localhost:8080/manager/cohort";
-}

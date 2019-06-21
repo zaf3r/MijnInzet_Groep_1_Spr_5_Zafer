@@ -18,89 +18,40 @@
 <script type="text/javascript" src="/js/cohort.js" th:src="@{/js/cohort.js}"></script>
 <head>
     <meta charset="UTF-8">
-    <title>Cohort</title>
+    <title>Cohortbeheer</title>
 </head>
 <body>
 <header th:insert="~{navbar :: header}"></header>
-<br>
-<br>
-<br>
-<br>
+
 <div class="container">
-    <section id="header" class="jumbotron text-center">
+    <section id="headerCohort" class="jumbotron text-center">
         <h1>Cohort beheer</h1>
     </section>
 
     <form action="#" th:object="${attr1}" th:action="@{saveCohort}" method="post" id="saveCohort" align="center">
         <div>
             <h4 class="text-center">Voeg hier een nieuw cohort toe:</h4>
-            <label class = "een">Cohortnaam:</label>
-            <input type="text" th:field="*{cohortName}" required title="Vul een vaknaam in! "id="cohortName" name="cohortName"/>
-            <label for="from">Startdatum:</label>
-            <input type="text" id="from" name="from" th:field="*{startDate}" required title="Vul een datum in "/>
-            <label for="to">Einddatum: </label>
-            <input type="text" id="to" name="to" th:field="*{endDate}" required title="Vul een datum in "/>
-            <input type="submit" th:onclick="" value="Opslaan" id="opslaanCohort"/>
+            <div align="center">
+            <div>
+                <label class = "een">Cohortnaam:</label>
+                <input type="text" th:field="*{cohortName}" required title="Vul een vaknaam in! "id="cohortName" name="cohortName"/>
+                <label>Coordinator:</label>
+                <select name="coordinator" id="coordinator" required>
+                    <option value="">Selecteer een coordinator</option>
+                    <option th:each="co: ${coordinators}" th:value="${co.id}" th:text="${co.username}"></option>
+                </select>
+            </div>
+                <br>
+            <div>
+                <label for="from">Startdatum:</label>
+                <input type="text" id="from" name="from" th:field="*{startDate}" required title="Vul een datum in "/>
+                <label for="to">Einddatum:</label>
+                <input type="text" id="to" name="to" th:field="*{endDate}" required title="Vul een datum in "/>
+            </div>
+                <input type="submit" th:onclick="alert('Het cohort is opgeslagen in de database.')" value="Opslaan" id="opslaanCohort"/>
+            </div>
         </div>
     </form>
-
-    <h4 class="text-center2" align="center">Voeg hier de vakken aan het gekozen Cohort toe:</h4>
-
-        <div class = "select" align="center">
-            <table id="allCohorts">
-                <tr collspan="2">
-                    <td>
-                        <div class="vakkenCohort">
-                        <div>Cohort lijst:</div>
-                        <form action="#" th:object="${cohorts}" th:action="@{showSubjects}" method="post">
-                            <select name="cohortName" size="7" style="width: 250px; border-color: lightgray">
-                                <option th:each="cohort: ${cohorts}" th:value="${cohort.cohortName}" th:text="${cohort.cohortName}"></option>
-                            </select>
-                            <input type="submit" th:onclick="" value="Selecteer" id="lijstCohort"/>
-<!--                            <div class="list">-->
-
-<!--                            </div>-->
-                        </form>
-                        </div>
-                    </td>
-                <tr>
-            </table>
-
-
-        </div>
-
-        <table align="center">
-            <tr collspan="2">
-
-                <td>
-                    <div class = "vakkenCohort">
-                        <div class="subjectName">Uit te kiezen vakken:</div>
-                        <form action="#" th:object="${possibleSubjects}" th:action="@{addSubjects}" method="post">
-                            <select  id="subjectName" name="subjectName" multiple="multiple" size="7" style="width: 250px">
-                                <option th:each="subject: ${possibleSubjects}" th:value="${subject.subjectId}" th:text="${subject.subjectName}"></option>
-                            </select>
-                            <input type="submit" th:onclick="" value=">" id="voegToe"/>
-                        </form>
-
-                    </div>
-                </td>
-                <td>
-                    <div class = "vakkenCohort">
-                        <div class="selectedSubjectList">Selecteer een of meerdere vakken:</div>
-                        <form action="#" th:object="${subjects}" th:action="@{removeSubjects}" method="post">
-                            <input type="submit" th:onclick="" value="<" id="remove"/>
-                            <select  id="selectedSubjectList" name="selectedSubjectList" multiple="multiple" size="7" style="width: 250px">
-                                <option th:each="subject: ${subjects}" th:value="${subject.subjectId}" th:text="${subject.subjectName}"></option>
-                            </select>
-                        </form>
-                    </div>
-
-                </td>
-
-            <tr>
-        </table>
-
-
 
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"

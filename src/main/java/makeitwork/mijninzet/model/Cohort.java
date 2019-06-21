@@ -6,7 +6,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -14,9 +13,6 @@ import java.util.TreeSet;
 @Entity
 @Table(name = "cohort")
 public class Cohort {
-
-    @Transient
-    private SortedSet<Cohort> allCohorts = new TreeSet<>();
 
     @Id
     @Column(name = "cohortNaam", nullable = false)
@@ -29,6 +25,10 @@ public class Cohort {
     @Column(name = "endDate")
     @DateTimeFormat(pattern = "MM/dd/yyyy")
     private LocalDate endDate;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "idgebruiker")
+    private User user;
 
     @ElementCollection
     @SortNatural
@@ -47,6 +47,10 @@ public class Cohort {
         this.endDate = endDate;
     }
 
+    public User getUser() { return user; }
+
+    public void setUser(User user) { this.user = user; }
+
     public String getCohortName() { return cohortName; }
 
     public LocalDate getStartDate() { return startDate; }
@@ -63,10 +67,6 @@ public class Cohort {
         if (subjects.contains(subjectName)) subjects.remove(subjectName);
     }
 
-    public void setAllCohorts(SortedSet<Cohort> allCohorts) {
-        this.allCohorts = allCohorts;
-    }
-
     public void setCohortName(String cohortName) {
         this.cohortName = cohortName;
     }
@@ -78,6 +78,7 @@ public class Cohort {
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
+
 
     @Override
     public String toString() {

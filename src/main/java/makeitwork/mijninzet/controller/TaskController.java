@@ -18,7 +18,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Controller
-//@RequestMapping(value = "/teacher")
+@RequestMapping("/teacher")
 public class TaskController extends AbstractController {
 
     @Autowired
@@ -66,7 +66,6 @@ public class TaskController extends AbstractController {
         vacatureService.removeTask(myTask, usersRepository.findByUsername(principal.getName()));
         return "redirect:/myTasks";
     }
-
     //haalt alles uit database
     private List<Task> allTasks() {
         List<Task> tasks = this.taskRepository.findAll();

@@ -23,7 +23,6 @@ public class User{
     @Transient
     private final int MIN_PWD=8;
 
-
     //Column names of entity
     @Transient
     private final String COLUMN_PASSWORD="wachtwoord";
@@ -103,6 +102,8 @@ public class User{
             joinColumns = @JoinColumn(name = COLUMN_ID),
             inverseJoinColumns = @JoinColumn(name = PK_COLUMN_OTHER_ENTITY))
     private List<Role> role;
+
+;
 
     //contracturen?
 //    @Transient
