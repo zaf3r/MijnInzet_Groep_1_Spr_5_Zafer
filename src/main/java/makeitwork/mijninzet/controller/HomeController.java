@@ -1,13 +1,21 @@
 
 package makeitwork.mijninzet.controller;
 
+import makeitwork.mijninzet.model.User;
+import makeitwork.mijninzet.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
+
 @Controller
 public class HomeController {
+
+    @Autowired
+    UserRepository userRepository;
 
 
 //    @GetMapping ("/")
@@ -21,11 +29,12 @@ public class HomeController {
     }
 
     @GetMapping("/home")
-    public String home(Model model,
+    public String home(Model model, Principal principal,
                        @RequestParam(value = "name", required = false,
                                defaultValue = "Guest") String name) {
         String appName = "mijnInzet";
         String teamLeden = "Baseet, Bibi, David, Merel, Peter en Zafer";
+        User user = userRepository.findByUsername(principal.getName());
 
         model.addAttribute("name", name);
         model.addAttribute("title", appName);
