@@ -26,6 +26,8 @@
 <form action="#" th:object="${attr3}" th:action="@{saveSubject}" method="post" id="saveSubject" align="center">
     <label th:placeholder="vaknaam"/>
     <input type="text" th:field="*{subjectName}" required title="Vul een vaknaam in"/>
+    <label th:placeholder="uren"/>
+    <input type="number" th:field="*{hours}" required title="Vul het aantal uren in"/>
 <!--    <input type="submit" th:onclick="alert ('Het vak is opgeslagen in de database.')" value="Opslaan" />-->
     <input type="submit" value="Opslaan" id="addsubjectButton"/>
 </form>
