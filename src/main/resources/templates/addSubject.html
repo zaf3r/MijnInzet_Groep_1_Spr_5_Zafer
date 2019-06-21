@@ -24,10 +24,17 @@
 
 <h3 class="text-center">Voeg een nieuw vak toe</h3>
 <form action="#" th:object="${attr3}" th:action="@{saveSubject}" method="post" id="saveSubject" align="center">
-    <label th:placeholder="vaknaam"/>
+    <div align="center">
+    <label th:placeholder="vaknaam"/>Vaknaam
     <input type="text" th:field="*{subjectName}" required title="Vul een vaknaam in"/>
-<!--    <input type="submit" th:onclick="alert ('Het vak is opgeslagen in de database.')" value="Opslaan" />-->
+    </div>
+    <div align="center">
+    <label th:placeholder="uren"/>Aantal uren
+    <input type="number" th:field="*{hours}" required title="Vul het aantal uren in"/>
+    </div>
+    <div align="center">
     <input type="submit" value="Opslaan" id="addsubjectButton"/>
+    </div>
 </form>
 </div>
 <br>

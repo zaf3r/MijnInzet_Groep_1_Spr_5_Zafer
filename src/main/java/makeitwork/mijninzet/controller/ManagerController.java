@@ -1,15 +1,16 @@
 package makeitwork.mijninzet.controller;
 
 import makeitwork.mijninzet.model.preference.Subject;
-import makeitwork.mijninzet.repository.CourseRepository;
 import makeitwork.mijninzet.repository.SubjectRepository;
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-
+import javax.validation.ConstraintViolationException;
 import javax.validation.ValidationException;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -45,8 +46,10 @@ public class ManagerController {
     @NotNull
     @RequestMapping(value = "saveSubject", method = RequestMethod.POST)
     public String saveSubject(@ModelAttribute("saveSubject") Subject subject, Model model) {
+
         try {
         model.addAttribute("subjectName", subject.getSubjectName());
+        model.addAttribute("hours", subject.getHours());
         subRepo.save(subject);
     }
         catch (ConstraintViolationException ex) {
