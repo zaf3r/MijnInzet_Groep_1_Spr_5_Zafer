@@ -1,146 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="98e343d3-77d8-4990-8127-94e8d07998a7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/AbstractController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/AvailabilityController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/CohortController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/HolidayScheduleController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/IncidentController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/IncidentRestController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/KnowledgeAreaController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/KnowledgeAreaRestController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/SubjectController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/SubjectScheduleController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/UserFrontend.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/unused/CourseController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Availability/DayFinder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Availability/GlobalAvailability/Availability.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Availability/GlobalAvailability/AvailabilityForm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Availability/Incident/Incident.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Availability/Incident/IncidentForm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Availability/PartOfDay.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Availability/Weekday.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Cohort.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/HolidaySchedule.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/SubjectResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/TaskDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Temp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Unused/KnowledgeArea.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Unused/KnowledgeAreaRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/UserDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/AvailabilityRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/CohortRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/HolidayScheduleRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/IncidentRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/RoleRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/service/CohortService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/service/crudUserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/js/usrFormValidation.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/css/cohort.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/css/crudUser.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/css/holidaySchedule.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/GlobalAvailability.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/addSubject.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/bootstrap-weekpicker.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/cohort.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/courseManagement.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/getrequestShow.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/holidaySchedule.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/home.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/incidents-form.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/postrequestShow.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/addSubject.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/cohort.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/crudUser.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/holdayScheduleHomemade.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/holidaySchedule.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/incidents-form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/myTasks.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/subjectSchedule.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/unused/addCourse.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/unused/courseManagement.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/makeitwork/mijninzet/userController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/makeitwork/mijninzet/userRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/mijninzet-c15-team-1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mijninzet-c15-team-1.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mijninzet (1).iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/MijninzetApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/MijninzetApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/config/SecurityConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/GlobalAvalabilityController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/ManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/ManagerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/TaskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/TaskController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/TeacherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/TeacherController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Availibility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Unused/Availibility.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Unused/Course.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/DayPart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Unused/DayPart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/DayPartId.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Unused/DayPartId.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/GlobalAvalability.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Unused/GlobalAvalability.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/IncidentalAvalability.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/PartOfDay.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Preference.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/preference/Preference.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/PreferenceForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/preference/PreferenceForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/PreferenceScale.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/preference/PreferenceScale.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Subject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/preference/Subject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/TasksDoneByUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Teacher.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/UserDetailsImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/UserDetailsImp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Weekdays.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/forms/AvalabilityForm.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/forms/IncidentForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Unused/IncidentForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/CourseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/CourseRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/GlobalAvalabilityRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/IncidentalAvalabilityRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/PreferenceRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/PreferenceRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/SQLScripts/MijnInzetDBScript_versieZD2.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/SQLScripts/MijnInzetDBScript_versieZD2.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/SQLScripts/MijnInzetInsertScriptv2.5.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/SQLScripts/MijnInzetInsertScriptv2.6.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/SubjectRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/SubjectRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/UsersRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/VacatureRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/VacatureRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/service/CustomUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/service/CustomUserDetailsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/service/VacatureService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/service/VacatureService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/avalability.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/avalability.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/generic.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/generic.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/genericBQ.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/header.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/home.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/incident.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/unused/incident-OLD.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/navbar-custom.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/navbar.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/navbar.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/navbarBQ.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/task.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/task.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/logoMiW.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/availability.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/globalAvailability.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/globalAvailability.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/addCourse.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/addUser.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/addUser.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/empty.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/footer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/globalAvalability.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/globalAvalability.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/incident.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/unused/incident.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/navbar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/navbarBQ.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/newtask.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/newtask.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/showTask.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/showTask.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/taskOverview.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/taskOverview.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/voorkeur-vakken.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/voorkeur-vakken.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/makeitwork/mijninzet/TaskInlezen.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/makeitwork/mijninzet/Tasks.txt" beforeDir="false" />
-    </list>
+    <list default="true" id="98e343d3-77d8-4990-8127-94e8d07998a7" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -157,8 +18,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/crudUser.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="127">
-              <caret line="89" column="74" selection-start-line="89" selection-start-column="74" selection-end-line="89" selection-end-column="74" />
+            <state relative-caret-position="157">
+              <caret line="34" column="102" lean-forward="true" selection-start-line="34" selection-start-column="102" selection-end-line="34" selection-end-column="102" />
               <folding>
                 <element signature="n#style#0;n#span#0;n#div#0;n#div#4;n#form#0;n#fieldset#0;n#form#0;n#div#0;n#body#0;n#html#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#div#0;n#div#5;n#form#0;n#fieldset#0;n#form#0;n#div#0;n#body#0;n#html#0;n#html#0;n#!!top" expanded="true" />
@@ -485,11 +346,18 @@
       <option name="project" value="LOCAL" />
       <updated>1560514067934</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="CRUD USER opmaak">
+      <created>1560963669062</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1560963669062</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52605000" />
+    <option name="totallyTimeSpent" value="53466000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -626,7 +494,8 @@
     <MESSAGE value="List of courses as option in CourseManagement" />
     <MESSAGE value="Fixed adding KnowledgeAreas list on courseManagement page" />
     <MESSAGE value="Merge David+Baseet" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge David+Baseet" />
+    <MESSAGE value="CRUD USER opmaak" />
+    <option name="LAST_COMMIT_MESSAGE" value="CRUD USER opmaak" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/config/SecurityConfiguration.java">
@@ -928,8 +797,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/crudUser.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="89" column="74" selection-start-line="89" selection-start-column="74" selection-end-line="89" selection-end-column="74" />
+        <state relative-caret-position="157">
+          <caret line="34" column="102" lean-forward="true" selection-start-line="34" selection-start-column="102" selection-end-line="34" selection-end-column="102" />
           <folding>
             <element signature="n#style#0;n#span#0;n#div#0;n#div#4;n#form#0;n#fieldset#0;n#form#0;n#div#0;n#body#0;n#html#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#div#0;n#div#5;n#form#0;n#fieldset#0;n#form#0;n#div#0;n#body#0;n#html#0;n#html#0;n#!!top" expanded="true" />
