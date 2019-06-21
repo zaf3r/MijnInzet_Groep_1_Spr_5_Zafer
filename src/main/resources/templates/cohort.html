@@ -40,25 +40,28 @@
             <input type="text" id="from" name="from" th:field="*{startDate}" required title="Vul een datum in "/>
             <label for="to">Einddatum: </label>
             <input type="text" id="to" name="to" th:field="*{endDate}" required title="Vul een datum in "/>
-            <input type="submit" th:onclick="" value="Opslaan" />
+            <input type="submit" th:onclick="" value="Opslaan" id="opslaanCohort"/>
         </div>
     </form>
 
     <h4 class="text-center2" align="center">Voeg hier de vakken aan het gekozen Cohort toe:</h4>
 
         <div class = "select" align="center">
-            <label for="allCohorts"></label>
             <table id="allCohorts">
                 <tr collspan="2">
                     <td>
+                        <div class="vakkenCohort">
+                        <div>Cohort lijst:</div>
                         <form action="#" th:object="${cohorts}" th:action="@{showSubjects}" method="post">
-                            <select name="cohortName" multiple="multiple" size="7" style="width: 250px; height: 200px; border-color: lightgray">
+                            <select name="cohortName" size="7" style="width: 250px; border-color: lightgray">
                                 <option th:each="cohort: ${cohorts}" th:value="${cohort.cohortName}" th:text="${cohort.cohortName}"></option>
-                            </select><br>
-                            <div class="list">
+                            </select>
                             <input type="submit" th:onclick="" value="Selecteer" id="lijstCohort"/>
-                            </div>
+<!--                            <div class="list">-->
+
+<!--                            </div>-->
                         </form>
+                        </div>
                     </td>
                 <tr>
             </table>
@@ -68,32 +71,32 @@
 
         <table align="center">
             <tr collspan="2">
-                <td>
-                    <div class = "vakkenCohort">
-                        <div class="selectedSubjectList">Selecteer een of meerdere vakken:</div>
-                        <form action="#" th:object="${subjects}" th:action="@{removeSubjects}" method="post">
-                            <select  id="selectedSubjectList" name="selectedSubjectList" multiple="multiple" size="7" style="width: 250px">
-                                <option th:each="subject: ${subjects}" th:value="${subject.subjectId}" th:text="${subject.subjectName}"></option>
-                            </select>
-                            <input type="submit" th:onclick="" value=">" id="remove"/>
-                        </form>
-                    </div>
-
-                </td>
 
                 <td>
                     <div class = "vakkenCohort">
                         <div class="subjectName">Uit te kiezen vakken:</div>
                         <form action="#" th:object="${possibleSubjects}" th:action="@{addSubjects}" method="post">
-                            <input type="submit" th:onclick="" value="<" id="voegToe"/>
-
                             <select  id="subjectName" name="subjectName" multiple="multiple" size="7" style="width: 250px">
                                 <option th:each="subject: ${possibleSubjects}" th:value="${subject.subjectId}" th:text="${subject.subjectName}"></option>
                             </select>
+                            <input type="submit" th:onclick="" value=">" id="voegToe"/>
                         </form>
 
                     </div>
                 </td>
+                <td>
+                    <div class = "vakkenCohort">
+                        <div class="selectedSubjectList">Selecteer een of meerdere vakken:</div>
+                        <form action="#" th:object="${subjects}" th:action="@{removeSubjects}" method="post">
+                            <input type="submit" th:onclick="" value="<" id="remove"/>
+                            <select  id="selectedSubjectList" name="selectedSubjectList" multiple="multiple" size="7" style="width: 250px">
+                                <option th:each="subject: ${subjects}" th:value="${subject.subjectId}" th:text="${subject.subjectName}"></option>
+                            </select>
+                        </form>
+                    </div>
+
+                </td>
+
             <tr>
         </table>
 

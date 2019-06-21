@@ -15,13 +15,6 @@ import java.util.TreeSet;
 @Table(name = "cohort")
 public class Cohort {
 
-//    @Transient
-//    private final String JOINT_TABLE_NAME = "vakken_cohort";
-////    @Transient
-////    private final String COLUMN_ID = "cohortId";
-//    @Transient
-//    private final String PK_COLUMN_OTHER_ENTITY = "codevak";
-
     @Transient
     private SortedSet<Cohort> allCohorts = new TreeSet<>();
 
