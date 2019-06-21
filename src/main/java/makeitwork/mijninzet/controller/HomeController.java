@@ -49,7 +49,7 @@ public class HomeController {
     public String addIncidents(Model model, @RequestParam(value = "name", required = false,
             defaultValue = "Guest") String name) {
         model.addAttribute("userName", name);
-        return "incident"; }
+        return "incidents-form"; }
 
     @GetMapping("/teacher")
     public String addPreferance(Model model, @RequestParam(value = "name", required = false,

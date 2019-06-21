@@ -2,9 +2,8 @@ var week;
 var year;
 var requestUrl;
 var postUrl;
-var btn = document.querySelector("#btn");
 var jsonPost = new Object();
-var allRows = document.querySelectorAll('td');
+var weekpicker;
 
 var mondayMo = document.querySelector('input[name="mondayMo"]');
 var mondayAf = document.querySelector('input[name="mondayAf"]');
@@ -23,7 +22,7 @@ var fridayAf = document.querySelector('input[name="fridayAf"]');
 var fridayEv = document.querySelector('input[name="fridayEv"]');
 
 $(function() {
-    var weekpicker = $("#weekpicker1").weekpicker();
+    weekpicker = $("#weekpicker1").weekpicker();
 
     week = weekpicker.getWeek();
     year = weekpicker.getYear();
@@ -38,29 +37,52 @@ $(function() {
         requestUrl = "http://localhost:8080/api/findincident/"+year+"/"+week;
 
         requestCall();
-    })
-
-});
-
-
-/*
-$(function() {
-
-    btn.addEventListener("onclick", function () {
-        jsonPost.mondayMo = mondayMo;
-
-
-        });
-
-        $.post(postUrl, function (data) {
-
-
-            console.log(data);
-        }).fail("Posting failed");
     });
-});
-*/
 
+    var btn = $("#button").on("click", function () {
+        postCall();
+    });
+
+});
+
+
+function postCall() {
+        jsonPost.week = weekpicker.getWeek();
+        jsonPost.year = weekpicker.getYear();
+
+        jsonPost.mondayMo = mondayMo.value;
+        jsonPost.mondayAf = mondayAf.value;
+        jsonPost.mondayEv = mondayEv.value;
+
+        jsonPost.tuesdayMo = tuesdayMo.value;
+        jsonPost.tuesdayAf = tuesdayAf.value;
+        jsonPost.tuesdayEv = tuesdayEv.value;
+
+        jsonPost.wednesdayMo = wednesdayMo.value;
+        jsonPost.wednesdayAf = wednesdayAf.value;
+        jsonPost.wednesdayEv = wednesdayEv.value;
+
+        jsonPost.thursdayMo = thursdayMo.value;
+        jsonPost.thursdayAf = thursdayAf.value;
+        jsonPost.thursdayEv = thursdayEv.value;
+
+        jsonPost.fridayMo = fridayMo.value;
+        jsonPost.fridayAf = fridayAf.value;
+        jsonPost.fridayEv = fridayEv.value;
+
+        var jsonObject = JSON.stringify(jsonPost);
+
+        postUrl = "http://localhost:8080/api/saveIncidents/";
+        console.log(jsonPost);
+
+    $.ajax({
+        type: "POST",
+        contentType : 'application/json; charset=utf-8',
+        dataType : 'json',
+        url: postUrl,
+        data:jsonObject,
+        }).done(alert("Uw incidenten voor het jaar " + jsonPost.year + ", week " + jsonPost.week + " zijn opgeslagen"));
+}
  function requestCall() {
 
      $(function () {
@@ -102,8 +124,8 @@ function loadTuesday(incidentArray) {
                 tuesdayMo.value = day.morning;
                 tuesdayMo.parentNode.classList = day.morning;
                 tuesdayAf.value = day.afternoon;
-                tuesdayAf.parentNode.classList = day.evening;
-                tuesdayEv.value = day.afternoon;
+                tuesdayAf.parentNode.classList = day.afternoon;
+                tuesdayEv.value = day.evening;
                 tuesdayEv.parentNode.classList = day.evening;
             }
         }
@@ -116,8 +138,8 @@ function loadWednesday(incidentArray) {
                 wednesdayMo.value = day.morning;
                 wednesdayMo.parentNode.classList = day.morning;
                 wednesdayAf.value = day.afternoon;
-                wednesdayAf.parentNode.classList = day.evening;
-                wednesdayEv.value = day.afternoon;
+                wednesdayAf.parentNode.classList = day.afternoon;
+                wednesdayEv.value = day.evening;
                 wednesdayEv.parentNode.classList = day.evening;
             }
         }
@@ -130,8 +152,8 @@ function loadThursday(incidentArray) {
                 thursdayMo.value = day.morning;
                 thursdayMo.parentNode.classList = day.morning;
                 thursdayAf.value = day.afternoon;
-                thursdayAf.parentNode.classList = day.evening;
-                thursdayEv.value = day.afternoon;
+                thursdayAf.parentNode.classList = day.afternoon;
+                thursdayEv.value = day.evening;
                 thursdayEv.parentNode.classList = day.evening;
             }
         }
@@ -144,8 +166,8 @@ function loadFriday(incidentArray) {
                 fridayMo.value = day.morning;
                 fridayMo.parentNode.classList = day.morning;
                 fridayAf.value = day.afternoon;
-                fridayAf.parentNode.classList = day.evening;
-                fridayEv.value = day.afternoon;
+                fridayAf.parentNode.classList = day.afternoon;
+                fridayEv.value = day.evening;
                 fridayEv.parentNode.classList = day.evening;
             }
         }

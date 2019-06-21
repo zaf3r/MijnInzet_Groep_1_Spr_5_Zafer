@@ -1,6 +1,5 @@
 package makeitwork.mijninzet.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.mongodb.BasicDBObject;
 import makeitwork.mijninzet.model.Role;
@@ -9,13 +8,11 @@ import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.repository.RoleRepository;
 import makeitwork.mijninzet.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -32,26 +29,6 @@ public class UserController {
     public UserController() {
     }
 
-    @PostMapping("/updateUser")
-    public String updateUser(Model model){
-        model.addAttribute("status","Voor uw gebruikersnaam en wachtwoord in");
-        return "crudUser";
-    }
-    @PostMapping("/retrieveUser")
-    public String retreiveUser(Model model){
-        model.addAttribute("status","Uw gegevens zijn:");
-        return "crudUser";
-    }
-    @PostMapping("/deleteUser")
-    public String deleteUser(Model model){
-        model.addAttribute("status","Deze gebruiker is verwijderd");
-        return "crudUser";
-    }
-    @PostMapping("/blockUser")
-    public String blockUser(Model model){
-        model.addAttribute("status","Deze gebruiker kan niet meer inloggen");
-        return "crudUser";
-    }
     @PostMapping("/checkUserName")
     public @ResponseBody String nameCorrect(@RequestBody String requestPayload){
         var input = BasicDBObject.parse(requestPayload);
@@ -108,17 +85,22 @@ public class UserController {
     }
     @PostMapping("/newUserRole")
     public @ResponseBody String userRole(@RequestBody String requestPayload) {
-//        Temp temp=deSerializeTemp(requestPayload);
-//        Optional<Role> role= roleRepository.findById(temp.getRoleId());
-//        System.out.printf("\n\nde username: %s\n",temp.getUserName());
-//        var user=userRepository.findByUsername(temp.getUserName());
-//        if (user==null) user=userRepository.findByEmail(temp.getEmail());
-//        System.out.printf("\n\nde user is: %s\n",user);
-//        List<Role> roles=new ArrayList<>();
-//        System.out.printf("\n\nde rol is: %s\n\n",role.get());
-//        roles.add(role.get());
-//        user.setRole(roles);
-//        userRepository.save(user);
+        Temp temp=deSerializeTemp(requestPayload);
+
+        List<Role> roles=new ArrayList<>();
+        Optional<Role> role= roleRepository.findById(temp.getRoleId());
+        Role addRole=role.get();
+        roles.add(addRole);
+
+        User user=new User();
+        user=userRepository.findByUsername(temp.getUserName());
+        System.out.printf("\n\nvers uit DB de user heeft de volgende rollen: %s\n",user.getRole());
+        user.setRole(roles);
+        System.out.printf("\n\nde user heeft nu de volgende rollen: %s\n",user.getRole());
+        updateUser(user);
+        User latestUser=new User();
+        latestUser=userRepository.findByUsername(user.getUsername());
+        System.out.printf("\n\nde user heeft na verwerken in db de volgende rollen: %s\n",latestUser.getRole());
         return "crudUser";
     }
     private Boolean userBestaat(User user){
@@ -131,19 +113,13 @@ public class UserController {
         User thatUser=new User();
         thatUser=null;
         thatUser= userRepository.findByUsername(user.getUsername());
-        if (thatUser==null) thatUser= userRepository.findByUsername(user.getEmail());
-        userRepository.deleteById(thatUser.getId());
-        thatUser.setEmail(user.getEmail());
-        thatUser.setPassword(user.getPassword());
-        thatUser.setFamilyName(user.getFamilyName());
-        thatUser.setNamePrefix(user.getNamePrefix());
-        thatUser.setSurname(user.getSurname());
-        thatUser.setActive(user.getActive());
-        thatUser.setUsername(user.getUsername());
-        storeUser(thatUser);
+        if (thatUser==null) thatUser= userRepository.findByEmail(user.getEmail());
+        user.setId(thatUser.getId());
+        storeUser(user);
     }
     private void storeUser(User user){
         userRepository.save(user);
+        userRepository.flush();
     }
 }
 

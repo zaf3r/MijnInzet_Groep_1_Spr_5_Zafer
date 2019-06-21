@@ -3,6 +3,7 @@
 <html lang="en">
 <link rel="stylesheet" type="text/css" th:href="@{/css/generic.css}"/>
 <link rel="stylesheet" type="text/css" th:href="@{/css/navbar.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/subject.css}"/>
 <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap" rel="stylesheet">
@@ -16,31 +17,36 @@
 
 <br>
 <br>
-<br>
-<br>
 <div class="container">
-<h2 class="text-center">Voeg een nieuw vak toe</h2>
-<form action="#" th:object="${attr3}" th:action="@{saveSubject}" method="post" id="saveSubject">
-    <label th:text="vak"/>
-    <input type="text" th:field="*{subjectName}" required title="Vul een vaknaam in "/>
+    <section id="headerSubject" class="jumbotron text-center">
+        <h1> Vakkenbeheer </h1>
+    </section>
+
+<h3 class="text-center">Voeg een nieuw vak toe</h3>
+<form action="#" th:object="${attr3}" th:action="@{saveSubject}" method="post" id="saveSubject" align="center">
+    <label th:placeholder="vaknaam"/>
+    <input type="text" th:field="*{subjectName}" required title="Vul een vaknaam in"/>
 <!--    <input type="submit" th:onclick="alert ('Het vak is opgeslagen in de database.')" value="Opslaan" />-->
-    <input type="submit" value="Opslaan" />
+    <input type="submit" value="Opslaan" id="addsubjectButton"/>
 </form>
 </div>
 <br>
 
-<div class="container">
-    <h2 class="text-center">Lijst met bestaande vakken</h2>
+<div class="container" id="lijstVakken" align="center">
+    <h3 class="text-center">Verwijder een of meerdere vakken:</h3>
 
     <table>
         <tr collspan="2">
             <td>
-                <form onsubmit="return confirm('Weet u zeker dat u het vak wilt verwijderen?');" action="#" th:object="${subjects}" th:action="@{deleteSubject}" method="post">
-                    <select  id="move1" name="subjectName" multiple="multiple" size="7">
+                <form onsubmit="return confirm('Weet u zeker dat u het vak wilt verwijderen?');" class="formvakken" th:object="${subjects}" th:action="@{deleteSubject}" method="post">
+                    <select  id="move1" name="subjectName" multiple="multiple" size="7" style="border: none">
                         <option th:each="subject: ${subjects}" th:value="${subject.subjectId}" th:text="${subject.subjectName}"></option>
-                        <br><input type="submit" value="Delete"/>
-                    </select>
+                    </select><br>
+                    <div class = "delete">
+                        <input type="submit" value="Delete" id="deletesubjectButton"/>
+                    </div>
                 </form>
+
             </td>
         <tr>
     </table>
@@ -59,6 +65,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 <script type="text/javascript" src="/js/addSubject.js" th:src="@{/js/addSubject.js}"></script>
+
 </body>
 
 

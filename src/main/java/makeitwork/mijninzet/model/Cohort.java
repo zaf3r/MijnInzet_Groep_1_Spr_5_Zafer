@@ -1,13 +1,12 @@
 package makeitwork.mijninzet.model;
 
-import makeitwork.mijninzet.model.preference.Subject;
+
 import org.hibernate.annotations.SortNatural;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -16,12 +15,12 @@ import java.util.TreeSet;
 @Table(name = "cohort")
 public class Cohort {
 
-    @Transient
-    private final String JOINT_TABLE_NAME = "vakken_cohort";
-    @Transient
-    private final String COLUMN_ID = "cohortId";
-    @Transient
-    private final String PK_COLUMN_OTHER_ENTITY = "codevak";
+//    @Transient
+//    private final String JOINT_TABLE_NAME = "vakken_cohort";
+////    @Transient
+////    private final String COLUMN_ID = "cohortId";
+//    @Transient
+//    private final String PK_COLUMN_OTHER_ENTITY = "codevak";
 
     @Transient
     private SortedSet<Cohort> allCohorts = new TreeSet<>();
@@ -57,23 +56,34 @@ public class Cohort {
 
     public String getCohortName() { return cohortName; }
 
-    public void setCohortName(String cohortName) { this.cohortName = cohortName; }
-
     public LocalDate getStartDate() { return startDate; }
 
-    public void setStartDate(LocalDate startDate) { this.startDate = startDate; }
-
     public LocalDate getEndDate() { return endDate; }
-
-    public void setEndDate(LocalDate endDate) { this.endDate = endDate; }
-
-    public void setAllCohorts(SortedSet<Cohort> allCohorts) { this.allCohorts = allCohorts; }
-
-    public SortedSet<Cohort> getAllCohorts() { return allCohorts; }
 
     public void addSubject(String subjectName) {
         SortedSet<String> subjects = getSubjectNames();
         if (!subjects.contains(subjectName)) subjects.add(subjectName);
+    }
+
+    public void removeSubject(String subjectName) {
+        SortedSet<String> subjects = getSubjectNames();
+        if (subjects.contains(subjectName)) subjects.remove(subjectName);
+    }
+
+    public void setAllCohorts(SortedSet<Cohort> allCohorts) {
+        this.allCohorts = allCohorts;
+    }
+
+    public void setCohortName(String cohortName) {
+        this.cohortName = cohortName;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
     }
 
     @Override

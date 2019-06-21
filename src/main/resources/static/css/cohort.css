@@ -1,3 +1,72 @@
 .container {
     margin-top: 65px;
 }
+
+
+#header{
+    background-image: url("https://images.homedepot-static.com/productImages/9513d7c0-6365-4903-b136-0bb9d93c7e3a/svn/brewster-wallpaper-wv8103-64_600.jpg");
+    background-size: cover;
+    margin-bottom: 35px;
+}
+
+form{
+    align-content: center;
+
+}
+
+h4.text-center{
+    color: #666666;
+    padding-bottom: 30px;
+}
+
+h4.text-center2{
+    color: #666666;
+    padding-top: 50px;
+}
+
+#opslaanCohort {
+    border: 2px solid lightcoral;
+    background-color: white;
+}
+
+#lijstCohort {
+    border: 2px solid lightcoral;
+    background-color: white;
+}
+
+#voegToe {
+    border: 2px solid lightcoral;
+    background-color: white;
+    width: 55px;
+    text-align: center;
+}
+
+#remove {
+    border: 2px solid lightcoral;
+    background-color: white;
+    width: 55px;
+    text-align: center;
+}
+
+label {
+    padding-left: 15px;
+}
+
+div.select {
+    margin: 0 auto;
+}
+
+div.list {
+    padding-top: 10px;
+    padding-bottom: 25px;
+}
+
+div.vakkenCohort{
+    margin-top: 8px;
+    margin-bottom: 30px;
+}
+
+div.subjectName {
+    padding-left: 57px;
+}
+
