@@ -1,6 +1,7 @@
 
 package makeitwork.mijninzet.controller;
 
+import makeitwork.mijninzet.model.Role;
 import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,16 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.security.Principal;
 
 @Controller
-public class HomeController {
+public class HomeController implements RetrieveUserRole{
 
     @Autowired
     UserRepository userRepository;
-
-
-//    @GetMapping ("/")
-//    public String index() {
-//    return "index";
-//    }
 
     @GetMapping("/login")
     public String login(){
@@ -35,7 +30,10 @@ public class HomeController {
         String appName = "mijnInzet";
         String teamLeden = "Baseet, Bibi, David, Merel, Peter en Zafer";
         User user = userRepository.findByUsername(principal.getName());
+        Role roleCurrentUser = retrieveRole(userRepository, principal);
 
+        model.addAttribute("user",user);
+        model.addAttribute("roleCurrentUser", roleCurrentUser);
         model.addAttribute("name", name);
         model.addAttribute("title", appName);
         model.addAttribute("team", teamLeden);
