@@ -224,9 +224,9 @@ public class User implements Comparable{
     public void addTask(String taskId) {
         SortedSet<String> tasks = getTasks();
         if (!tasks.contains(taskId)) tasks.add(taskId);
-//        Sollicitatie sl = new Sollicitatie();
-//        sl.setTaskStatus(Sollicitatie.TaskStatus.INTERESTED);
-//        System.out.println(sl);
+        Sollicitatie sl = new Sollicitatie();
+        sl.setTaskStatus(Sollicitatie.TaskStatus.INTERESTED);
+        System.out.println("____________" + sl);
     }
 
     public void removeTask(String taskId) {

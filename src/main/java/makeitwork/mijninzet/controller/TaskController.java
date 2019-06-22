@@ -18,7 +18,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Controller
-@RequestMapping("/teacher")
+//@RequestMapping("/teacher")
 public class TaskController {
 
     @Autowired
@@ -30,14 +30,14 @@ public class TaskController {
     @Autowired
     VacatureService vacatureService;
 
-    @GetMapping("/taskOverview") //th:action
+    @GetMapping("teacher/taskOverview") //th:action
     public String MenuHandler(Model model, Principal principal) {
         User user = usersRepository.findByUsername(principal.getName());
         model.addAttribute("allTasks", tasks2React(user));
         return "taskOverview";
     }
 
-    @GetMapping("/showTask/{task}")  //th:action
+    @GetMapping("teacher/showTask/{task}")  //th:action
     public String TaskDetailHandler(@ModelAttribute("task") Task taak, @RequestParam("taskId") String taakId, Model model) {
         taak = opening(taakId);
         model.addAttribute("taak", taak);
@@ -45,7 +45,7 @@ public class TaskController {
         return "showTask"; //html
     }
 
-    @GetMapping("taskSave/{taskId}") //mapping bij voor de view
+    @GetMapping("teacher/taskSave/{taskId}") //mapping bij voor de view
     public String ApplicationHandler(@ModelAttribute("task") Task taak, @RequestParam("taskId") String taakId, Principal principal) {
         taak = opening(taakId);
         vacatureService.addTask(taak, usersRepository.findByUsername(principal.getName()));
