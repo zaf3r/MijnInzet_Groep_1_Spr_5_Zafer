@@ -21,13 +21,13 @@
 <body>
 <section id="containerContent">
 
-    <form action="#" th:action="@{/taskOverview}" th:object="${taak}" th:method="get">
+    <form action="#" th:action="@{taskOverview}" th:object="${taak}" th:method="get">
         <div class="job-header">
         <h1 class="job-header header"><span th:text="*{titel}"/></h1>
     </div>
     </form>
     <div class="container">
-    <form action="#" th:action="@{/taskSave/{taskId}}" th:object="${taak}" th:method="get">
+    <form action="#" th:action="@{taskSave/{taskId}}" th:object="${taak}" th:method="get">
         <div class="job-header-bar col-md-8 justify-content-right">
         <button type="submit" id="love" class="love"><i class="fas fa-thumbs-up" style="font-size: 2.5em;"></i>
             <input type="hidden" id="taskId" name="taskId" th:value="*{id}"></button>

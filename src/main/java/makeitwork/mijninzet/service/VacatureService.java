@@ -50,15 +50,15 @@ public class VacatureService {
         return vacatureRepository.findUserById(userId);
     }
 
-    //lijst met vacatures van een Docent: zijn lijst met taken
-//    public List<Task> getAllTasks(User user){
-//        List<Task> tasks = new ArrayList<>();
-//        for (String taskId: user.getTasks()) {
-//            Task task = getTask(taskId);
-//            tasks.add(task);
-//        }
-//        return tasks;
-//    }
+//    lijst met vacatures van een Docent: zijn lijst met taken
+    public List<Task> getAllTasks(User user){
+        List<Task> tasks = new ArrayList<>();
+        for (String taskId: user.getTasks()) {
+            Task task = getTask(taskId);
+            tasks.add(task);
+        }
+        return tasks;
+    }
 
     // voor de MANAGER: lijst met tasks en users die gesolliciteerd hebben (lijst sollicitanten)
     public List<User> getAllUsers(Task task) {

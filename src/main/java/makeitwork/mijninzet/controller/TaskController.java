@@ -19,7 +19,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/teacher")
-public class TaskController extends AbstractController {
+public class TaskController {
 
     @Autowired
     private TaskRepository taskRepository;
@@ -45,7 +45,7 @@ public class TaskController extends AbstractController {
         return "showTask"; //html
     }
 
-    @GetMapping("/taskSave/{taskId}") //mapping bij voor de view
+    @GetMapping("taskSave/{taskId}") //mapping bij voor de view
     public String ApplicationHandler(@ModelAttribute("task") Task taak, @RequestParam("taskId") String taakId, Principal principal) {
         taak = opening(taakId);
         vacatureService.addTask(taak, usersRepository.findByUsername(principal.getName()));
