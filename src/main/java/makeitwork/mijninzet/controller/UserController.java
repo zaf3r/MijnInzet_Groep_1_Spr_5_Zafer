@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -85,21 +86,21 @@ public class UserController {
     @PostMapping("/newUserRole")
     public @ResponseBody String userRole(@RequestBody String requestPayload) {
         Temp temp=deSerializeTemp(requestPayload);
-        System.out.printf("\ntemp is: %s\n",temp);
+
+        List<Role> roles=new ArrayList<>();
         Optional<Role> role= roleRepository.findById(temp.getRoleId());
-        System.out.printf("\nde role is: %s\n",role);
-        try {
-            wait(10000);
-        } catch (Exception e){e.getMessage();}
-        var user=userRepository.findByUsername(temp.getUserName());
-        System.out.printf("\n\nde user is: %s\n",user);
-//        List<Role> roles=new ArrayList<>();
-//        System.out.printf("\n\nde rol is: %s\n\n",role.get());
-//        roles.add(role.get());
-//        System.out.printf("\nde rollen zijn: %s\n",roles);
-//        user.setRole(roles);
-//        System.out.printf("\ngebruiker met rollen\n",user);
-//        userRepository.save(user);
+        Role addRole=role.get();
+        roles.add(addRole);
+
+        User user=new User();
+        user=userRepository.findByUsername(temp.getUserName());
+        System.out.printf("\n\nvers uit DB de user heeft de volgende rollen: %s\n",user.getRole());
+        user.setRole(roles);
+        System.out.printf("\n\nde user heeft nu de volgende rollen: %s\n",user.getRole());
+        updateUser(user);
+        User latestUser=new User();
+        latestUser=userRepository.findByUsername(user.getUsername());
+        System.out.printf("\n\nde user heeft na verwerken in db de volgende rollen: %s\n",latestUser.getRole());
         return "crudUser";
     }
     private Boolean userBestaat(User user){
@@ -113,12 +114,12 @@ public class UserController {
         thatUser=null;
         thatUser= userRepository.findByUsername(user.getUsername());
         if (thatUser==null) thatUser= userRepository.findByEmail(user.getEmail());
-        userRepository.deleteById(thatUser.getId());
         user.setId(thatUser.getId());
         storeUser(user);
     }
     private void storeUser(User user){
         userRepository.save(user);
+        userRepository.flush();
     }
 }
 

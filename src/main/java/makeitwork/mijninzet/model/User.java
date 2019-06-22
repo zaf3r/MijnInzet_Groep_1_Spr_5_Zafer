@@ -23,7 +23,6 @@ public class User implements Comparable{
     @Transient
     private final int MIN_PWD=8;
 
-
     //Column names of entity
     @Transient
     private final String COLUMN_PASSWORD="wachtwoord";
@@ -102,9 +101,14 @@ public class User implements Comparable{
 
     @Transient
     private List<Task> task;
+;
+
+    //contracturen?
+//    @Transient
+//    private String roleType = roleName.getRoleName();
 
     public User() {}
-    
+
     // CONTROLLER MET GEGEVENS EN ROL LIST?
     public List<Task> getTask() {
         return task;
