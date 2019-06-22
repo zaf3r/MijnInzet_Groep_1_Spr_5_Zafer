@@ -2,6 +2,7 @@ package makeitwork.mijninzet.controller;
 
 import makeitwork.mijninzet.model.Cohort;
 
+import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.model.preference.Subject;
 import makeitwork.mijninzet.repository.CohortRepository;
 
@@ -35,12 +36,23 @@ public class CohortController {
         Cohort cohort = new Cohort();
 
         model.addAttribute("attr1", cohort);
+        model.addAttribute("coordinators", getCoordinators());
         model.addAttribute("cohorts", getAllCohorts());
-        model.addAttribute("subjects", selectedSubjectList);
-        model.addAttribute("possibleSubjects", possibleSubjectList);
         return "cohort";
     }
 
+    @GetMapping("/cohortSubject")
+    public String AddSubjectHandler(Model model){
+        model.addAttribute("cohorts", getAllCohorts());
+        model.addAttribute("subjects", selectedSubjectList);
+        model.addAttribute("possibleSubjects", possibleSubjectList);
+        return "cohortSubject";
+    }
+
+    public List<User> getCoordinators(){
+        List<User> allCoordinators = cohortService.coordinatorList();
+        return allCoordinators;
+    }
 
     public List<Cohort> getAllCohorts(){
         List<Cohort> allcohorts = coRepo.findAll();
@@ -69,28 +81,29 @@ public class CohortController {
     }
 
     @PostMapping("/saveCohort")
-    public String saveCohort(@ModelAttribute("saveCohort")Cohort cohort, Model model) {
+    public String saveCohort(@ModelAttribute("saveCohort")Cohort cohort, @RequestParam("coordinator")User co) {
+        cohort.setUser(co);
         coRepo.save(cohort);
         return "redirect:/manager/cohort";
     }
 
     @PostMapping("/showSubjects")
-    public String showSubjects(@RequestParam("cohortName") String cohortName){
+    public String showSubjects(@RequestParam("cohortName") String cohortName, Model model){
         Cohort cohort = coRepo.findByCohortName(cohortName);
         selectedCohort = cohortName;
+        model.addAttribute("cohortName", selectedCohort);
         subjectList(cohort);
-        return "redirect:/manager/cohort";
+        return "redirect:/manager/cohortSubject";
     }
 
     @PostMapping("/addSubjects")
     public String addSubjectHandler(@RequestParam("subjectName") int subjectId ){
         Cohort cohort = coRepo.findByCohortName(selectedCohort);
         Subject subject = subRepo.findBySubjectId(subjectId);
-
         cohortService.addSubject(cohort, subject);
         subjectList(cohort);
 
-        return "redirect:/manager/cohort";
+        return "redirect:/manager/cohortSubject";
     }
 
     @PostMapping("/removeSubjects")
@@ -101,13 +114,14 @@ public class CohortController {
         cohortService.removeSubject(cohort, subject);
         subjectList(cohort);
 
-        return "redirect:/manager/cohort";
+        return "redirect:/manager/cohortSubject";
     }
 
     public void subjectList(Cohort cohort){
         selectedSubjectList = selectedSubjects(cohort);
         possibleSubjectList = possibleSubjects(cohort);
     }
+
 
 
 }

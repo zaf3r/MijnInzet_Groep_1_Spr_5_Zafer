@@ -15,6 +15,9 @@ public class Subject {
     @Column(name = "naamvak")
     String subjectName;
 
+    @Column(nullable = true, name = "uren")
+    int hours;
+
     @OneToMany(mappedBy = "subject", cascade= {CascadeType.PERSIST,CascadeType.REMOVE})
     private Set<Preference> preferenceSet = new HashSet<>();
 
@@ -24,18 +27,17 @@ public class Subject {
     public int getSubjectId() {
         return subjectId;
     }
-
     public void setSubjectId(int subjectId) {
         this.subjectId = subjectId;
     }
 
-    public String getSubjectName() {
-        return subjectName;
-    }
-
+    public String getSubjectName() { return subjectName; }
     public void setSubjectName(String subjectName) {
         this.subjectName = subjectName;
     }
+
+    public int getHours() { return hours; }
+    public void setHours(int hours) { this.hours = hours; }
 
     public Set<Preference> getPreferenceSet() {
         return preferenceSet;
