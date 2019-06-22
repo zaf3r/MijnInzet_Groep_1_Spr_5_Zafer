@@ -9,12 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class HomeController {
 
-
-//    @GetMapping ("/")
-//    public String index() {
-//    return "index";
-//    }
-
     @GetMapping("/login")
     public String login(){
         return "login";
@@ -32,12 +26,6 @@ public class HomeController {
         model.addAttribute("team", teamLeden);
         return "home";
     }
-
-//    @GetMapping("/addUser")
-//    public String addUser(Model model){
-//        return "addUser";
-//    }
-
 
     @GetMapping("/globalAvalability")
     public String addAvalability(Model model, @RequestParam(value = "name", required = false,

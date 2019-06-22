@@ -2,11 +2,15 @@ package makeitwork.mijninzet.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import javax.persistence.Transient;
 import java.time.LocalDate;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 
 @Document(collection="Vacature")
-public class Task {
+public class Task implements Comparable{
 
     @Id
     private String id;
@@ -105,6 +109,21 @@ public class Task {
         return einddatum;
     }
 
+    @Transient
+    private SortedSet<Integer> userIds = new TreeSet<>();
+
+    public SortedSet<Integer> getUsers() {
+        return userIds;
+    }
+
+    public SortedSet<Integer> getUserIds() {
+        return userIds;
+    }
+
+    public void setUserIds(SortedSet<Integer> userIds) {
+        this.userIds = userIds;
+    }
+
     @Override
     public String toString() {
         return "Task{" +
@@ -116,5 +135,10 @@ public class Task {
                 ", sluitdate=" + sluitdatum +
                 ", uren=" + uren +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
     }
 }

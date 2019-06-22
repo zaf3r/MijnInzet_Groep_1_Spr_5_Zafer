@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sollicitaties</title>
+
+</head>
+<body>
+<div class="content">
+    <h1>Sollicitaties</h1>
+    <section id="gallery">
+        <div class="container">
+            <div class="row">
+                    <div class="col-lg-4 mb-3" th:each="user : ${listSoltaties}">
+                        <form action="#" th:action="@{/sollicitaties}" th:object="${listSoltaties}" method = "get">
+                            <span th:text="${user.getRole()}"/>
+                            <span th:text="${user.getEmail()}"/>
+                            <span th:text="${user.getTasks()}"/>
+                            <!--/*@thymesVar id="task" type="java"*/-->
+                            <span th:text="${user.task}"/>
+                        </form>
+
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+
+</body>
+</html>

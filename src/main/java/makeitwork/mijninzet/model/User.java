@@ -11,7 +11,7 @@ import java.util.*;
 
 @Entity
 @Table(name = "gebruiker")
-public class User{
+public class User implements Comparable{
 
 //    @Transient
 //    Role roleName;
@@ -90,10 +90,6 @@ public class User{
     @Column(name = COLUMN_ACTIVE)
     private int active;
 
-//    @NotNull
-//    @Column(name="Naam")
-//    private String naam;
-
     @OneToMany(mappedBy = "user",cascade= CascadeType.ALL)
     private Set<Preference> preferenceSet =  new HashSet<>();
 
@@ -104,19 +100,15 @@ public class User{
             inverseJoinColumns = @JoinColumn(name = PK_COLUMN_OTHER_ENTITY))
     private List<Role> role;
 
-    //contracturen?
-//    @Transient
-//    private String roleType = roleName.getRoleName();
+    @Transient
+    private List<Task> task;
 
     public User() {}
-
-//    public User(String naam, String roleType){
-//        this.naam = naam;
-//        this.roleType = roleType;
-//
-//    }
-
+    
     // CONTROLLER MET GEGEVENS EN ROL LIST?
+    public List<Task> getTask() {
+        return task;
+    }
 
     public int getId() {
         return id;
@@ -198,13 +190,6 @@ public class User{
         this.preferenceSet = preferenceSet;
     }
 
-//    public String getNaam() {
-//        return naam;
-//    }
-
-    //    public String getRoleType() {
-//        return roleType;
-//    }
     public String encryptPassword (String plain_password){
         return BCrypt.hashpw(plain_password, BCrypt.gensalt());
     }
@@ -212,12 +197,12 @@ public class User{
     // todo vanaf hier voor Docent --> moet nog op een andere manier
 
 
-    //in deze collection worden de (unieke) taskId's opgeslagen
-    //op deze wijze wordt per docent bijgehouden op welke taken
-    //gereageerd is. Moet ook de status bijgehouden worden, dan kan dat ook.
+
+ //  -------------------------------------------------------------------------------------------->
+    // Task functionaliteiten voor Teacher
+
     @ElementCollection
     @SortNatural
-//  @Column(name="task")
     private SortedSet<String> taskIds = new TreeSet<>();
 
     public SortedSet<String> getTasks() {
@@ -225,7 +210,6 @@ public class User{
     }
 
     public SortedSet<String> getTaskIds() {
-
         return taskIds;
     }
 
@@ -236,6 +220,9 @@ public class User{
     public void addTask(String taskId) {
         SortedSet<String> tasks = getTasks();
         if (!tasks.contains(taskId)) tasks.add(taskId);
+        Sollicitatie sl = new Sollicitatie();
+        sl.setTaskStatus(Sollicitatie.TaskStatus.INTERESTED);
+        System.out.println(sl);
     }
 
     public void removeTask(String taskId) {
@@ -256,5 +243,10 @@ public class User{
                 ", active=" + active +
                 ", role=" + role +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
     }
 }

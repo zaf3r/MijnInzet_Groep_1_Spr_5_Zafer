@@ -18,7 +18,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Controller
-//@RequestMapping(value = "/teacher")
+//@RequestMapping("/teacher")
 public class TaskController extends AbstractController {
 
     @Autowired
