@@ -75,19 +75,19 @@ public class VacatureService {
         return sollicitanten;
     }
 
-    public List<Task> getAllTasks(User user){
-        List<Task> sollicitaten = new ArrayList<>();
-        sollicitaten = user.getTask();
-        Iterator<Task> iter = sollicitaten.iterator();
-        while (iter.hasNext()){
-            Task task = iter.next();
-            if(!user.getTaskIds().contains(user)) {
-                iter.remove();
-            }
-            System.out.println("************" + sollicitaten);
-        }
-        return sollicitaten;
-    }
+//    public List<Task> getAllTasks(User user){
+//        List<Task> sollicitaten = new ArrayList<>();
+//        sollicitaten = user.getTask();
+//        Iterator<Task> iter = sollicitaten.iterator();
+//        while (iter.hasNext()){
+//            Task task = iter.next();
+//            if(!user.getTaskIds().contains(user)) {
+//                iter.remove();
+//            }
+//            System.out.println("************" + sollicitaten);
+//        }
+//        return sollicitaten;
+//    }
 
 
 //        System.out.println(sollicitanten);

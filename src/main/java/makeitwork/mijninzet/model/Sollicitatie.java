@@ -1,5 +1,8 @@
 package makeitwork.mijninzet.model;
 
+import org.springframework.security.core.Transient;
+
+@Transient
 public class Sollicitatie {
 
     private TaskStatus taskStatus;
