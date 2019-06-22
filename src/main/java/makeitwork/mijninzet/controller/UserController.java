@@ -26,8 +26,6 @@ public class UserController {
     @Autowired
     RoleRepository roleRepository;
 
-    public UserController() {
-    }
 
     @PostMapping("/checkUserName")
     public @ResponseBody String nameCorrect(@RequestBody String requestPayload){
@@ -86,21 +84,12 @@ public class UserController {
     @PostMapping("/newUserRole")
     public @ResponseBody String userRole(@RequestBody String requestPayload) {
         Temp temp=deSerializeTemp(requestPayload);
-
         List<Role> roles=new ArrayList<>();
         Optional<Role> role= roleRepository.findById(temp.getRoleId());
-        Role addRole=role.get();
-        roles.add(addRole);
-
-        User user=new User();
-        user=userRepository.findByUsername(temp.getUserName());
-        System.out.printf("\n\nvers uit DB de user heeft de volgende rollen: %s\n",user.getRole());
+        roles.add(role.get());
+        User user=userRepository.findByUsername(temp.getUserName());
         user.setRole(roles);
-        System.out.printf("\n\nde user heeft nu de volgende rollen: %s\n",user.getRole());
         updateUser(user);
-        User latestUser=new User();
-        latestUser=userRepository.findByUsername(user.getUsername());
-        System.out.printf("\n\nde user heeft na verwerken in db de volgende rollen: %s\n",latestUser.getRole());
         return "crudUser";
     }
     private Boolean userBestaat(User user){
@@ -109,18 +98,15 @@ public class UserController {
         if (userRepository.findByEmail(user.getEmail())!=null) bestaat=true;
         return bestaat;
     }
-    private void updateUser(User user){
-        User thatUser=new User();
-        thatUser=null;
-        thatUser= userRepository.findByUsername(user.getUsername());
-        if (thatUser==null) thatUser= userRepository.findByEmail(user.getEmail());
+    private void updateUser(User user) {
+        User thatUser = new User();
+        thatUser = null;
+        thatUser = userRepository.findByUsername(user.getUsername());
+        if (thatUser == null) thatUser = userRepository.findByEmail(user.getEmail());
         user.setId(thatUser.getId());
         storeUser(user);
     }
-    private void storeUser(User user){
-        userRepository.save(user);
-        userRepository.flush();
-    }
+    public void storeUser(User user){ userRepository.save(user);}
 }
 
 

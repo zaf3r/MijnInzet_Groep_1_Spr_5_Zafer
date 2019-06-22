@@ -5,6 +5,7 @@ import org.hibernate.annotations.SortNatural;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.*;
@@ -84,6 +85,7 @@ public class User{
 
     @NotNull(message=COLUMN_EMAIL+VERPLICHT)
     @Column(name = COLUMN_EMAIL)
+    @Email
     private String email;
 
     @NotNull(message = COLUMN_ACTIVE+VERPLICHT)

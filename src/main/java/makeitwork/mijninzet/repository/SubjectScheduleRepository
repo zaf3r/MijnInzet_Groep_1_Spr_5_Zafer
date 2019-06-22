@@ -1,0 +1,6 @@
+package makeitwork.mijninzet.repository;
+
+//@Repository
+//public class SubjectScheduleRepository extends JpaRepository<SubjectSchedule, Course> {
+//    SubjectSchedule findAll(Course course){}
+//}
