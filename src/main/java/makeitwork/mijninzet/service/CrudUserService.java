@@ -1,49 +1,56 @@
 package makeitwork.mijninzet.service;
 
+import makeitwork.mijninzet.controller.RetrieveUserRole;
 import makeitwork.mijninzet.model.User;
+import makeitwork.mijninzet.repository.RoleRepository;
 import makeitwork.mijninzet.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
+
 @Service
-public class crudUserService {
-//todo class user aan attributen view aanpassen
+public class CrudUserService implements RetrieveUserRole {
+
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    RoleRepository roleRepository;
+
+    Principal principal=new Principal() {
+        @Override
+        public String getName() {
+            return null;
+        }
+    };
 
     User user;
 
-    public crudUserService() {
+    public String actualUserName(Principal principal){
+        return userRepository.findByUsername(principal.getName()).getUsername();
     }
+    public void storeUser(User user){ userRepository.save(user);}
 
-    public User askForUser(String userName){
-        return userRepository.findByUsername(userName);
+    public void updateUser(User user,Principal principal) {
+        User thatUser = new User();
+        thatUser = null;
+        thatUser = userRepository.findByUsername(user.getUsername());
+        if (thatUser == null) thatUser = userRepository.findByEmail(user.getEmail());
+        user.setId(thatUser.getId());
+        if(user.getRole()==null) user.setRole(thatUser.getRole());
+        storeUser(user);
     }
-
-    public String encryptPwd(String plainTextPwd){
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        return passwordEncoder.encode(plainTextPwd);
+    public Boolean userBestaat(User user){
+        Boolean bestaat=false;
+        if (userRepository.findByUsername(user.getUsername())!=null) bestaat=true;
+        if (userRepository.findByEmail(user.getEmail())!=null) bestaat=true;
+        return bestaat;
     }
-
-    public void insertUserInDB(User user){
-        userRepository.save(user);
+    public String UserName(Principal principal){
+        //todo nullpointer oplossen
+        return userRepository.findByUsername(principal.getName()).getUsername();
     }
-//    todo gebruiker wijzigen
-    public void changeUser(User user){
-        User org=userRepository.findByUsername(user.getUsername());
-        //welke velden zijn er gewijzigd?
-        //password encrypten
-        insertUserInDB(user);
+    public String UserEmail(Principal principal){
+        return userRepository.findByUsername(principal.getName()).getEmail();
     }
-//    todo als gebruiker password wijzigt uitloggen
-
-    private void inActivedUser(User user){
-        final int INACTIVE=0;
-        final String PWD="1&Yrevb(87>?crDGf%";
-        user.setPassword(PWD);
-        user.setActive(INACTIVE);
-        insertUserInDB(user);
-    }
-
 }

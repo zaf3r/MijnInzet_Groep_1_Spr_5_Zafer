@@ -34,26 +34,25 @@
             <div>
                 <label for="copyMaken" class="col-sm-2 col-form-label">Copy van bestaand rooster maken</label>
                 <div class="col-sm-10">
-                    <input type="checkbox" id="copymaken" name="copymaken"  \>
+                    <input type="checkbox" id="copymaken" name="copymaken" onclick="showCopySchedule()" \>
                 </div>
             </div>
 
-<!--            <span name="scheduleCopy" id="scheduleCopy" style="display:none">-->
+            <span name="scheduleCopy" id="scheduleCopy" style="display:none">
             <div class="form-group row">
                 <label for="copySchedule" class="col-sm-2 col-form-label">Copy van</label>
                 <div class="col-sm-10">
                     <select class="form-control" id="copySchedule" name="copySchedule"></select>
                 </div>
             </div>
-<!--        </span>-->
+        </span>
+
             <div class="form-group row">
                 <label for="vakkenCohort" class="col-sm-2 col-form-label">Vakken om in te roosteren</label>
                 <div class="col-sm-10">
                     <select class="form-control" id="vakkenCohort" name="vakkenCohort" required multiple="multiple" size="7" style="width: 250px"/>
                 </div>
             </div>
-
-
 
 <!--            todo nog te doen copy vakken togglen-->
 <!--            todo 1 week tonen, weeknr.startdatum.cohort -->
@@ -71,6 +70,21 @@
         </fieldset>
     </form>
 </div>
+<script>
+    var table ='';
+    var rows= 3;
+    var col=10;
+    for(var r=0;r<rows;r++)
+    {
+        table += '<tr>';
+        for(var c=0;c<rows;c++)
+        {
+            table+='<td>'+c+'</td>'
+        }
+        table += '</tr>';
+    }
+    document.write('<table>'+table+'</table>');
+</script>
 
 <script>
     // registreer eventhandlers
@@ -116,17 +130,54 @@
             data: payload
         }).done( function (response) {
             $.each(response, function (i, item) {
-                console.log("hierna moeten  vakken komen");
                 $("#vakkenCohort").append('<option value="">' + response[i].subjectName + '</option>');
             });
         })
+    });
+    $("#vakkenCohort").on("change", function() {
+        var selectedText = $(this).find(':selected').text();
+        console.log("text: "+selectedText);
+        payload = JSON.stringify({subjectName: selectedText });
+        $.ajax({
+            type: 'POST',
+            url: '/weekDays',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            data: "{}"
+        }).done( function (response) {
+            var days=response;
+            $.each(days, function (i, item) {
+                // $("#vakkenCohort").append('<option value="">' + response[i].subjectName + '</option>');
+            });
+        })
+        $.ajax({
+            type: 'POST',
+            url: '/partOfDay',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            data: "{}"
+        }).done( function (response) {
+            var partsOfDay=response;
+            $.each(partsOfDay, function (i, item) {
+                // $("#vakkenCohort").append('<option value="">' + response[i].subjectName + '</option>');
+            });
+        })
+        $.ajax({
+            type: 'POST',
+            url: '/subjectInfo',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            data: payload
+        }).done( function (response) {
+            var urenVak=response['hours'];
+            });
+        // })
     });
 
 </script>
 <script>
     function showCopySchedule(){
-        if ($("#scheduleCopy").is(":checked()")) {$("#scheduleCopy").show()}
-        // else{$("#scheduleCopy").hide()};
+        $("#scheduleCopy").show();
     }
 </script>
 
