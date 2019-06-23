@@ -1,6 +1,9 @@
 package makeitwork.mijninzet.service;
 
+import com.google.gson.Gson;
 import makeitwork.mijninzet.controller.RetrieveUserRole;
+import makeitwork.mijninzet.model.Availability.PartOfDay;
+import makeitwork.mijninzet.model.Availability.Weekday;
 import makeitwork.mijninzet.model.Cohort;
 import makeitwork.mijninzet.model.CourseSchedule;
 import makeitwork.mijninzet.model.User;
@@ -121,6 +124,27 @@ public class CourseScheduleService implements RetrieveUserRole {
         }
         return subjects;
     }
+    public List<String> daysOfWeek(){
+        List<String> days=new ArrayList<>();
+        for (Weekday day:Weekday.values()) {
+            days.add(day.name().toLowerCase());
+        }
+        return days;
+    }
+    public List<String> partsOfDay(){
+        List<String> parts=new ArrayList<>();
+        for (PartOfDay part:PartOfDay.values()) {
+            parts.add(part.name().toLowerCase());
+        }
+        return parts;
+    }
+    public Subject subjectInfo(String subjectname){
+        System.out.printf("\nprint json: \n",subjectname);
+        Subject subject= new Gson().fromJson(subjectname, Subject.class);
+        System.out.printf("\nsubject: \n",subjectRepository.findBySubjectName(subject.getSubjectName()));
+        return subjectRepository.findBySubjectName(subject.getSubjectName());
+    }
+
 
 
 }

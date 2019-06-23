@@ -44,4 +44,21 @@ public class CourseScheduleController {
     String schedulesToCopy(@RequestBody String requestPayload){
         return new Gson().toJson(service.plannedCohorts());
     }
+    @PostMapping("/weekDays")
+    public @ResponseBody
+    String weekDays(@RequestBody String requestPayload){
+        return new Gson().toJson(service.daysOfWeek());
+    }
+    @PostMapping("/partOfDay")
+    public @ResponseBody
+    String partOfDay(@RequestBody String requestPayload){
+        return new Gson().toJson(service.partsOfDay());
+    }
+    @PostMapping("/subjectInfo")
+    public @ResponseBody
+    String subjectInfo(@RequestBody String requestPayload){
+        return new Gson().toJson(service.subjectInfo(requestPayload));
+    }
+
+
 }
