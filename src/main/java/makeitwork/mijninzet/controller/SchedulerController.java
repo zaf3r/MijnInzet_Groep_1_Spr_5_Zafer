@@ -35,7 +35,7 @@ public class SchedulerController {
     public String roosterHandler(Model model){
 
         model.addAttribute("cohorts", getAllCohorts());
-        model.addAttribute("teachers", posssibleTeacherList);
+        //model.addAttribute("teachers", posssibleTeacherList);
         model.addAttribute("subjects", selectedSubjectList);
         return "scheduler";
     }
@@ -45,11 +45,11 @@ public class SchedulerController {
         return allcohorts;
     }
 
-    public List<User> possibleTeacherList(User user){
-        List<User> possibleTeacherList = userRepo.getAllUsersByRole(user);
-
-        return possibleTeacherList;
-    }
+//    public List<User> possibleTeacherList(User user){
+//        List<User> possibleTeacherList = userRepo.getAllUsersByRole(user);
+//
+//        return possibleTeacherList;
+//    }
 
     public List<Subject> selectedSubjects(Cohort cohort){
         List<Subject> selectedSubjects = cohortRepo.getAllSubjects(cohort);
@@ -60,7 +60,7 @@ public class SchedulerController {
     public String showSubjects(@RequestParam("cohortName") String cohortName){
         Cohort cohort = coRepo.findByCohortName(cohortName);
         selectedCohort = cohortName;
-        subjectList(cohort);
+        //subjectList(cohort);
         return "redirect:/roosteraar";
     }
 }

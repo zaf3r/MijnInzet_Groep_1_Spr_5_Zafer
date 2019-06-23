@@ -21,7 +21,7 @@ import java.util.Set;
 
 @Controller
 @RequestMapping("/teacher")
-public class TeacherController {
+public class TeacherController implements RetrieveUserRole{
 
     final private List<PreferenceScale> preferenceScaleList = getPreferenceScaleList();
 
@@ -38,6 +38,8 @@ public class TeacherController {
     public String addPreferences(Model model, Principal principal) {
 
         User user = userRepository.findByUsername(principal.getName());
+
+        Role role = retrieveRole(userRepository,principal);
 
         Set<Preference> preferenceSet = findCurrentUserPreference(user);
 
@@ -57,6 +59,7 @@ public class TeacherController {
         }
 
         //Loading model attributes
+        model.addAttribute("roleUser", role);
         model.addAttribute("preferenceForm",preferenceForm);
         model.addAttribute("subjectsList",subjectList);
         model.addAttribute("preferenceScaleList",preferenceScaleList);
