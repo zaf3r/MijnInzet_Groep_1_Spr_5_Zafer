@@ -5,12 +5,12 @@ import org.hibernate.annotations.SortNatural;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.*;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "gebruiker")
 public class User{
 
@@ -23,7 +23,6 @@ public class User{
 
     @Transient
     private final int MIN_PWD=8;
-
 
     //Column names of entity
     @Transient
@@ -85,6 +84,7 @@ public class User{
 
     @NotNull(message=COLUMN_EMAIL+VERPLICHT)
     @Column(name = COLUMN_EMAIL)
+    @Email
     private String email;
 
     @NotNull(message = COLUMN_ACTIVE+VERPLICHT)
@@ -104,6 +104,8 @@ public class User{
             joinColumns = @JoinColumn(name = COLUMN_ID),
             inverseJoinColumns = @JoinColumn(name = PK_COLUMN_OTHER_ENTITY))
     private List<Role> role;
+
+;
 
     //contracturen?
 //    @Transient
@@ -203,7 +205,7 @@ public class User{
 //        return naam;
 //    }
 
-//    public String getRoleType() {
+    //    public String getRoleType() {
 //        return roleType;
 //    }
     public String encryptPassword (String plain_password){

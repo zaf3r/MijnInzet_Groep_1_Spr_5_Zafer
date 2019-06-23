@@ -8,10 +8,7 @@ import makeitwork.mijninzet.service.VacatureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.time.LocalDate;
@@ -21,7 +18,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Controller
-        (value ="/teacher")
+@RequestMapping("/teacher")
 public class TaskController extends AbstractController {
 
     @Autowired
@@ -69,7 +66,6 @@ public class TaskController extends AbstractController {
         vacatureService.removeTask(myTask, usersRepository.findByUsername(principal.getName()));
         return "redirect:/myTasks";
     }
-
     //haalt alles uit database
     private List<Task> allTasks() {
         List<Task> tasks = this.taskRepository.findAll();
@@ -142,26 +138,6 @@ public class TaskController extends AbstractController {
     }
 }
 
-
-
-
-
-
-////
-//    @PutMapping
-//    public void insert(@RequestBody Task task){
-//        this.taskRepository.insert(task);
-//    }
-//
-//    @PostMapping
-//    public void update(@RequestBody Task task){
-//        this.taskRepository.save(task);
-//    }
-
-//    @DeleteMapping("/{id}")
-//    public void delete(@PathVariable ("id") String id){
-//        this.taskRepository.deleteById(id)
-// }
 //        tasks.forEach((i)->myTasks.remove(i));
 ////         tasks.removeAll(myTasks); // levert tasks op waaruit alle eerder gereageerde taken zijn verwijderd
 //        List<Task> diff = tasks.stream().filter(e -> !myTasks.contains(e)).collect(Collectors.toList());

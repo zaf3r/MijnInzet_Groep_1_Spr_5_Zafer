@@ -1,5 +1,7 @@
 #header {
-    background: #957bbe;
+    background-image: url("https://images.homedepot-static.com/productImages/9513d7c0-6365-4903-b136-0bb9d93c7e3a/svn/brewster-wallpaper-wv8103-64_600.jpg");
+    background-size: cover;
+    margin-bottom: 35px;
 }
 .container {
     margin-top: 65px;
@@ -10,23 +12,27 @@
     margin-bottom: 40px;
     position: relative;
     left: 47%;
+    border: 2px solid lightcoral;
+    background-color: white;
+    color: black;
 }
 
 table {
     margin: auto;
     width: 90%;
     height: 400px;
-    border: 3px solid #967bbe;
+    border: 3px solid lightslategray;
     text-align: center;
+
 }
 
 
-td { background: #3e8e41; }
+#deTabel td { background: #3e8e41; }
 
-table#deTabel tr td.false { background: #ff6347; }
+#deTabel tr td.false { background: #ffb3b3; }
 
 th, td {
-    border: 2px solid #967bbe;
+    border: 2px solid lightslategray;
     width: 16.6%;
     height: 25%;
 }
@@ -38,4 +44,19 @@ input[type=checkbox] {
 #selectSemester {
     margin-bottom: 30px;
     width: 30%;
+    position: center;
+}
+
+h1#incidents {
+    padding: 15px;
+    padding-top: 40px;
+    margin-top: 25px;
+}
+
+p {
+    margin-bottom: 25px;
+}
+
+div#header {
+    padding-bottom:40px;
 }

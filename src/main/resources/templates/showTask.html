@@ -17,9 +17,7 @@
     <title>Home</title>
 </head>
 <header th:insert="~{navbar :: header}"></header>
-<script th:inline="javascript">
-    var sluitdatum = /*[[${task.sluitdatum}]]*/ 'sluitdatum';
-</script>
+
 <body>
 <section id="containerContent">
 
@@ -33,6 +31,7 @@
         <div class="job-header-bar col-md-8 justify-content-right">
         <button type="submit" id="love" class="love"><i class="fas fa-thumbs-up" style="font-size: 2.5em;"></i>
             <input type="hidden" id="taskId" name="taskId" th:value="*{id}"></button>
+            <span class="tooltiptext" id="showHover">Wil ik!</span>
         </div>
     </form>
 

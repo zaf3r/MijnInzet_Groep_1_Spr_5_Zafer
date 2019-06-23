@@ -23,7 +23,9 @@
     <form action="#" th:object="${attr2}" th:action="@{saveKnowledgeArea}" method="post" id="saveKnowledgeArea">
         <label th:text="kennisgebied"/>
         <input type="text" th:field="*{knowledgeArea}" required title="Vul een kennisgebied in "/>
-        <input type="submit" th:onclick="alert ('Het kennisgebied is opgeslagen in de database.')" value="Opslaan" />
+        <input type="submit"  value="Opslaan" />
+<!--        <input type="submit" th:onclick="alert ('Het kennisgebied is opgeslagen in de database.')" value="Opslaan" />-->
+<!--        <input type="submit" value="Opslaan" />-->
     </form>
 </div>
 <br>
@@ -38,8 +40,19 @@
                 <select  name="subjectName" multiple="multiple" size="7">
                         <option th:each="KnowledgeArea: ${KnowledgeAreas}" th:value="${KnowledgeArea.knowledgeAreaId}" th:text="${KnowledgeArea.knowledgeArea}"></option>
                     </select>
-                <br><input type="submit" th:onclick="confirmPlease()" value="Delete" />
+                <br><input type="submit" value="Delete" />
+<!--                    <br><input type="submit" th:onclick="confirmPlease()" value="Delete" />-->
                 </form>
+
+<!--                DELETE-->
+<!--                <form action="#" th:object="${subjects}" th:action="@{deleteSubject}" method="post">-->
+<!--                    <select  id="move1" name="subjectName" multiple="multiple" size="7">-->
+<!--                        <option th:each="subject: ${subjects}" th:value="${subject.subjectId}" th:text="${subject.subjectName}"></option>-->
+<!--                        <br><input type="submit" th:onclick="confirmPlease()" value="Delete" />-->
+<!--                    </select>-->
+<!--                </form>-->
+
+
             </td>
         <tr>
     </table>

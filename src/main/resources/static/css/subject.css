@@ -1,0 +1,44 @@
+
+#headerSubject{
+    background-image: url("https://images.homedepot-static.com/productImages/9513d7c0-6365-4903-b136-0bb9d93c7e3a/svn/brewster-wallpaper-wv8103-64_600.jpg");
+    background-size: cover;
+    margin-bottom: 35px;
+}
+
+.container#lijstVakken {
+    padding-top: 20px;
+}
+
+.text-center {
+    padding-bottom: 10px;
+    margin: 10px 0 10px 0;
+}
+
+#move1 {
+  border-color: white;
+  font-family: "Open Sans", sans-serif;
+  padding-bottom: 9px;
+}
+
+option {
+    padding: 3px;
+}
+
+#addsubjectButton {
+    border: 2px solid lightcoral;
+    background-color: white;
+}
+
+#deletesubjectButton {
+    border: 2px solid lightcoral;
+    background-color: white;
+    width: 100px;
+}
+
+.delete {
+    padding-top: 15px;
+}
+
+h3 {
+    font-weight: lighter;
+}
