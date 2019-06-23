@@ -92,9 +92,7 @@ public class CourseScheduleService implements RetrieveUserRole {
         cohorts.removeAll(plannedCohorts());
         User actualUser = userRepository.findByUsername(principal.getName());
         if (!cohorts.isEmpty()) {
-            System.out.printf("\nde user is %s\n",actualUser.getUsername());
             for (Cohort cohort : cohorts) {
-                System.out.printf("\ncohort user is %s\n",cohort.getUser().getUsername());
                 if (cohort.getUser().getUsername() == actualUser.getUsername()) cohorts1.add(cohort) ;
             }
         }
