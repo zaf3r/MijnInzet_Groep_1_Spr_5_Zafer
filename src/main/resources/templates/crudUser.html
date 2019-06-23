@@ -50,19 +50,6 @@
                     </div>
                 </div>
 
-<!--                <div class="form-group row">-->
-<!--                    <span style="display: none;">-->
-<!--                        <label for="checkPwd" class="col-sm-2 col-form-label">Password</label>-->
-<!--                        <div class="col-sm-10">-->
-<!--                            <input type="password" class="form-control" id="checkPwd" name="checkPwd"-->
-<!--                                   placeholder="Geef ter bevestiging uw password" minlength="1" required-->
-<!--                                   oninvalid="this.setCustomValidity('Een password is verplicht (minimaal 8 tekens.')"-->
-<!--                                   onchange="this.setCustomValidity('')"/><br>-->
-<!--                        </div>-->
-<!--                    </span>-->
-<!--                </div>-->
-
-
                 <div class="form-group row">
                     <label for="vnaam" class="col-sm-2 col-form-label">Voornaam</label>
                     <div class="col-sm-10">
@@ -88,12 +75,15 @@
                     </div>
                 </div>
 
+<!--                <span name="displayRole" id="displayRole" style="display:none">-->
                 <div class="form-group row">
-                    <label for="welkeRol" class="col-sm-2 col-form-label">Rol</label>
+                        <label for="welkeRol" class="col-sm-2 col-form-label">Rol</label>
                     <div class="col-sm-10">
                         <select class="form-control" id="welkeRol" name="welkeRol"></select>
                     </div>
                 </div>
+<!--                </span>-->
+
 
                 <div class="form-group row">
                     <label for="pwd" class="col-sm-2 col-form-label">Password</label>
@@ -162,6 +152,8 @@
                 });
             }
         });
+        isCoordinatorFunction();
+        console.log("na coordinator bij laden  dom")
     });
     $("#gebruiker").on("focusout", function (event) {
        payload = JSON.stringify({ username: event.target.value });
@@ -181,7 +173,10 @@
                userNameErr.hide();
                verwijderen.hide();
            }
-       })
+               isCoordinatorFunction()
+
+       }
+       )
     });
     $("#email").on("focusout", function (event) {
         payload = JSON.stringify({email: event.target.value });
@@ -201,6 +196,7 @@
                 eAddressErr.hide();
                 verwijderen.hide();
             }
+            isCoordinatorFunction();
         })
     });
     $("#gebruiker").focus(function () {
@@ -254,11 +250,34 @@
         var pwd=$("#pwd").val();
         var check=event.target.value;
         if (pwd!=check) {
-            console.log("binnen if");
             $("#checkPwdMsg").show();
             $("#confirm_pwd").val("");
         }
     });
+</script>
+<script>
+    function isCoordinatorFunction(){
+        // payload = JSON.stringify({email: "-" });
+        // $.ajax({
+        //     type: 'POST',
+        //     url: '/checkIsCoordinator',
+        //     contentType: 'application/json; charset=utf-8',
+        //     dataType: 'json',
+        //     data: payload
+        // }).done( function(coordinator){
+        //         roleDisplay=$("#displayRole")
+        //         if (coordinator["isCoordinator"]){
+        //             roleDisplay.show();
+        //             eAddressErr.hide();
+        //             verwijderen.hide();
+        //         } else {
+        //             //todo gebruikerinput leegmaken
+        //             //todo emailinput leegmaken
+        //         }
+        //     }
+        //
+        // )
+    }
 </script>
 <script>
     function textFunction() {

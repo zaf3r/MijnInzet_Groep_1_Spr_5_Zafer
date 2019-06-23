@@ -3,13 +3,16 @@ package makeitwork.mijninzet.service;
 import makeitwork.mijninzet.controller.RetrieveUserRole;
 import makeitwork.mijninzet.model.Cohort;
 import makeitwork.mijninzet.model.CourseSchedule;
+import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.model.preference.Subject;
 import makeitwork.mijninzet.repository.CohortRepository;
 import makeitwork.mijninzet.repository.CourseScheduleRepository;
 import makeitwork.mijninzet.repository.SubjectRepository;
+import makeitwork.mijninzet.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +29,8 @@ public class CourseScheduleService implements RetrieveUserRole {
     CohortService cohortService;
     @Autowired
     SubjectRepository subjectRepository;
+    @Autowired
+    UserRepository userRepository;
 
     public void storeCourseSchedule(CourseSchedule schedule){
         courseScheduleRepository.saveAndFlush(schedule);
@@ -80,15 +85,21 @@ public class CourseScheduleService implements RetrieveUserRole {
         List<Cohort> plannedCohorts=new ArrayList<>(cohorts(finalPlannedCourses(scheduledCourses())));
         return listCohortEmpty(plannedCohorts);
     }
-    public List<Cohort> cohortsToPlan(){
+    public List<Cohort> cohortsToPlan(Principal principal){
         //a list of cohorts in need for planning from the actual user of the system
         List<Cohort> cohorts=cohortRepository.findAll();
+        List<Cohort> cohorts1=new ArrayList<>();
         cohorts.removeAll(plannedCohorts());
-        for (Cohort cohort: cohorts) {
-            if (cohort.getUser().getUsername()!=retrieveActualUserName()) cohorts.remove(cohort);
+        User actualUser = userRepository.findByUsername(principal.getName());
+        if (!cohorts.isEmpty()) {
+            System.out.printf("\nde user is %s\n",actualUser.getUsername());
+            for (Cohort cohort : cohorts) {
+                System.out.printf("\ncohort user is %s\n",cohort.getUser().getUsername());
+                if (cohort.getUser().getUsername() == actualUser.getUsername()) cohorts1.add(cohort) ;
+            }
         }
-        listCohortEmpty(cohorts);
-        return cohorts;
+        listCohortEmpty(cohorts1);
+        return cohorts1;
     }
     private List<Cohort> listCohortEmpty(List<Cohort> cohorts){
         //a list with one cohort, if the original list is empty

@@ -34,18 +34,36 @@
             <div>
                 <label for="copyMaken" class="col-sm-2 col-form-label">Copy van bestaand rooster maken</label>
                 <div class="col-sm-10">
-                    <input type="checkbox" id="copymaken" name="copymaken" \>
+                    <input type="checkbox" id="copymaken" name="copymaken" onclick="showCopySchedule()" \>
                 </div>
             </div>
-            <p name="scheduleCopy" id="scheduleCopy" style="display:none">
+
+            <span name="scheduleCopy" id="scheduleCopy" style="display:none">
             <div class="form-group row">
                 <label for="copySchedule" class="col-sm-2 col-form-label">Copy van</label>
                 <div class="col-sm-10">
                     <select class="form-control" id="copySchedule" name="copySchedule"></select>
                 </div>
             </div>
-        </p>
+        </span>
+            <div class="form-group row">
+                <label for="vakkenCohort" class="col-sm-2 col-form-label">Vakken om in te roosteren</label>
+                <div class="col-sm-10">
+                    <select class="form-control" id="vakkenCohort" name="vakkenCohort"></select>
+                </div>
+            </div>
 
+<!--            todo vakken tonen van geselecteerde cohort-->
+<!--            todo voor geselecteerde vak roosteroptie's tonen-->
+<!--            todo 1 week tonen, weeknr.startdatum.cohort -->
+<!--            todo houd rekening met niet-lesdagen nice to have-->
+<!--            todo toon pauzes nice to have-->
+<!--            todo vak naar dag/dagdeel slepen-->
+<!--            todo een vak mag naar meerdere dagen/dagdelen gesleept worden-->
+<!--            todo als een vak in de week versleept wordt heeft dat betrekking op huidige en toekomstige weken-->
+<!--            todo vak verdelen over dag/dagdeel tot alle lesuren "op" zijn-->
+<!--            todo rooster kunnen opslaan-->
+<!--            todo rooster definitief maken-->
 
         </fieldset>
     </form>
@@ -83,6 +101,12 @@
             }
         });
     });
+</script>
+<script>
+    function showCopySchedule(){
+        $("#scheduleCopy").show();
+    }
+
 </script>
 
 </body>

@@ -13,18 +13,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-public class UserController {
+public class UserController implements RetrieveUserRole {
 
     @Autowired
     UserRepository userRepository;
-
     @Autowired
     RoleRepository roleRepository;
+
+    Principal principal=new Principal() {
+        @Override
+        public String getName() {
+            return null;
+        }
+    };
 
 
     @PostMapping("/checkUserName")
@@ -84,14 +91,28 @@ public class UserController {
     @PostMapping("/newUserRole")
     public @ResponseBody String userRole(@RequestBody String requestPayload) {
         Temp temp=deSerializeTemp(requestPayload);
-        List<Role> roles=new ArrayList<>();
-        Optional<Role> role= roleRepository.findById(temp.getRoleId());
-        roles.add(role.get());
-        User user=userRepository.findByUsername(temp.getUserName());
-        user.setRole(roles);
-        updateUser(user);
+        if (temp.getRoleId()>0){
+            List<Role> roles=new ArrayList<>();
+            Optional<Role> role= roleRepository.findById(temp.getRoleId());
+            roles.add(role.get());
+            User user=userRepository.findByUsername(temp.getUserName());
+            user.setRole(roles);
+            updateUser(user);
+        }
         return "crudUser";
     }
+    @PostMapping("/checkIsCoordinator")
+    public @ResponseBody String roleActualUser(@RequestBody String requestPayload) {
+        var output = new BasicDBObject();
+        if (isCoordinator(userRepository,principal) ==true) {
+            output.put("isCoordinator", true);
+        } else {
+            output.put("isCoordinator", false);
+        }
+        return output.toJson();
+
+    }
+
     private Boolean userBestaat(User user){
         Boolean bestaat=false;
         if (userRepository.findByUsername(user.getUsername())!=null) bestaat=true;

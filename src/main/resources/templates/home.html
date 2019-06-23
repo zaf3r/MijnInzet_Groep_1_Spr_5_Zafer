@@ -42,7 +42,7 @@
     <div class="card card-image" style="background-image: url(https://images.homedepot-static.com/productImages/9513d7c0-6365-4903-b136-0bb9d93c7e3a/svn/brewster-wallpaper-wv8103-64_600.jpg); background-size: cover">
         <div class="text-white text-center rgba-stylish-strong py-4 px-4">
             <div class="py-5">
-                <h2 class="card-title h1 my-4 py-2">Welkom <span th:text="${user.username}"></span>
+                <h2 class="card-title h1 my-4 py-2">Welkom <span th:text="${user.getSurname()}"></span>
                     <br>
                     U bent ingelogd als <span th:text="${roleCurrentUser.roleName}"></span></span> </h2>
                 <p class="mb-4 pb-2 px-md-5 mx-md-5"></p>

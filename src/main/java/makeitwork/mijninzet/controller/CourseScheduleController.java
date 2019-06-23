@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -29,8 +30,8 @@ public class CourseScheduleController {
 
     @PostMapping("/cohortsToPlan")
     public @ResponseBody
-    String cohortsToPlan(@RequestBody String requestPayload){
-        return new Gson().toJson(service.cohortsToPlan());
+    String cohortsToPlan(@RequestBody String requestPayload, Principal principal){
+        return new Gson().toJson(service.cohortsToPlan(principal));
     }
     @PostMapping("/vakkenCohort")
     public @ResponseBody
