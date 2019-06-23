@@ -1,5 +1,6 @@
 package makeitwork.mijninzet.service;
 
+import makeitwork.mijninzet.controller.RetrieveUserRole;
 import makeitwork.mijninzet.model.Cohort;
 import makeitwork.mijninzet.model.CourseSchedule;
 import makeitwork.mijninzet.model.preference.Subject;
@@ -16,7 +17,7 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 @Service
-public class CourseScheduleService {
+public class CourseScheduleService implements RetrieveUserRole {
     @Autowired
     CourseScheduleRepository courseScheduleRepository;
     @Autowired
@@ -84,7 +85,7 @@ public class CourseScheduleService {
         List<Cohort> cohorts=cohortRepository.findAll();
         cohorts.removeAll(plannedCohorts());
         for (Cohort cohort: cohorts) {
-//            todo cohorts van niet-ingelogde gebruiker eruithalen
+            if (cohort.getUser().getUsername()!=retrieveActualUserName()) cohorts.remove(cohort);
         }
         listCohortEmpty(cohorts);
         return cohorts;
