@@ -64,6 +64,13 @@ public class CohortService {
         }
         return coordinators;
     }
+    public Cohort getCohort(String name){
+        return cohortRepository.findByCohortName(name);
+    }
+    public List<Cohort> allCohorts(){
+        return cohortRepository.findAll();
+    }
+
 
 
 }
