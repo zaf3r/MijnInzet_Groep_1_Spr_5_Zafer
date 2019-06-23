@@ -69,4 +69,10 @@ public class HomeController implements RetrieveUserRole{
             defaultValue = "Guest") String name) {
         model.addAttribute("userName", name);
         return "courseManagement"; }
+
+    @GetMapping("/rooster")
+    public String addRooster(Model model, @RequestParam(value = "name", required = false,
+            defaultValue = "Guest") String name) {
+        model.addAttribute("userName", name);
+        return "scheduler"; }
 }

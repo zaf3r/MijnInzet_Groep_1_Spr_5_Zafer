@@ -31,10 +31,23 @@ INSERT INTO `mijninzet`.`rollen_gebruiker` (`idGebruiker`, `Rol_id`) VALUES ('3'
 INSERT INTO `mijninzet`.`rollen_gebruiker` (`idGebruiker`, `Rol_id`) VALUES ('4', '1');
 INSERT INTO `mijninzet`.`rollen_gebruiker` (`idGebruiker`, `Rol_id`) VALUES ('5', '1');
 
-INSERT INTO `mijninzet`.`vak` (`codeVak`, `naamvak`) VALUES ('1', 'Programming');
-INSERT INTO `mijninzet`.`vak` (`codeVak`, `naamvak`) VALUES ('2', 'Object oriented programming');
-INSERT INTO `mijninzet`.`vak` (`codeVak`, `naamvak`) VALUES ('3 ', 'Databases');
-INSERT INTO `mijninzet`.`vak` (`codeVak`, `naamvak`) VALUES ('4', 'Advanced programming');
-INSERT INTO `mijninzet`.`vak` (`codeVak`, `naamvak`) VALUES ('5', 'Complex programming');
-INSERT INTO `mijninzet`.`vak` (`codeVak`, `naamvak`) VALUES ('6', 'Data structures');
-INSERT INTO `mijninzet`.`vak` (`codeVak`, `naamvak`) VALUES ('7', 'Test driven development');
+INSERT INTO `mijninzet`.`vak` (`codeVak`, `naamvak`, `uren`) VALUES ('1', 'Programming', '50');
+INSERT INTO `mijninzet`.`vak` (`codeVak`, `naamvak`, `uren`) VALUES ('2', 'Object oriented programming', '50');
+INSERT INTO `mijninzet`.`vak` (`codeVak`, `naamvak`, `uren`) VALUES ('3 ', 'Databases', '50');
+INSERT INTO `mijninzet`.`vak` (`codeVak`, `naamvak`, `uren`) VALUES ('4', 'Advanced programming', '50');
+INSERT INTO `mijninzet`.`vak` (`codeVak`, `naamvak`, `uren`) VALUES ('5', 'Complex programming', '50');
+INSERT INTO `mijninzet`.`vak` (`codeVak`, `naamvak`, `uren`) VALUES ('6', 'Data structures', '50');
+INSERT INTO `mijninzet`.`vak` (`codeVak`, `naamvak`, `uren`) VALUES ('7', 'Test driven development', '50')
+
+
+
+-- -----------------------------------------------------
+-- Table `mijninzet`.`cohort`
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS `mijninzet`.`cohort` (
+  `cohort_naam` VARCHAR(45) NOT NULL,
+  `start_date` DATE NULL,
+  `end_date` DATE NULL,
+  PRIMARY KEY (`cohort_naam`))
+ENGINE = InnoDB;

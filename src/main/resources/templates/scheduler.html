@@ -22,19 +22,95 @@
         <h1>Roosterbeheer</h1>
     </section>
 
+<!--select cohort-->
     <div class = "select" align="center">
-        <label for="allCohorts"></label>
-        <div id="allCohorts" class="dropdown">
-            <button class="dropbtn">Dropdown</button>
-            <form>
-            <select name="cohortName" multiple="multiple" size="7" style="width: 250px; height: 200px; border-color: lightgray">-->
-                    <option th:each="cohort: ${cohorts}" th:value="${cohort.cohortName}" th:text="${cohort.cohortName}"></option>
+
+        <div >
+            <form action="#" th:object="${cohorts}" th:action="@{showSubjects}" method="post">
+                <select name="cohortName" id="cohortList" required style="width: 250px; border-color: lightgray" th:onchange="this.form.submit()">
+                    <option value="">Selecteer een cohort:</option>
+                    <option th:each="co: ${cohorts}" th:value="${co.cohortName}" th:text="${co.cohortName}"></option>
                 </select>
-            <div class="list">
-                <input type="submit" th:onclick="" value="Selecteer" id="lijstCohort"/>
-            </div>
             </form>
         </div>
+
+    </div>
+
+<!--    een form met lijst vakken en dropdown voor elk teachers-->
+    <form th:object="${teacherForm}" th:action="@{postTeacherToSubject}" method="post" id = "teacherForm">
+        <table class="table table-striped table table-hover" >
+            <thead>
+            <tr>
+<!--                <th scope="col"></th>-->
+<!--                <th th:each="scaleValue, scaleIndex : ${getTeachters}" scope="col">-->
+<!--                    <label th:text="${scaleValue.scale}"></label>-->
+<!--                </th>-->
+            </tr>
+            </thead>
+            <tbody>
+<!--            get method voor subjects/teachers?-->
+            <tr th:each="subject, subjectIndex : ${selectedSubjectsList}">
+                <td>
+                    <label th:text="${subject.subjectName}"></label>
+                </td>
+                <td th:each="scaleValue, scaleIndex : ${getTeachters}">
+<!--voorbeeld bibi-->
+<!--                    <select name="coordinator" id="coordinator" required>-->
+<!--                        <option value="">Selecteer een coordinator</option>-->
+<!--                        <option th:each="co: ${coordinators}" th:value="${co.id}" th:text="${co.username}"></option>-->
+<!--                    </select>-->
+                    <select name="teacher" id="teacher" required>
+                    <option value="">Selecteer een docent</option>
+                    <option th:each="teacher: ${teachers}" th:value="${teacher.teacherName}" th:text="${teacher.teacherName}"></option>
+                    </select>
+<!-- voorbeeld Zafer                   <input type="radio"-->
+<!--                           th:field="${preferenceForm.preferenceRating[__${subjectIndex.index}__]}"-->
+<!--                           th:value="${scaleValue.scale}"-->
+<!--                           required/>-->
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+        <input class="save" id="submitButton" type="submit" value="Bezetting opslaan">
+    </form>
+
+<!--&lt;!&ndash;show subjects&ndash;&gt;-->
+
+<!--    <div >-->
+<!--        <div class="selectedSubjectList">Selecteer een of meerdere vakken:</div>-->
+<!--        <form action="#" th:object="${subjects}" th:action="@{addTeacher}" method="post">-->
+<!--            <input type="submit" th:onclick="" value="<" id="remove"/>-->
+<!--            <select  id="selectedSubjectList" name="selectedSubjectList" required multiple="multiple" size="7" style="width: 250px">-->
+<!--                <option th:each="subject: ${subjects}" th:value="${subject.subjectId}" th:text="${subject.subjectName}"></option>-->
+<!--            </select>-->
+<!--        </form>-->
+<!--    </div>-->
+
+
+<!--&lt;!&ndash; add teacher   &ndash;&gt;-->
+
+<!--<div>-->
+<!--    <label>docent:</label>-->
+<!--    <select name="teacher" id="teacher" required>-->
+<!--        <option value="">Selecteer een docent</option>-->
+<!--        <option th:each="co: ${coordinators}" th:value="${co.id}" th:text="${co.username}"></option>-->
+<!--    </select>-->
+<!--</div>-->
+
+<!--    <div class = "select" align="center">-->
+<!--        <label for="allCohorts"></label>-->
+<!--        <div id="allCohorts" class="dropdown">-->
+<!--            <button class="dropbtn">Dropdown</button>-->
+<!--            <form>-->
+<!--            <select name="cohortName" multiple="multiple" size="7" style="width: 250px; height: 200px; border-color: lightgray">&ndash;&gt;-->
+<!--                    <option th:each="cohort: ${cohorts}" th:value="${cohort.cohortName}" th:text="${cohort.cohortName}"></option>-->
+<!--                </select>-->
+<!--            <div class="list">-->
+<!--                <input type="submit" th:onclick="" value="Selecteer" id="lijstCohort"/>-->
+<!--            </div>-->
+<!--            </form>-->
+<!--        </div>-->
                     <!--        <table id="allCohorts">-->
 <!--            <tr collspan="2">-->
 <!--                <td>-->

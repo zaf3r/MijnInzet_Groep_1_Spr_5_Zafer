@@ -34,7 +34,7 @@ public class ManagerController {
             }
         }
         return "";
-    } 
+    }
 
 
     public List<Subject> getSubjectList() {
