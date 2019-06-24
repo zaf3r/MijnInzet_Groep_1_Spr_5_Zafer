@@ -18,8 +18,8 @@ import java.util.Collections;
 import java.util.List;
 
 @Controller
-//@RequestMapping("/teacher")
-public class TaskController {
+@RequestMapping("/teacher")
+public class TaskController extends AbstractController {
 
     @Autowired
     private TaskRepository taskRepository;
@@ -30,26 +30,27 @@ public class TaskController {
     @Autowired
     VacatureService vacatureService;
 
-    @GetMapping("teacher/taskOverview") //th:action
+    @GetMapping("/taskOverview") //th:action
     public String MenuHandler(Model model, Principal principal) {
         User user = usersRepository.findByUsername(principal.getName());
         model.addAttribute("allTasks", tasks2React(user));
         return "taskOverview";
     }
 
-    @GetMapping("teacher/showTask/{task}")  //th:action
-    public String TaskDetailHandler(@ModelAttribute("task") Task taak, @RequestParam("taskId") String taakId, Model model) {
-        taak = opening(taakId);
+    @GetMapping("/showTask/{task}")  //th:action
+    public String TaskDetailHandler(@RequestParam String taskId, Model model) {
+//        String taakId = taak.getId();
+        Task taak = opening(taskId);
         model.addAttribute("taak", taak);
         model.addAttribute("deadline", returnDays(taak));
         return "showTask"; //html
     }
 
-    @GetMapping("teacher/taskSave/{taskId}") //mapping bij voor de view
+    @GetMapping("/taskSave/{taskId}") //mapping bij voor de view
     public String ApplicationHandler(@ModelAttribute("task") Task taak, @RequestParam("taskId") String taakId, Principal principal) {
         taak = opening(taakId);
         vacatureService.addTask(taak, usersRepository.findByUsername(principal.getName()));
-        return "redirect:/taskOverview";
+        return "redirect:/teacher/taskOverview";
     }
 
     @GetMapping("/myTasks")
@@ -66,6 +67,7 @@ public class TaskController {
         vacatureService.removeTask(myTask, usersRepository.findByUsername(principal.getName()));
         return "redirect:/myTasks";
     }
+
     //haalt alles uit database
     private List<Task> allTasks() {
         List<Task> tasks = this.taskRepository.findAll();
@@ -131,9 +133,9 @@ public class TaskController {
     }
 
     public long returnDays(Task task){
-    LocalDate deadline = task.getSluitdatum();
-    LocalDate today = LocalDate.now();
-    long elapsedDays = ChronoUnit.DAYS.between(today, deadline);
+        LocalDate deadline = task.getSluitdatum();
+        LocalDate today = LocalDate.now();
+        long elapsedDays = ChronoUnit.DAYS.between(today, deadline);
         return elapsedDays;
     }
 }

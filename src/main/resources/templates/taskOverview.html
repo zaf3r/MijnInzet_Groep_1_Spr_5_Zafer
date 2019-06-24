@@ -25,7 +25,7 @@
                 <div class="row">
                     <div class="col-lg-4 mb-3" th:each="task : ${allTasks}">
                         <div class="card">
-                            <form action="#" th:action="@{teacher/showTask/${task}}"  th:object="${allTasks}" method="get">
+                            <form action="#" th:action="@{/teacher/showTask/${task}}"  th:object="${allTasks}" method="get">
                                 <div class="card-body">
                                     <h4><span th:text="${task.titel}"/></h4>
                                     <h6>HvA</h6>
