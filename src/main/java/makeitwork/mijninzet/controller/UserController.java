@@ -119,14 +119,14 @@ public class UserController implements RetrieveUserRole {
         return "crudUser";
     }
 
-    @PostMapping("/checkIsCoordinator")
+    @PostMapping("/checkIsAdmin")
     public @ResponseBody
     String roleActualUser(@RequestBody String requestPayload, Principal principal) {
         var output = new BasicDBObject();
-        if (isCoordinator(userRepository, principal) == true) {
-            output.put("isCoordinator", true);
+        if (isAdmin(userRepository, principal) == true) {
+            output.put("isAdmin", true);
         } else {
-            output.put("isCoordinator", false);
+            output.put("isAdmin", false);
         }
         return output.toJson();
     }

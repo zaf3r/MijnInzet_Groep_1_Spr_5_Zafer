@@ -6,7 +6,6 @@ import makeitwork.mijninzet.model.preference.Subject;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.Period;
 import java.util.Objects;
 
 @Entity
@@ -117,25 +116,15 @@ public class CourseSchedule {
         return courseId == that.courseId &&
                 cohort.equals(that.cohort) &&
                 subject.equals(that.subject) &&
-                period.equals(that.period) &&
+                date.equals(that.date) &&
                 weekday == that.weekday &&
                 partOfDay == that.partOfDay;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(courseId, cohort, subject, period, weekday, partOfDay);
+        return Objects.hash(courseId, cohort, subject, date, weekday, partOfDay);
     }
 
-    @Override
-    public String toString() {
-        return "CourseSchedule{" +
-                "courseId=" + courseId +
-                ", cohort=" + cohort +
-                ", subject=" + subject +
-                ", period=" + period +
-                ", weekday=" + weekday +
-                ", partOfDay=" + partOfDay +
-                '}';
-    }
+
 }

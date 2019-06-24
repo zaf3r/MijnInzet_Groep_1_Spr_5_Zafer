@@ -270,7 +270,7 @@
     function isCoordinatorFunction(){
         $.ajax({
             type: 'POST',
-            url: '/checkIsCoordinator',
+            url: '/checkIsAdmin',
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
             data: "{}"
@@ -278,7 +278,7 @@
                 roleDisplay=$("#displayRole");
                 eAddressErr = $("#eAddressMsg");
                 verwijderen=$("#userVerwijderen");
-                if (coordinator["isCoordinator"]){
+                if (coordinator["isAdmin"]){
                     roleDisplay.show();
                     eAddressErr.hide();
                     verwijderen.hide();
@@ -288,7 +288,6 @@
 
                 }
             }
-
         )
     }
 </script>
