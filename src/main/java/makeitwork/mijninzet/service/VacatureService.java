@@ -1,7 +1,9 @@
 package makeitwork.mijninzet.service;
 
+import makeitwork.mijninzet.model.Sollicitatie;
 import makeitwork.mijninzet.model.Task;
 import makeitwork.mijninzet.model.User;
+import makeitwork.mijninzet.repository.SollicitatieRepository;
 import makeitwork.mijninzet.repository.TaskRepository;
 import makeitwork.mijninzet.repository.UserRepository;
 import makeitwork.mijninzet.repository.VacatureRepository;
@@ -24,17 +26,23 @@ public class VacatureService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private SollicitatieRepository sollicitatieRepository;
+
     //save Vacature in DB SQL
     public void addTask(Task task, User user){
         System.out.println("Task: " + task);
         System.out.println("User: " + user);
         System.out.println("User: " + user.getUsername());
 
-        user.addTask(task.getId());
-        vacatureRepository.save(user);
+        Sollicitatie sollicitatie = new Sollicitatie(user, task.getId());
+        sollicitatie.addTask(task.getId());
+        System.out.println("De opgeslagen sollicitatie is: " + sollicitatie);
+        sollicitatieRepository.save(sollicitatie);
+//        user.addTask(task.getId());
+//        vacatureRepository.save(user);
 
     }
-    //todo teller bijhouden??
     //wordt een taak uit zijn eigen lijst verwijderd
     public void removeTask(Task task, User user) {
         System.out.println("Task: " + task);
@@ -54,9 +62,10 @@ public class VacatureService {
     public List<Task> getAllTasks(User user){
         List<Task> tasks = new ArrayList<>();
         for (String taskId: user.getTasks()) {
-            Task task = getTask(taskId);
-            tasks.add(task);
-        }
+                Task task = getTask(taskId);
+                tasks.add(task);
+            }
+
         return tasks;
     }
 
@@ -67,7 +76,7 @@ public class VacatureService {
         Iterator<User> iter = sollicitanten.iterator();
         while (iter.hasNext()) {
             User user = iter.next();
-            if (!user.getTaskIds().contains(task)) {
+            if (!user.getTask().contains(task)) {
                 iter.remove();
             }
             System.out.println("*******************" + sollicitanten);

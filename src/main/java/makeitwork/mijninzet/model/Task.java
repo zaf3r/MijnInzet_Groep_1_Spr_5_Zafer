@@ -33,6 +33,8 @@ public class Task implements Comparable{
 
     private InfoBy contactPerson;//nog naar het Nederland vertalen
 
+    private Sollicitatie sol ;
+
     public Task() {
     }
 
@@ -110,6 +112,7 @@ public class Task implements Comparable{
     }
 
     @Transient
+    //List <User>
     private SortedSet<Integer> userIds = new TreeSet<>();
 
     public SortedSet<Integer> getUsers() {

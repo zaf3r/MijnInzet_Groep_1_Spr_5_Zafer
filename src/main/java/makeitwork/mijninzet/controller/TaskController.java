@@ -1,7 +1,9 @@
 package makeitwork.mijninzet.controller;
 
+import makeitwork.mijninzet.model.Sollicitatie;
 import makeitwork.mijninzet.model.Task;
 import makeitwork.mijninzet.model.User;
+import makeitwork.mijninzet.repository.SollicitatieRepository;
 import makeitwork.mijninzet.repository.TaskRepository;
 import makeitwork.mijninzet.repository.UserRepository;
 import makeitwork.mijninzet.service.VacatureService;
@@ -28,12 +30,16 @@ public class TaskController extends AbstractController {
     private UserRepository usersRepository;
 
     @Autowired
+    private SollicitatieRepository sollicitatieRepository;
+
+    @Autowired
     VacatureService vacatureService;
 
     @GetMapping("/taskOverview") //th:action
     public String MenuHandler(Model model, Principal principal) {
         User user = usersRepository.findByUsername(principal.getName());
-        model.addAttribute("allTasks", tasks2React(user));
+        List<Sollicitatie> sollicitaties = sollicitatieRepository.findByUser(user);
+        model.addAttribute("allTasks", tasks2React(sollicitaties));
         return "taskOverview";
     }
 
@@ -56,6 +62,7 @@ public class TaskController extends AbstractController {
     @GetMapping("/myTasks")
     public String MyTaskHandler(Model model, Principal principal) {
         User user = usersRepository.findByUsername(principal.getName());
+        List<Sollicitatie> sollicitaties = sollicitatieRepository.findByUser(user);
         model.addAttribute("myTasks", myTaskList(user));
         return "myTasks";
     }
@@ -87,7 +94,7 @@ public class TaskController extends AbstractController {
     }
 
     //lijst met taken waar de docent nog op kan reageren
-    private List<Task> tasks2React(User user) {
+    private List<Task> tasks2React(User  user) {
         List<Task> tasks = allTasks();
         System.out.println("All: " + tasks);
         List<Task> myTasks = vacatureService.getAllTasks(user);
@@ -102,9 +109,9 @@ public class TaskController extends AbstractController {
         return possibleTasks;
     }
 
-    public List<Task> myTaskList(User user) {
+    public List<Task> myTaskList(User sol) {
         List<Task> tasks = allTasks();
-        List<Task> myTasks = vacatureService.getAllTasks(user);
+        List<Task> myTasks = vacatureService.getAllTasks(sol);
         List<Task> possibleTasks = new ArrayList<>();
         for (Task t : myTasks) {
             if (!doesContaine(t, tasks)) {

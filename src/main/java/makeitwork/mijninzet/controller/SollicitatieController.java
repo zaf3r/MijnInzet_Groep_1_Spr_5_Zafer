@@ -1,7 +1,7 @@
 package makeitwork.mijninzet.controller;
 
+import makeitwork.mijninzet.model.Sollicitatie;
 import makeitwork.mijninzet.model.Task;
-import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.repository.TaskRepository;
 import makeitwork.mijninzet.repository.UserRepository;
 import makeitwork.mijninzet.repository.VacatureRepository;
@@ -11,8 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.SortedSet;
 
 @Controller
 @RequestMapping("/manager")
@@ -31,23 +29,24 @@ public class SollicitatieController {
     @Autowired
     VacatureService vacatureService;
 
+    Sollicitatie sollicitatie;
+
     @GetMapping("/sollicitaties")
     public String SollicitatieHandler(Model model, Task task) {
         model.addAttribute("listSoltaties", vacatureService.getAllUsers(task));
+        //model.addAttribute ( de status)
         return "sollicitaties";
     }
 
-//    @GetMapping("/showsol/{task}")
-//    public String ShowSollicitieHandler(@ModelAttribute("user") Task taskuser, @RequestParam("id") int id, Model model) {
-//        taskuser = show(id);
-//        model.addAttribute("sol", user);
-//        return "redirect: sollicitaties";
+//    @PostMapping("/goedkeuring")
+//    public String Handler (){
+//        sollicitatie.setTaskStatus(TaskStatus.APPROVED);
+//        System.out.println("**********" + sollicitatie);
+//        return "redirect: /sollicitaties";
 //    }
 
-    private SortedSet<String> show(int id) {
-        User user = vacatureRepository.findUserById(id);
-        return user.getTasks();
-    }
+
+
 
 
 

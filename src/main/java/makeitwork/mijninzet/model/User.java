@@ -101,6 +101,7 @@ public class User implements Comparable{
 
     @Transient
     private List<Task> task;
+
 ;
 
     //contracturen?
@@ -204,7 +205,7 @@ public class User implements Comparable{
 
  //  -------------------------------------------------------------------------------------------->
     // Task functionaliteiten voor Teacher
-
+//TO DO : mag weg
     @ElementCollection
     @SortNatural
     private SortedSet<String> taskIds = new TreeSet<>();
@@ -212,10 +213,7 @@ public class User implements Comparable{
     public SortedSet<String> getTasks() {
         return taskIds;
     }
-
-    public SortedSet<String> getTaskIds() {
-        return taskIds;
-    }
+    // functie veranderen naar TasksID
 
     public void setTaskIds(SortedSet<String> taskIds) {
         this.taskIds = taskIds;
@@ -224,9 +222,6 @@ public class User implements Comparable{
     public void addTask(String taskId) {
         SortedSet<String> tasks = getTasks();
         if (!tasks.contains(taskId)) tasks.add(taskId);
-        Sollicitatie sl = new Sollicitatie();
-        sl.setTaskStatus(Sollicitatie.TaskStatus.INTERESTED);
-        System.out.println("____________" + sl);
     }
 
     public void removeTask(String taskId) {
