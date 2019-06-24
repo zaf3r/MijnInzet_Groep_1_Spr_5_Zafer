@@ -121,7 +121,4 @@ public class CohortController {
         selectedSubjectList = selectedSubjects(cohort);
         possibleSubjectList = possibleSubjects(cohort);
     }
-
-
-
 }
