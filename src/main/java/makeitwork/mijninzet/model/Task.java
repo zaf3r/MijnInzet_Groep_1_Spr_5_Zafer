@@ -1,9 +1,6 @@
 package makeitwork.mijninzet.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -11,6 +8,7 @@ import java.time.LocalDate;
 public class Task implements Comparable{
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     private String titel;

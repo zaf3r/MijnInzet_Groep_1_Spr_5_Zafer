@@ -1,6 +1,7 @@
 package makeitwork.mijninzet.model;
 
 import makeitwork.mijninzet.model.preference.Preference;
+import org.hibernate.annotations.SortNatural;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import javax.persistence.*;
@@ -99,6 +100,7 @@ public class User implements Comparable{
     private List<Role> role;
 
     @ElementCollection
+    @SortNatural
     @Column(name = "taak")
     private SortedSet<Integer> task = new TreeSet<>();
 
