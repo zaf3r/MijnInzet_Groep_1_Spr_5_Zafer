@@ -1,13 +1,10 @@
 package makeitwork.mijninzet;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import makeitwork.mijninzet.controller.UserController;
 import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.repository.UserRepository;
 import org.junit.Test;
-import org.junit.runners.JUnit4;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,6 +13,8 @@ import org.springframework.data.domain.Sort;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class userController {
     UserController userController=new UserController();

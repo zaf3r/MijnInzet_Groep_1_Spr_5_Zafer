@@ -7,30 +7,39 @@ import makeitwork.mijninzet.model.Temp;
 import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.repository.RoleRepository;
 import makeitwork.mijninzet.repository.UserRepository;
+import makeitwork.mijninzet.service.CrudUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-public class UserController {
+public class UserController implements RetrieveUserRole {
 
     @Autowired
     UserRepository userRepository;
-
     @Autowired
     RoleRepository roleRepository;
+    @Autowired
+    CrudUserService crudUserService;
 
-    public UserController() {
-    }
+    Principal principal = new Principal() {
+        @Override
+        public String getName() {
+            return null;
+        }
+    };
+
 
     @PostMapping("/checkUserName")
-    public @ResponseBody String nameCorrect(@RequestBody String requestPayload){
+    public @ResponseBody
+    String nameCorrect(@RequestBody String requestPayload) {
         var input = BasicDBObject.parse(requestPayload);
         var username = input.getString("username");
         var output = new BasicDBObject();
@@ -42,8 +51,10 @@ public class UserController {
         }
         return output.toJson();
     }
+
     @PostMapping("/checkEmail")
-    public @ResponseBody String emailCorrect(@RequestBody String requestPayload){
+    public @ResponseBody
+    String emailCorrect(@RequestBody String requestPayload) {
         var input = BasicDBObject.parse(requestPayload);
         var email = input.getString("email");
         var output = new BasicDBObject();
@@ -55,12 +66,17 @@ public class UserController {
         }
         return output.toJson();
     }
+
     @PostMapping("/newUser")
-    public @ResponseBody String newUser(@RequestBody String requestPayload){
-        User newUser=new User();
-        newUser=deSerializeUser(requestPayload);
-        if (userBestaat(newUser)==true) updateUser(newUser); else {storeUser(newUser);}
-        var user=userRepository.findByUsername(newUser.getUsername());
+    public @ResponseBody
+    String newUser(@RequestBody String requestPayload) {
+        User newUser = new User();
+        newUser = deSerializeUser(requestPayload);
+        if (crudUserService.userBestaat(newUser) == true) crudUserService.updateUser(newUser,principal);
+        else {
+            crudUserService.storeUser(newUser);
+        }
+        var user = userRepository.findByUsername(newUser.getUsername());
         var output = new BasicDBObject();
         if (user != null) {
             output.put("exists", true);
@@ -69,57 +85,79 @@ public class UserController {
         }
         return output.toJson();
     }
-    public User deSerializeUser(String requestPayload){
+
+    public User deSerializeUser(String requestPayload) {
         User user = new Gson().fromJson(requestPayload, User.class);
         user.setPassword(user.encryptPassword(user.getPassword()));
         return user;
     }
-    public Temp deSerializeTemp(String requestPayload){
+
+    public Temp deSerializeTemp(String requestPayload) {
         return new Gson().fromJson(requestPayload, Temp.class);
     }
+
     @PostMapping("/allRoles")
-    public @ResponseBody String allRoles(@RequestBody String requestPayload){
-        List<Role> allRoles=roleRepository.findAll();
-        Gson output= new Gson();
+    public @ResponseBody
+    String allRoles(@RequestBody String requestPayload) {
+        List<Role> allRoles = roleRepository.findAll();
+        Gson output = new Gson();
         return output.toJson(allRoles);
     }
+
     @PostMapping("/newUserRole")
-    public @ResponseBody String userRole(@RequestBody String requestPayload) {
-        Temp temp=deSerializeTemp(requestPayload);
-
-        List<Role> roles=new ArrayList<>();
-        Optional<Role> role= roleRepository.findById(temp.getRoleId());
-        Role addRole=role.get();
-        roles.add(addRole);
-
-        User user=new User();
-        user=userRepository.findByUsername(temp.getUserName());
-        System.out.printf("\n\nvers uit DB de user heeft de volgende rollen: %s\n",user.getRole());
-        user.setRole(roles);
-        System.out.printf("\n\nde user heeft nu de volgende rollen: %s\n",user.getRole());
-        updateUser(user);
-        User latestUser=new User();
-        latestUser=userRepository.findByUsername(user.getUsername());
-        System.out.printf("\n\nde user heeft na verwerken in db de volgende rollen: %s\n",latestUser.getRole());
+    public @ResponseBody
+    String userRole(@RequestBody String requestPayload) {
+        Temp temp = deSerializeTemp(requestPayload);
+        if (temp.getRoleId() > 0) {
+            List<Role> roles = new ArrayList<>();
+            Optional<Role> role = roleRepository.findById(temp.getRoleId());
+            roles.add(role.get());
+            User user = userRepository.findByUsername(temp.getUserName());
+            user.setRole(roles);
+            crudUserService.updateUser(user,principal);
+        }
         return "crudUser";
     }
+
+    @PostMapping("/checkIsCoordinator")
+    public @ResponseBody
+    String roleActualUser(@RequestBody String requestPayload, Principal principal) {
+        var output = new BasicDBObject();
+        if (isCoordinator(userRepository, principal) == true) {
+            output.put("isCoordinator", true);
+        } else {
+            output.put("isCoordinator", false);
+        }
+        return output.toJson();
+    }
+
+    @PostMapping("/actualUserName")
+    public @ResponseBody
+    String actualUserName(@RequestBody String requestPayload, Principal principal) {
+        return new Gson().toJson(crudUserService.actualUserName(principal));
+
+//        @PostMapping("/checkIsTeacher")
+//    public @ResponseBody String roleTeacherUser(@RequestBody String requestPayload) {
+//        var output = new BasicDBObject();
+//        if (isTeacher(userRepository,principal) ==true) {
+//            output.put("isTeacher", true);
+//        } else {
+//            output.put("isTeacher", false);
+//        }
+//        return output.toJson();
+    }
+
     private Boolean userBestaat(User user){
         Boolean bestaat=false;
         if (userRepository.findByUsername(user.getUsername())!=null) bestaat=true;
         if (userRepository.findByEmail(user.getEmail())!=null) bestaat=true;
         return bestaat;
     }
-    private void updateUser(User user){
-        User thatUser=new User();
-        thatUser=null;
-        thatUser= userRepository.findByUsername(user.getUsername());
-        if (thatUser==null) thatUser= userRepository.findByEmail(user.getEmail());
-        user.setId(thatUser.getId());
-        storeUser(user);
-    }
-    private void storeUser(User user){
-        userRepository.save(user);
-        userRepository.flush();
+
+    @PostMapping("/actualEmail")
+    public @ResponseBody
+    String actualUserEmail(@RequestBody String requestPayload, Principal principal) {
+        return new Gson().toJson(crudUserService.UserEmail(principal));
     }
 }
 

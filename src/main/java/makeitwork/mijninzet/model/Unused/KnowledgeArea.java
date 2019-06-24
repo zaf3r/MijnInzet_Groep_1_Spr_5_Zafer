@@ -1,34 +1,31 @@
-package makeitwork.mijninzet.model.Unused;
+package makeitwork.mijninzet.model;
 
 import makeitwork.mijninzet.model.preference.Subject;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "knowledge_area", uniqueConstraints={@UniqueConstraint(columnNames={"kennisgebied"})})
-public class KnowledgeArea {
+@Table(name = "studierichting")
+public class KnowledgeArea implements Comparable<KnowledgeArea> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    int knowledgeAreaId;
+    private int knowledgeAreaId;
 
-    @Column(name = "kennisgebied")
-    String knowledgeArea;
+    @Column (name="richting")
+    private String knowledgeArea;
 
-    @ManyToMany
-    @Column (name = "Vakkenlijst", nullable = false)
-    private List<Subject> subjects = new ArrayList<>();
+//    @OneToMany(mappedBy = "knowledgeArea", cascade= {CascadeType.PERSIST,CascadeType.REMOVE})
+//    private Set<Subject> subjectSet = new HashSet<>();
 
     //constructors
     public KnowledgeArea() {}
 
-    public KnowledgeArea(String knowledgeArea) {
+    public KnowledgeArea(String knowledgeArea, Set<Subject> subjectSet) {
         this.knowledgeArea = knowledgeArea;
-
+//        this.subjectSet = subjectSet;
     }
 
     //getters & setters
@@ -40,18 +37,18 @@ public class KnowledgeArea {
 //    public Set<Subject> getSubjectSet() { return subjectSet; }
 //    public void setSubjectSet(Set<Subject> subjectSet) { this.subjectSet = subjectSet; }
 
+    @Transient
+    @Override
+    public int compareTo(KnowledgeArea o) {
+        return o.getKnowledgeArea().compareTo(this.getKnowledgeArea());
+    }
 
+    @Transient
     @Override
     public String toString() {
         return "KnowledgeArea{" +
                 "knowledgeAreaId=" + knowledgeAreaId +
-                ", knowledgeArea='" + knowledgeArea + '\'' +
-                ", subjects=" + subjects +
+                ", studierichting='" + knowledgeArea + '\'' +
                 '}';
     }
 }
-
-
-
-
-
