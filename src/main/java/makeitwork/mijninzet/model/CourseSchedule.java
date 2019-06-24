@@ -37,6 +37,10 @@ public class CourseSchedule {
     @Column(name="status")
     private StatusCourseSchedule status;
 
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name="docent")
+    private User user;
+
     public CourseSchedule() {
     }
 

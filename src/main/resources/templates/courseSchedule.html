@@ -46,28 +46,45 @@
                 </div>
             </div>
         </span>
+
             <div class="form-group row">
                 <label for="vakkenCohort" class="col-sm-2 col-form-label">Vakken om in te roosteren</label>
                 <div class="col-sm-10">
-                    <select class="form-control" id="vakkenCohort" name="vakkenCohort"></select>
+                    <select class="form-control" id="vakkenCohort" name="vakkenCohort" required multiple="multiple" size="7" style="width: 250px"/>
                 </div>
             </div>
 
-<!--            todo vakken tonen van geselecteerde cohort-->
-<!--            todo voor geselecteerde vak roosteroptie's tonen-->
+<!--            todo nog te doen copy vakken togglen-->
 <!--            todo 1 week tonen, weeknr.startdatum.cohort -->
-<!--            todo houd rekening met niet-lesdagen nice to have-->
-<!--            todo toon pauzes nice to have-->
 <!--            todo vak naar dag/dagdeel slepen-->
 <!--            todo een vak mag naar meerdere dagen/dagdelen gesleept worden-->
 <!--            todo als een vak in de week versleept wordt heeft dat betrekking op huidige en toekomstige weken-->
 <!--            todo vak verdelen over dag/dagdeel tot alle lesuren "op" zijn-->
 <!--            todo rooster kunnen opslaan-->
 <!--            todo rooster definitief maken-->
+<!--            todo voor geselecteerde vak roosteroptie's tonen ??-->
+<!--            todo houd rekening met niet-lesdagen nice to have-->
+<!--            todo toon pauzes nice to have-->
+
 
         </fieldset>
     </form>
 </div>
+<script>
+    var table ='';
+    var rows= 3;
+    var col=10;
+    for(var r=0;r<rows;r++)
+    {
+        table += '<tr>';
+        for(var c=0;c<rows;c++)
+        {
+            table+='<td>'+c+'</td>'
+        }
+        table += '</tr>';
+    }
+    document.write('<table>'+table+'</table>');
+</script>
 
 <script>
     // registreer eventhandlers
@@ -101,13 +118,69 @@
             }
         });
     });
+    $("#cohorts2Plan").on("change", function() {
+        var selectedVal = $(this).find(':selected').val();
+        var selectedText = $(this).find(':selected').text();
+        payload = JSON.stringify({cohortName: selectedText });
+        $.ajax({
+            type: 'POST',
+            url: '/vakkenCohort',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            data: payload
+        }).done( function (response) {
+            $.each(response, function (i, item) {
+                $("#vakkenCohort").append('<option value="">' + response[i].subjectName + '</option>');
+            });
+        })
+    });
+    $("#vakkenCohort").on("change", function() {
+        var selectedText = $(this).find(':selected').text();
+        console.log("text: "+selectedText);
+        payload = JSON.stringify({subjectName: selectedText });
+        $.ajax({
+            type: 'POST',
+            url: '/weekDays',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            data: "{}"
+        }).done( function (response) {
+            var days=response;
+            $.each(days, function (i, item) {
+                // $("#vakkenCohort").append('<option value="">' + response[i].subjectName + '</option>');
+            });
+        })
+        $.ajax({
+            type: 'POST',
+            url: '/partOfDay',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            data: "{}"
+        }).done( function (response) {
+            var partsOfDay=response;
+            $.each(partsOfDay, function (i, item) {
+                // $("#vakkenCohort").append('<option value="">' + response[i].subjectName + '</option>');
+            });
+        })
+        $.ajax({
+            type: 'POST',
+            url: '/subjectInfo',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            data: payload
+        }).done( function (response) {
+            var urenVak=response['hours'];
+            });
+        // })
+    });
+
 </script>
 <script>
     function showCopySchedule(){
         $("#scheduleCopy").show();
     }
-
 </script>
+
 
 </body>
 </html>
