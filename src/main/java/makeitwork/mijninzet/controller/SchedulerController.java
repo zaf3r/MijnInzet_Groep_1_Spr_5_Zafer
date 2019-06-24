@@ -37,7 +37,7 @@ public class SchedulerController {
     private List<Subject> selectedSubject;
 
 
-    @GetMapping("/bezetting")
+    @GetMapping("/vakdocent")
     public String teacherHandler(Model model){
         //maybe create a new set for each subject?
         model.addAttribute("cohorts", getAllCohorts());

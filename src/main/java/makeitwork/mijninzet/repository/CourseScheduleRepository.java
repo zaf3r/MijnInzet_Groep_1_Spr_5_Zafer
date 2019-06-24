@@ -11,4 +11,6 @@ import java.util.List;
 public interface CourseScheduleRepository extends JpaRepository<CourseSchedule,Integer> {
 
     List<CourseSchedule>  findAllByCohort(Cohort cohort);
+
+
 }
