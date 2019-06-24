@@ -15,7 +15,20 @@
     <title>Jouw takenoverzicht</title>
 
     </head>
-<header th:insert="~{navbar :: header}"></header>
+<!--<header th:insert="~{navbar :: header}"></header>-->
+
+<div th:if="${roleUser.roleName == 'Docent'}">
+    <header th:insert="~{navbarDocent :: header}"></header>
+</div>
+<div th:if="${roleUser.roleName == 'Administrateur'}">
+    <header th:insert="~{navbarAdministrateur :: header}"></header>
+</div>
+<div th:if="${roleUser.roleName == 'Manager'}">
+    <header th:insert="~{navbarManager :: header}"></header>
+</div>
+<div th:if="${roleUser.roleName == 'Roosteraar'}">
+    <header th:insert="~{navbarRoosteraar :: header}"></header>
+</div>
     <body>
 
     <div class="content">

@@ -15,6 +15,10 @@ import java.util.TreeSet;
 public class Cohort {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "cohortId")
+    private int cohortId;
+
     @Column(name = "cohortNaam", nullable = false)
     private String cohortName;
 
@@ -46,6 +50,10 @@ public class Cohort {
         this.startDate = startDate;
         this.endDate = endDate;
     }
+
+    public int getCohortId() { return cohortId; }
+
+    public void setCohortId(int cohortId) { this.cohortId = cohortId; }
 
     public User getUser() { return user; }
 
@@ -83,9 +91,11 @@ public class Cohort {
     @Override
     public String toString() {
         return "Cohort{" +
-                "cohortName='" + cohortName + '\'' +
+                "cohortId=" + cohortId +
+                ", cohortName='" + cohortName + '\'' +
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
+                ", coordinator=" + user +
                 '}';
     }
 }

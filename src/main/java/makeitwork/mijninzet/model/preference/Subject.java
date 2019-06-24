@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-@Table(name = "vak", uniqueConstraints={@UniqueConstraint(columnNames={"naamvak"})})
+@Table(name = "vak")
 public class Subject {
 
     @Id

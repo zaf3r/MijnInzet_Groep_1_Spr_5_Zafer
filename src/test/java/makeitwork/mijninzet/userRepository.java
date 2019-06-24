@@ -3,7 +3,6 @@ package makeitwork.mijninzet;
 import makeitwork.mijninzet.model.Role;
 import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.repository.UserRepository;
-import org.junit.Before;
 import org.junit.Test;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -14,14 +13,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.runners.JUnit4;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 
 
 public class userRepository {
 
-    UserRepository userRepository=new UserRepository() {
+    UserRepository userRepository = new UserRepository() {
         @Override
         public User findByUsername(String username) {
             return null;

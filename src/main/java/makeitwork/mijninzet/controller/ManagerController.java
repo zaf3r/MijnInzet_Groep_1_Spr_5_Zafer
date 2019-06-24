@@ -1,7 +1,9 @@
 package makeitwork.mijninzet.controller;
 
+import makeitwork.mijninzet.model.Role;
 import makeitwork.mijninzet.model.preference.Subject;
 import makeitwork.mijninzet.repository.SubjectRepository;
+import makeitwork.mijninzet.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,23 +15,29 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.validation.ConstraintViolationException;
 import javax.validation.ValidationException;
 import javax.validation.constraints.NotNull;
+import java.security.Principal;
 import java.util.List;
 
 @Controller
 @RequestMapping(value = "/manager", method = RequestMethod.GET)
-public class ManagerController {
+public class ManagerController implements RetrieveUserRole {
 
+    @Autowired
+    UserRepository userRepository;
 
     @Autowired
     private SubjectRepository subRepo;
 
     @RequestMapping(value="/{object}", method=RequestMethod.GET)
-    public String addSubject(@PathVariable String object, Model model) {
+    public String addSubject(@PathVariable String object, Model model, Principal principal) {
         switch (object) {
             case "vak": {
                 Subject subject = new Subject();
                 model.addAttribute("attr3", subject);
                 model.addAttribute("subjects", getSubjectList());
+                Role role = retrieveRole(userRepository,principal);
+                model.addAttribute("roleUser", role);
+
                 return ("addSubject");
             }
         }
