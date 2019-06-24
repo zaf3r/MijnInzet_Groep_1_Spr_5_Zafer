@@ -1,11 +1,8 @@
 package makeitwork.mijninzet.service;
 
-import makeitwork.mijninzet.model.Sollicitatie;
 import makeitwork.mijninzet.model.Task;
 import makeitwork.mijninzet.model.User;
-import makeitwork.mijninzet.repository.SollicitatieRepository;
 import makeitwork.mijninzet.repository.TaskRepository;
-import makeitwork.mijninzet.repository.UserRepository;
 import makeitwork.mijninzet.repository.VacatureRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,11 +20,21 @@ public class VacatureService {
     @Autowired
     private TaskRepository taskRepository;
 
-    @Autowired
-    private UserRepository userRepository;
 
-    @Autowired
-    private SollicitatieRepository sollicitatieRepository;
+
+    public Task getTask(int taskId){
+        return taskRepository.findTaskById(taskId);
+    }
+
+    //    lijst met vacatures van een Docent: zijn lijst met taken
+    public List<Task> getAllTasks(User user){
+        List<Task> tasks = new ArrayList<>();
+        for (Integer taskId: user.getTask()) {
+            Task task = getTask(taskId);
+            tasks.add(task);
+        }
+        return tasks;
+    }
 
     //save Vacature in DB SQL
     public void addTask(Task task, User user){
@@ -35,38 +42,18 @@ public class VacatureService {
         System.out.println("User: " + user);
         System.out.println("User: " + user.getUsername());
 
-        Sollicitatie sollicitatie = new Sollicitatie(user, task.getId());
-        sollicitatie.addTask(task.getId());
-        System.out.println("De opgeslagen sollicitatie is: " + sollicitatie);
-        sollicitatieRepository.save(sollicitatie);
-//        user.addTask(task.getId());
-//        vacatureRepository.save(user);
-
+        user.addApplication(task.getId());
+        vacatureRepository.save(user);
     }
     //wordt een taak uit zijn eigen lijst verwijderd
     public void removeTask(Task task, User user) {
         System.out.println("Task: " + task);
-        user.removeTask(task.getId());
+        user.removeApplication(task.getId());
         vacatureRepository.save(user);
-    }
-    //MongoDB
-    public Task getTask(String taskId){
-        return taskRepository.findDocumentById(taskId);
     }
 
     public User getUser(int userId){
         return vacatureRepository.findUserById(userId);
-    }
-
-//    lijst met vacatures van een Docent: zijn lijst met taken
-    public List<Task> getAllTasks(User user){
-        List<Task> tasks = new ArrayList<>();
-        for (String taskId: user.getTasks()) {
-                Task task = getTask(taskId);
-                tasks.add(task);
-            }
-
-        return tasks;
     }
 
     // voor de MANAGER: lijst met tasks en users die gesolliciteerd hebben (lijst sollicitanten)
@@ -84,7 +71,7 @@ public class VacatureService {
         return sollicitanten;
     }
 
-//    public List<Task> getAllTasks(User user){
+//    public List<Task> getEveryTasks(User user){
 //        List<Task> sollicitaten = new ArrayList<>();
 //        sollicitaten = user.getTask();
 //        Iterator<Task> iter = sollicitaten.iterator();

@@ -1,0 +1,77 @@
+package makeitwork.mijninzet.controller;
+
+import makeitwork.mijninzet.model.Task;
+import makeitwork.mijninzet.model.User;
+import makeitwork.mijninzet.repository.TaskRepository;
+import makeitwork.mijninzet.repository.UserRepository;
+import makeitwork.mijninzet.service.VacatureService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
+
+@Controller
+@RequestMapping("/teacher")
+public class VacatureController {
+
+    @Autowired
+    TaskRepository taskRepository;
+    @Autowired
+    VacatureService vacatureService;
+    @Autowired
+    UserRepository usersRepository;
+
+    @GetMapping("/taskOverview")
+    public String MenuHandler(Model model, Principal principal) {
+        User user = usersRepository.findByUsername(principal.getName());
+        model.addAttribute("allTasks", tasks2React(user));
+        return "taskOverview";
+    }
+
+    @GetMapping("/showTask/{task}")
+    public String TaskDetailHandler(@RequestParam int taskId, Model model) {
+
+    }
+
+    public Task getTask(int id){
+       return taskRepository.findTaskById(id);
+    }
+
+    public List<Task> allTasks(){
+        List<Task> tasks = taskRepository.findAll();
+        return tasks;
+    }
+
+    private List<Task> tasks2React(User user) {
+        List<Task> tasks = allTasks();
+        System.out.println("All: " + tasks);
+        List<Task> myTasks = vacatureService.getAllTasks(user);
+        System.out.println("My tasks: " + myTasks);
+        List<Task> possibleTasks = new ArrayList<>();
+        for (Task t : tasks) {
+            if (!isContained(t, myTasks)) {
+                possibleTasks.add(t);
+            }
+        }
+        System.out.println(possibleTasks);
+        return possibleTasks;
+    }
+
+    public boolean isContained(Task t, List<Task> listTask) {
+        for (Task t2 : listTask) {
+            if (t.getId() == (t2.getId())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+
+}

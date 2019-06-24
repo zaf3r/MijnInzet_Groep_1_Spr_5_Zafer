@@ -1,7 +1,6 @@
 package makeitwork.mijninzet.model;
 
 import makeitwork.mijninzet.model.preference.Preference;
-import org.hibernate.annotations.SortNatural;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import javax.persistence.*;
@@ -99,21 +98,37 @@ public class User implements Comparable{
             inverseJoinColumns = @JoinColumn(name = PK_COLUMN_OTHER_ENTITY))
     private List<Role> role;
 
-    @Transient
-    private List<Task> task;
+    @ElementCollection
+    @Column(name = "taak")
+    private SortedSet<Integer> task = new TreeSet<>();
 
-;
+    public SortedSet<Integer> getTask() {
+        return task;
+    }
+
+    public void setTask(SortedSet<Integer> task) {
+        this.task = task;
+    }
+
+    public void addApplication(int vacature) {
+        SortedSet<Integer> vacatures = getTask();
+        if (!vacatures.contains(vacature)) vacatures.add(vacature);
+    }
+
+    public void removeApplication(int vacature) {
+        SortedSet<Integer> vacatures = getTask();
+        if (vacatures.contains(vacature)) vacatures.remove(vacature);
+    }
+
+    //    @Transient
+//    private List<Sollicitatie> sollicitaties = new ArrayList<>();
+//
 
     //contracturen?
 //    @Transient
 //    private String roleType = roleName.getRoleName();
 
     public User() {}
-
-    // CONTROLLER MET GEGEVENS EN ROL LIST?
-    public List<Task> getTask() {
-        return task;
-    }
 
     public int getId() {
         return id;
@@ -206,28 +221,28 @@ public class User implements Comparable{
  //  -------------------------------------------------------------------------------------------->
     // Task functionaliteiten voor Teacher
 //TO DO : mag weg
-    @ElementCollection
-    @SortNatural
-    private SortedSet<String> taskIds = new TreeSet<>();
-
-    public SortedSet<String> getTasks() {
-        return taskIds;
-    }
-    // functie veranderen naar TasksID
-
-    public void setTaskIds(SortedSet<String> taskIds) {
-        this.taskIds = taskIds;
-    }
-
-    public void addTask(String taskId) {
-        SortedSet<String> tasks = getTasks();
-        if (!tasks.contains(taskId)) tasks.add(taskId);
-    }
-
-    public void removeTask(String taskId) {
-        SortedSet<String> tasks = getTasks();
-        if (tasks.contains(taskId)) tasks.remove(taskId);
-    }
+//    @ElementCollection
+//    @SortNatural
+//    private SortedSet<String> taskIds = new TreeSet<>();
+//
+//    public SortedSet<String> getTasks() {
+//        return taskIds;
+//    }
+//    // functie veranderen naar TasksID
+//
+//    public void setTaskIds(SortedSet<String> taskIds) {
+//        this.taskIds = taskIds;
+//    }
+//
+//    public void addTask(String taskId) {
+//        SortedSet<String> tasks = getTasks();
+//        if (!tasks.contains(taskId)) tasks.add(taskId);
+//    }
+//
+//    public void removeTask(String taskId) {
+//        SortedSet<String> tasks = getTasks();
+//        if (tasks.contains(taskId)) tasks.remove(taskId);
+//    }
 
     @Override
     public String toString() {

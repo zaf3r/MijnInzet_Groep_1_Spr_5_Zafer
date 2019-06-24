@@ -1,19 +1,17 @@
 package makeitwork.mijninzet.model;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-import javax.persistence.Transient;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import java.time.LocalDate;
-import java.util.SortedSet;
-import java.util.TreeSet;
 
-
-@Document(collection="Vacature")
+@Entity
+@Table (name="Vacature")
 public class Task implements Comparable{
 
     @Id
-    private String id;
+    private int id;
 
     private String titel;
 
@@ -31,11 +29,39 @@ public class Task implements Comparable{
 
     private int uren;
 
-    private InfoBy contactPerson;//nog naar het Nederland vertalen
+    private TaskStatus taskStatus;
 
-    private Sollicitatie sol ;
+    @ManyToOne
+    User user;
+
+    public enum TaskStatus {
+        OPEN, APPROVED;
+    }
+
+    public void status(TaskStatus status) {
+        switch (status) {
+            case OPEN:
+                break;
+            case APPROVED:
+                break;
+        }
+    }
+
+    public TaskStatus getTaskStatus() {
+        return taskStatus;
+    }
+
+    public void setTaskStatus(TaskStatus taskStatus) {
+        this.taskStatus = taskStatus;
+    }
+
 
     public Task() {
+    }
+
+    public Task(int id, TaskStatus taskStatus) {
+        this.id = id;
+        this.taskStatus = TaskStatus.OPEN;
     }
 
     public Task(String title, String description, int uren, String startDate) {
@@ -44,7 +70,8 @@ public class Task implements Comparable{
         this.uren = uren;
         this.startdatum = startDate;
     }
-    public Task(String id, String title, String description, int uren) {
+
+    public Task(int id, String title, String description, int uren) {
         this.id=id;
         this.titel = title;
         this.beschrijving = description;
@@ -95,11 +122,7 @@ public class Task implements Comparable{
         return uren;
     }
 
-    public InfoBy getContactPerson() {
-        return contactPerson;
-    }
-
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -109,22 +132,6 @@ public class Task implements Comparable{
 
     public LocalDate getEinddatum() {
         return einddatum;
-    }
-
-    @Transient
-    //List <User>
-    private SortedSet<Integer> userIds = new TreeSet<>();
-
-    public SortedSet<Integer> getUsers() {
-        return userIds;
-    }
-
-    public SortedSet<Integer> getUserIds() {
-        return userIds;
-    }
-
-    public void setUserIds(SortedSet<Integer> userIds) {
-        this.userIds = userIds;
     }
 
     @Override

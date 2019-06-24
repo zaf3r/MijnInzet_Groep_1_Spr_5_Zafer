@@ -34,7 +34,6 @@ public class CohortService {
         return subjectRepository.findBySubjectName(subjectName);
     }
 
-
     public List<Subject> getAllSubjects(Cohort cohort){
         List<Subject> subjects = new ArrayList<>();
         for (String subjectName: cohort.getSubjectNames()) {

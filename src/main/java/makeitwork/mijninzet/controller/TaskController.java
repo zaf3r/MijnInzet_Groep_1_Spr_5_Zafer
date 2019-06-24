@@ -35,13 +35,13 @@ public class TaskController extends AbstractController {
     @Autowired
     VacatureService vacatureService;
 
-    @GetMapping("/taskOverview") //th:action
-    public String MenuHandler(Model model, Principal principal) {
-        User user = usersRepository.findByUsername(principal.getName());
-        List<Sollicitatie> sollicitaties = sollicitatieRepository.findByUser(user);
-        model.addAttribute("allTasks", tasks2React(sollicitaties));
-        return "taskOverview";
-    }
+//    @GetMapping("/taskOverview") //th:action
+//    public String MenuHandler(Model model, Principal principal) {
+//        User user = usersRepository.findByUsername(principal.getName());
+//        List<Sollicitatie> sollicitaties = sollicitatieRepository.findByUser(user);
+//        model.addAttribute("allTasks", tasks2React(sollicitaties));
+//        return "taskOverview";
+//    }
 
     @GetMapping("/showTask/{task}")  //th:action
     public String TaskDetailHandler(@RequestParam String taskId, Model model) {
@@ -95,19 +95,19 @@ public class TaskController extends AbstractController {
 
     //lijst met taken waar de docent nog op kan reageren
     private List<Task> tasks2React(User  user) {
-        List<Task> tasks = allTasks();
-        System.out.println("All: " + tasks);
-        List<Task> myTasks = vacatureService.getAllTasks(user);
-        System.out.println("My tasks: " + myTasks);
-        List<Task> possibleTasks = new ArrayList<>();
-        for (Task t : tasks) {
-            if (!isContained(t, myTasks)) {
-                possibleTasks.add(t);
-            }
-        }
-        System.out.println(possibleTasks);
-        return possibleTasks;
-    }
+//        List<Task> tasks = allTasks();
+//        System.out.println("All: " + tasks);
+//        List<Task> myTasks = vacatureService.getAllTasks(user);
+//        System.out.println("My tasks: " + myTasks);
+//        List<Task> possibleTasks = new ArrayList<>();
+//        for (Task t : tasks) {
+//            if (!isContained(t, myTasks)) {
+//                possibleTasks.add(t);
+//            }
+//        }
+//        System.out.println(possibleTasks);
+//        return possibleTasks;
+//    }
 
     public List<Task> myTaskList(User sol) {
         List<Task> tasks = allTasks();
@@ -121,14 +121,14 @@ public class TaskController extends AbstractController {
         return possibleTasks;
     }
 
-    public boolean isContained(Task t, List<Task> listTask) {
-        for (Task t2 : listTask) {
-            if (t.getId().equals(t2.getId())) {
-                return true;
-            }
-        }
-        return false;
-    }
+//    public boolean isContained(Task t, List<Task> listTask) {
+//        for (Task t2 : listTask) {
+//            if (t.getId().equals(t2.getId())) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 
     public boolean doesContaine(Task t, List<Task> listTask) {
         for (Task t2 : listTask) {
