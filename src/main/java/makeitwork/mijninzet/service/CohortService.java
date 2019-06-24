@@ -28,6 +28,8 @@ public class CohortService {
 
     @Transient
     private final String COORDINATOR = "Manager";
+    @Transient
+    private final String TEACHER = "Docent";
 
 
     public Subject getSubject(String subjectName){
@@ -64,6 +66,18 @@ public class CohortService {
         }
         return coordinators;
     }
+
+    public List<User> teacherList(){
+        List<User> teachers = new ArrayList<>();
+        List<User> users = userRepository.findAll();
+        for (User user : users){
+            List<Role> roles = user.getRole();
+            if (roles.contains(roleRepository.findByRoleName(TEACHER)))
+                teachers.add(user);
+        }
+        return teachers;
+    }
+
     public Cohort getCohort(String name){
         return cohortRepository.findByCohortName(name);
     }

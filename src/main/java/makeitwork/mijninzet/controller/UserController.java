@@ -135,7 +135,25 @@ public class UserController implements RetrieveUserRole {
     public @ResponseBody
     String actualUserName(@RequestBody String requestPayload, Principal principal) {
         return new Gson().toJson(crudUserService.actualUserName(principal));
+
+//        @PostMapping("/checkIsTeacher")
+//    public @ResponseBody String roleTeacherUser(@RequestBody String requestPayload) {
+//        var output = new BasicDBObject();
+//        if (isTeacher(userRepository,principal) ==true) {
+//            output.put("isTeacher", true);
+//        } else {
+//            output.put("isTeacher", false);
+//        }
+//        return output.toJson();
     }
+
+    private Boolean userBestaat(User user){
+        Boolean bestaat=false;
+        if (userRepository.findByUsername(user.getUsername())!=null) bestaat=true;
+        if (userRepository.findByEmail(user.getEmail())!=null) bestaat=true;
+        return bestaat;
+    }
+
     @PostMapping("/actualEmail")
     public @ResponseBody
     String actualUserEmail(@RequestBody String requestPayload, Principal principal) {
