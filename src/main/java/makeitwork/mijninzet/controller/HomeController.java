@@ -1,19 +1,21 @@
 
 package makeitwork.mijninzet.controller;
 
+import makeitwork.mijninzet.model.Role;
+import makeitwork.mijninzet.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
+
 @Controller
-public class HomeController {
+public class HomeController implements RetrieveUserRole {
 
-
-//    @GetMapping ("/")
-//    public String index() {
-//    return "index";
-//    }
+    @Autowired
+    UserRepository userRepository;
 
     @GetMapping("/login")
     public String login(){
@@ -21,22 +23,22 @@ public class HomeController {
     }
 
     @GetMapping("/home")
-    public String home(Model model,
+    public String home(Model model, Principal principal,
                        @RequestParam(value = "name", required = false,
                                defaultValue = "Guest") String name) {
         String appName = "mijnInzet";
         String teamLeden = "Baseet, Bibi, David, Merel, Peter en Zafer";
 
+
         model.addAttribute("name", name);
         model.addAttribute("title", appName);
         model.addAttribute("team", teamLeden);
+        Role role = retrieveRole(userRepository,principal);
+        model.addAttribute("roleUser", role);
+
         return "home";
     }
 
-//    @GetMapping("/addUser")
-//    public String addUser(Model model){
-//        return "addUser";
-//    }
 
 
     @GetMapping("/globalAvalability")

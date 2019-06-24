@@ -3,6 +3,7 @@ package makeitwork.mijninzet.controller;
 import makeitwork.mijninzet.model.Availability.Incident.Incident;
 import makeitwork.mijninzet.model.Availability.Incident.IncidentForm;
 import makeitwork.mijninzet.model.Availability.Weekday;
+import makeitwork.mijninzet.model.Role;
 import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.repository.IncidentRepository;
 import makeitwork.mijninzet.repository.UserRepository;
@@ -19,7 +20,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("availability")
-public class IncidentController {
+public class IncidentController implements RetrieveUserRole {
 
     Incident INCIDENT_LOADER = new Incident();
 
@@ -44,6 +45,8 @@ public class IncidentController {
         IncidentForm incidentForm = loadFormData(incidentList);
 
         model.addAttribute("incidentForm",incidentForm);
+        Role role = retrieveRole(userRepository,principal);
+        model.addAttribute("roleUser", role);
 
         return "incidents-form";
     }

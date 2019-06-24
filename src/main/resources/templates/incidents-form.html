@@ -17,7 +17,18 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap" rel="stylesheet">
 
 </head>
-<header th:insert="~{navbar :: header}"></header>
+<div th:if="${roleUser.roleName == 'Docent'}">
+    <header th:insert="~{navbarDocent :: header}"></header>
+</div>
+<div th:if="${roleUser.roleName == 'Administrateur'}">
+    <header th:insert="~{navbarAdministrateur :: header}"></header>
+</div>
+<div th:if="${roleUser.roleName == 'Manager'}">
+    <header th:insert="~{navbarManager :: header}"></header>
+</div>
+<div th:if="${roleUser.roleName == 'Roosteraar'}">
+    <header th:insert="~{navbarRoosteraar :: header}"></header>
+</div>
 <body>
 <div class="container">
     <div class="row justify-content-center">

@@ -15,7 +15,18 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 </head>
-<header th:insert="~{navbar :: header}"></header>
+<div th:if="${roleUser.roleName == 'Docent'}">
+    <header th:insert="~{navbarDocent :: header}"></header>
+</div>
+<div th:if="${roleUser.roleName == 'Administrateur'}">
+    <header th:insert="~{navbarAdministrateur :: header}"></header>
+</div>
+<div th:if="${roleUser.roleName == 'Manager'}">
+    <header th:insert="~{navbarManager :: header}"></header>
+</div>
+<div th:if="${roleUser.roleName == 'Roosteraar'}">
+    <header th:insert="~{navbarRoosteraar :: header}"></header>
+</div>
 <body>
 <div><h1>Voeg een nieuwe vacature toe</h1></div>
 
