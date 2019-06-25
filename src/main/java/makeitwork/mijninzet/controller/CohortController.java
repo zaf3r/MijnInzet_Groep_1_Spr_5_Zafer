@@ -1,12 +1,12 @@
 package makeitwork.mijninzet.controller;
 
 import makeitwork.mijninzet.model.Cohort;
-
 import makeitwork.mijninzet.model.Role;
+import makeitwork.mijninzet.model.TeacherSchedule.CohortDay;
+import makeitwork.mijninzet.model.TeacherSchedule.CohortWeek;
 import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.model.preference.Subject;
 import makeitwork.mijninzet.repository.CohortRepository;
-
 import makeitwork.mijninzet.repository.SubjectRepository;
 import makeitwork.mijninzet.repository.UserRepository;
 import makeitwork.mijninzet.service.CohortService;
@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +24,10 @@ import java.util.List;
 @Controller
 @RequestMapping("/manager")
 public class CohortController implements RetrieveUserRole {
+
+    final int DEFAULT_FIRST_WEEK = 1;
+
+    final int WORKING_DAYS = 5;
 
     @Autowired
     UserRepository userRepository;
@@ -131,5 +136,28 @@ public class CohortController implements RetrieveUserRole {
     public void subjectList(Cohort cohort){
         selectedSubjectList = selectedSubjects(cohort);
         possibleSubjectList = possibleSubjects(cohort);
+    }
+
+    public void generateWeeksAndDays(Cohort cohort) {
+        List<CohortWeek> CohortWeekList = new ArrayList<>();
+        int weekNumber = DEFAULT_FIRST_WEEK;
+        LocalDate startDate = cohort.getStartDate();
+
+        while(cohort.getStartDate().isBefore(cohort.getEndDate())) {
+            CohortWeek cohortWeek = new CohortWeek();
+            cohortWeek.setCohort(cohort);
+            cohortWeek.setWeekNumber(weekNumber);
+            List<CohortDay> cohortDayList = new ArrayList<>();
+
+            for(int day = 0; day < WORKING_DAYS; day ++) {
+
+            }
+
+            // Add weeknumber
+            // Make a cohortweek object
+            // Make a cohortweek list
+
+        }
+
     }
 }
