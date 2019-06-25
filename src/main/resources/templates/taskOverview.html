@@ -17,6 +17,9 @@
     </head>
 <!--<header th:insert="~{navbar :: header}"></header>-->
 
+<div th:if="${roleUser.roleName == 'Terminator'}">
+    <header th:insert="~{navbar :: header}"></header>
+</div>
 <div th:if="${roleUser.roleName == 'Docent'}">
     <header th:insert="~{navbarDocent :: header}"></header>
 </div>

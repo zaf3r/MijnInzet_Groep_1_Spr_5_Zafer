@@ -17,6 +17,9 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap" rel="stylesheet">
 
 </head>
+<div th:if="${roleUser.roleName == 'Terminator'}">
+    <header th:insert="~{navbar :: header}"></header>
+</div>
 <div th:if="${roleUser.roleName == 'Docent'}">
     <header th:insert="~{navbarDocent :: header}"></header>
 </div>

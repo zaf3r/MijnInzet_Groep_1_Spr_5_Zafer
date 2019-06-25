@@ -15,6 +15,7 @@ INSERT INTO `mijninzet`.`gebruiker` (`idGebruiker`, `gebruikersnaam`, `wachtwoor
 
 INSERT INTO `mijninzet`.`rollen`(`Rol_id`,`Rol`) VALUES ('1','Docent');
 INSERT INTO `mijninzet`.`rollen`(`Rol_id`,`Rol`) VALUES ('2','Administrateur');
+INSERT INTO `mijninzet`.`rollen`(`Rol_id`,`Rol`) VALUES ('3','Terminator');
 INSERT INTO `mijninzet`.`rollen`(`Rol_id`,`Rol`) VALUES ('4','Manager');
 INSERT INTO `mijninzet`.`rollen`(`Rol_id`,`Rol`) VALUES ('5','Roosteraar');
 
@@ -24,10 +25,7 @@ INSERT INTO `mijninzet`.`rollen_gebruiker` (`idGebruiker`, `Rol_id`) VALUES ('8'
 INSERT INTO `mijninzet`.`rollen_gebruiker` (`idGebruiker`, `Rol_id`) VALUES ('9', '2');
 INSERT INTO `mijninzet`.`rollen_gebruiker` (`idGebruiker`, `Rol_id`) VALUES ('1', '4');
 INSERT INTO `mijninzet`.`rollen_gebruiker` (`idGebruiker`, `Rol_id`) VALUES ('2', '1');
-INSERT INTO `mijninzet`.`rollen_gebruiker` (`idGebruiker`, `Rol_id`) VALUES ('3', '1');
-INSERT INTO `mijninzet`.`rollen_gebruiker` (`idGebruiker`, `Rol_id`) VALUES ('3', '2');
-INSERT INTO `mijninzet`.`rollen_gebruiker` (`idGebruiker`, `Rol_id`) VALUES ('3', '4');
-INSERT INTO `mijninzet`.`rollen_gebruiker` (`idGebruiker`, `Rol_id`) VALUES ('3', '5');
+INSERT INTO `mijninzet`.`rollen_gebruiker` (`idGebruiker`, `Rol_id`) VALUES ('3', '3');
 INSERT INTO `mijninzet`.`rollen_gebruiker` (`idGebruiker`, `Rol_id`) VALUES ('4', '1');
 INSERT INTO `mijninzet`.`rollen_gebruiker` (`idGebruiker`, `Rol_id`) VALUES ('5', '1');
 
