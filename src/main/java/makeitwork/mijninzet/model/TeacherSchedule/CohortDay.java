@@ -1,5 +1,8 @@
 package makeitwork.mijninzet.model.TeacherSchedule;
 
+import makeitwork.mijninzet.model.User;
+import makeitwork.mijninzet.model.preference.Subject;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -19,14 +22,30 @@ public class CohortDay {
     @JoinColumn(name = "weekId")
     private CohortWeek cohortWeek;
 
-    @Column(name = "docentOchtend")
-    private String teacherMorning;
+    @JoinColumn(name = "docentOchtend")
+    @OneToOne(cascade = CascadeType.PERSIST)
+    private User teacherMorning;
 
-    @Column(name = "docentMiddag")
-    private String teacherAfternoon;
 
-    @Column(name = "docentAvond")
-    private String teacherEvening;
+    @JoinColumn(name = "docentMiddag")
+    @OneToOne(cascade = CascadeType.PERSIST)
+    private User teacherAfternoon;
+
+    @JoinColumn(name = "docentAvond")
+    @OneToOne(cascade = CascadeType.PERSIST)
+    private User teacherEvening;
+
+    @JoinColumn(name = "vakOchtend")
+    @OneToOne(cascade = CascadeType.PERSIST)
+    private Subject subjectMorning;
+
+    @JoinColumn(name = "vakMiddag")
+    @OneToOne(cascade = CascadeType.PERSIST)
+    private Subject subjectAfternoon;
+
+    @JoinColumn(name = "vakAvond")
+    @OneToOne(cascade = CascadeType.PERSIST)
+    private Subject subjectEvening;
 
     public long getDayId() {
         return dayId;
@@ -52,27 +71,51 @@ public class CohortDay {
         this.cohortWeek = cohortWeek;
     }
 
-    public String getTeacherMorning() {
+    public User getTeacherMorning() {
         return teacherMorning;
     }
 
-    public void setTeacherMorning(String teacherMorning) {
+    public void setTeacherMorning(User teacherMorning) {
         this.teacherMorning = teacherMorning;
     }
 
-    public String getTeacherAfternoon() {
+    public User getTeacherAfternoon() {
         return teacherAfternoon;
     }
 
-    public void setTeacherAfternoon(String teacherAfternoon) {
+    public void setTeacherAfternoon(User teacherAfternoon) {
         this.teacherAfternoon = teacherAfternoon;
     }
 
-    public String getTeacherEvening() {
+    public User getTeacherEvening() {
         return teacherEvening;
     }
 
-    public void setTeacherEvening(String teacherEvening) {
+    public void setTeacherEvening(User teacherEvening) {
         this.teacherEvening = teacherEvening;
+    }
+
+    public Subject getSubjectMorning() {
+        return subjectMorning;
+    }
+
+    public void setSubjectMorning(Subject subjectMorning) {
+        this.subjectMorning = subjectMorning;
+    }
+
+    public Subject getSubjectAfternoon() {
+        return subjectAfternoon;
+    }
+
+    public void setSubjectAfternoon(Subject subjectAfternoon) {
+        this.subjectAfternoon = subjectAfternoon;
+    }
+
+    public Subject getSubjectEvening() {
+        return subjectEvening;
+    }
+
+    public void setSubjectEvening(Subject subjectEvening) {
+        this.subjectEvening = subjectEvening;
     }
 }
