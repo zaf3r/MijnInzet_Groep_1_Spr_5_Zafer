@@ -139,9 +139,7 @@ public class CourseScheduleService implements RetrieveUserRole {
         return parts;
     }
     public Subject subjectInfo(String subjectname){
-        System.out.printf("\nprint json: \n",subjectname);
         Subject subject= new Gson().fromJson(subjectname, Subject.class);
-        System.out.printf("\nsubject: \n",subjectRepository.findBySubjectName(subject.getSubjectName()));
         return subjectRepository.findBySubjectName(subject.getSubjectName());
     }
 

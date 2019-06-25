@@ -67,9 +67,18 @@
                     <select class="form-control" id="vakkenCohort" name="vakkenCohort" required multiple="multiple" size="7" style="width: 250px"/>
                 </div>
             </div>
+            <div class="form-group row">
+<!--                inputveld datum genereren-->
+<!--                checkbox voor day part eracher-->
+<!--                als day part is checked datum/daypart opslaan-->
+<!--                als alle course-data zijn geselecteerd vak groen maken!-->
+            </div>
+
+
+
+
 
 <!--            todo nog te doen copy vakken togglen-->
-<!--            todo 1 week tonen, weeknr.startdatum.cohort -->
 <!--            todo vak naar dag/dagdeel slepen-->
 <!--            todo een vak mag naar meerdere dagen/dagdelen gesleept worden-->
 <!--            todo als een vak in de week versleept wordt heeft dat betrekking op huidige en toekomstige weken-->
@@ -80,25 +89,29 @@
 <!--            todo houd rekening met niet-lesdagen nice to have-->
 <!--            todo toon pauzes nice to have-->
 
-
         </fieldset>
     </form>
+
+
 </div>
-<script>
-    var table ='';
-    var rows= 3;
-    var col=10;
-    for(var r=0;r<rows;r++)
-    {
-        table += '<tr>';
-        for(var c=0;c<rows;c++)
-        {
-            table+='<td>'+c+'</td>'
-        }
-        table += '</tr>';
-    }
-    document.write('<table>'+table+'</table>');
-</script>
+var table = document.createElement('table');
+for (var i = 1; i < 4; i++){
+var tr = document.createElement('tr');
+
+var td1 = document.createElement('td');
+var td2 = document.createElement('td');
+
+var text1 = document.createTextNode('Text1');
+var text2 = document.createTextNode('Text2');
+
+td1.appendChild(text1);
+td2.appendChild(text2);
+tr.appendChild(td1);
+tr.appendChild(td2);
+
+table.appendChild(tr);
+}
+document.body.appendChild(table);
 
 <script>
     // registreer eventhandlers
@@ -150,7 +163,6 @@
     });
     $("#vakkenCohort").on("change", function() {
         var selectedText = $(this).find(':selected').text();
-        console.log("text: "+selectedText);
         payload = JSON.stringify({subjectName: selectedText });
         $.ajax({
             type: 'POST',
@@ -185,9 +197,7 @@
         }).done( function (response) {
             var urenVak=response['hours'];
             });
-        // })
     });
-
 </script>
 <script>
     function showCopySchedule(){
