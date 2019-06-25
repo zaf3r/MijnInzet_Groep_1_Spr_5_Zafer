@@ -53,10 +53,10 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/addUser.html">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/home.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
-              <caret line="16" selection-start-line="16" selection-end-line="16" selection-end-column="49" />
+            <state relative-caret-position="133">
+              <caret line="29" column="7" lean-forward="true" selection-start-line="29" selection-start-column="7" selection-end-line="29" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -818,11 +818,18 @@
       <option name="project" value="LOCAL" />
       <updated>1561386355558</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="Added role Terminator with custom navbar (access to all functionality).&#10;Update script to 2.8.&#10;Added cohortSubject to navbarManager.&#10;Fixed errors.">
+      <created>1561469947873</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1561469947873</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="479812000" />
+    <option name="totallyTimeSpent" value="480103000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -953,7 +960,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed Login Page, logo, Logout button, Vacatures &amp; Details pages." />
     <MESSAGE value="- Solved merge conflicts" />
     <MESSAGE value="- JS kept hanging on the old branch, committed now" />
     <MESSAGE value="- fixed dead reference" />
@@ -978,7 +984,8 @@
     <MESSAGE value="Merge branch 'sprint4' of gitlab.fdmci.hva.nl:thieh/mijninzet-c15-team-1 into sprint4&#10;&#10;# Conflicts:&#10;#&#9;src/main/java/makeitwork/mijninzet/controller/UserController.java" />
     <MESSAGE value="custom navbar for each role" />
     <MESSAGE value="workspace error fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="workspace error fixed" />
+    <MESSAGE value="Added role Terminator with custom navbar (access to all functionality).&#10;Update script to 2.8.&#10;Added cohortSubject to navbarManager.&#10;Fixed errors." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added role Terminator with custom navbar (access to all functionality).&#10;Update script to 2.8.&#10;Added cohortSubject to navbarManager.&#10;Fixed errors." />
   </component>
   <component name="WindowStateProjectService">
     <state width="443" height="463" key="Git.Branch.Popup" />
@@ -1167,13 +1174,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/navbar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="780">
-          <caret line="52" column="24" selection-start-line="52" selection-start-column="24" selection-end-line="52" selection-end-column="97" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -1185,13 +1185,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="213">
           <caret line="15" column="51" selection-end-line="50" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="503">
-          <caret line="38" selection-start-line="38" selection-end-line="40" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -1446,13 +1439,6 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/subjectSchedule.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/scheduler.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" selection-start-line="14" selection-end-line="14" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/profile.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1463,10 +1449,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/scheduler.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="14" selection-start-line="14" selection-end-line="14" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/addUser.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="141">
           <caret line="16" selection-start-line="16" selection-end-line="16" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/navbar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="52" column="24" selection-start-line="52" selection-start-column="24" selection-end-line="52" selection-end-column="97" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="29" column="7" lean-forward="true" selection-start-line="29" selection-start-column="7" selection-end-line="29" selection-end-column="7" />
         </state>
       </provider>
     </entry>
