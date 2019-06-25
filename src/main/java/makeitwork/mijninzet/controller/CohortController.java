@@ -50,10 +50,12 @@ public class CohortController implements RetrieveUserRole {
     }
 
     @GetMapping("/cohortSubject")
-    public String AddSubjectHandler(Model model){
+    public String AddSubjectHandler(Model model, Principal principal){
         model.addAttribute("cohorts", getAllCohorts());
         model.addAttribute("subjects", selectedSubjectList);
         model.addAttribute("possibleSubjects", possibleSubjectList);
+        Role role = retrieveRole(userRepository,principal);
+        model.addAttribute("roleUser", role);
 
         return "cohortSubject";
     }
