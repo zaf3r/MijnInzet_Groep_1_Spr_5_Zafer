@@ -2,6 +2,7 @@ package makeitwork.mijninzet.model.TeacherSchedule;
 
 import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.model.preference.Subject;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -15,6 +16,7 @@ public class CohortDay {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long dayId;
 
+    @DateTimeFormat(pattern = "MM/dd/yyyy")
     @Column(name = "datum")
     private LocalDate date;
 
@@ -25,7 +27,6 @@ public class CohortDay {
     @JoinColumn(name = "docentOchtend")
     @OneToOne(cascade = CascadeType.PERSIST)
     private User teacherMorning;
-
 
     @JoinColumn(name = "docentMiddag")
     @OneToOne(cascade = CascadeType.PERSIST)

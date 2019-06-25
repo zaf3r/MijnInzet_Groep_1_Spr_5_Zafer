@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,12 +26,14 @@ import java.util.List;
 @RequestMapping("/manager")
 public class CohortController implements RetrieveUserRole {
 
-    final int DEFAULT_FIRST_WEEK = 1;
+    final private int DEFAULT_FIRST_WEEK = 1;
+    final private int WEEK_INCREMENTATION = 1;
 
-    final int WORKING_DAYS = 5;
+    final private String USERNAME_DEFAULT_USER = "Geen docent";
 
     @Autowired
     UserRepository userRepository;
+
     @Autowired
     private SubjectRepository subRepo;
     @Autowired
@@ -99,7 +102,8 @@ public class CohortController implements RetrieveUserRole {
     @PostMapping("/saveCohort")
     public String saveCohort(@ModelAttribute("saveCohort")Cohort cohort, @RequestParam("coordinator")User co) {
         cohort.setUser(co);
-        coRepo.save(cohort);
+        generateWeeksAndDays(cohort);
+//        coRepo.save(cohort);
         return "redirect:/manager/cohort";
     }
 
@@ -139,25 +143,41 @@ public class CohortController implements RetrieveUserRole {
     }
 
     public void generateWeeksAndDays(Cohort cohort) {
-        List<CohortWeek> CohortWeekList = new ArrayList<>();
+        List<CohortWeek> cohortWeekList = new ArrayList<>();
         int weekNumber = DEFAULT_FIRST_WEEK;
+        User DEFAULT_TEACHER =  retrieveDefaultTeacher();
         LocalDate startDate = cohort.getStartDate();
 
-        while(cohort.getStartDate().isBefore(cohort.getEndDate())) {
+        while(startDate.isBefore(cohort.getEndDate())) {
             CohortWeek cohortWeek = new CohortWeek();
             cohortWeek.setCohort(cohort);
             cohortWeek.setWeekNumber(weekNumber);
             List<CohortDay> cohortDayList = new ArrayList<>();
 
-            for(int day = 0; day < WORKING_DAYS; day ++) {
-
+            for (DayOfWeek dayOfWeek : DayOfWeek.values()) {
+                if(dayOfWeek.equals(dayOfWeek.SATURDAY) | dayOfWeek.equals(dayOfWeek.SUNDAY)) {
+                    // Do nothing if days equal saturday or sunday
+                } else {
+                    CohortDay cohortDay = new CohortDay();
+                    cohortDay.setDate((startDate.with(dayOfWeek)));
+                    cohortDay.setTeacherMorning(DEFAULT_TEACHER);
+                    cohortDay.setTeacherAfternoon(DEFAULT_TEACHER);
+                    cohortDay.setTeacherEvening(DEFAULT_TEACHER);
+                    cohortDayList.add(cohortDay);
+                }
             }
-
-            // Add weeknumber
-            // Make a cohortweek object
-            // Make a cohortweek list
-
+            cohortWeek.setCohortDayList(cohortDayList);
+            cohortWeekList.add(cohortWeek);
+            startDate = startDate.plusWeeks(WEEK_INCREMENTATION);
+            weekNumber++;
         }
+        cohort.setCohortWeekList(cohortWeekList);
+        coRepo.save(cohort);
+        //SAVE OPERATION HERE
+        //TO DO: MAKE IT CLEAN - EVERYTHING A SINGLE PURPOSE
+    }
 
+    public User retrieveDefaultTeacher() {
+        return userRepository.findByUsername(USERNAME_DEFAULT_USER);
     }
 }
