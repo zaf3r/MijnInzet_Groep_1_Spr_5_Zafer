@@ -1,12 +1,12 @@
 package makeitwork.mijninzet.controller;
 
 import makeitwork.mijninzet.model.Cohort;
-
 import makeitwork.mijninzet.model.Role;
+import makeitwork.mijninzet.model.TeacherSchedule.CohortDay;
+import makeitwork.mijninzet.model.TeacherSchedule.CohortWeek;
 import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.model.preference.Subject;
 import makeitwork.mijninzet.repository.CohortRepository;
-
 import makeitwork.mijninzet.repository.SubjectRepository;
 import makeitwork.mijninzet.repository.UserRepository;
 import makeitwork.mijninzet.service.CohortService;
@@ -15,7 +15,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.Transient;
 import java.security.Principal;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +26,11 @@ import java.util.List;
 @Controller
 @RequestMapping("/manager")
 public class CohortController implements RetrieveUserRole {
+
+    final private int DEFAULT_FIRST_WEEK = 1;
+    final private long WEEK_INCREMENTATION = 1;
+    final private String USERNAME_DEFAULT_USER = "Geen docent";
+    final private long INCREMENT_DAY_HIBERNATE_FIX = 1;
 
     @Autowired
     UserRepository userRepository;
@@ -32,6 +40,8 @@ public class CohortController implements RetrieveUserRole {
     private CohortRepository coRepo;
     @Autowired
     private CohortService cohortService;
+    @Transient
+    private final String COORDINATOR = "Manager";
 
     private String selectedCohort;
     private List<Subject> possibleSubjectList;
@@ -43,7 +53,7 @@ public class CohortController implements RetrieveUserRole {
 
         model.addAttribute("attr1", cohort);
         model.addAttribute("coordinators", getCoordinators());
-        model.addAttribute("cohorts", getAllCohorts());
+//        model.addAttribute("cohorts", getAllCohorts());
         Role role = retrieveRole(userRepository,principal);
         model.addAttribute("roleUser", role);
         return "cohort";
@@ -51,7 +61,8 @@ public class CohortController implements RetrieveUserRole {
 
     @GetMapping("/cohortSubject")
     public String AddSubjectHandler(Model model, Principal principal){
-        model.addAttribute("cohorts", getAllCohorts());
+        User user = userRepository.findByUsername(principal.getName());
+        model.addAttribute("cohorts", getAllCohorts(user));
         model.addAttribute("subjects", selectedSubjectList);
         model.addAttribute("possibleSubjects", possibleSubjectList);
         Role role = retrieveRole(userRepository,principal);
@@ -61,12 +72,12 @@ public class CohortController implements RetrieveUserRole {
     }
 
     public List<User> getCoordinators(){
-        List<User> allCoordinators = cohortService.coordinatorList();
+        List<User> allCoordinators = cohortService.userList(COORDINATOR);
         return allCoordinators;
     }
 
-    public List<Cohort> getAllCohorts(){
-        List<Cohort> allcohorts = coRepo.findAll();
+    public List<Cohort> getAllCohorts(User user){
+        List<Cohort> allcohorts = coRepo.findByUser(user);
         return allcohorts;
     }
 
@@ -94,7 +105,10 @@ public class CohortController implements RetrieveUserRole {
     @PostMapping("/saveCohort")
     public String saveCohort(@ModelAttribute("saveCohort")Cohort cohort, @RequestParam("coordinator")User co) {
         cohort.setUser(co);
-        coRepo.save(cohort);
+        cohort.setStartDate(cohort.getStartDate().plusDays(INCREMENT_DAY_HIBERNATE_FIX));
+        cohort.setEndDate(cohort.getEndDate().plusDays(INCREMENT_DAY_HIBERNATE_FIX));
+
+        generateWeeksAndDays(cohort);
         return "redirect:/manager/cohort";
     }
 
@@ -108,21 +122,40 @@ public class CohortController implements RetrieveUserRole {
     }
 
     @PostMapping("/addSubjects")
+//    public String addSubjectHandler(@RequestParam("subjectName") int subjectId ){
+//        Cohort cohort = coRepo.findByCohortName(selectedCohort);
+//        Subject subject = subRepo.findBySubjectId(subjectId);
+//        cohortService.addSubject(cohort, subject);
+//        subjectList(cohort);
+//        return "redirect:/manager/cohortSubject";
+//    }
+
     public String addSubjectHandler(@RequestParam("subjectName") int subjectId ){
         Cohort cohort = coRepo.findByCohortName(selectedCohort);
         Subject subject = subRepo.findBySubjectId(subjectId);
-        cohortService.addSubject(cohort, subject);
+        cohort.addSubject(subject);
+        coRepo.save(cohort);
         subjectList(cohort);
 
         return "redirect:/manager/cohortSubject";
     }
 
     @PostMapping("/removeSubjects")
+//    public String removeSubjectHandler(@RequestParam("selectedSubjectList") int subjectId){
+//        Cohort cohort = coRepo.findByCohortName(selectedCohort);
+//        Subject subject = subRepo.findBySubjectId(subjectId);
+//
+//        cohortService.removeSubject(cohort, subject);
+//        subjectList(cohort);
+//
+//        return "redirect:/manager/cohortSubject";
+//    }
+
     public String removeSubjectHandler(@RequestParam("selectedSubjectList") int subjectId){
         Cohort cohort = coRepo.findByCohortName(selectedCohort);
         Subject subject = subRepo.findBySubjectId(subjectId);
-
-        cohortService.removeSubject(cohort, subject);
+        cohort.removeSubject(subject);
+        coRepo.save(cohort);
         subjectList(cohort);
 
         return "redirect:/manager/cohortSubject";
@@ -131,5 +164,48 @@ public class CohortController implements RetrieveUserRole {
     public void subjectList(Cohort cohort){
         selectedSubjectList = selectedSubjects(cohort);
         possibleSubjectList = possibleSubjects(cohort);
+    }
+
+    public void generateWeeksAndDays(Cohort cohort) {
+        List<CohortWeek> cohortWeekList = new ArrayList<>();
+        int weekNumber = DEFAULT_FIRST_WEEK;
+        LocalDate startDate = cohort.getStartDate();
+
+        while(startDate.isBefore(cohort.getEndDate()) || startDate.isEqual(cohort.getEndDate())) {
+            CohortWeek cohortWeek = new CohortWeek();
+            cohortWeek.setCohort(cohort);
+            cohortWeek.setWeekNumber(weekNumber);
+            cohortWeek.setCohortDayList(generateCohortDays(startDate));
+            cohortWeekList.add(cohortWeek);
+
+            startDate = startDate.plusWeeks(WEEK_INCREMENTATION);
+            weekNumber++;
+        }
+        cohort.setCohortWeekList(cohortWeekList);
+        coRepo.save(cohort);
+        //TO DO: MAKE IT CLEAN - EVERYTHING A SINGLE PURPOSE
+    }
+
+    public User retrieveDefaultTeacher() {
+        return userRepository.findByUsername(USERNAME_DEFAULT_USER);
+    }
+
+    public List<CohortDay> generateCohortDays(LocalDate date) {
+        List<CohortDay> cohortDayList = new ArrayList<>();
+
+        for (DayOfWeek dayOfWeek : DayOfWeek.values()) {
+            if(dayOfWeek.equals(dayOfWeek.SATURDAY) | dayOfWeek.equals(dayOfWeek.SUNDAY)) {
+                // Do nothing if days equal saturday or sunday
+            } else {
+                CohortDay cohortDay = new CohortDay();
+                cohortDay.setDate((date.with(dayOfWeek).plusDays(INCREMENT_DAY_HIBERNATE_FIX)));
+                cohortDay.setTeacherMorning(retrieveDefaultTeacher());
+                cohortDay.setTeacherAfternoon(retrieveDefaultTeacher());
+                cohortDay.setTeacherEvening(retrieveDefaultTeacher());
+                cohortDayList.add(cohortDay);
+            }
+        }
+        return cohortDayList;
+
     }
 }

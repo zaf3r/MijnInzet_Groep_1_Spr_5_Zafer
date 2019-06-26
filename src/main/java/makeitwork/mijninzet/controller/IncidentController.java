@@ -20,7 +20,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("availability")
-public class IncidentController implements RetrieveUserRole{
+public class IncidentController implements RetrieveUserRole {
 
     final static boolean DEFAULT_VALUE_INCIDENT = true;
 
@@ -35,7 +35,7 @@ public class IncidentController implements RetrieveUserRole{
     @GetMapping("incidentsForm")
     public String getIncidentsFormHandler(Model model, Principal principal) {
         User user = userRepository.findByUsername(principal.getName());
-        Calendar calendar = Calendar.getInstance();
+                Calendar calendar = Calendar.getInstance();
         int weekNumber = calendar.get(Calendar.WEEK_OF_YEAR);
         int year = calendar.get(Calendar.YEAR);
         List<Incident> incidentList = incidentRepository.findAllByYearAndWeeknumberAndUser(year,weekNumber,user);
@@ -61,10 +61,10 @@ public class IncidentController implements RetrieveUserRole{
             incident.setYear(year);
             incident.setWeeknumber(weekNumber);
             incident.setWeekday(weekday);
+            incidentList.add(incident);
             incident.setMorning(DEFAULT_VALUE_INCIDENT);
             incident.setAfternoon(DEFAULT_VALUE_INCIDENT);
             incident.setEvening(DEFAULT_VALUE_INCIDENT);
-            incidentList.add(incident);
         }
         return incidentList;
     }
@@ -82,3 +82,4 @@ public class IncidentController implements RetrieveUserRole{
 
 
 }
+
