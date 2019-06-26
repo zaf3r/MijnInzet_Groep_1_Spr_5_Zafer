@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="873ddd5c-18df-42bf-abe0-1773eb4dd03b" name="Default Changelist" comment="- Added &quot;Geen docent&quot; as user">
+    <list default="true" id="873ddd5c-18df-42bf-abe0-1773eb4dd03b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/CohortController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/CohortController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/SQLScripts/MijnInzetInsertScriptv2.9.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/SQLScripts/MijnInzetInsertScriptv2.9.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Cohort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Cohort.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -47,19 +45,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Cohort.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/CohortController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
+            <state relative-caret-position="3128">
+              <caret line="184" column="22" selection-start-line="184" selection-start-column="22" selection-end-line="184" selection-end-column="22" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/CohortController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Cohort.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="175" column="70" lean-forward="true" selection-start-line="175" selection-start-column="70" selection-end-line="175" selection-end-column="70" />
+            <state relative-caret-position="2074">
+              <caret line="122" column="49" selection-start-line="122" selection-start-column="49" selection-end-line="122" selection-end-column="49" />
             </state>
           </provider>
         </entry>
@@ -74,19 +72,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/preference/Subject.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/TeacherSchedule/CohortWeek.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" selection-start-line="22" selection-end-line="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/TeacherController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2193">
-              <caret line="129" column="12" selection-start-line="129" selection-start-column="12" selection-end-line="129" selection-end-column="12" />
+            <state relative-caret-position="411">
+              <caret line="30" column="35" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -94,26 +83,44 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/SQLScripts/MijnInzetInsertScriptv2.9.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="370">
-              <caret line="39" column="107" selection-start-line="39" selection-start-column="107" selection-end-line="39" selection-end-column="107" />
+            <state relative-caret-position="680">
+              <caret line="40" selection-end-line="40" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/User.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/MijninzetApplication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1054">
-              <caret line="62" column="31" selection-start-line="62" selection-start-column="20" selection-end-line="62" selection-end-column="31" />
+            <state relative-caret-position="136">
+              <caret line="8" column="63" selection-start-line="8" selection-start-column="63" selection-end-line="8" selection-end-column="63" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/YourCustomRepository.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/preference/Subject.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Availability/DayFinder.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="136">
               <caret line="8" selection-start-line="8" selection-end-line="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/IncidentController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="731">
+              <caret line="43" column="53" selection-start-line="43" selection-start-column="53" selection-end-line="43" selection-end-column="53" />
             </state>
           </provider>
         </entry>
@@ -134,8 +141,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>inher</find>
-      <find>nav</find>
       <find>avai</find>
       <find>weekpicker</find>
       <find>datetimepicker</find>
@@ -164,6 +169,8 @@
       <find>cohortWeekList</find>
       <find>start</find>
       <find>sa</find>
+      <find>startDate</find>
+      <find>CohortWeek</find>
     </findStrings>
     <replaceStrings>
       <replace>incident</replace>
@@ -184,7 +191,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="sprint4" />
+        <entry key="$PROJECT_DIR$" value="sprint5-genereren-data-inzet-docent" />
       </map>
     </option>
   </component>
@@ -195,7 +202,6 @@
         <option value="$PROJECT_DIR$/src/main/resources/static/css/incident.css" />
         <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Availability/DayFinder.java" />
         <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/preference/Preference.java" />
-        <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/preference/Subject.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/incidents-form.html" />
         <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Availability/Incident/IncidentJsonHolder.java" />
         <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/unused/IncidentStarterMethods.java" />
@@ -239,9 +245,10 @@
         <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/TeacherController.java" />
         <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/TeacherSchedule/CohortDay.java" />
         <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/SQLScripts/MijnInzetInsertScriptv2.9.sql" />
-        <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Cohort.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/CohortController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/preference/Subject.java" />
+        <option value="$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Cohort.java" />
       </list>
     </option>
   </component>
@@ -334,6 +341,16 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="mijninzet" type="462c0819:PsiDirectoryNode" />
               <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MijnInzet" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MijnInzet" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="mijninzet" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+              <item name="TeacherSchedule" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="MijnInzet" type="b2602c69:ProjectViewProjectNode" />
@@ -801,11 +818,18 @@
       <option name="project" value="LOCAL" />
       <updated>1561492809573</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="- Dead getters and setters">
+      <created>1561550201996</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1561550201996</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="537443000" />
+    <option name="totallyTimeSpent" value="537748000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -820,7 +844,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.36174497" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.36174497" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -841,8 +865,8 @@
       <window_info anchor="bottom" id="Java Enterprise" order="10" weight="0.32857144" />
       <window_info anchor="bottom" id="Database Changes" order="11" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Messages" order="13" sideWeight="0.4957265" weight="0.3112245" />
-      <window_info active="true" anchor="bottom" id="Run Dashboard" order="14" sideWeight="0.83760685" visible="true" weight="0.31586403" />
+      <window_info anchor="bottom" id="Messages" order="13" sideWeight="0.4957265" visible="true" weight="0.3101983" />
+      <window_info anchor="bottom" id="Run Dashboard" order="14" sideWeight="0.83760685" weight="0.31586403" />
       <window_info anchor="bottom" id="Version Control" order="15" sideWeight="0.4986577" weight="0.32719547" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.24966443" />
@@ -936,7 +960,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Merge Baseet Styling and Front End" />
     <MESSAGE value="update globalAvalability" />
     <MESSAGE value="Fixed footer" />
     <MESSAGE value="Fixed Login Page, logo, Logout button, Vacatures &amp; Details pages." />
@@ -961,13 +984,14 @@
     <MESSAGE value="-" />
     <MESSAGE value="- uodated data model for cohortDay so that it can hold subjects and users instead of strings." />
     <MESSAGE value="- working on generating weeks and days of a cohort." />
-    <option name="LAST_COMMIT_MESSAGE" value="- working on generating weeks and days of a cohort." />
+    <MESSAGE value="- Dead getters and setters" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Dead getters and setters" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="447" height="467" key="Git.Branch.Popup" />
-    <state width="447" height="467" key="Git.Branch.Popup/1920.1080" />
+    <state width="457" height="477" key="Git.Branch.Popup" />
+    <state width="457" height="477" key="Git.Branch.Popup/1920.1080" />
     <state width="660" height="700" key="Git.Branch.Popup/3360.2100" />
-    <state width="447" height="467" key="Git.Branch.Popup@1920.1080@120dpi" />
+    <state width="457" height="477" key="Git.Branch.Popup@1920.1080@120dpi" />
     <state width="660" height="700" key="Git.Branch.Popup@3360.2100@192dpi" />
   </component>
   <component name="antWorkspaceConfiguration">
@@ -975,32 +999,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Role.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/showTask.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-343" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/service/CustomUserDetailsService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/service/VacatureService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/globalAvalability.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="468">
@@ -1098,8 +1096,8 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/test.html" />
     <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/IncidentRestController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        <state relative-caret-position="714">
+          <caret line="42" column="16" selection-start-line="42" selection-start-column="16" selection-end-line="42" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -1142,13 +1140,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="263">
           <caret line="55" selection-start-line="50" selection-end-line="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/IncidentController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-442">
-          <caret line="10" column="48" lean-forward="true" selection-start-line="10" selection-start-column="48" selection-end-line="10" selection-end-column="48" />
         </state>
       </provider>
     </entry>
@@ -1201,20 +1192,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Availability/DayFinder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/TeacherSchedule/CohortWeek.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="31" column="19" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/HolidaySchedule.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -1229,24 +1206,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/MijninzetApplication.java">
+    <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.base/java/time/DayOfWeek.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="63" selection-start-line="8" selection-start-column="63" selection-end-line="8" selection-end-column="63" />
+        <state relative-caret-position="152">
+          <caret line="108" column="12" lean-forward="true" selection-start-line="108" selection-start-column="12" selection-end-line="108" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/TeacherSchedule/CohortDay.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Availability/Incident/Incident.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
+        <state relative-caret-position="2023">
+          <caret line="119" column="20" selection-start-line="119" selection-start-column="20" selection-end-line="119" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/preference/Subject.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Availability/Incident/IncidentJsonHolder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        <state relative-caret-position="391">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/incidents-form.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1445">
+          <caret line="85" column="18" selection-start-line="85" selection-start-column="18" selection-end-line="85" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Availability/Incident/IncidentForm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="969">
+          <caret line="57" column="54" selection-start-line="57" selection-start-column="54" selection-end-line="57" selection-end-column="54" />
         </state>
       </provider>
     </entry>
@@ -1271,27 +1262,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/SQLScripts/MijnInzetInsertScriptv2.9.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="39" column="107" selection-start-line="39" selection-start-column="107" selection-end-line="39" selection-end-column="107" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Cohort.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.base/java/time/DayOfWeek.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="108" column="12" lean-forward="true" selection-start-line="108" selection-start-column="12" selection-end-line="108" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -1301,8 +1271,64 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/CohortController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="175" column="70" lean-forward="true" selection-start-line="175" selection-start-column="70" selection-end-line="175" selection-end-column="70" />
+        <state relative-caret-position="3128">
+          <caret line="184" column="22" selection-start-line="184" selection-start-column="22" selection-end-line="184" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/TeacherSchedule/CohortDay.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/repository/SQLScripts/MijnInzetInsertScriptv2.9.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="40" selection-end-line="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/MijninzetApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="63" selection-start-line="8" selection-start-column="63" selection-end-line="8" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/preference/Subject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Availability/DayFinder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/controller/IncidentController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="43" column="53" selection-start-line="43" selection-start-column="53" selection-end-line="43" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/TeacherSchedule/CohortWeek.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="411">
+          <caret line="30" column="35" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/makeitwork/mijninzet/model/Cohort.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2074">
+          <caret line="122" column="49" selection-start-line="122" selection-start-column="49" selection-end-line="122" selection-end-column="49" />
         </state>
       </provider>
     </entry>

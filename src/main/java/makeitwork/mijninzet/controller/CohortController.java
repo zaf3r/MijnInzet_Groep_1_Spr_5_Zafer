@@ -109,7 +109,6 @@ public class CohortController implements RetrieveUserRole {
         cohort.setEndDate(cohort.getEndDate().plusDays(INCREMENT_DAY_HIBERNATE_FIX));
 
         generateWeeksAndDays(cohort);
-//        coRepo.save(cohort);
         return "redirect:/manager/cohort";
     }
 

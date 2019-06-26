@@ -1,6 +1,7 @@
 package makeitwork.mijninzet.model;
 
 
+import makeitwork.mijninzet.model.TeacherSchedule.CohortWeek;
 import makeitwork.mijninzet.model.preference.Subject;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -38,6 +39,9 @@ public class Cohort {
     @JoinTable(name = "cohort_vak", joinColumns = @JoinColumn(name = "cohortId"),
             inverseJoinColumns = @JoinColumn(name = "codevak"))
     private List<Subject> subjects;
+
+    @OneToMany(mappedBy = "cohort",cascade= CascadeType.PERSIST)
+    private List<CohortWeek> cohortWeekList;
 
     public List<Subject> getSubjects() { return subjects; }
 
@@ -114,6 +118,14 @@ public class Cohort {
 
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
+    }
+
+    public List<CohortWeek> getCohortWeekList() {
+        return cohortWeekList;
+    }
+
+    public void setCohortWeekList(List<CohortWeek> cohortWeekList) {
+        this.cohortWeekList = cohortWeekList;
     }
 
     @Override
