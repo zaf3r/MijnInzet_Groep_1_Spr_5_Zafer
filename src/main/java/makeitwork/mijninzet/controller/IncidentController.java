@@ -3,6 +3,7 @@ package makeitwork.mijninzet.controller;
 import makeitwork.mijninzet.model.Availability.Incident.Incident;
 import makeitwork.mijninzet.model.Availability.Incident.IncidentForm;
 import makeitwork.mijninzet.model.Availability.Weekday;
+import makeitwork.mijninzet.model.Role;
 import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.repository.IncidentRepository;
 import makeitwork.mijninzet.repository.UserRepository;
@@ -19,7 +20,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("availability")
-public class IncidentController {
+public class IncidentController implements RetrieveUserRole {
 
     final static boolean DEFAULT_VALUE_INCIDENT = true;
 
@@ -34,7 +35,7 @@ public class IncidentController {
     @GetMapping("incidentsForm")
     public String getIncidentsFormHandler(Model model, Principal principal) {
         User user = userRepository.findByUsername(principal.getName());
-        Calendar calendar = Calendar.getInstance();
+                Calendar calendar = Calendar.getInstance();
         int weekNumber = calendar.get(Calendar.WEEK_OF_YEAR);
         int year = calendar.get(Calendar.YEAR);
         List<Incident> incidentList = incidentRepository.findAllByYearAndWeeknumberAndUser(year,weekNumber,user);
@@ -46,6 +47,8 @@ public class IncidentController {
         IncidentForm incidentForm = loadFormData(incidentList);
 
         model.addAttribute("incidentForm",incidentForm);
+        Role role = retrieveRole(userRepository,principal);
+        model.addAttribute("roleUser", role);
 
         return "incidents-form";
     }
@@ -58,10 +61,10 @@ public class IncidentController {
             incident.setYear(year);
             incident.setWeeknumber(weekNumber);
             incident.setWeekday(weekday);
+            incidentList.add(incident);
             incident.setMorning(DEFAULT_VALUE_INCIDENT);
             incident.setAfternoon(DEFAULT_VALUE_INCIDENT);
             incident.setEvening(DEFAULT_VALUE_INCIDENT);
-            incidentList.add(incident);
         }
         return incidentList;
     }
@@ -79,3 +82,4 @@ public class IncidentController {
 
 
 }
+

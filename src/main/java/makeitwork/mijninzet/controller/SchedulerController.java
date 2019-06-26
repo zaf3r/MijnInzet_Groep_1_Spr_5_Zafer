@@ -5,6 +5,7 @@ import makeitwork.mijninzet.model.Role;
 import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.model.preference.Subject;
 import makeitwork.mijninzet.repository.CohortRepository;
+import makeitwork.mijninzet.repository.CourseScheduleRepository;
 import makeitwork.mijninzet.repository.UserRepository;
 import makeitwork.mijninzet.service.CohortService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,10 +34,14 @@ public class SchedulerController implements RetrieveUserRole{
     private CohortService cohortRepo;
     @Autowired
     private UserRepository userRepo;
+    @Autowired
+    private CourseScheduleRepository coSchRepo;
 
 
     @Transient
     private final String TEACHER = "Docent";
+    @Transient
+    private final String NOSUBJECT = "Vacant";
 
     private String selectedCohort;
     private String selectedTeacher;
@@ -50,8 +55,8 @@ public class SchedulerController implements RetrieveUserRole{
         //maybe create a new set for each subject?
         model.addAttribute("cohorts", getAllCohorts());
         model.addAttribute("allTeachers", getTeachters());
-        model.addAttribute("teachers", selectedTeacher);
-        model.addAttribute("subjects", selectedSubject);
+        //model.addAttribute("teachers", selectedTeacher);
+        //model.addAttribute("subjects", selectedSubject);
         Role role = retrieveRole(userRepo,principal);
         model.addAttribute("roleUser", role);
         return "vakdocent";
@@ -108,7 +113,7 @@ public class SchedulerController implements RetrieveUserRole{
 //        return "return:/roosteraar/vakdocent";
 //    }
 
-//    @PostMapping("/postTeacherToSubject")
+//    @PostMapping("/postTeacherToSchedule")
 //    public String postTeachers(@RequestParam("teacherName") String teacherName){
 //        User user = userRepo.findByUsername(teacherName);
 //        cohort.setUser(teacherName);
