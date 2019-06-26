@@ -39,13 +39,12 @@ public class SollicitatieController {
         return "sollicitaties";
     }
 
-    @PostMapping("/saveSollicitaties")
+    @GetMapping("/manager/saveSollicitaties/{status}")
     public @ResponseBody User saveApplicationHandler (@RequestBody User data, @RequestParam ("naamTaak") String titel) {
         System.out.println("input data is" + data);
         User ret = data;
         var output = new BasicDBObject();
         try {
-//            User newUser = mapper.readValue(data, User.class);
             var user = vacatureRepository.save(data);
 
             ret = user;

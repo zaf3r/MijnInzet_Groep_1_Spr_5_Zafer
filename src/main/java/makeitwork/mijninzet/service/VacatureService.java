@@ -62,18 +62,15 @@ public class VacatureService {
             Task t = iter.next();
             if (t.getTaskStatus() == (Task.TaskStatus.APPROVED)) {
                 iter.remove();}
-            System.out.println("Status is" + t.getUsers().isEmpty() + "/n/n");
             if (t.getUsers().isEmpty()) {
                     iter.remove();
                 }
             }
-        System.out.println(allTasks);
         return allTasks;
     }
 
     //voor het zelfde doel als bovenstaande
     public List<User> getSollicitanten (int taskId){
-        System.out.println("taskId: " + taskId);
         try{
             return taskRepository.findTaskById(taskId).getUsers();
         } catch (NullPointerException e){

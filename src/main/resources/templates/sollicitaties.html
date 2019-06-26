@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Sollicitaties</title>
-
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous">
+    </script>
 </head>
 <body>
 <div class="content">
@@ -14,10 +19,10 @@
             <div class="row">
                 <div th:each="task : ${tasks}">
                     <table id="sollicitaties">
-<!--                    <form action="#" th:action="@{/sollicitaties}" th:object="${task}" id="applicationform" method="post">-->
-                        <form action="#" th:action="@{/saveSollicitaties}" th:object="${task}" id="applicationform" method="post">-->
 
                         <th:fieldset>
+<!--                            <form action="#" th:action="@{/sollicitaties}" th:object="${task}" id="applicationform" method="get">-->
+                                <form action="#" id="applicationform" th:action="@{/manager/saveSollicitaties/{status}}" th:object="${task}" method="get">
                             <tr>
                                 <td id = "taskTitle" th:text="${task.titel}"></td>
                                 <td id = "userName" th:each="user : ${task.users}">
@@ -30,15 +35,18 @@
                                     <option th:text="${status}" th:value="${status}"></option></span>
                                     </select>
                                 </td>
-
+                            </tr>
+                             </form>
                                 <td>
-                                    <button type="submit" th:onclick="ajaxPost()" value="Opslaan" id="opslaanSolliciatie"></button>
+
+                                    <button type="submit" value="Opslaan" id="opslaanSolliciatie"></button>
+
                                 </td>
 
-                            </tr>
+
                         </th:fieldset>
 
-                         </form>
+
                      </table>
 
                 </div>
@@ -50,29 +58,64 @@
 </div>
 
 <script>
-            $("#applicationform").on("change", function ajaxPost() {
 
-                var formData = {
-                    taskTitle: $("#taskTitle").val(),
-                    userName: $("#userName").val(),
-                    statusTask: $(this).find(':selected').text();
+        var button = document.getElementById("opslaanSolliciatie").addEventListener("click", opslaan);
 
-            }
-                payload = JSON.stringify(formData);
+        function opslaan () {
 
-                $.ajax({
-                    type: 'Post',
-                    contentType: 'application/json; charset=utf-8',
-                    url: window.location,
-                    dataType: 'json',
-                    data: payload
-                }).done(function (response) {
-                        var n = 1
-                        $.each(response, function (i, item) {
-                            $("#opslaanSolliciatie").append('<option value="">' + response[i].taskTitle + '</option>');
-                        })
-                    })
-            });
+            var taskTitle = document.getElementById("taskTitle").value;
+            var userName = document.getElementById("userName").value;
+            var statusTask = $(this).find(':selected').text();
+
+            var url = "/manager/saveSollicitaties/{status}";
+
+            var request = new XMLHttpRequest();
+            request.open('GET', url, true);
+            request.setRequestHeader('Content-Type', 'application/json');
+            request.setRequestHeader('Accept', 'application/json');
+
+            var data = {taskTitle, userName, statusTask};
+
+            console.log (JSON.stringify(data))
+
+            request.send(JSON.stringify(data));
+
+            request.onreadystatechange = function() {
+
+                if(request.readyState === XMLHttpRequest.DONE){
+
+                    if(request.status === 200)
+                        {console.log(request.response);
+
+                            var responseObject = JSON.parse(request.response);
+                            console.log(responseObject);
+                    } else {
+                        alert("iets ging fout")
+                    }
+                    }
+                }
+        }
+
+            // $("#applicationform").on("change", function () {
+            //
+            //     var formData = {
+            //         taskTitle: $("#taskTitle").val(),
+            //         userName: $("#userName").val(),
+            //         statusTask: $(this).find(':selected').text();
+            //
+            // }
+            //     payload = JSON.stringify(formData);
+            //
+            //     $.ajax({
+            //         type: "get",
+            //         contentType: "application/json; charset=utf-8",
+            //         url: "/manager/saveSollicitaties/{status}",
+            //         dataType: "json",
+            //         data: payload
+            //     }).done(function (response) {
+            //             console.log (response)
+            //         })
+            // });
 </script>
 </body>
 </html>
