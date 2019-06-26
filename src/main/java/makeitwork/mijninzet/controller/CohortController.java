@@ -27,13 +27,12 @@ import java.util.List;
 public class CohortController implements RetrieveUserRole {
 
     final private int DEFAULT_FIRST_WEEK = 1;
-    final private int WEEK_INCREMENTATION = 1;
-
+    final private long WEEK_INCREMENTATION = 1;
     final private String USERNAME_DEFAULT_USER = "Geen docent";
+    final private long INCREMENT_DAY_HIBERNATE_FIX = 1;
 
     @Autowired
     UserRepository userRepository;
-
     @Autowired
     private SubjectRepository subRepo;
     @Autowired
@@ -145,39 +144,46 @@ public class CohortController implements RetrieveUserRole {
     public void generateWeeksAndDays(Cohort cohort) {
         List<CohortWeek> cohortWeekList = new ArrayList<>();
         int weekNumber = DEFAULT_FIRST_WEEK;
-        User DEFAULT_TEACHER =  retrieveDefaultTeacher();
         LocalDate startDate = cohort.getStartDate();
 
-        while(startDate.isBefore(cohort.getEndDate())) {
+        while(startDate.isBefore(cohort.getEndDate()) || startDate.isEqual(cohort.getEndDate())) {
             CohortWeek cohortWeek = new CohortWeek();
             cohortWeek.setCohort(cohort);
             cohortWeek.setWeekNumber(weekNumber);
-            List<CohortDay> cohortDayList = new ArrayList<>();
-
-            for (DayOfWeek dayOfWeek : DayOfWeek.values()) {
-                if(dayOfWeek.equals(dayOfWeek.SATURDAY) | dayOfWeek.equals(dayOfWeek.SUNDAY)) {
-                    // Do nothing if days equal saturday or sunday
-                } else {
-                    CohortDay cohortDay = new CohortDay();
-                    cohortDay.setDate((startDate.with(dayOfWeek)));
-                    cohortDay.setTeacherMorning(DEFAULT_TEACHER);
-                    cohortDay.setTeacherAfternoon(DEFAULT_TEACHER);
-                    cohortDay.setTeacherEvening(DEFAULT_TEACHER);
-                    cohortDayList.add(cohortDay);
-                }
-            }
-            cohortWeek.setCohortDayList(cohortDayList);
+            cohortWeek.setCohortDayList(generateCohortDays(startDate));
             cohortWeekList.add(cohortWeek);
+
             startDate = startDate.plusWeeks(WEEK_INCREMENTATION);
             weekNumber++;
         }
         cohort.setCohortWeekList(cohortWeekList);
         coRepo.save(cohort);
-        //SAVE OPERATION HERE
         //TO DO: MAKE IT CLEAN - EVERYTHING A SINGLE PURPOSE
     }
 
     public User retrieveDefaultTeacher() {
         return userRepository.findByUsername(USERNAME_DEFAULT_USER);
+    }
+
+    public List<CohortDay> generateCohortDays(LocalDate date) {
+        List<CohortDay> cohortDayList = new ArrayList<>();
+
+        for (DayOfWeek dayOfWeek : DayOfWeek.values()) {
+            if(dayOfWeek.equals(dayOfWeek.SATURDAY) | dayOfWeek.equals(dayOfWeek.SUNDAY)) {
+                // Do nothing if days equal saturday or sunday
+            } else {
+                CohortDay cohortDay = new CohortDay();
+                cohortDay.setDate((date.with(dayOfWeek).plusDays(INCREMENT_DAY_HIBERNATE_FIX)));
+                cohortDay.setTeacherMorning(retrieveDefaultTeacher());
+                cohortDay.setTeacherAfternoon(retrieveDefaultTeacher());
+                cohortDay.setTeacherEvening(retrieveDefaultTeacher());
+                cohortDayList.add(cohortDay);
+
+                System.out.println(date.with(dayOfWeek));
+            }
+        }
+        System.out.println("======================================");
+        return cohortDayList;
+
     }
 }

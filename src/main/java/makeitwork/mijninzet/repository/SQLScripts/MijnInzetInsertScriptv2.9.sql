@@ -38,7 +38,6 @@ INSERT INTO `mijninzet`.`vak` (`codeVak`, `naamvak`, `uren`) VALUES ('4', 'Advan
 INSERT INTO `mijninzet`.`vak` (`codeVak`, `naamvak`, `uren`) VALUES ('5', 'Complex programming', '50');
 INSERT INTO `mijninzet`.`vak` (`codeVak`, `naamvak`, `uren`) VALUES ('6', 'Data structures', '50');
 INSERT INTO `mijninzet`.`vak` (`codeVak`, `naamvak`, `uren`) VALUES ('7', 'Test driven development', '50');
-INSERT INTO `mijninzet`.`vak` (`codeVak`, `naamvak`, `uren`) VALUES ('9999', 'Geen vak', '0');
 
 
 
