@@ -39,8 +39,8 @@ public class SollicitatieController {
         return "sollicitaties";
     }
 
-    @GetMapping("/manager/saveSollicitaties/{status}")
-    public @ResponseBody User saveApplicationHandler (@RequestBody User data, @RequestParam ("naamTaak") String titel) {
+    @PostMapping("manager/saveSollicitaties/{status}")
+    public @ResponseBody User saveApplicationHandler (User data) {
         System.out.println("input data is" + data);
         User ret = data;
         var output = new BasicDBObject();
