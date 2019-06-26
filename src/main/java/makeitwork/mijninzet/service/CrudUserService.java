@@ -47,7 +47,6 @@ public class CrudUserService implements RetrieveUserRole {
         return bestaat;
     }
     public String UserName(Principal principal){
-        //todo nullpointer oplossen
         return userRepository.findByUsername(principal.getName()).getUsername();
     }
     public String UserEmail(Principal principal){

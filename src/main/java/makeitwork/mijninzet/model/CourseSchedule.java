@@ -5,7 +5,7 @@ import makeitwork.mijninzet.model.Availability.Weekday;
 import makeitwork.mijninzet.model.preference.Subject;
 
 import javax.persistence.*;
-import java.time.Period;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
@@ -25,8 +25,8 @@ public class CourseSchedule {
     @JoinColumn(name = "vak")
     private Subject subject;
 
-    @Column(name="periode_van_tot")
-    private Period period;
+    @Column(name="datum")
+    private LocalDate date;
 
     @Column(name="lesdag")
     private Weekday weekday;
@@ -68,12 +68,20 @@ public class CourseSchedule {
         this.subject = subject;
     }
 
-    public Period getPeriod() {
-        return period;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setPeriod(Period period) {
-        this.period = period;
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Weekday getWeekday() {
@@ -108,25 +116,15 @@ public class CourseSchedule {
         return courseId == that.courseId &&
                 cohort.equals(that.cohort) &&
                 subject.equals(that.subject) &&
-                period.equals(that.period) &&
+                date.equals(that.date) &&
                 weekday == that.weekday &&
                 partOfDay == that.partOfDay;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(courseId, cohort, subject, period, weekday, partOfDay);
+        return Objects.hash(courseId, cohort, subject, date, weekday, partOfDay);
     }
 
-    @Override
-    public String toString() {
-        return "CourseSchedule{" +
-                "courseId=" + courseId +
-                ", cohort=" + cohort +
-                ", subject=" + subject +
-                ", period=" + period +
-                ", weekday=" + weekday +
-                ", partOfDay=" + partOfDay +
-                '}';
-    }
+
 }

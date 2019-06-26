@@ -19,7 +19,21 @@
             crossorigin="anonymous">
     </script>
 </head>
-<header th:insert="~{navbar :: header}"></header>
+<div th:if="${roleUser.roleName == 'Terminator'}">
+    <header th:insert="~{navbar :: header}"></header>
+</div>
+<div th:if="${roleUser.roleName == 'Docent'}">
+    <header th:insert="~{navbarDocent :: header}"></header>
+</div>
+<div th:if="${roleUser.roleName == 'Administrateur'}">
+    <header th:insert="~{navbarAdministrateur :: header}"></header>
+</div>
+<div th:if="${roleUser.roleName == 'Manager'}">
+    <header th:insert="~{navbarManager :: header}"></header>
+</div>
+<div th:if="${roleUser.roleName == 'Roosteraar'}">
+    <header th:insert="~{navbarRoosteraar :: header}"></header>
+</div>
 <body>
 
 <div class="container">
@@ -259,7 +273,7 @@
     function isCoordinatorFunction(){
         $.ajax({
             type: 'POST',
-            url: '/checkIsCoordinator',
+            url: '/checkIsAdmin',
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
             data: "{}"
@@ -267,7 +281,7 @@
                 roleDisplay=$("#displayRole");
                 eAddressErr = $("#eAddressMsg");
                 verwijderen=$("#userVerwijderen");
-                if (coordinator["isCoordinator"]){
+                if (coordinator["isAdmin"]){
                     roleDisplay.show();
                     eAddressErr.hide();
                     verwijderen.hide();
@@ -277,7 +291,6 @@
 
                 }
             }
-
         )
     }
 </script>

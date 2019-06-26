@@ -2,24 +2,30 @@ package makeitwork.mijninzet.controller;
 
 import makeitwork.mijninzet.model.Cohort;
 
+import makeitwork.mijninzet.model.Role;
 import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.model.preference.Subject;
 import makeitwork.mijninzet.repository.CohortRepository;
 
 import makeitwork.mijninzet.repository.SubjectRepository;
+import makeitwork.mijninzet.repository.UserRepository;
 import makeitwork.mijninzet.service.CohortService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
 
 @Controller
 @RequestMapping("/manager")
-public class CohortController {
+public class CohortController implements RetrieveUserRole {
 
+    @Autowired
+    UserRepository userRepository;
     @Autowired
     private SubjectRepository subRepo;
     @Autowired
@@ -32,20 +38,25 @@ public class CohortController {
     private List<Subject> selectedSubjectList;
 
     @GetMapping("/cohort")
-    public String CohortHandler(Model model){
+    public String CohortHandler(Model model, Principal principal){
         Cohort cohort = new Cohort();
 
         model.addAttribute("attr1", cohort);
         model.addAttribute("coordinators", getCoordinators());
         model.addAttribute("cohorts", getAllCohorts());
+        Role role = retrieveRole(userRepository,principal);
+        model.addAttribute("roleUser", role);
         return "cohort";
     }
 
     @GetMapping("/cohortSubject")
-    public String AddSubjectHandler(Model model){
+    public String AddSubjectHandler(Model model, Principal principal){
         model.addAttribute("cohorts", getAllCohorts());
         model.addAttribute("subjects", selectedSubjectList);
         model.addAttribute("possibleSubjects", possibleSubjectList);
+        Role role = retrieveRole(userRepository,principal);
+        model.addAttribute("roleUser", role);
+
         return "cohortSubject";
     }
 
