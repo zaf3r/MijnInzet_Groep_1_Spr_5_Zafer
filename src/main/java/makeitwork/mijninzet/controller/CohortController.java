@@ -101,6 +101,9 @@ public class CohortController implements RetrieveUserRole {
     @PostMapping("/saveCohort")
     public String saveCohort(@ModelAttribute("saveCohort")Cohort cohort, @RequestParam("coordinator")User co) {
         cohort.setUser(co);
+        cohort.setStartDate(cohort.getStartDate().plusDays(INCREMENT_DAY_HIBERNATE_FIX));
+        cohort.setEndDate(cohort.getEndDate().plusDays(INCREMENT_DAY_HIBERNATE_FIX));
+
         generateWeeksAndDays(cohort);
 //        coRepo.save(cohort);
         return "redirect:/manager/cohort";
@@ -178,11 +181,8 @@ public class CohortController implements RetrieveUserRole {
                 cohortDay.setTeacherAfternoon(retrieveDefaultTeacher());
                 cohortDay.setTeacherEvening(retrieveDefaultTeacher());
                 cohortDayList.add(cohortDay);
-
-                System.out.println(date.with(dayOfWeek));
             }
         }
-        System.out.println("======================================");
         return cohortDayList;
 
     }
