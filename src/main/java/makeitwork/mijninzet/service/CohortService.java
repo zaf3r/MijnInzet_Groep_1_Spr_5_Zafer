@@ -32,51 +32,61 @@ public class CohortService {
     private final String TEACHER = "Docent";
 
 
-    public Subject getSubject(String subjectName){
-        return subjectRepository.findBySubjectName(subjectName);
-    }
+//    public Subject getSubject(String subjectName){
+//        return subjectRepository.findBySubjectName(subjectName);
+//    }
 
+
+//    public List<Subject> getAllSubjects(Cohort cohort){
+//        List<Subject> subjects = new ArrayList<>();
+//        for (String subjectName: cohort.getSubjectNames()) {
+//            Subject subject = getSubject(subjectName);
+//            subjects.add(subject);
+//        }
+//        return subjects;
+//    }
 
     public List<Subject> getAllSubjects(Cohort cohort){
         List<Subject> subjects = new ArrayList<>();
-        for (String subjectName: cohort.getSubjectNames()) {
-            Subject subject = getSubject(subjectName);
+        for (Subject subject: cohort.getSubjects()) {
             subjects.add(subject);
         }
         return subjects;
     }
 
-    public void addSubject(Cohort cohort, Subject subject){
-        cohort.addSubject(subject.getSubjectName());
-        cohortRepository.save(cohort);
-    }
+//    public void addSubject(Cohort cohort, Subject subject){
+//        cohort.addSubject(subject.getSubjectName());
+//        cohortRepository.save(cohort);
+//    }
 
-    public void removeSubject(Cohort cohort, Subject subject){
-        cohort.removeSubject(subject.getSubjectName());
-        cohortRepository.save(cohort);
-    }
+//    public void removeSubject(Cohort cohort, Subject subject){
+//        cohort.removeSubject(subject.getSubjectName());
+//        cohortRepository.save(cohort);
+//    }
 
-    public List<User> coordinatorList(){
-        List<User> coordinators = new ArrayList<>();
+//    public List<User> coordinatorList(){
+//        List<User> coordinators = new ArrayList<>();
+//        List<User> users = userRepository.findAll();
+//        for (User user : users){
+//            List<Role> roles = user.getRole();
+//                if (roles.contains(roleRepository.findByRoleName(COORDINATOR)))
+//                    coordinators.add(user);
+//        }
+//        return coordinators;
+//    }
+
+
+    public List<User> userList(String roleType){
+        List<User> userList = new ArrayList<>();
         List<User> users = userRepository.findAll();
         for (User user : users){
             List<Role> roles = user.getRole();
-                if (roles.contains(roleRepository.findByRoleName(COORDINATOR)))
-                    coordinators.add(user);
+            if (roles.contains(roleRepository.findByRoleName(roleType)))
+                userList.add(user);
         }
-        return coordinators;
+        return userList;
     }
 
-    public List<User> teacherList(){
-        List<User> teachers = new ArrayList<>();
-        List<User> users = userRepository.findAll();
-        for (User user : users){
-            List<Role> roles = user.getRole();
-            if (roles.contains(roleRepository.findByRoleName(TEACHER)))
-                teachers.add(user);
-        }
-        return teachers;
-    }
 
     public Cohort getCohort(String name){
         return cohortRepository.findByCohortName(name);

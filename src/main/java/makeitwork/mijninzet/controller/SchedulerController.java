@@ -2,12 +2,9 @@ package makeitwork.mijninzet.controller;
 
 import makeitwork.mijninzet.model.Cohort;
 import makeitwork.mijninzet.model.Role;
-import makeitwork.mijninzet.model.CourseSchedule;
 import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.model.preference.Subject;
 import makeitwork.mijninzet.repository.CohortRepository;
-import makeitwork.mijninzet.repository.CourseRepository;
-import makeitwork.mijninzet.repository.SubjectRepository;
 import makeitwork.mijninzet.repository.UserRepository;
 import makeitwork.mijninzet.service.CohortService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.persistence.Transient;
 import java.security.Principal;
 import java.util.List;
 
@@ -27,14 +25,18 @@ public class SchedulerController implements RetrieveUserRole{
 
     @Autowired
     UserRepository userRepository;
-    @Autowired
-    private SubjectRepository subRepo;
+//    @Autowired
+//    private SubjectRepository subRepo;
     @Autowired
     private CohortRepository coRepo;
     @Autowired
     private CohortService cohortRepo;
     @Autowired
     private UserRepository userRepo;
+
+
+    @Transient
+    private final String TEACHER = "Docent";
 
     private String selectedCohort;
     private String selectedTeacher;
@@ -50,7 +52,7 @@ public class SchedulerController implements RetrieveUserRole{
         model.addAttribute("allTeachers", getTeachters());
         model.addAttribute("teachers", selectedTeacher);
         model.addAttribute("subjects", selectedSubject);
-        Role role = retrieveRole(userRepository,principal);
+        Role role = retrieveRole(userRepo,principal);
         model.addAttribute("roleUser", role);
         return "vakdocent";
     }
@@ -61,9 +63,11 @@ public class SchedulerController implements RetrieveUserRole{
     }
 
     public List<User> getTeachters(){
-        List<User> allTeachers = cohortRepo.teacherList();
+        List<User> allTeachers = cohortRepo.userList(TEACHER);
         return allTeachers;
     }
+
+
 
     //dit is niet langer een list in een drop down menu maar een stuk tekst in elk vakje.
     public List<Subject> selectedSubjectsList(Cohort cohort){

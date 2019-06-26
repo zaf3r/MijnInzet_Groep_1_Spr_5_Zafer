@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.Transient;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,8 @@ public class CohortController implements RetrieveUserRole {
     private CohortRepository coRepo;
     @Autowired
     private CohortService cohortService;
+    @Transient
+    private final String COORDINATOR = "Manager";
 
     private String selectedCohort;
     private List<Subject> possibleSubjectList;
@@ -43,7 +46,7 @@ public class CohortController implements RetrieveUserRole {
 
         model.addAttribute("attr1", cohort);
         model.addAttribute("coordinators", getCoordinators());
-        model.addAttribute("cohorts", getAllCohorts());
+//        model.addAttribute("cohorts", getAllCohorts());
         Role role = retrieveRole(userRepository,principal);
         model.addAttribute("roleUser", role);
         return "cohort";
@@ -51,7 +54,8 @@ public class CohortController implements RetrieveUserRole {
 
     @GetMapping("/cohortSubject")
     public String AddSubjectHandler(Model model, Principal principal){
-        model.addAttribute("cohorts", getAllCohorts());
+        User user = userRepository.findByUsername(principal.getName());
+        model.addAttribute("cohorts", getAllCohorts(user));
         model.addAttribute("subjects", selectedSubjectList);
         model.addAttribute("possibleSubjects", possibleSubjectList);
         Role role = retrieveRole(userRepository,principal);
@@ -61,12 +65,12 @@ public class CohortController implements RetrieveUserRole {
     }
 
     public List<User> getCoordinators(){
-        List<User> allCoordinators = cohortService.coordinatorList();
+        List<User> allCoordinators = cohortService.userList(COORDINATOR);
         return allCoordinators;
     }
 
-    public List<Cohort> getAllCohorts(){
-        List<Cohort> allcohorts = coRepo.findAll();
+    public List<Cohort> getAllCohorts(User user){
+        List<Cohort> allcohorts = coRepo.findByUser(user);
         return allcohorts;
     }
 
@@ -108,21 +112,40 @@ public class CohortController implements RetrieveUserRole {
     }
 
     @PostMapping("/addSubjects")
+//    public String addSubjectHandler(@RequestParam("subjectName") int subjectId ){
+//        Cohort cohort = coRepo.findByCohortName(selectedCohort);
+//        Subject subject = subRepo.findBySubjectId(subjectId);
+//        cohortService.addSubject(cohort, subject);
+//        subjectList(cohort);
+//        return "redirect:/manager/cohortSubject";
+//    }
+
     public String addSubjectHandler(@RequestParam("subjectName") int subjectId ){
         Cohort cohort = coRepo.findByCohortName(selectedCohort);
         Subject subject = subRepo.findBySubjectId(subjectId);
-        cohortService.addSubject(cohort, subject);
+        cohort.addSubject(subject);
+        coRepo.save(cohort);
         subjectList(cohort);
 
         return "redirect:/manager/cohortSubject";
     }
 
     @PostMapping("/removeSubjects")
+//    public String removeSubjectHandler(@RequestParam("selectedSubjectList") int subjectId){
+//        Cohort cohort = coRepo.findByCohortName(selectedCohort);
+//        Subject subject = subRepo.findBySubjectId(subjectId);
+//
+//        cohortService.removeSubject(cohort, subject);
+//        subjectList(cohort);
+//
+//        return "redirect:/manager/cohortSubject";
+//    }
+
     public String removeSubjectHandler(@RequestParam("selectedSubjectList") int subjectId){
         Cohort cohort = coRepo.findByCohortName(selectedCohort);
         Subject subject = subRepo.findBySubjectId(subjectId);
-
-        cohortService.removeSubject(cohort, subject);
+        cohort.removeSubject(subject);
+        coRepo.save(cohort);
         subjectList(cohort);
 
         return "redirect:/manager/cohortSubject";
