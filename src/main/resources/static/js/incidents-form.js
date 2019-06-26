@@ -111,7 +111,7 @@ function postCall() {
              mondayMo.parentNode.classList = day.morning;
              mondayAf.value = day.afternoon;
              mondayAf.parentNode.classList = day.evening;
-             mondayEv.value = day.afternoon;
+             mondayEv.value = day.evening;
              mondayEv.parentNode.classList = day.evening;
             }
         }
