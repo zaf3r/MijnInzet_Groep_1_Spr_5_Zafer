@@ -2,7 +2,7 @@ package makeitwork.mijninzet.model.Availability;
 
 import java.util.List;
 
-public interface DayFinder<T> {
+public interface DayFinder<T,S> {
 
-    T findDay(Weekday weekday, List<T> dayList);
+    T findDay(S weekday, List<T> dayList);
 }

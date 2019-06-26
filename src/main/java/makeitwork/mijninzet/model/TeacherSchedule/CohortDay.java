@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+import makeitwork.mijninzet.model.Availability.DayFinder;
+import makeitwork.mijninzet.model.Availability.Weekday;
 import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.model.preference.Subject;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -12,10 +14,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "cohortDag")
-public class CohortDay {
+public class CohortDay implements DayFinder<CohortDay,DayOfWeek> {
 
     @Id
     @Column(name = "dagId")
@@ -154,5 +157,15 @@ public class CohortDay {
                 ", subjectAfternoon=" + subjectAfternoon +
                 ", subjectEvening=" + subjectEvening +
                 '}';
+    }
+
+    @Override
+    public CohortDay findDay(DayOfWeek dayOfWeek, List<CohortDay> dayList) {
+        for (CohortDay cohortDay: dayList) {
+            if(cohortDay.getDayOfWeek()==dayOfWeek) {
+                return cohortDay;
+            }
+        }
+        return null;
     }
 }

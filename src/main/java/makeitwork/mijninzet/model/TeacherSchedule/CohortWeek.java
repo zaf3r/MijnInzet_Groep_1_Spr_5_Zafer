@@ -15,7 +15,7 @@ public class CohortWeek {
     private long weekId;
 
     @Column(name = "weekNumber")
-    private int weekNumber;
+    private long weekNumber;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "cohortId")
@@ -33,11 +33,11 @@ public class CohortWeek {
         this.weekId = weekId;
     }
 
-    public int getWeekNumber() {
+    public long getWeekNumber() {
         return weekNumber;
     }
 
-    public void setWeekNumber(int weekNumber) {
+    public void setWeekNumber(long weekNumber) {
         this.weekNumber = weekNumber;
     }
 

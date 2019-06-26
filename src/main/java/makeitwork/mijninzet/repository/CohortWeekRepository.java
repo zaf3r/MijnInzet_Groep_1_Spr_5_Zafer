@@ -9,5 +9,5 @@ import java.util.List;
 public interface CohortWeekRepository extends JpaRepository<CohortWeek,Long> {
     List<CohortWeek> findCohortWeekByCohort(Cohort cohort);
 
-    CohortWeek findCohortWeekByCohortAndWeekNumber(Cohort cohort, int weekNumber);
+    CohortWeek findCohortWeekByCohortAndWeekNumber(Cohort cohort, long weekNumber);
 }
