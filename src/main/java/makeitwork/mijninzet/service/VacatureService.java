@@ -21,7 +21,6 @@ public class VacatureService {
     private TaskRepository taskRepository;
 
 
-
     public Task getTask(int taskId){
         return taskRepository.findTaskById(taskId);
     }
@@ -29,8 +28,8 @@ public class VacatureService {
     //    lijst met vacatures van een Docent: zijn lijst met taken
     public List<Task> getAllTasks(User user){
         List<Task> tasks = new ArrayList<>();
-        for (Integer taskId: user.getTask()) {
-            Task task = getTask(taskId);
+        for (Task taskId: user.getTask()) {
+            Task task = getTask(taskId.getId());
             tasks.add(task);
         }
         return tasks;
@@ -38,64 +37,75 @@ public class VacatureService {
 
     //save Vacature in DB SQL
     public void addTask(Task task, User user){
-        System.out.println("Task: " + task);
-        System.out.println("User: " + user);
-        System.out.println("User: " + user.getUsername());
-
-        user.addApplication(task.getId());
+        task.getUsers().add(user);
+        user.getTask().add(task);
         vacatureRepository.save(user);
+        taskRepository.save(task);
     }
     //wordt een taak uit zijn eigen lijst verwijderd
-    public void removeTask(Task task, User user) {
-        System.out.println("Task: " + task);
-        user.removeApplication(task.getId());
-        vacatureRepository.save(user);
-    }
+//    public void removeTask(Task task, User user) {
+//        System.out.println("Task: " + task);
+//        user.removeApplication(task.getId());
+//        vacatureRepository.save(user);
+//    }
 
-    public User getUser(int userId){
-        return vacatureRepository.findUserById(userId);
-    }
+//    public User getUser(int userId){
+//        return vacatureRepository.findUserById(userId);
+//    }
 
     // voor de MANAGER: lijst met tasks en users die gesolliciteerd hebben (lijst sollicitanten)
-    public List<User> getAllUsers(Task task) {
-        List<User> sollicitanten = new ArrayList<>();
-        sollicitanten = vacatureRepository.findAll();
-        Iterator<User> iter = sollicitanten.iterator();
+
+    public List<Task> allApplications(Task task) {
+        List<Task> allTasks = taskRepository.findAll();
+        Iterator<Task> iter = allTasks.iterator();
         while (iter.hasNext()) {
-            User user = iter.next();
-            if (!user.getTask().contains(task)) {
-                iter.remove();
+            Task t = iter.next();
+            if (t.getTaskStatus() == (Task.TaskStatus.APPROVED)) {
+                iter.remove();}
+            System.out.println("Status is" + t.getUsers().isEmpty() + "/n/n");
+            if (t.getUsers().isEmpty()) {
+                    iter.remove();
+                }
             }
-            System.out.println("*******************" + sollicitanten);
-        }
-        return sollicitanten;
+        System.out.println(allTasks);
+        return allTasks;
     }
 
-//    public List<Task> getEveryTasks(User user){
-//        List<Task> sollicitaten = new ArrayList<>();
-//        sollicitaten = user.getTask();
-//        Iterator<Task> iter = sollicitaten.iterator();
-//        while (iter.hasNext()){
-//            Task task = iter.next();
-//            if(!user.getTaskIds().contains(user)) {
-//                iter.remove();
-//            }
-//            System.out.println("************" + sollicitaten);
-//        }
-//        return sollicitaten;
+    //voor het zelfde doel als bovenstaande
+    public List<User> getSollicitanten (int taskId){
+        System.out.println("taskId: " + taskId);
+        try{
+            return taskRepository.findTaskById(taskId).getUsers();
+        } catch (NullPointerException e){
+            return new ArrayList<>();
+        }
+    }
+//TODO is geen List<> denk ik
+    public void approveSollicitant(User user, Task task){
+        List<User> approved = new ArrayList<>();
+        approved.add(user);
+        taskRepository.findTaskById(task.getId()).setUsers(approved);
+        task.setTaskStatus(Task.TaskStatus.APPROVED);
+    }
+
+//    public Task getApprovedTask(int taskId, int userId){
+//        return taskRepository.findApprovedTaskById(taskId, userId);
 //    }
 
+    public void saveApprovedTasks(User user, Task task){
+        user.getSollicitaties().add(task);
+        System.out.println("Opgeslagen user is" + user);
+        task.setUitvoerder(user);
+        task.setTaskStatus(Task.TaskStatus.APPROVED);
+        vacatureRepository.save(user);
+        taskRepository.save(task);
+    }
 
-//        System.out.println(sollicitanten);
-//        for (User user: sollicitanten) {
-//            if(!user.getTaskIds().contains(task)) {
-//               sollicitanten.remove(user);
-//            }
-//            System.out.println( "*******************" + sollicitanten);
-//        }
-//        return sollicitanten;
-//
-//    }
+
+
+
+
+
 
     //stel taak is komen te vervallen, moet deze taak overal uit de DB (bij teacher) verwijderd worden.
     public void removeTaskFromOverview(Task task){

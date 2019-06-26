@@ -101,26 +101,51 @@ public class User implements Comparable{
 
     @ElementCollection
     @SortNatural
-    @Column(name = "taak")
-    private SortedSet<Integer> task = new TreeSet<>();
+    @Column(name = "sollicitaties")
+    //toegewezen taken
+    private List<Task> sollicitaties;
 
-    public SortedSet<Integer> getTask() {
+    public List<Task> getSollicitaties() {
+        return sollicitaties;
+    }
+
+    public void setSollicitaties(List<Task> sollicitaties) {
+        this.sollicitaties = sollicitaties;
+    }
+
+    public void addApprovedTask(Task sollicitatie){
+        List<Task> approvedTasks = getSollicitaties();
+        if (!approvedTasks.contains(sollicitatie)) approvedTasks.add(sollicitatie);
+    }
+
+    @ElementCollection
+    @SortNatural
+    @Column(name = "vac")
+    private List<Task> task;
+
+    public List<Task> getTask() {
         return task;
     }
 
-    public void setTask(SortedSet<Integer> task) {
+    public void setTask(List<Task> task) {
         this.task = task;
     }
 
-    public void addApplication(int vacature) {
-        SortedSet<Integer> vacatures = getTask();
+    //sollicitatie aan de lijst toevoegen
+    public void addApplication(Task vacature) {
+        List<Task> vacatures = getTask();
         if (!vacatures.contains(vacature)) vacatures.add(vacature);
     }
 
-    public void removeApplication(int vacature) {
-        SortedSet<Integer> vacatures = getTask();
-        if (vacatures.contains(vacature)) vacatures.remove(vacature);
-    }
+    //toegewezen taak aan de lijst toevoegen
+
+
+//    public void removeApplication(int vacature) {
+//        SortedSet<Integer> vacatures = getTask();
+//        if (vacatures.contains(vacature)) vacatures.remove(vacature);
+//    }
+
+
 
     //    @Transient
 //    private List<Sollicitatie> sollicitaties = new ArrayList<>();

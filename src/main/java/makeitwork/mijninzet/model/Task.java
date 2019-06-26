@@ -2,13 +2,14 @@ package makeitwork.mijninzet.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table (name="Vacature")
 public class Task implements Comparable{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
 
     private String titel;
@@ -30,10 +31,37 @@ public class Task implements Comparable{
     private TaskStatus taskStatus;
 
     @ManyToOne
-    User user;
+    private User uitvoerder;
+
+    public User getUitvoerder() {
+        return uitvoerder;
+    }
+
+    public void setUitvoerder(User uitvoerder) {
+        this.uitvoerder = uitvoerder;
+    }
+
+    @ManyToMany
+    @JoinTable(name = "sollicitanten",
+    joinColumns = @JoinColumn(name = "id"),
+    inverseJoinColumns = @JoinColumn(name = "idgebruiker"))
+    List<User> users;
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    public void addTask(User user){
+        List<User> sollicitanten = getUsers();
+        if(!sollicitanten.contains(user.getId())) sollicitanten.add(user);
+    }
 
     public enum TaskStatus {
-        OPEN, APPROVED;
+        OPEN, APPROVED
     }
 
     public void status(TaskStatus status) {
@@ -135,13 +163,18 @@ public class Task implements Comparable{
     @Override
     public String toString() {
         return "Task{" +
-                "id='" + id + '\'' +
+                "id=" + id +
                 ", titel='" + titel + '\'' +
                 ", locatie='" + locatie + '\'' +
                 ", beschrijving='" + beschrijving + '\'' +
-                ", startdat=" + startdatum +
-                ", sluitdate=" + sluitdatum +
+                ", beschrijvingLang='" + beschrijvingLang + '\'' +
+                ", startdatum='" + startdatum + '\'' +
+                ", einddatum=" + einddatum +
+                ", sluitdatum=" + sluitdatum +
                 ", uren=" + uren +
+                ", taskStatus=" + taskStatus +
+                ", users=" + users +
+                " /n/n" +
                 '}';
     }
 

@@ -12,22 +12,64 @@
     <section id="gallery">
         <div class="container">
             <div class="row">
-                    <div class="col-lg-4 mb-3" th:each="user : ${listSoltaties}">
-                        <form action="#" th:action="@{/sollicitaties}" th:object="${listSoltaties}" method = "get">
-                            <span th:text="${user.getRole()}"/>
-                            <span th:text="${user.getEmail()}"/>
-                            <span th:text="${user.getTasks()}"/>
-                            <!--/*@thymesVar id="task" type="java"*/-->
-                            <span th:text="${user.task}"/>
-                        </form>
+                <div th:each="task : ${tasks}">
+                    <table id="sollicitaties">
+                    <form action="#" th:action="@{/sollicitaties}" th:object="${task}" id="applicationform" method="post">
+                        <th:fieldset>
+                            <tr>
+                                <td id = "taskTitle" th:text="${task.titel}"></td>
+                                <td id = "userName" th:each="user : ${task.users}">
+                                <span th:text="${user.username}"></span></td>
+                                <td th:text ="${task.getTaskStatus()}"></td>
+                                <td>
+                                    <select name="status" id="status" required>
+                                    <option value="">Geef status</option>
+                                        <span th:each="status : ${statussen}">
+                                    <option th:text="${status}" th:value="${status}"></option></span>
+                                    </select>
+                                </td>
 
+                                <td>
+                                    <button type="submit" th:onclick="ajaxPost()" value="Opslaan" id="opslaanSolliciatie"></button>
+                                </td>
 
-                    </div>
-                </form>
+                            </tr>
+                        </th:fieldset>
+                    </form>
+                        </table>
+
+                </div>
+
             </div>
+            </form>
         </div>
-    </section>
+</section>
 </div>
 
+<script>
+            $("#applicationform").on("change", function ajaxPost() {
+
+                var formData = {
+                    taskTitle: $("#taskTitle").val(),
+                    userName: $("#userName").val(),
+                    statusTask: $(this).find(':selected').text();
+
+            }
+                payload = JSON.stringify(formData);
+
+                $.ajax({
+                    type: 'Post',
+                    contentType: 'application/json; charset=utf-8',
+                    url: '/saveSollicitaties',
+                    dataType: 'json',
+                    data: payload
+                }).done(function (response) {
+                        var n = 1
+                        $.each(response, function (i, item) {
+                            $("#opslaanSolliciatie").append('<option value="">' + response[i].taskTitle + '</option>');
+                        })
+                    })
+            });
+</script>
 </body>
 </html>
