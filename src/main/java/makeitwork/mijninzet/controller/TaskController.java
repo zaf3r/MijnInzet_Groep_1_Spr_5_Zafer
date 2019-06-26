@@ -43,8 +43,8 @@ public class TaskController extends AbstractController implements RetrieveUserRo
     }
 
     @GetMapping("/showTask/{task}")  //th:action
-    public String TaskDetailHandler(@ModelAttribute("task") Task taak, @RequestParam("taskId") String taakId, Model model, Principal principal) {
-        taak = opening(taakId);
+    public String TaskDetailHandler( @RequestParam("taskId") String taakId, Model model, Principal principal) {
+        Task taak = opening(taakId);
         model.addAttribute("taak", taak);
         model.addAttribute("deadline", returnDays(taak));
         Role role = retrieveRole(usersRepository,principal);
@@ -56,7 +56,7 @@ public class TaskController extends AbstractController implements RetrieveUserRo
     public String ApplicationHandler(@ModelAttribute("task") Task taak, @RequestParam("taskId") String taakId, Principal principal) {
         taak = opening(taakId);
         vacatureService.addTask(taak, usersRepository.findByUsername(principal.getName()));
-        return "redirect:/taskOverview";
+        return "redirect:/teacher/taskOverview";
     }
 
     @GetMapping("/myTasks")
