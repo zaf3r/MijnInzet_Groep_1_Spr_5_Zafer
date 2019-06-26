@@ -1,6 +1,7 @@
 package makeitwork.mijninzet.controller;
 
 import makeitwork.mijninzet.model.Cohort;
+import makeitwork.mijninzet.model.Role;
 import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.model.preference.Subject;
 import makeitwork.mijninzet.repository.CohortRepository;
@@ -15,13 +16,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
 @RequestMapping("/scheduler")
-public class SchedulerController {
+public class SchedulerController implements RetrieveUserRole{
 
-
+    @Autowired
+    UserRepository userRepository;
     @Autowired
     private SubjectRepository subRepo;
     @Autowired
@@ -38,12 +41,14 @@ public class SchedulerController {
 
 
     @GetMapping("/vakdocent")
-    public String teacherHandler(Model model){
+    public String teacherHandler(Model model, Principal principal){
         //maybe create a new set for each subject?
         model.addAttribute("cohorts", getAllCohorts());
         model.addAttribute("allTeachers", getTeachters());
         model.addAttribute("teachers", selectedTeacher);
         model.addAttribute("subjects", selectedSubject);
+        Role role = retrieveRole(userRepository,principal);
+        model.addAttribute("roleUser", role);
         return "vakdocent";
     }
 

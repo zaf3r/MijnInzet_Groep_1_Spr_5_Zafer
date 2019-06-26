@@ -16,6 +16,9 @@
     <title>beschikbaarheid</title>
 
 </head>
+<div th:if="${roleUser.roleName == 'Terminator'}">
+    <header th:insert="~{navbar :: header}"></header>
+</div>
 <div th:if="${roleUser.roleName == 'Docent'}">
     <header th:insert="~{navbarDocent :: header}"></header>
 </div>
@@ -94,7 +97,7 @@
     </table>
 
         <button id="button" type="submit" class="btn btn-success" onclick="alert ('Uw wekelijkse beschikbaarheid is opgeslagen in de database')">Opslaan</button>
-        <input type="submit" onclick="alert ('Uw wekelijkse beschikbaarheid is opgeslagen in de database')" value="Opslaan">
+<!--        <input type="submit" onclick="alert ('Uw wekelijkse beschikbaarheid is opgeslagen in de database')" value="Opslaan">-->
 
 </form>
 </div>

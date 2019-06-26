@@ -58,9 +58,9 @@ public class CohortController implements RetrieveUserRole {
         model.addAttribute("cohorts", getAllCohorts(user));
         model.addAttribute("subjects", selectedSubjectList);
         model.addAttribute("possibleSubjects", possibleSubjectList);
+        Role role = retrieveRole(userRepository,principal);
+        model.addAttribute("roleUser", role);
 
-//        selectedSubjectList.clear();
-//        possibleSubjectList.clear();
         return "cohortSubject";
     }
 

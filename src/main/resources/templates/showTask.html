@@ -16,7 +16,9 @@
     <meta charset="UTF-8">
     <title>Home</title>
 </head>
-
+<div th:if="${roleUser.roleName == 'Terminator'}">
+    <header th:insert="~{navbar :: header}"></header>
+</div>
 <div th:if="${roleUser.roleName == 'Docent'}">
     <header th:insert="~{navbarDocent :: header}"></header>
 </div>
