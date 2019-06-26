@@ -14,7 +14,9 @@
             <div class="row">
                 <div th:each="task : ${tasks}">
                     <table id="sollicitaties">
-                    <form action="#" th:action="@{/sollicitaties}" th:object="${task}" id="applicationform" method="post">
+<!--                    <form action="#" th:action="@{/sollicitaties}" th:object="${task}" id="applicationform" method="post">-->
+                        <form action="#" th:action="@{/saveSollicitaties}" th:object="${task}" id="applicationform" method="post">-->
+
                         <th:fieldset>
                             <tr>
                                 <td id = "taskTitle" th:text="${task.titel}"></td>
@@ -35,8 +37,9 @@
 
                             </tr>
                         </th:fieldset>
-                    </form>
-                        </table>
+
+                         </form>
+                     </table>
 
                 </div>
 
@@ -60,7 +63,7 @@
                 $.ajax({
                     type: 'Post',
                     contentType: 'application/json; charset=utf-8',
-                    url: '/saveSollicitaties',
+                    url: window.location,
                     dataType: 'json',
                     data: payload
                 }).done(function (response) {

@@ -1,5 +1,6 @@
 package makeitwork.mijninzet.controller;
 
+import com.mongodb.BasicDBObject;
 import makeitwork.mijninzet.model.Task;
 import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.repository.TaskRepository;
@@ -8,8 +9,7 @@ import makeitwork.mijninzet.service.VacatureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -39,7 +39,27 @@ public class SollicitatieController {
         return "sollicitaties";
     }
 
-//    @PostMapping("/saveSollicitaties")
+    @PostMapping("/saveSollicitaties")
+    public @ResponseBody User saveApplicationHandler (@RequestBody User data, @RequestParam ("naamTaak") String titel) {
+        System.out.println("input data is" + data);
+        User ret = data;
+        var output = new BasicDBObject();
+        try {
+//            User newUser = mapper.readValue(data, User.class);
+            var user = vacatureRepository.save(data);
+
+            ret = user;
+
+            if(user != null) {
+                output.put("exist", true);
+            } else {
+                output.put("exists", false);
+            }
+        } catch (Exception woeps) {
+            woeps.printStackTrace();
+            woeps.getMessage();
+        } return ret;
+    }
 //
 //    public @ResponseBody String ApproveHandler (@RequestBody String requestPayload) {
 //
