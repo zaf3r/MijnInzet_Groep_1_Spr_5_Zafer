@@ -1,12 +1,15 @@
 package makeitwork.mijninzet.model;
 
 
-import makeitwork.mijninzet.model.preference.Subject;
+import makeitwork.mijninzet.model.TeacherSchedule.CohortWeek;
+import org.hibernate.annotations.SortNatural;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 
 @Entity
@@ -116,6 +119,13 @@ public class Cohort {
         this.endDate = endDate;
     }
 
+    public List<CohortWeek> getCohortWeekList() {
+        return cohortWeekList;
+    }
+
+    public void setCohortWeekList(List<CohortWeek> cohortWeekList) {
+        this.cohortWeekList = cohortWeekList;
+    }
 
     @Override
     public String toString() {

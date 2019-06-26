@@ -10,6 +10,7 @@ INSERT INTO `mijninzet`.`gebruiker` (`idGebruiker`, `gebruikersnaam`, `wachtwoor
 INSERT INTO `mijninzet`.`gebruiker` (`idGebruiker`, `gebruikersnaam`, `wachtwoord`,`actief`,`achternaam`,`email`) VALUES ('8', 'Pietje precies', '$2a$10$Gv9vyEofFsczKjLB73UbhevF9.Twq4DXzL1XvquYhFgxU0gPmd3fe','1','de Boer','p.precies@hva.nl');
 INSERT INTO `mijninzet`.`gebruiker` (`idGebruiker`, `gebruikersnaam`, `wachtwoord`,`actief`,`achternaam`,`email`) VALUES ('9', 'Ipsem Lorem', '$2a$10$Gv9vyEofFsczKjLB73UbhevF9.Twq4DXzL1XvquYhFgxU0gPmd3fe','1','Ipsem Lorem','I.Lorem@hva.nl');
 
+INSERT INTO `mijninzet`.`gebruiker` (`idGebruiker`, `gebruikersnaam`, `wachtwoord`,`actief`,`achternaam`,`email`) VALUES ('10', 'Geen docent', '$2a$10$Gv9vyEofFsczKjLB73UbhevF9.Twq4DXzL1XvquYhFgxU0gPmd3fe','0','Geen docent','geen.docent@hva.nl');
 INSERT INTO `mijninzet`.`gebruiker` (`idGebruiker`, `gebruikersnaam`, `wachtwoord`,`actief`,`achternaam`,`email`) VALUES ('5', 'Merel', '$2a$10$6vTfkahn3JjTWDQGcJE4buOD0SA1Vw1rjHEpq4bosTqZaM1.qRFNK','1','Slingenberg','info@slingenberg.nl');
 INSERT INTO `mijninzet`.`gebruiker` (`idGebruiker`, `gebruikersnaam`, `wachtwoord`,`actief`,`achternaam`,`email`) VALUES ('6', 'Slobodanka', '$2a$10$6vTfkahn3JjTWDQGcJE4buOD0SA1Vw1rjHEpq4bosTqZaM1.qRFNK','0','Boss','Slobbie@hva.nl');
 
@@ -19,6 +20,7 @@ INSERT INTO `mijninzet`.`rollen`(`Rol_id`,`Rol`) VALUES ('3','Terminator');
 INSERT INTO `mijninzet`.`rollen`(`Rol_id`,`Rol`) VALUES ('4','Manager');
 INSERT INTO `mijninzet`.`rollen`(`Rol_id`,`Rol`) VALUES ('5','Roosteraar');
 
+INSERT INTO `mijninzet`.`rollen_gebruiker` (`idGebruiker`, `Rol_id`) VALUES ('10', '1');
 INSERT INTO `mijninzet`.`rollen_gebruiker` (`idGebruiker`, `Rol_id`) VALUES ('4', '1');
 INSERT INTO `mijninzet`.`rollen_gebruiker` (`idGebruiker`, `Rol_id`) VALUES ('7', '4');
 INSERT INTO `mijninzet`.`rollen_gebruiker` (`idGebruiker`, `Rol_id`) VALUES ('8', '5');
