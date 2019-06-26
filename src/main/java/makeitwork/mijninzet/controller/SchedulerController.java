@@ -59,7 +59,7 @@ public class SchedulerController implements RetrieveUserRole{
         //model.addAttribute("subjects", selectedSubject);
         Role role = retrieveRole(userRepo,principal);
         model.addAttribute("roleUser", role);
-        return "vakdocent";
+        return "scheduler";
     }
 
     public List<Cohort> getAllCohorts(){

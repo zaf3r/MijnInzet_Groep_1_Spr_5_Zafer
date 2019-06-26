@@ -1,5 +1,10 @@
 package makeitwork.mijninzet.model.TeacherSchedule;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.model.preference.Subject;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -17,6 +22,8 @@ public class CohortDay {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long dayId;
 
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
     @DateTimeFormat(pattern = "MM/dd/yyyy")
     @Column(name = "datum")
     private LocalDate date;
@@ -25,6 +32,7 @@ public class CohortDay {
     @Column(name = "Dag")
     private DayOfWeek dayOfWeek;
 
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "weekId")
     private CohortWeek cohortWeek;
@@ -131,5 +139,20 @@ public class CohortDay {
 
     public void setDayOfWeek(DayOfWeek dayOfWeek) {
         this.dayOfWeek = dayOfWeek;
+    }
+
+    @Override
+    public String toString() {
+        return "CohortDay{" +
+                "dayId=" + dayId +
+                ", date=" + date +
+                ", dayOfWeek=" + dayOfWeek +
+                ", teacherMorning=" + teacherMorning +
+                ", teacherAfternoon=" + teacherAfternoon +
+                ", teacherEvening=" + teacherEvening +
+                ", subjectMorning=" + subjectMorning +
+                ", subjectAfternoon=" + subjectAfternoon +
+                ", subjectEvening=" + subjectEvening +
+                '}';
     }
 }

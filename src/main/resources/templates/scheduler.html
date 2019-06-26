@@ -23,17 +23,17 @@
     </section>
 
 
-<!--    &lt;!&ndash;select cohort&ndash;&gt;-->
-<!--    <div class = "select" align="center">-->
+    <!--select cohort-->
+    <div class = "select" align="center">
 
-<!--        <div >-->
-<!--            <form action="#" th:object="${cohorts}" th:action="@{showSubjects}" method="post">-->
-<!--                <select name="cohortName" id="cohortList" required style="width: 250px; border-color: lightgray" th:onchange="this.form.submit()">-->
-<!--                    <option value="">Selecteer een cohort:</option>-->
-<!--                    <option th:each="coh: ${cohorts}" th:value="${coh.cohortName}" th:text="${coh.cohortName}"></option>-->
-<!--                </select>-->
-<!--            </form>-->
-<!--        </div>-->
+        <div >
+            <form action="#" th:object="${cohorts}" th:action="@{showSubjects}" method="post">
+                <select name="cohortName" id="cohortList" required style="width: 250px; border-color: lightgray" th:onchange="this.form.submit()">
+                    <option value="">Selecteer een cohort:</option>
+                    <option th:each="coh: ${cohorts}" th:value="${coh.cohortName}" th:text="${coh.cohortName}"></option>
+                </select>
+            </form>
+        </div>
 
 
 

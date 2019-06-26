@@ -21,7 +21,8 @@ public class CohortWeek {
     @JoinColumn(name = "cohortId")
     private Cohort cohort;
 
-    @OneToMany(mappedBy = "cohortWeek",cascade= CascadeType.PERSIST)
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "cohortWeek" ,cascade= {CascadeType.PERSIST, CascadeType.MERGE})
     private List<CohortDay> cohortDayList;
 
     public long getWeekId() {
@@ -54,5 +55,15 @@ public class CohortWeek {
 
     public void setCohortDayList(List<CohortDay> cohortDayList) {
         this.cohortDayList = cohortDayList;
+    }
+
+    @Override
+    public String toString() {
+        return "CohortWeek{" +
+                "weekId=" + weekId +
+                ", weekNumber=" + weekNumber +
+                ", cohort=" + cohort +
+                ", cohortDayList=" + cohortDayList +
+                '}';
     }
 }

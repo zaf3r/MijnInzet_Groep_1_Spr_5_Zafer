@@ -1,5 +1,6 @@
 package makeitwork.mijninzet.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import makeitwork.mijninzet.model.preference.Preference;
 import org.hibernate.annotations.SortNatural;
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -95,7 +96,9 @@ public class User{
 //    @Column(name="Naam")
 //    private String naam;
 
+
     @OneToMany(mappedBy = "user",cascade= CascadeType.ALL)
+    @JsonIgnore
     private Set<Preference> preferenceSet =  new HashSet<>();
 
     @ManyToMany(fetch = FetchType.EAGER, cascade= {CascadeType.PERSIST, CascadeType.MERGE,
@@ -220,6 +223,7 @@ public class User{
     //gereageerd is. Moet ook de status bijgehouden worden, dan kan dat ook.
     @ElementCollection
     @SortNatural
+    @JsonIgnore
 //  @Column(name="task")
     private SortedSet<String> taskIds = new TreeSet<>();
 
