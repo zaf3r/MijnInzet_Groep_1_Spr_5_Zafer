@@ -12,6 +12,7 @@ INSERT INTO `mijninzet`.`gebruiker` (`idGebruiker`, `gebruikersnaam`, `wachtwoor
 
 INSERT INTO `mijninzet`.`gebruiker` (`idGebruiker`, `gebruikersnaam`, `wachtwoord`,`actief`,`achternaam`,`email`) VALUES ('5', 'Merel', '$2a$10$6vTfkahn3JjTWDQGcJE4buOD0SA1Vw1rjHEpq4bosTqZaM1.qRFNK','1','Slingenberg','info@slingenberg.nl');
 INSERT INTO `mijninzet`.`gebruiker` (`idGebruiker`, `gebruikersnaam`, `wachtwoord`,`actief`,`achternaam`,`email`) VALUES ('6', 'Slobodanka', '$2a$10$6vTfkahn3JjTWDQGcJE4buOD0SA1Vw1rjHEpq4bosTqZaM1.qRFNK','0','Boss','Slobbie@hva.nl');
+INSERT INTO `mijninzet`.`gebruiker` (`idGebruiker`, `gebruikersnaam`, `wachtwoord`,`actief`,`achternaam`,`email`) VALUES ('10', 'Geen Docent', '$2a$10$6vTfkahn3JjTWDQGcJE4buOD0SA1Vw1rjHEpq4bosTqZaM1.qRFNK','0','Docent','docent@hva.nl');
 
 INSERT INTO `mijninzet`.`rollen`(`Rol_id`,`Rol`) VALUES ('1','Docent');
 INSERT INTO `mijninzet`.`rollen`(`Rol_id`,`Rol`) VALUES ('2','Administrateur');
@@ -28,6 +29,7 @@ INSERT INTO `mijninzet`.`rollen_gebruiker` (`idGebruiker`, `Rol_id`) VALUES ('2'
 INSERT INTO `mijninzet`.`rollen_gebruiker` (`idGebruiker`, `Rol_id`) VALUES ('3', '3');
 INSERT INTO `mijninzet`.`rollen_gebruiker` (`idGebruiker`, `Rol_id`) VALUES ('4', '1');
 INSERT INTO `mijninzet`.`rollen_gebruiker` (`idGebruiker`, `Rol_id`) VALUES ('5', '1');
+INSERT INTO `mijninzet`.`rollen_gebruiker` (`idGebruiker`, `Rol_id`) VALUES ('10', '1');
 
 INSERT INTO `mijninzet`.`vak` (`codeVak`, `naamvak`, `uren`) VALUES ('1', 'Programming', '50');
 INSERT INTO `mijninzet`.`vak` (`codeVak`, `naamvak`, `uren`) VALUES ('2', 'Object oriented programming', '50');
