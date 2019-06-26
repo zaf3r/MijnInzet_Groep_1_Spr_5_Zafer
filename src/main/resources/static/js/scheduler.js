@@ -1,4 +1,8 @@
 
+//diverse variables
+var noTeacher = "geen docent";
+var noSubject = "vacant";
+
 //Teacher Variables
 var mondayMoTeach = document.querySelector('option[name="maandagOchtendDocent"]');
 var mondayAfTeach = document.querySelector('option[name="maandagMiddagDocent"]');
@@ -34,7 +38,6 @@ var fridayAfSub  = document.querySelector('div[name="vrijdagMiddagVak"]');
 var fridayEvSub  = document.querySelector('div[name="vrijdagAvondVak"]');
 
 //subject functions
-
 function loadMondaySubs(courseScheduleSubArray) {
     courseScheduleSubArray.forEach(function(sub) {
             if(sub.weekday === "MONDAY") {
@@ -96,10 +99,22 @@ function loadThursdaySubs(courseScheduleSubArray) {
 function loadFridaySubs(courseScheduleSubArray) {
     courseScheduleSubArray.forEach(function(sub) {
             if(sub.weekday === "FRIDAY") {
+                if (fridayMoSub.value === null) {
+                    sub.morning = noSubject;
+                }
+                else
                 fridayMoSub.value = sub.morning;
                 fridayMoSub.parentNode.classList = sub.morning;
+                if (fridayAfSub.value === null) {
+                    sub.morning = noSubject;
+                }
+                else
                 fridayAfSub.value = sub.afternoon;
                 fridayAfSub.parentNode.classList = sub.afternoon;
+                if (fridayEvSub.value === null) {
+                    sub.morning = noSubject;
+                }
+                else
                 fridayEvSub.value = sub.evening;
                 fridayEvSub.parentNode.classList = sub.evening;
             }
@@ -108,9 +123,7 @@ function loadFridaySubs(courseScheduleSubArray) {
 }
 
 
-
 //teacher functions
-
 function loadMondayTeach(courseScheduleTeachArray) {
     courseScheduleTeachArray.forEach(function(tech) {
             if(teach.weekday === "MONDAY") {
@@ -158,8 +171,19 @@ function loadThursdayTeach(courseScheduleTeachArray) {
 function loadFridayTeach(courseScheduleTeachArray) {
     courseScheduleTeachArray.forEach(function(tech) {
             if(teach.weekday === "FRIDAY") {
+                if(fridayMoTeach.value === null){
+                    teach.morning = noTeacher;
+                }
+                else
                 fridayMoTeach.value = teach.morning;
+                if (fridayAfTeach.value === null) {
+                    tech.afternoon = noTeacher;
+                }
+                else
                 fridayAfTeach.value = teach.afternoon;
+                if (fridayEvTeach.value === null) {
+                    tech.evening = noTeacher;
+                }
                 fridayEvTeach.value = teach.evening;
             }
         }
