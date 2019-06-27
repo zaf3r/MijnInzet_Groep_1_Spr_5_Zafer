@@ -25,7 +25,8 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/manager")
-public class CohortController implements RetrieveUserRole {
+public class
+CohortController implements RetrieveUserRole {
 
     final private int DEFAULT_FIRST_WEEK = 1;
     final private long WEEK_INCREMENTATION = 1;
@@ -202,6 +203,7 @@ public class CohortController implements RetrieveUserRole {
                 cohortDay.setTeacherMorning(retrieveDefaultTeacher());
                 cohortDay.setTeacherAfternoon(retrieveDefaultTeacher());
                 cohortDay.setTeacherEvening(retrieveDefaultTeacher());
+                cohortDay.setDayOfWeek(dayOfWeek);
                 cohortDayList.add(cohortDay);
             }
         }

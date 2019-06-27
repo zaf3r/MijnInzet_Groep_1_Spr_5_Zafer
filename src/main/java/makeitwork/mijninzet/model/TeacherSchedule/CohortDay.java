@@ -5,6 +5,7 @@ import makeitwork.mijninzet.model.preference.Subject;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 
 @Entity
@@ -19,6 +20,10 @@ public class CohortDay {
     @DateTimeFormat(pattern = "MM/dd/yyyy")
     @Column(name = "datum")
     private LocalDate date;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "Dag")
+    private DayOfWeek dayOfWeek;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "weekId")
@@ -118,5 +123,13 @@ public class CohortDay {
 
     public void setSubjectEvening(Subject subjectEvening) {
         this.subjectEvening = subjectEvening;
+    }
+
+    public DayOfWeek getDayOfWeek() {
+        return dayOfWeek;
+    }
+
+    public void setDayOfWeek(DayOfWeek dayOfWeek) {
+        this.dayOfWeek = dayOfWeek;
     }
 }
