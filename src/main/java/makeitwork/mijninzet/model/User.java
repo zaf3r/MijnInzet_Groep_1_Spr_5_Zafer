@@ -32,6 +32,9 @@ public class User{
     private final String COLUMN_USERNAME="gebruikersnaam";
 
     @Transient
+    private final String COLUMN_HOURS="Uren";
+
+    @Transient
     private final String COLUMN_ID = "idgebruiker";
 
     @Transient
@@ -71,6 +74,9 @@ public class User{
     @NotNull(message=COLUMN_USERNAME+VERPLICHT)
     @Column(name = COLUMN_USERNAME)
     private String username;
+
+    @Column(name = COLUMN_HOURS)
+    private int hours;
 
     @Column(name = COLUMN_SURNAME)
     private String surname;
@@ -143,6 +149,13 @@ public class User{
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public int getHours() {
+        return hours;
+    }
+    public void setHours(int hours) {
+        this.hours = hours;
     }
 
     public List<Role> getRole() {
@@ -252,6 +265,7 @@ public class User{
                 "id=" + id +
                 ", password='" + password + '\'' +
                 ", username='" + username + '\'' +
+                ", hours='" + hours + '\'' +
                 ", surname='" + surname + '\'' +
                 ", namePrefix='" + namePrefix + '\'' +
                 ", familyName='" + familyName + '\'' +
