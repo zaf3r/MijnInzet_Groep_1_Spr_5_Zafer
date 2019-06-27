@@ -1,6 +1,6 @@
 package makeitwork.mijninzet.model.Availability.Incident;
 
-public class IncidentJsonHolder {
+public class IncidentDTO {
 
     private int week;
     private int year;
@@ -158,7 +158,7 @@ public class IncidentJsonHolder {
 
     @Override
     public String toString() {
-        return "IncidentJsonHolder{" +
+        return "IncidentDTO{" +
                 ", week=" + week +
                 ", year=" + year +
                 ", mondayMo=" + mondayMo +

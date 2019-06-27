@@ -1,7 +1,7 @@
 package makeitwork.mijninzet.controller;
 
 import makeitwork.mijninzet.model.Availability.Incident.Incident;
-import makeitwork.mijninzet.model.Availability.Incident.IncidentJsonHolder;
+import makeitwork.mijninzet.model.Availability.Incident.IncidentDTO;
 import makeitwork.mijninzet.model.Availability.Weekday;
 import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.repository.IncidentRepository;
@@ -46,15 +46,15 @@ public class IncidentRestController {
     }
 
     @PostMapping("/saveIncidents")
-    public void saveIncidentListHandler(@RequestBody IncidentJsonHolder incidentJsonHolder,
+    public void saveIncidentListHandler(@RequestBody IncidentDTO incidentDTO,
                                         Principal principal) {
 
         User user = userRepository.findByUsername(principal.getName());
 
-        List<Incident> incidentList = incidentDBLoader(incidentJsonHolder.getYear(),incidentJsonHolder.getWeek(),
+        List<Incident> incidentList = incidentDBLoader(incidentDTO.getYear(), incidentDTO.getWeek(),
                 user);
 
-        formDataLoader(incidentList, incidentJsonHolder);
+        formDataLoader(incidentList, incidentDTO);
 
         incidentRepository.saveAll(incidentList);
     }
@@ -68,22 +68,25 @@ public class IncidentRestController {
             tempIncident.setWeeknumber(weeknumber);
             tempIncident.setYear(year);
             tempIncident.setUser(user);
+            tempIncident.setMorning(true);
+            tempIncident.setAfternoon(true);
+            tempIncident.setEvening(true);
             incidentList.add(tempIncident);
         }
         return incidentList;
     }
 
-    public void formDataLoader(List<Incident> incidentList, IncidentJsonHolder incidentJsonHolder) {
+    public void formDataLoader(List<Incident> incidentList, IncidentDTO incidentDTO) {
         setValuesIncident(INCIDENT_LOADER.findDay(Weekday.MONDAY, incidentList),
-                incidentJsonHolder.isMondayMo(),incidentJsonHolder.isMondayAf(),incidentJsonHolder.isMondayEv());
+                incidentDTO.isMondayMo(), incidentDTO.isMondayAf(), incidentDTO.isMondayEv());
         setValuesIncident(INCIDENT_LOADER.findDay(Weekday.TUESDAY, incidentList),
-                incidentJsonHolder.isTuesdayMo(),incidentJsonHolder.isTuesdayAf(),incidentJsonHolder.isTuesdayEv());
+                incidentDTO.isTuesdayMo(), incidentDTO.isTuesdayAf(), incidentDTO.isTuesdayEv());
         setValuesIncident(INCIDENT_LOADER.findDay(Weekday.WEDNESDAY, incidentList),
-                incidentJsonHolder.isWednesdayMo(),incidentJsonHolder.isWednesdayAf(),incidentJsonHolder.isWednesdayEv());
+                incidentDTO.isWednesdayMo(), incidentDTO.isWednesdayAf(), incidentDTO.isWednesdayEv());
         setValuesIncident(INCIDENT_LOADER.findDay(Weekday.THURSDAY, incidentList),
-                incidentJsonHolder.isThursdayMo(),incidentJsonHolder.isThursdayAf(),incidentJsonHolder.isThursdayEv());
+                incidentDTO.isThursdayMo(), incidentDTO.isThursdayAf(), incidentDTO.isThursdayEv());
         setValuesIncident(INCIDENT_LOADER.findDay(Weekday.FRIDAY, incidentList),
-                incidentJsonHolder.isFridayMo(),incidentJsonHolder.isFridayAf(),incidentJsonHolder.isFridayEv());
+                incidentDTO.isFridayMo(), incidentDTO.isFridayAf(), incidentDTO.isFridayEv());
     }
 
     public void setValuesIncident(Incident incident, boolean morning, boolean afternoon, boolean evening) {

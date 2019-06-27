@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class Incident implements DayFinder<Incident> {
+public class Incident implements DayFinder<Incident,Weekday> {
 
     @Id
     @Column(name = "incident_id")

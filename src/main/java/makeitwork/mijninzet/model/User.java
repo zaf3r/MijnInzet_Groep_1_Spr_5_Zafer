@@ -1,5 +1,6 @@
 package makeitwork.mijninzet.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import makeitwork.mijninzet.model.preference.Preference;
 import org.hibernate.annotations.SortNatural;
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -30,6 +31,9 @@ public class User{
 
     @Transient
     private final String COLUMN_USERNAME="gebruikersnaam";
+
+    @Transient
+    private final String COLUMN_HOURS="Uren";
 
     @Transient
     private final String COLUMN_ID = "idgebruiker";
@@ -72,6 +76,9 @@ public class User{
     @Column(name = COLUMN_USERNAME)
     private String username;
 
+    @Column(name = COLUMN_HOURS)
+    private int hours;
+
     @Column(name = COLUMN_SURNAME)
     private String surname;
 
@@ -95,7 +102,9 @@ public class User{
 //    @Column(name="Naam")
 //    private String naam;
 
+
     @OneToMany(mappedBy = "user",cascade= CascadeType.ALL)
+    @JsonIgnore
     private Set<Preference> preferenceSet =  new HashSet<>();
 
     @ManyToMany(fetch = FetchType.EAGER, cascade= {CascadeType.PERSIST, CascadeType.MERGE,
@@ -143,6 +152,13 @@ public class User{
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public int getHours() {
+        return hours;
+    }
+    public void setHours(int hours) {
+        this.hours = hours;
     }
 
     public List<Role> getRole() {
@@ -220,6 +236,7 @@ public class User{
     //gereageerd is. Moet ook de status bijgehouden worden, dan kan dat ook.
     @ElementCollection
     @SortNatural
+    @JsonIgnore
 //  @Column(name="task")
     private SortedSet<String> taskIds = new TreeSet<>();
 
@@ -252,6 +269,7 @@ public class User{
                 "id=" + id +
                 ", password='" + password + '\'' +
                 ", username='" + username + '\'' +
+                ", hours='" + hours + '\'' +
                 ", surname='" + surname + '\'' +
                 ", namePrefix='" + namePrefix + '\'' +
                 ", familyName='" + familyName + '\'' +
