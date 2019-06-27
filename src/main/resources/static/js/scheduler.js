@@ -3,7 +3,6 @@ var getrequestWeeksUrl;
 var getRequestDaysUrl;
 var getRequestTeacherUrl = "http://localhost:8080/api/getTeachers";
 var postRequestUrl =  "http://localhost:8080/api/saveTeacherSchedule";
-var weekDayObject = new Object();
 
 //Teacher Variables
 var mondayMoTeach = document.querySelector('select[name="maandagOchtendDocent"]');
@@ -44,6 +43,8 @@ var cohortNaam = document.querySelector('select[name="cohortName"]');
 var cohortWeek = document.querySelector('select[name="weekNumber"]');
 var teacherNames = document.createElement("select");
 var noSubject = "Geen vak";
+var weekDayObject = new Object();
+var button = document.querySelector("#button");
 
 
 //Rest call event listeners
@@ -51,18 +52,24 @@ $(function () {
     $(cohortNaam).on("change", cohortNaam, function () {
         getrequestWeeksUrl = "http://localhost:8080/api/cohort/weeks/" + cohortNaam.value;
         requestCallWeeks();
+        if(!button.disabled) {
+            $(button).attr("disabled", true);
+        }
     });
 
     $(cohortWeek).on("change", cohortWeek, function () {
         getRequestDaysUrl = "http://localhost:8080/api/cohort/days/" + cohortNaam.value + "/" + cohortWeek.value;
         requestCallDays();
+        if(button.disabled) {
+            $(button).removeAttr('disabled');
+        }
     });
 
     $(document).ready(function () {
         requestCallTeachers();
     });
 
-    var btn = $("#button").on("click", function () {
+    $(button).on("click", function () {
         postCallWeekObject();
     });
 });
@@ -151,7 +158,10 @@ function loadDropDownWeeks(dropdownItems) {
     dropdownItems.forEach(function (item) {
         var option = new Option(item, item);
         $(cohortWeek).append(option);
-    })
+    });
+    $(cohortWeek).find("option").eq(0).attr("disabled",true);
+    $(cohortWeek).find("option").eq(0).attr("selected",true);
+    $(cohortWeek).find("option").eq(0).attr("hidden",true);
 }
 
 //teacher functions

@@ -29,7 +29,7 @@
 
         <div>
                 <select name="cohortName" class="custom-select" id="select1">
-                    <option value="">Selecteer een cohort:</option>
+                    <option selected disabled hidden>Selecteer een cohort</option>
                     <option th:each="coh: ${cohorts}" th:value="${coh.cohortName}" th:text="${coh.cohortName}"></option>
                 </select>
 
@@ -38,7 +38,7 @@
 
         <!--    select weeknummer-->
             <select name="weekNumber" class="custom-select" id="select2">
-                    <option value="">Selecteer een week:</option>
+                    <option selected disabled hidden>Selecteer een week</option>
                 </select>
 
         </div>
@@ -154,7 +154,7 @@
                 </tr>
             </table>
 
-            <button id="button" type="button" class="btn btn-success"> Opslaan</button>
+            <button id="button" type="button" class="btn btn-success" disabled> Opslaan</button>
 
     </div>
     <br>
