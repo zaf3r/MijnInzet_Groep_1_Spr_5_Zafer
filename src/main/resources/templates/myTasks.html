@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="col-lg-4 mb-4" th:each="task : ${myTasks}">
                     <div class="card-body" id = "cardTask">
-                        <form action="#" th:action="@{/myTasks}"  th:object="${myTasks}" method="get">
+                        <form action="#" th:action="@{/teacher/myTasks}"  th:object="${myTasks}" method="get">
 
                                 <h4><span th:text="${task.titel}"/></h4>
                                 <h6>HvA</h6>
@@ -37,30 +37,30 @@
                                     Einddatum: <span th:text="${task.einddatum}"></span>
                                 </div>
                         </form>
-                        <form action="#" th:action="@{/taskDelete/{taskId}}" th:object="${myTasks}" method="post">
-                                <div class = "card">
-                                    <div class="card-header" id="headingOne">
-                                     <div class="btn">
-                                         <p>
-                                         <button class="btn btn-warning" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Taak verwijderen</button>
-                                         </p>
-                                         <div class="row">
-                                             <div class="col">
-                                                 <div class="collapse multi-collapse" id="multiCollapseExample2">
-                                                     <div class="card card-body">
-                                                        <button type="submit" id="dislike" class="love" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"><i class="fas fa-thumbs-down" style="font-size: 1.8em;"></i>
-                                                        <input type="hidden" id="taskId" name="taskId" th:value="${task.id}"></button>
-                                                                <p>Wilt u een notifactie sturen met reden?</p>
-                                                                 <input type = "textfield" id = "message"/>
-                                                         <button type="submit" id="verstuur" onclick="myFunction()"> Verstuur </button>
-                                                     </div>
-                                                </div>
-                                             </div>
-                                        </div>
-                                     </div>
-                                </div>
-                            </div>
-                        </form>
+<!--                        <form action="#" th:action="@{/taskDelete/{taskId}}" th:object="${myTasks}" method="post">-->
+<!--                                <div class = "card">-->
+<!--                                    <div class="card-header" id="headingOne">-->
+<!--                                     <div class="btn">-->
+<!--                                         <p>-->
+<!--                                         <button class="btn btn-warning" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Taak verwijderen</button>-->
+<!--                                         </p>-->
+<!--                                         <div class="row">-->
+<!--                                             <div class="col">-->
+<!--                                                 <div class="collapse multi-collapse" id="multiCollapseExample2">-->
+<!--                                                     <div class="card card-body">-->
+<!--                                                        <button type="submit" id="dislike" class="love" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"><i class="fas fa-thumbs-down" style="font-size: 1.8em;"></i>-->
+<!--                                                        <input type="hidden" id="taskId" name="taskId" th:value="${task.id}"></button>-->
+<!--                                                                <p>Wilt u een notifactie sturen met reden?</p>-->
+<!--                                                                 <input type = "textfield" id = "message"/>-->
+<!--                                                         <button type="submit" id="verstuur" onclick="myFunction()"> Verstuur </button>-->
+<!--                                                     </div>-->
+<!--                                                </div>-->
+<!--                                             </div>-->
+<!--                                        </div>-->
+<!--                                     </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </form>-->
                     </div>
                 </div>
             </div>

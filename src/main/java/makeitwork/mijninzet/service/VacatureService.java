@@ -55,7 +55,7 @@ public class VacatureService {
 
     // voor de MANAGER: lijst met tasks en users die gesolliciteerd hebben (lijst sollicitanten)
 
-    public List<Task> allApplications(Task task) {
+    public List<Task> allApplications() {
         List<Task> allTasks = taskRepository.findAll();
         Iterator<Task> iter = allTasks.iterator();
         while (iter.hasNext()) {
@@ -95,7 +95,6 @@ public class VacatureService {
         task.setUitvoerder(user);
         task.setTaskStatus(Task.TaskStatus.APPROVED);
         vacatureRepository.save(user);
-        taskRepository.save(task);
     }
 
 

@@ -52,6 +52,22 @@ public class VacatureController {
         return "redirect:/teacher/taskOverview";
     }
 
+//TODO checken versie Baseet
+    @GetMapping("/myTasks")
+    public String MyTaskHandler(Model model, Principal principal) {
+        User user = usersRepository.findByUsername(principal.getName());
+        model.addAttribute("myTasks", myTaskList(user));
+        return "myTasks";
+    }
+
+    @GetMapping ("/myApplications")
+    public String MyApplicationsHandler(Model model, Principal principal){
+        User user = usersRepository.findByUsername(principal.getName());
+        List<Task> myApplications = user.getSollicitaties();
+        model.addAttribute("takenToDo", myApplications);
+        return "myApplications";
+    }
+
     public Task getTask(int id){
        return taskRepository.findTaskById(id);
     }
@@ -92,6 +108,25 @@ public class VacatureController {
         return elapsedDays;
     }
 
+        public List<Task> myTaskList(User sol) {
+        List<Task> tasks = allTasks();
+        List<Task> myTasks = vacatureService.getAllTasks(sol);
+        List<Task> possibleTasks = new ArrayList<>();
+        for (Task t : myTasks) {
+            if (!doesContaine(t, tasks)) {
+                possibleTasks.add(t);
+            }
+        }
+        return possibleTasks;
+    }
 
+    public boolean doesContaine(Task t, List<Task> listTask) {
+        for (Task t2 : listTask) {
+            if (t.getId() == (t2.getId())) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 }

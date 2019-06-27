@@ -173,7 +173,6 @@ public class Task implements Comparable{
                 ", sluitdatum=" + sluitdatum +
                 ", uren=" + uren +
                 ", taskStatus=" + taskStatus +
-                ", users=" + users +
                 " /n/n" +
                 '}';
     }

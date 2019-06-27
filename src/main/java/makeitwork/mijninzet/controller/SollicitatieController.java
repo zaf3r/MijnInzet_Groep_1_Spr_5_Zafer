@@ -1,6 +1,7 @@
 package makeitwork.mijninzet.controller;
 
 import com.mongodb.BasicDBObject;
+import makeitwork.mijninzet.model.SollicitatieDTO;
 import makeitwork.mijninzet.model.Task;
 import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.repository.TaskRepository;
@@ -31,45 +32,32 @@ public class SollicitatieController {
 
 
     @GetMapping("/sollicitaties")
-    public String SollicitatieHandler (Model model, Task task) {
-        List<Task> tasks = vacatureService.allApplications(task);
+    public String SollicitatieHandler (Model model) {
+        List<Task> tasks = vacatureService.allApplications();
         model.addAttribute("tasks", tasks);
         Task.TaskStatus[] enums = Task.TaskStatus.values();
         model.addAttribute ( "statussen", enums);
         return "sollicitaties";
     }
 
-    @PostMapping("manager/saveSollicitaties/{status}")
-    public @ResponseBody Task saveApplicationHandler (Task data) {
-        System.out.println("input data is" + data);
-        Task ret = data;
-        var output = new BasicDBObject();
-        try {
-            var user = taskRepository.save(data);
-
-            ret = user;
-
-            if(user != null) {
-                output.put("exist", true);
-            } else {
-                output.put("exists", false);
-            }
-        } catch (Exception woeps) {
-            woeps.printStackTrace();
-            woeps.getMessage();
-        } return ret;
+    @PostMapping("/saveSollicitaties")
+    public String saveApplicatonHandler (@RequestParam("taskId") int taakId,@RequestParam("userId") int userId, @ModelAttribute Task resultaat, User docent ) {
+        resultaat = getTask(taakId);
+        System.out.println("taak is : " + resultaat);
+        docent = getUser(userId);
+        System.out.println("docent is : " + docent);
+        vacatureService.saveApprovedTasks(docent, resultaat);
+//        model.addAttribute("naam", resultaat.getTitel());
+//        model.addAttribute("status", resultaat.getTaskStatus());
+//        model.addAttribute("docent", docent.getUsername());
+        return "redirect: /saveSollicitaties";
     }
-//
-//    public @ResponseBody String ApproveHandler (@RequestBody String requestPayload) {
-//
-//        return new Gson().toJson(vacatureService.saveApprovedTasks());
-//    }
 
+    public Task getTask(int id){
+        return taskRepository.findTaskById(id);
+    }
 
-
-
-
-
-
-
+    public User getUser (int id){
+        return vacatureRepository.findUserById(id);
+    }
 }

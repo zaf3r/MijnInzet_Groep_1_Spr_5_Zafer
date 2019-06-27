@@ -141,25 +141,21 @@ public class User implements Comparable{
         if (!vacatures.contains(vacature)) vacatures.add(vacature);
     }
 
-    //toegewezen taak aan de lijst toevoegen
-
 
 //    public void removeApplication(int vacature) {
 //        SortedSet<Integer> vacatures = getTask();
 //        if (vacatures.contains(vacature)) vacatures.remove(vacature);
 //    }
 
-
-
-    //    @Transient
-//    private List<Sollicitatie> sollicitaties = new ArrayList<>();
-//
-
     //contracturen?
 //    @Transient
 //    private String roleType = roleName.getRoleName();
 
     public User() {}
+
+    public User(List<Task> sollicitaties) {
+        this.sollicitaties = sollicitaties;
+    }
 
     public int getId() {
         return id;
@@ -275,6 +271,7 @@ public class User implements Comparable{
 //        if (tasks.contains(taskId)) tasks.remove(taskId);
 //    }
 
+
     @Override
     public String toString() {
         return "User{" +
@@ -286,7 +283,10 @@ public class User implements Comparable{
                 ", familyName='" + familyName + '\'' +
                 ", email='" + email + '\'' +
                 ", active=" + active +
+                ", preferenceSet=" + preferenceSet +
                 ", role=" + role +
+                ", sollicitaties=" + sollicitaties +
+                ", task=" + task +
                 '}';
     }
 
