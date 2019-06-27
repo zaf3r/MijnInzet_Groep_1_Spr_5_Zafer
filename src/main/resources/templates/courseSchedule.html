@@ -9,7 +9,27 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
       integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="/js/cohort.js" th:src="@{/js/cohort.js}"></script>
+<style>
+    .grid-container {
+        display: inline-grid;
+        grid-template-columns: auto auto auto;
+        background-color: #2196F3;
+        padding: 10px;
+    }
 
+    .grid-item {
+        background-color: rgba(255, 255, 255, 0.8);
+        border: 1px solid rgba(0, 0, 0, 0.8);
+        padding: 20px;
+        font-size: 30px;
+        text-align: center;
+    }
+</style>
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -54,17 +74,26 @@
                     <select class="form-control" id="vakkenCohort" name="vakkenCohort" required multiple="multiple" size="7" style="width: 250px"/>
                 </div>
             </div>
-            <div class="form-group row">
+
+
+            <h1>The display Property:</h1>
+
+            <div class="grid-container">
+                <div class="grid-item">1</div>
+                <div class="grid-item">2</div>
+                <div class="grid-item">3</div>
+                <div class="grid-item">4</div>
+                <div class="grid-item">5</div>
+                <div class="grid-item">6</div>
+                <div class="grid-item">7</div>
+                <div class="grid-item">8</div>
+                <div class="grid-item">9</div>
+            </div>
 <!--                inputveld datum genereren-->
 <!--                checkbox voor day part eracher-->
 <!--                als day part is checked datum/daypart opslaan-->
 <!--                als alle course-data zijn geselecteerd vak groen maken!-->
             </div>
-
-
-
-
-
 <!--            todo nog te doen copy vakken togglen-->
 <!--            todo vak naar dag/dagdeel slepen-->
 <!--            todo een vak mag naar meerdere dagen/dagdelen gesleept worden-->
@@ -81,24 +110,7 @@
 
 
 </div>
-var table = document.createElement('table');
-for (var i = 1; i < 4; i++){
-var tr = document.createElement('tr');
 
-var td1 = document.createElement('td');
-var td2 = document.createElement('td');
-
-var text1 = document.createTextNode('Text1');
-var text2 = document.createTextNode('Text2');
-
-td1.appendChild(text1);
-td2.appendChild(text2);
-tr.appendChild(td1);
-tr.appendChild(td2);
-
-table.appendChild(tr);
-}
-document.body.appendChild(table);
 
 <script>
     // registreer eventhandlers
@@ -132,65 +144,66 @@ document.body.appendChild(table);
             }
         });
     });
-    $("#cohorts2Plan").on("change", function() {
-        var selectedVal = $(this).find(':selected').val();
-        var selectedText = $(this).find(':selected').text();
-        payload = JSON.stringify({cohortName: selectedText });
-        $.ajax({
-            type: 'POST',
-            url: '/vakkenCohort',
-            contentType: 'application/json; charset=utf-8',
-            dataType: 'json',
-            data: payload
-        }).done( function (response) {
-            $.each(response, function (i, item) {
-                $("#vakkenCohort").append('<option value="">' + response[i].subjectName + '</option>');
-            });
-        })
-    });
-    $("#vakkenCohort").on("change", function() {
-        var selectedText = $(this).find(':selected').text();
-        payload = JSON.stringify({subjectName: selectedText });
-        $.ajax({
-            type: 'POST',
-            url: '/weekDays',
-            contentType: 'application/json; charset=utf-8',
-            dataType: 'json',
-            data: "{}"
-        }).done( function (response) {
-            var days=response;
-            $.each(days, function (i, item) {
-                // $("#vakkenCohort").append('<option value="">' + response[i].subjectName + '</option>');
-            });
-        })
-        $.ajax({
-            type: 'POST',
-            url: '/partOfDay',
-            contentType: 'application/json; charset=utf-8',
-            dataType: 'json',
-            data: "{}"
-        }).done( function (response) {
-            var partsOfDay=response;
-            $.each(partsOfDay, function (i, item) {
-                // $("#vakkenCohort").append('<option value="">' + response[i].subjectName + '</option>');
-            });
-        })
-        $.ajax({
-            type: 'POST',
-            url: '/subjectInfo',
-            contentType: 'application/json; charset=utf-8',
-            dataType: 'json',
-            data: payload
-        }).done( function (response) {
-            var urenVak=response['hours'];
-            });
-    });
-</script>
-<script>
-    function showCopySchedule(){
-        $("#scheduleCopy").show();
-    }
-</script>
+
+<!--    $("#cohorts2Plan").on("change", function() {-->
+<!--        var selectedVal = $(this).find(':selected').val();-->
+<!--        var selectedText = $(this).find(':selected').text();-->
+<!--        payload = JSON.stringify({cohortName: selectedText });-->
+<!--        $.ajax({-->
+<!--            type: 'POST',-->
+<!--            url: '/vakkenCohort',-->
+<!--            contentType: 'application/json; charset=utf-8',-->
+<!--            dataType: 'json',-->
+<!--            data: payload-->
+<!--        }).done( function (response) {-->
+<!--            $.each(response, function (i, item) {-->
+<!--                $("#vakkenCohort").append('<option value="">' + response[i].subjectName + '</option>');-->
+<!--            });-->
+<!--        })-->
+<!--    });-->
+<!--    $("#vakkenCohort").on("change", function() {-->
+<!--        var selectedText = $(this).find(':selected').text();-->
+<!--        payload = JSON.stringify({subjectName: selectedText });-->
+<!--        $.ajax({-->
+<!--            type: 'POST',-->
+<!--            url: '/weekDays',-->
+<!--            contentType: 'application/json; charset=utf-8',-->
+<!--            dataType: 'json',-->
+<!--            data: "{}"-->
+<!--        }).done( function (response) {-->
+<!--            var days=response;-->
+<!--            $.each(days, function (i, item) {-->
+<!--                // $("#vakkenCohort").append('<option value="">' + response[i].subjectName + '</option>');-->
+<!--            });-->
+<!--        })-->
+<!--        $.ajax({-->
+<!--            type: 'POST',-->
+<!--            url: '/partOfDay',-->
+<!--            contentType: 'application/json; charset=utf-8',-->
+<!--            dataType: 'json',-->
+<!--            data: "{}"-->
+<!--        }).done( function (response) {-->
+<!--            var partsOfDay=response;-->
+<!--            $.each(partsOfDay, function (i, item) {-->
+<!--                // $("#vakkenCohort").append('<option value="">' + response[i].subjectName + '</option>');-->
+<!--            });-->
+<!--        })-->
+<!--        $.ajax({-->
+<!--            type: 'POST',-->
+<!--            url: '/subjectInfo',-->
+<!--            contentType: 'application/json; charset=utf-8',-->
+<!--            dataType: 'json',-->
+<!--            data: payload-->
+<!--        }).done( function (response) {-->
+<!--            var urenVak=response['hours'];-->
+<!--            });-->
+<!--    });-->
+<!--</script>-->
+<!--<script>-->
+<!--    function showCopySchedule(){-->
+<!--        $("#scheduleCopy").show();-->
+<!--    }-->
+<!--</script>-->
 
 
 </body>
