@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:display="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous">
+    </script>
+    <style>
+        .grid-container{
+            display: grid;
+            grid-template-columns: 40em 40em;
+            justify-content: space-evenly;
+            background-color: inherit;
+            padding: 0px;
+            width: 82em;
+        }
+        .grid-container1 {
+            display: grid;
+            grid-template-columns: 10em 5em 5em 5em 5em;
+            background-color: inherit;
+            padding: 0px;
+            justify-content: space-evenly;
+            width: 31em;
+        }
+        .grid-container2{
+            display:grid;
+            grid-template-rows: 5em 5em 5em;
+            grid-template-columns: 10em 10em
+        }
+
+        .grid-item {
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            font-size: inherit;
+            text-align: center;
+        }
+        .regelsPerLes{
+            width: 31em;
+        }
+        input.largerCheckbox {
+            width: 110%;
+            height: 110%;
+        }
+        input.largerText{
+            width:110%;
+            height: 110%;
+            font-size: 110%;
+        }
+    </style>
+</head>
+<body>
+<div class="grid-container"></div>
+    <div class="cohorts"   >
+     <label for="cohorts2Plan" class=""><h3>Rooster voor</h3></label>
+        <div class="">
+            <select class="" id="cohorts2Plan" name="cohorts2Plan" style="width: 35em;"></select>
+        </div>
+    </div>
+
+    <div class="subjects">
+        <label for="vakkenCohort" class=""><h3>Vakken om in te roosteren</h3></label>
+        <div class="">
+            <select class="" id="vakkenCohort" name="vakkenCohort" required multiple="multiple" size="7" style="width: 250px"/>
+        </div>
+    </div>
+</div>
+
+<span style="display: none">
+    <div class="subjectList" style="display: none" >
+        <form action="#" style="display: none">
+<!--            <input type="submit" th:onclick="" value="<" id="remove" style="display: none"/>-->
+            <select id="selectedSubject" name="selectedSubject" required multiple="multiple" size="7" style="width: 250px">
+                <option th:each="subject: ${subjects}" th:value="${subject.subjectId}"
+                    th:text="${subject.subjectName}">
+                </option>
+            </select>
+       </form>
+    </div>
+</span>
+<br><br>
+        <h3>Geeft het vakkenrooster</h3><br>
+        <div class="grid-container1">
+<!--            todo submit knop opslaan -->
+            <!--            todo herhalingen met dropdown-->
+            <!--            todo tonen in overzicht container2-->
+            <!--            todo herhalingen met dropdown-->
+            <!--            todo hele column voor geselecteerde data invullen "onclick"-->
+            <!--            todo checken of datum geen-les-dag is-->
+            <!--            todo check beschikbaarheid in-->
+                <div class="grid-item">datum</div>
+                <div class="grid-item">ochtend</div>
+                <div class="grid-item">middag</div>
+                <div class="grid-item">avond</div>
+                <div class="grid-item">opslaan</div>
+        </div>
+            <div class="grid-container1" id="regelPerLes">
+<!--Let op: dit is geen lege <div>. Op de plek worden in de DOM regels voor het vakkenrooster geplaatst-->
+            </div>
+
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            type: "POST",
+            url: "/cohortsToPlan",
+            contentType: "application/json; charset-utf-8",
+            dataType: "json",
+            data: "{}",
+            success: function (response) {
+                $("#cohorts2Plan").empty();
+                $("#cohorts2Plan").append('<option value="-1">Welke cohort moet gepland worden?</option>')
+                $.each(response, function (i, item) {
+                    $("#cohorts2Plan").append('<option value="">' + response[i].cohortName + '</option>');
+                });
+            }
+        });
+    });
+    $("#cohorts2Plan").on("change", function() {
+            var selectedVal = $(this).find(':selected').val();
+            var selectedText = $(this).find(':selected').text();
+            payload = JSON.stringify({cohortName: selectedText });
+            $.ajax({
+                type: 'POST',
+                url: '/vakkenCohort',
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                data: payload
+            }).done( function (response) {
+                var n=1;
+                $("#vakkenCohort").empty();
+                $.each(response, function (i, item) {
+                    $("#vakkenCohort").append('<option value="">' + response[i].subjectName + '</option>');
+                });
+            })
+    });
+    $("#vakkenCohort").on("change", function() {
+        var selectedText = $(this).find(':selected').text();
+        payload = JSON.stringify({subjectName: selectedText});
+        $.ajax({
+            type: 'POST',
+            url: '/aantalDagen',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            data: payload
+        }).done(function (response) {
+            var days = response;
+            var n=1;
+            $("#regelPerLes").empty();
+            $.each(days, function (i, item) {
+                n=(i+1)*10;
+                $("#regelPerLes").append('<div class="grid-item"><input type="date" class="largerText"  name="date" id="'+n+'" onchange="checkDate(event)"></div>');
+                n++;
+                $("#regelPerLes").append('<div class="grid-item"><input type="checkbox" class="largerCheckbox" name="dayPart" id="'+n+'"></div> ');
+                n++;
+                $("#regelPerLes").append('<div class="grid-item"><input type="checkbox" class="largerCheckbox" name="dayPart" id="'+n+'"></div> ');
+                n++;
+                $("#regelPerLes").append('<div class="grid-item"><input type="checkbox" class="largerCheckbox" name="dayPart" id="'+n+'"></div> ');
+                n++;
+                $("#regelPerLes").append('<div class="grid-item"><input type="checkbox" class="largerCheckbox" name="store" id="'+n+'" onclick="storeCourse(id)"></div> ');
+            });
+        })
+    });
+    $("#date").on("change",console.log("jquery datum test"));
+</script>
+<script>
+    function storeCourse(id){
+        var date = $("input[type=checkbox]["+elementContent(id,3)+"]:input").val();
+        console.log("datum: "+date);
+        console.log("ochtend: "+$("input[type=checkbox]["+elementContent(id,3)+"]:checked").val());
+        console.log("middag: "+$("input[type=checkbox]["+elementContent(id,2)+"]:checked").val());
+        console.log("avond: "+$("input[type=checkbox]["+elementContent(id,2)+"]:checked").val());
+    }
+</script>
+
+<script>
+    function checkDate(event) {
+        var localDate = (event.target.value);
+        console.log("localDate :"+datum);
+        payload = JSON.stringify({localDate});
+        $.ajax({
+            type: 'POST',
+            url: '/checkDate',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            data: payload
+        }).done( function (response) {
+            NonTeachingDay = $("#TeachingDayMsg");
+            if (response["exists"]) {
+            //todo boodschap vakantie tonen
+            //    todo datum leeg maken
+            } else {
+                //todo datum voor payload opslaan
+            }
+
+        })
+    }
+</script>
+
+<script>
+    function elementContent(id,i){
+        var elementId=parseInt(id)-i;
+        var elementIdString=elementId.toString();
+        return "id='"+elementIdString+"'";
+    }
+</script>
+</body>
+</html>

@@ -14,8 +14,19 @@ public class HolidaySchedule {
     @Column(name = "Datum")
     LocalDate localDate;
 
+    @Column(name="omaschrijving")
+    String description;
+
     public LocalDate getLocalDate() {
         return localDate;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public void setLocalDate(LocalDate localDate) {
@@ -24,5 +35,12 @@ public class HolidaySchedule {
 
     public HolidaySchedule(LocalDate localDate) {
         this.localDate = localDate;
+    }
+
+    @Override
+    public String toString() {
+        return "HolidaySchedule{" +
+                "localDate=" + localDate +
+                '}';
     }
 }

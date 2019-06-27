@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:display="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous">
+    </script>
+    <style>
+        .grid-container{
+
+        .grid-container1 {
+            display: grid;
+            grid-template-columns: 10em 40em;
+            background-color: inherit;
+            padding: 0px;
+            justify-content: space-evenly;
+            width: 51em;
+        }
+        .grid-item {
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            font-size: inherit;
+            text-align: center;
+        }
+        .regelsPerLes{
+            width: 31em;
+        }
+        input.largerCheckbox {
+            width: 110%;
+            height: 110%;
+        }
+        input.largerText{
+            width:110%;
+            height: 110%;
+            font-size: 110%;
+        }
+    </style>
+</head>
+<div>
+<h3>Vakantiedagen</h3>
+    <div class="grid-container1">
+        <div class="grid-item"><h4>datum</h4></div>
+        <div class="grid-item"><h4>omschrijving</h4></div>
+    </div>
+    <div class="grid-container1" id="dagen">
+        <!--Let op: dit is geen lege <div>. Op de plek worden in de DOM regels voor het vakkenrooster geplaatst-->
+    </div>
+
+
+<span style="display: none">
+    <div class="subjectList" style="display: none" >
+        <form action="#" style="display: none">
+<!--            <input type="submit" th:onclick="" value="<" id="remove" style="display: none"/>-->
+            <select id="selectedSubject" name="selectedSubject" required multiple="multiple" size="7" style="width: 250px">
+                <option th:each="subject: ${subjects}" th:value="${subject.subjectId}"
+                        th:text="${subject.subjectName}">
+                </option>
+            </select>
+       </form>
+    </div>
+</span>
+
+<script>
+    $(document).ready(function () {
+        $("#dagen").on("load", function() {
+            $.ajax({
+                type: 'GET',
+                url: '/theHolidays',
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                data: "{}",
+                success: function (response) {
+                $("#regelPerLes").empty();
+                $.each(days, function (i, item) {
+                    $("#dagen").append('<div class="grid-item">response[i].localDate</div> ');
+                    $("#dagen").append('<div class="grid-item">response[i].description</div> ');
+
+                })
+            })
+        })
+    });
+</script>

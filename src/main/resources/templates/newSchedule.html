@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous">
+    </script>
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
+<!--    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">-->
+<!--    <link rel="stylesheet" href="/resources/demos/style.css">-->
+<!--    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
+<!--    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
+
+<!--    <script>-->
+<!--        function datePicker(){-->
+<!--            var arrChkBox = document.getElementsByName("chName");-->
+<!--            $(arrChkBox).toggle();-->
+<!--            $( "#datepicker" ).datepicker();-->
+<!--        }-->
+<!--    </script>-->
+    <style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: 10em 5em 5em 5em 5em;
+            background-color: inherit;
+            padding: 10px;
+        }
+
+        .grid-item {
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            font-size: inherit;
+            text-align: center;
+        }
+        input.largerCheckbox {
+            width: 110%;
+            height: 110%;
+        }
+        input.largerText{
+            width:110%;
+            height: 110%;
+            font-size: 110%;
+        }
+    </style>
+</head>
+<body>
+<div class="">
+    <label for="cohorts2Plan" class="">Rooster voor</label>
+    <div class=>
+        <select class="" id="cohorts2Plan" name="cohorts2Plan" style="width: 35em"></select>
+    </div>
+</div>
+
+    <div class="">
+        <label for="vakkenCohort" class="">Vakken om in te roosteren</label>
+        <div class="">
+            <select class="" id="vakkenCohort" name="vakkenCohort" required multiple="multiple" size="7" style="width: 35em"/>
+        </div>
+    </div>
+
+    <div style="width: 35em">
+<div class="grid-container">
+    <div class="grid-item">datum</div>
+    <div class="grid-item">ochtend</div>
+    <div class="grid-item">middag</div>
+    <div class="grid-item">avond</div>
+    <div class="grid-item">opslaan</div>
+    <div class="grid-item"><input type="date" class="largerText"  name="date" id="1"> </div>
+    <div class="grid-item"><input type="checkbox" class="largerCheckbox" name="dayPart" id="2"></div>
+    <div class="grid-item"><input type="checkbox" class="largerCheckbox" name="dayPart" id="3"></div>
+    <div class="grid-item"><input type="checkbox" class="largerCheckbox" name="dayPart" id="4"></div>
+    <div class="grid-item"><input type="checkbox" class="largerCheckbox" name="dayPart" id="5"></div>
+    <div class="grid-item"><input type="date" class="largerText"  name="date" id="6"> </div>
+    <div class="grid-item"><input type="checkbox" class="largerCheckbox" name="dayPart" id="7"> </div>
+    <div class="grid-item"><input type="checkbox" class="largerCheckbox" name="dayPart" id="8"> </div>
+    <div class="grid-item"><input type="checkbox" class="largerCheckbox" name="dayPart" id="9"> </div>
+    <div class="grid-item"><input type="checkbox" class="largerCheckbox" name="dayPart" id="10"> </div>
+    <div class="grid-item"><input type="date" class="largerText"  name="date" id="11"> </div>
+    <div class="grid-item"><input type="checkbox" class="largerCheckbox" name="dayPart" id="12"> </div>
+    <div class="grid-item"><input type="checkbox" class="largerCheckbox" name="dayPart" id="13"> </div>
+    <div class="grid-item"><input type="checkbox" class="largerCheckbox" name="dayPart" id="14"> </div>
+    <div class="grid-item"><input type="checkbox" class="largerCheckbox" name="dayPart" id="15"> </div>
+    <div class="grid-item"><input type="date" class="largerText"  name="date" id="16"> </div>
+    <div class="grid-item"><input type="checkbox" class="largerCheckbox" name="dayPart" id="17"> </div>
+    <div class="grid-item"><input type="checkbox" class="largerCheckbox" name="dayPart" id="18"> </div>
+    <div class="grid-item"><input type="checkbox" class="largerCheckbox" name="dayPart" id="19"> </div>
+    <div class="grid-item"><input type="checkbox" class="largerCheckbox" name="dayPart" id="20"> </div>
+</div>
+    </div>
+<script>
+    // registreer eventhandlers
+    $(document).ready(function () {
+        $.ajax({
+            type: "POST",
+            url: "/cohortsToPlan",
+            contentType: "application/json; charset-utf-8",
+            dataType: "json",
+            data: "{}",
+            success: function (response) {
+                $("#cohorts2Plan").empty();
+                $("#cohorts2Plan").append('<option value="-1">Welke cohort moet gepland worden?</option>')
+                $.each(response, function (i, item) {
+                    $("#cohorts2Plan").append('<option value="">' + response[i].cohortName + '</option>');
+                });
+            }
+        });
+        $.ajax({
+            type: "POST",
+            url: "/schedulesToCopy",
+            contentType: "application/json; charset-utf-8",
+            dataType: "json",
+            data: "{}",
+            success: function (response) {
+                $("#copySchedule").empty();
+                $("#copySchedule").append('<option value="-1">Welke vakkenrooster wilt u copieren?</option>')
+                $.each(response, function (i, item) {
+                    $("#copySchedule").append('<option value="">' + response[i].cohortName + '</option>');
+                });
+            }
+        });
+    });
+    $("#cohorts2Plan").on("change", function() {
+        var selectedVal = $(this).find(':selected').val();
+        var selectedText = $(this).find(':selected').text();
+        payload = JSON.stringify({cohortName: selectedText });
+        $.ajax({
+            type: 'POST',
+            url: '/vakkenCohort',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            data: payload
+        }).done( function (response) {
+            $.each(response, function (i, item) {
+                $("#vakkenCohort").append('<option value="">' + response[i].subjectName + '</option>');
+            });
+        })
+    });
+    $("#vakkenCohort").on("change", function() {
+        var selectedText = $(this).find(':selected').text();
+        payload = JSON.stringify({subjectName: selectedText });
+        $.ajax({
+            type: 'POST',
+            url: '/weekDays',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            data: "{}"
+        }).done( function (response) {
+            var days=response;
+            $.each(days, function (i, item) {
+                // $("#vakkenCohort").append('<option value="">' + response[i].subjectName + '</option>');
+            });
+        })
+        $.ajax({
+            type: 'POST',
+            url: '/partOfDay',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            data: "{}"
+        }).done( function (response) {
+            var partsOfDay=response;
+            $.each(partsOfDay, function (i, item) {
+                // $("#vakkenCohort").append('<option value="">' + response[i].subjectName + '</option>');
+            });
+        })
+        $.ajax({
+            type: 'POST',
+            url: '/subjectInfo',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            data: payload
+        }).done( function (response) {
+            var urenVak=response['hours'];
+        });
+    });
+</script>
+<script>
+    function showCopySchedule(){
+        $("#scheduleCopy").show();
+    }
+</script>
+</body>
+</html>

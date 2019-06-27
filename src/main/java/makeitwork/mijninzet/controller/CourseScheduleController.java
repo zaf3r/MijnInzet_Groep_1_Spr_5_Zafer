@@ -1,6 +1,7 @@
 package makeitwork.mijninzet.controller;
 
 import com.google.gson.Gson;
+import com.mongodb.BasicDBObject;
 import makeitwork.mijninzet.model.Cohort;
 import makeitwork.mijninzet.model.preference.Subject;
 import makeitwork.mijninzet.repository.CohortRepository;
@@ -30,37 +31,57 @@ public class CourseScheduleController {
 
     @PostMapping("/cohortsToPlan")
     public @ResponseBody
-    String cohortsToPlan(@RequestBody String requestPayload, Principal principal){
+    String cohortsToPlan(@RequestBody String requestPayload, Principal principal) {
+        System.out.printf("\n\n de cohorten: %s\n\n", service.cohortsToPlan(principal));
         return new Gson().toJson(service.cohortsToPlan(principal));
     }
+
     @PostMapping("/vakkenCohort")
     public @ResponseBody
-    String vakkenVanCohort(@RequestBody String requestPayload){
-        List<Subject> subjects=service.vakkenCohort(new Gson().fromJson(requestPayload, Cohort.class));
+    String vakkenVanCohort(@RequestBody String requestPayload) {
+        List<Subject> subjects = service.vakkenCohort(new Gson().fromJson(requestPayload, Cohort.class));
         return new Gson().toJson(subjects);
     }
+
     @PostMapping("/schedulesToCopy")
     public @ResponseBody
-    String schedulesToCopy(@RequestBody String requestPayload){
+    String schedulesToCopy(@RequestBody String requestPayload) {
         return new Gson().toJson(service.plannedCohorts());
     }
+
     @PostMapping("/weekDays")
     public @ResponseBody
-    String weekDays(@RequestBody String requestPayload){
+    String weekDays(@RequestBody String requestPayload) {
         return new Gson().toJson(service.daysOfWeek());
     }
+
     @PostMapping("/partOfDay")
     public @ResponseBody
-    String partOfDay(@RequestBody String requestPayload){
+    String partOfDay(@RequestBody String requestPayload) {
         return new Gson().toJson(service.partsOfDay());
     }
+
     @PostMapping("/subjectInfo")
     public @ResponseBody
-    String subjectInfo(@RequestBody String requestPayload){
+    String subjectInfo(@RequestBody String requestPayload) {
         return new Gson().toJson(service.subjectInfo(requestPayload));
     }
 
+    @PostMapping("/aantalDagen")
+    public @ResponseBody
+    String numberOfCourses(@RequestBody String requestPayload) {
+        return new Gson().toJson(service.aantalDagen(requestPayload));
+    }
 
-
-
+    @PostMapping("/checkDate")
+    public @ResponseBody
+    String nonTeachingDay(@RequestBody String requestPayload) {
+        BasicDBObject output = new BasicDBObject();
+        if (service.isNonTeachingDay(requestPayload))
+            output.put("exists", true);
+        else {
+            output.put("exists", false);
+        }
+        return output.toJson();
+    }
 }
