@@ -1,4 +1,9 @@
 //diverse variables
+var getrequestWeeksUrl;
+var getRequestDaysUrl;
+var postRequestUrl;
+
+//diverse variables
 var noTeacher = "geen docent";
 var noSubject = "vacant";
 
@@ -35,6 +40,59 @@ var thursdayEvSub  = document.querySelector('div[name="donderdagAvondVak"]');
 var fridayMoSub  = document.querySelector('div[name="vrijdagOchtendVak"]');
 var fridayAfSub  = document.querySelector('div[name="vrijdagMiddagVak"]');
 var fridayEvSub  = document.querySelector('div[name="vrijdagAvondVak"]');
+
+//Other variables
+var cohortNaam = document.querySelector('select[name="cohortName"]');
+var cohortWeek = document.querySelector('select[name="weekNumber"]');
+
+
+$(function() {
+    $(cohortNaam).on("change", cohortNaam, function () {
+        getrequestWeeksUrl = "http://localhost:8080/api/cohort/weeks/"+cohortNaam.value;
+        requestCallWeeks();
+    });
+});
+
+$(function() {
+    $(cohortNaam).on("change", cohortWeek, function () {
+        getrequestWeeksUrl = "http://localhost:8080/api/cohort/days/"+cohortNaam.value+"/"+cohortWeek.value;
+        requestCallDays();
+    });
+
+});
+
+function requestCallWeeks() {
+    $(function () {
+        $.getJSON(getrequestWeeksUrl, function (data) {
+            console.log(data);
+            loadDropDownWeeks(data)
+        }).fail(function () {
+            console.log("Failed to make a request")
+        })
+    });
+}
+
+function requestCallDays() {
+    $(function () {
+        $.getJSON(getRequestDaysUrl, function (data) {
+            console.log(data);
+        }).fail(function () {
+            console.log("Failed to make a request")
+        })
+    });
+}
+
+
+//Load dropdown menu of weeks
+function loadDropDownWeeks(dropdownItems) {
+    dropdownItems.forEach(function (item) {
+        var option = document.createElement("option");
+        option.text(item);
+        console.log(item);
+        cohortWeek.push(option);
+    })
+
+}
 
 //subject functions
 function loadMondaySubs(courseScheduleSubArray) {
@@ -102,19 +160,19 @@ function loadFridaySubs(courseScheduleSubArray) {
                     sub.morning = noSubject;
                 }
                 else
-                fridayMoSub.value = sub.morning;
+                    fridayMoSub.value = sub.morning;
                 fridayMoSub.parentNode.classList = sub.morning;
                 if (fridayAfSub.value === null) {
                     sub.morning = noSubject;
                 }
                 else
-                fridayAfSub.value = sub.afternoon;
+                    fridayAfSub.value = sub.afternoon;
                 fridayAfSub.parentNode.classList = sub.afternoon;
                 if (fridayEvSub.value === null) {
                     sub.morning = noSubject;
                 }
                 else
-                fridayEvSub.value = sub.evening;
+                    fridayEvSub.value = sub.evening;
                 fridayEvSub.parentNode.classList = sub.evening;
             }
         }
@@ -124,7 +182,7 @@ function loadFridaySubs(courseScheduleSubArray) {
 
 //teacher functions
 function loadMondayTeach(courseScheduleTeachArray) {
-    courseScheduleTeachArray.forEach(function(tech) {
+    courseScheduleTeachArray.forEach(function(teach) {
             if(teach.weekday === "MONDAY") {
                 mondayMoTeach.value = teach.morning;
                 mondayAfTeach.value = teach.afternoon;
@@ -135,7 +193,7 @@ function loadMondayTeach(courseScheduleTeachArray) {
 }
 
 function loadTuesdayTeach(courseScheduleTeachArray) {
-    courseScheduleTeachArray.forEach(function(tech) {
+    courseScheduleTeachArray.forEach(function(teach) {
             if(teach.weekday === "TUESDAY") {
                 tuesdayMoTeach.value = teach.morning;
                 tuesdayAfTeach.value = teach.afternoon;
@@ -146,7 +204,7 @@ function loadTuesdayTeach(courseScheduleTeachArray) {
 }
 
 function loadWednesdayTeach(courseScheduleTeachArray) {
-    courseScheduleTeachArray.forEach(function(tech) {
+    courseScheduleTeachArray.forEach(function(teach) {
             if(teach.weekday === "WEDNESDAY") {
                 wednesdayMoTeach.value = teach.morning;
                 wednesdayAfTeach.value = teach.afternoon;
@@ -157,7 +215,7 @@ function loadWednesdayTeach(courseScheduleTeachArray) {
 }
 
 function loadThursdayTeach(courseScheduleTeachArray) {
-    courseScheduleTeachArray.forEach(function(tech) {
+    courseScheduleTeachArray.forEach(function(teach) {
             if(teach.weekday === "THURSDAY") {
                 thursdayMoTeach.value = teach.morning;
                 thursdayAfTeach.value = teach.afternoon;
@@ -167,22 +225,12 @@ function loadThursdayTeach(courseScheduleTeachArray) {
     )
 }
 
+
 function loadFridayTeach(courseScheduleTeachArray) {
-    courseScheduleTeachArray.forEach(function(tech) {
+    courseScheduleTeachArray.forEach(function(teach) {
             if(teach.weekday === "FRIDAY") {
-                if(fridayMoTeach.value === null){
-                    teach.morning = noTeacher;
-                }
-                else
                 fridayMoTeach.value = teach.morning;
-                if (fridayAfTeach.value === null) {
-                    tech.afternoon = noTeacher;
-                }
-                else
                 fridayAfTeach.value = teach.afternoon;
-                if (fridayEvTeach.value === null) {
-                    tech.evening = noTeacher;
-                }
                 fridayEvTeach.value = teach.evening;
             }
         }
@@ -191,4 +239,3 @@ function loadFridayTeach(courseScheduleTeachArray) {
 
 
 
-EventListeners
