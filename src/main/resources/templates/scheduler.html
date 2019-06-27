@@ -30,8 +30,8 @@
         <div >
             <form action="#" th:object="${cohorts}" th:action="@{showSubjects}" method="post">
                 <select name="cohortName" id="cohortList" required style="width: 250px; border-color: lightgray" th:onchange="this.form.submit()">
-                    <option value="">Selecteer een cohort:</option>
-                    <option th:each="coh: ${cohorts}" th:value="${coh.cohortName}" th:text="${coh.cohortName}"></option>
+<!--                    <option value="">Selecteer een cohort:</option>-->
+<!--                    <option th:each="coh: ${cohorts}" th:value="${coh.cohortName}" th:text="${coh.cohortName}"></option>-->
                 </select>
             </form>
         </div>
@@ -42,8 +42,8 @@
         <div >
             <form action="#" th:object="${cohorts}" th:action="@{showWeeks}" method="post">
                 <select name="weekNumber" id="weekList" required style="width: 250px; border-color: lightgray" th:onchange="this.form.submit()">
-                    <option value="">Selecteer een week:</option>
-                    <option th:each="co: ${cohorts}" th:value="${co.weekId}" th:text="${co.weekNumber}"></option>
+<!--                    <option value="">Selecteer een week:</option>-->
+<!--                    <option th:each="co: ${cohorts}" th:value="${co.weekId}" th:text="${co.weekNumber}"></option>-->
                 </select>
             </form>
         </div>
@@ -52,8 +52,7 @@
 
     <!--    Table om docenten aan vakken toe te voegen-->
     <div>
-        <form action="#" th:object="${currentSubject}" th:action="@{addCurrentSubject}"
-              th:object="${teacherForm}" th:action="@{postTeacherToSchedule}" method="post" id = "teacherForm">
+        <form action="#" th:object="${teacherForm}" th:action="@{postTeacherToSchedule}" method="post" id = "teacherForm">
             <table id = "docentTabel">
                 <tr>
                     <th></th>
@@ -102,27 +101,27 @@
                         <p>13:00-17:30</p>
                     </th>
                     <td>
-                        <div name="maandagMiddagVak" th: ></div>
+                        <div name="maandagMiddagVak"></div>
                         <select name="maandagMiddagDocent" required>
                         </select>
                     </td>
                     <td>
-                        <div name="dinsdagMiddagVak" th: ></div>
+                        <div name="dinsdagMiddagVak"></div>
                         <select name="dinsdagMiddagDocent" required>
                         </select>
                     </td>
                     <td>
-                        <div name="woensdagMiddagVak" th: ></div>
+                        <div name="woensdagMiddagVak"></div>
                         <select name="woensdagMiddagDocent" required>
                         </select>
                     </td>
                     <td>
-                        <div name="donderdagMiddagVak" th: ></div>
+                        <div name="donderdagMiddagVak"></div>
                         <select name="donderdagMiddagDocent" required>
                         </select>
                     </td>
                     <td >
-                        <div name="vrijdagMiddagVak" th: ></div>
+                        <div name="vrijdagMiddagVak"></div>
                         <select name="vrijdagMiddagDocent" required>
                         </select>
                     </td>
