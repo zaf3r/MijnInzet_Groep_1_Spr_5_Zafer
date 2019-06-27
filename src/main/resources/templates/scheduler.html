@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<link rel="stylesheet" type="text/css" th:href="@{/css/generic.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/navbar.css}"/>
+
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap" rel="stylesheet">
+<head>
+    <meta charset="UTF-8">
+    <title>Roosterbeheer</title>
+</head>
+<body>
+
+<div th:insert="~{navbar :: header}"></div>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+    <section id="header" class="jumbotron text-center">
+        <h1>Roosterbeheer</h1>
+    </section>
+
+
+    <!--select cohort-->
+    <div class = "select" align="center">
+
+        <div>
+            <label>Selecteer cohort </label>
+                <select name="cohortName" id="cohortList" required style="width: 250px; border-color: lightgray" th:onchange="this.form.submit()">
+<!--                    <option value="">Selecteer een cohort:</option>-->
+<!--                    <option th:each="coh: ${cohorts}" th:value="${coh.cohortName}" th:text="${coh.cohortName}"></option>-->
+                </select>
+<!--        </div>-->
+
+
+
+        <!--    select weeknummer-->
+<!--        <div >-->
+<!--            <form action="#" th:object="${cohorts}" th:action="@{showWeeks}" method="post">-->
+            <label>Selecteer weeknummer </label>
+            <select name="weekNumber" id="weekList" required style="width: 250px; border-color: lightgray" th:onchange="this.form.submit()">
+<!--                    <option value="">Selecteer een week:</option>-->
+<!--                    <option th:each="co: ${cohorts}" th:value="${co.weekId}" th:text="${co.weekNumber}"></option>-->
+                </select>
+<!--            </form>-->
+        </div>
+
+    </div>
+
+    <!--    Table om docenten aan vakken toe te voegen-->
+    <div>
+<!--        <form action="#" th:object="${teacherForm}" th:action="@{postTeacherToSchedule}" method="post" id = "teacherForm">-->
+            <table id = "docentTabel">
+                <tr>
+                    <th></th>
+                    <th>maandag</th>
+                    <th>dinsdag</th>
+                    <th>woensdag</th>
+                    <th>donderdag</th>
+                    <th>vrijdag</th>
+                </tr>
+
+                <tr>
+                    <th>
+                        <p>Ochtend</p>
+                        <p>9:00-12:30</p>
+                    </th>
+                    <td >
+                        <div name="maandagOchtendVak"></div>
+                        <select name="maandagOchtendDocent" required>
+                        </select>
+                    </td>
+                    <td >
+                        <div name="dinsdagOchtendVak"></div>
+                        <select name="dinsdagOchtendDocent" required>
+                        </select>
+                    </td>
+                    <td>
+                        <div name="woensdagOchtendVak" ></div>
+                        <select name="woensdagOchtendDocent" required>
+                        </select>
+                    </td>
+                    <td >
+                        <div name="donderdagOchtendVak"></div>
+                        <select name="donderdagOchtendDocent" required>
+                        </select>
+                    </td>
+                    <td>
+                        <div name="vrijdagOchtendVak"></div>
+                        <select name="vrijdagOchtendDocent" required>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>
+                        <p>Middag</p>
+                        <p>13:00-17:30</p>
+                    </th>
+                    <td>
+                        <div name="maandagMiddagVak"></div>
+                        <select name="maandagMiddagDocent" required>
+                        </select>
+                    </td>
+                    <td>
+                        <div name="dinsdagMiddagVak"></div>
+                        <select name="dinsdagMiddagDocent" required>
+                        </select>
+                    </td>
+                    <td>
+                        <div name="woensdagMiddagVak"></div>
+                        <select name="woensdagMiddagDocent" required>
+                        </select>
+                    </td>
+                    <td>
+                        <div name="donderdagMiddagVak"></div>
+                        <select name="donderdagMiddagDocent" required>
+                        </select>
+                    </td>
+                    <td >
+                        <div name="vrijdagMiddagVak"></div>
+                        <select name="vrijdagMiddagDocent" required>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>
+                        <p>Avond</p>
+                        <p>18:00-21:00</p>
+                    </th>
+                    <td >
+                        <div name="maandagAvondVak"></div>
+                        <select name="maandagAvondDocent" required>
+                        </select>
+                    </td>
+                    <td>
+                        <div name="dinsdagAvondVak"></div>
+                        <select name="dinsdagAvondDocent" required>
+                        </select>
+                    </td>
+                    <td>
+                        <div name="woensdagAvondVak"></div>
+                        <select name="woensdagAvondDocent" required>
+                        </select>
+                    </td>
+                    <td>
+                        <div name="donderdagAvondVak"></div>
+                        <select name="donderdagAvondDocent" required>
+                        </select>
+                    </td>
+                    <td>
+                        <div name="vrijdagAvondVak"></div>
+                        <select name="vrijdagAvondDocent" required>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+
+            <button id="button" type="button" class="btn btn-success"> Opslaan</button>
+<!--        </form>-->
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+
+<!--end of HTML code-->
+
+
+
+    </div>
+
+</div>
+
+<footer th:insert="~{footer :: footer}"></footer>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="/js/scheduler.js" th:src="@{/js/scheduler.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

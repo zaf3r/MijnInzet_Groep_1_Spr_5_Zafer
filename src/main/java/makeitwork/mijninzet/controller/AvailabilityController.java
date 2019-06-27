@@ -3,6 +3,7 @@ package makeitwork.mijninzet.controller;
 import makeitwork.mijninzet.model.Availability.GlobalAvailability.Availability;
 import makeitwork.mijninzet.model.Availability.GlobalAvailability.AvailabilityForm;
 import makeitwork.mijninzet.model.Availability.Weekday;
+import makeitwork.mijninzet.model.Role;
 import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.repository.AvailabilityRepository;
 import makeitwork.mijninzet.repository.UserRepository;
@@ -20,7 +21,7 @@ import java.util.Set;
 
 @Controller
 @RequestMapping("/availability")
-public class AvailabilityController {
+public class AvailabilityController implements RetrieveUserRole{
 
     final Availability AVAILABILITY_LOADER = new Availability();
 
@@ -52,6 +53,8 @@ public class AvailabilityController {
         availabilityForm.setAvailabilityFriday(AVAILABILITY_LOADER.findFriday(availabilitySet));
 
         model.addAttribute("availabilityForm",availabilityForm);
+        Role role = retrieveRole(userRepository,principal);
+        model.addAttribute("roleUser", role);
 
         return "globalAvalability";
     }

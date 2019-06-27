@@ -2,6 +2,9 @@
 package makeitwork.mijninzet.controller;
 
 import makeitwork.mijninzet.model.Role;
+import makeitwork.mijninzet.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import makeitwork.mijninzet.model.Role;
 import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.security.Principal;
 
 @Controller
-public class HomeController implements RetrieveUserRole{
+public class HomeController implements RetrieveUserRole {
 
     @Autowired
     UserRepository userRepository;
@@ -37,14 +40,11 @@ public class HomeController implements RetrieveUserRole{
         model.addAttribute("name", name);
         model.addAttribute("title", appName);
         model.addAttribute("team", teamLeden);
+        Role role = retrieveRole(userRepository,principal);
+        model.addAttribute("roleUser", role);
+
         return "home";
     }
-
-//    @GetMapping("/addUser")
-//    public String addUser(Model model){
-//        return "addUser";
-//    }
-
 
     @GetMapping("/globalAvalability")
     public String addAvalability(Model model, @RequestParam(value = "name", required = false,
@@ -69,4 +69,10 @@ public class HomeController implements RetrieveUserRole{
             defaultValue = "Guest") String name) {
         model.addAttribute("userName", name);
         return "courseManagement"; }
+
+    @GetMapping("/rooster")
+    public String addRooster(Model model, @RequestParam(value = "name", required = false,
+            defaultValue = "Guest") String name) {
+        model.addAttribute("userName", name);
+        return "scheduler"; }
 }

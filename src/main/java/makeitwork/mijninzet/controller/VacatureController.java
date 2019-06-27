@@ -1,5 +1,6 @@
 package makeitwork.mijninzet.controller;
 
+import makeitwork.mijninzet.model.Role;
 import makeitwork.mijninzet.model.Task;
 import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.repository.TaskRepository;
@@ -21,7 +22,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/teacher")
-public class VacatureController {
+public class VacatureController implements  RetrieveUserRole{
 
     @Autowired
     TaskRepository taskRepository;
@@ -34,14 +35,20 @@ public class VacatureController {
     public String MenuHandler(Model model, Principal principal) {
         User user = usersRepository.findByUsername(principal.getName());
         model.addAttribute("allTasks", tasks2React(user));
+
+        Role role = retrieveRole(usersRepository,principal);
+        model.addAttribute("roleUser", role);
+
         return "taskOverview";
     }
 
     @GetMapping("/showTask/{task}")
-    public String TaskDetailHandler(@RequestParam int taskId, Model model) {
+    public String TaskDetailHandler(@RequestParam int taskId, Model model, Principal principal) {
         Task taak = getTask(taskId);
         model.addAttribute("taak", taak);
         model.addAttribute("deadline", returnDays(taak));
+        Role role = retrieveRole(usersRepository,principal);
+        model.addAttribute("roleUser", role);
         return "showTask"; //html
     }
 
@@ -56,6 +63,8 @@ public class VacatureController {
     public String MyTaskHandler(Model model, Principal principal) {
         User user = usersRepository.findByUsername(principal.getName());
         model.addAttribute("myTasks", myTaskList(user));
+        Role role = retrieveRole(usersRepository,principal);
+        model.addAttribute("roleUser", role);
         return "myTasks";
     }
 

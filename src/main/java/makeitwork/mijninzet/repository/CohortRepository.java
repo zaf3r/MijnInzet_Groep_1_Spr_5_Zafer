@@ -1,12 +1,15 @@
 package makeitwork.mijninzet.repository;
 
 import makeitwork.mijninzet.model.Cohort;
+import makeitwork.mijninzet.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
-import java.util.SortedSet;
 
 public interface CohortRepository extends JpaRepository<Cohort, Integer> {
-    Cohort findByCohortName(String name);
+  Cohort findByCohortName(String name);
+  List<Cohort> findByUser(User user);
+
+  Cohort findCohortByCohortId (int id);
 
 }

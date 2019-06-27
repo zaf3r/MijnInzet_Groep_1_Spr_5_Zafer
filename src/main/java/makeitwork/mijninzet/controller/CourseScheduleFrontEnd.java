@@ -10,19 +10,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.security.Principal;
 
 @Controller
-public class UserFrontend implements RetrieveUserRole{
+public class CourseScheduleFrontEnd implements RetrieveUserRole{
 
     @Autowired
     UserRepository userRepository;
 
-    @GetMapping("/userForm")
-    public String newUserForm (Model model, Principal principal){
-
+    @GetMapping("/courseSchedule")
+    public String scheduleFrontEnd(Model model, Principal principal){
         Role role = retrieveRole(userRepository,principal);
         model.addAttribute("roleUser", role);
-
-        return "crudUser";
+        return "courseSchedule";
     }
-
-
 }

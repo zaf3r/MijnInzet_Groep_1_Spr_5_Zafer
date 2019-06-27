@@ -16,12 +16,27 @@
 </head>
 
 
-<!--Bas working on this, don't change!!-->
-<!--<div th:if="${roleUser.roleName == 'Docent'}">-->
-<!--    <header th:insert="~{navbarDocent :: header}"></header>-->
+<!--<div th:switch="${roleUser.roleName}">-->
+<!--    <span th:case="'Docent'"><header th:insert="~{navbarDocent :: header}"></header></span>-->
+<!--    <span th:case="'Administrateur'"><header th:insert="~{navbarAdministrateur :: header}"></header></span>-->
+<!--    <span th:case="'Manager'"><header th:insert="~{navbarManager :: header}"></header></span>-->
+<!--    <span th:case="'Roosteraar'"><header th:insert="~{navbarRoosteraar :: header}"></header></span>-->
 <!--</div>-->
-
-<header th:insert="~{navbar :: header}"></header>
+<div th:if="${roleUser.roleName == 'Terminator'}">
+    <header th:insert="~{navbar :: header}"></header>
+</div>
+<div th:if="${roleUser.roleName == 'Docent'}">
+    <header th:insert="~{navbarDocent :: header}"></header>
+</div>
+<div th:if="${roleUser.roleName == 'Administrateur'}">
+    <header th:insert="~{navbarAdministrateur :: header}"></header>
+</div>
+<div th:if="${roleUser.roleName == 'Manager'}">
+    <header th:insert="~{navbarManager :: header}"></header>
+</div>
+<div th:if="${roleUser.roleName == 'Roosteraar'}">
+    <header th:insert="~{navbarRoosteraar :: header}"></header>
+</div>
 
 <body>
 <div class="container">

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" th:href="@{/css/navbar.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/crudUser.css}"/>
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+      integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap" rel="stylesheet">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous">
+    </script>
+</head>
+<div th:if="${roleUser.roleName == 'Terminator'}">
+    <header th:insert="~{navbar :: header}"></header>
+</div>
+<div th:if="${roleUser.roleName == 'Docent'}">
+    <header th:insert="~{navbarDocent :: header}"></header>
+</div>
+<div th:if="${roleUser.roleName == 'Administrateur'}">
+    <header th:insert="~{navbarAdministrateur :: header}"></header>
+</div>
+<div th:if="${roleUser.roleName == 'Manager'}">
+    <header th:insert="~{navbarManager :: header}"></header>
+</div>
+<div th:if="${roleUser.roleName == 'Roosteraar'}">
+    <header th:insert="~{navbarRoosteraar :: header}"></header>
+</div>
+<body>
+<div class="container">
+    <form id="courseForm" autocomplete="off" action="/courseScheduler" method="POST">
+        <br><br><br><br>
+        <fieldset>
+            <div class="form-group row">
+                <label for="cohorts2Plan" class="col-sm-2 col-form-label">Rooster voor</label>
+                <div class="col-sm-10">
+                    <select class="form-control" id="cohorts2Plan" name="cohorts2Plan"></select>
+                </div>
+            </div>
+            <div>
+                <label for="copyMaken" class="col-sm-2 col-form-label">Copy van bestaand rooster maken</label>
+                <div class="col-sm-10">
+                    <input type="checkbox" id="copymaken" name="copymaken" onclick="showCopySchedule()" \>
+                </div>
+            </div>
+
+            <span name="scheduleCopy" id="scheduleCopy" style="display:none">
+            <div class="form-group row">
+                <label for="copySchedule" class="col-sm-2 col-form-label">Copy van</label>
+                <div class="col-sm-10">
+                    <select class="form-control" id="copySchedule" name="copySchedule"></select>
+                </div>
+            </div>
+        </span>
+
+            <div class="form-group row">
+                <label for="vakkenCohort" class="col-sm-2 col-form-label">Vakken om in te roosteren</label>
+                <div class="col-sm-10">
+                    <select class="form-control" id="vakkenCohort" name="vakkenCohort" required multiple="multiple" size="7" style="width: 250px"/>
+                </div>
+            </div>
+            <div class="form-group row">
+<!--                inputveld datum genereren-->
+<!--                checkbox voor day part eracher-->
+<!--                als day part is checked datum/daypart opslaan-->
+<!--                als alle course-data zijn geselecteerd vak groen maken!-->
+            </div>
+
+
+
+
+
+<!--            todo nog te doen copy vakken togglen-->
+<!--            todo vak naar dag/dagdeel slepen-->
+<!--            todo een vak mag naar meerdere dagen/dagdelen gesleept worden-->
+<!--            todo als een vak in de week versleept wordt heeft dat betrekking op huidige en toekomstige weken-->
+<!--            todo vak verdelen over dag/dagdeel tot alle lesuren "op" zijn-->
+<!--            todo rooster kunnen opslaan-->
+<!--            todo rooster definitief maken-->
+<!--            todo voor geselecteerde vak roosteroptie's tonen ??-->
+<!--            todo houd rekening met niet-lesdagen nice to have-->
+<!--            todo toon pauzes nice to have-->
+
+        </fieldset>
+    </form>
+
+
+</div>
+var table = document.createElement('table');
+for (var i = 1; i < 4; i++){
+var tr = document.createElement('tr');
+
+var td1 = document.createElement('td');
+var td2 = document.createElement('td');
+
+var text1 = document.createTextNode('Text1');
+var text2 = document.createTextNode('Text2');
+
+td1.appendChild(text1);
+td2.appendChild(text2);
+tr.appendChild(td1);
+tr.appendChild(td2);
+
+table.appendChild(tr);
+}
+document.body.appendChild(table);
+
+<script>
+    // registreer eventhandlers
+    $(document).ready(function () {
+        $.ajax({
+            type: "POST",
+            url: "/cohortsToPlan",
+            contentType: "application/json; charset-utf-8",
+            dataType: "json",
+            data: "{}",
+            success: function (response) {
+                $("#cohorts2Plan").empty();
+                $("#cohorts2Plan").append('<option value="-1">Welke cohort moet gepland worden?</option>')
+                $.each(response, function (i, item) {
+                    $("#cohorts2Plan").append('<option value="">' + response[i].cohortName + '</option>');
+                });
+            }
+        });
+        $.ajax({
+            type: "POST",
+            url: "/schedulesToCopy",
+            contentType: "application/json; charset-utf-8",
+            dataType: "json",
+            data: "{}",
+            success: function (response) {
+                $("#copySchedule").empty();
+                $("#copySchedule").append('<option value="-1">Welke vakkenrooster wilt u copieren?</option>')
+                $.each(response, function (i, item) {
+                    $("#copySchedule").append('<option value="">' + response[i].cohortName + '</option>');
+                });
+            }
+        });
+    });
+    $("#cohorts2Plan").on("change", function() {
+        var selectedVal = $(this).find(':selected').val();
+        var selectedText = $(this).find(':selected').text();
+        payload = JSON.stringify({cohortName: selectedText });
+        $.ajax({
+            type: 'POST',
+            url: '/vakkenCohort',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            data: payload
+        }).done( function (response) {
+            $.each(response, function (i, item) {
+                $("#vakkenCohort").append('<option value="">' + response[i].subjectName + '</option>');
+            });
+        })
+    });
+    $("#vakkenCohort").on("change", function() {
+        var selectedText = $(this).find(':selected').text();
+        payload = JSON.stringify({subjectName: selectedText });
+        $.ajax({
+            type: 'POST',
+            url: '/weekDays',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            data: "{}"
+        }).done( function (response) {
+            var days=response;
+            $.each(days, function (i, item) {
+                // $("#vakkenCohort").append('<option value="">' + response[i].subjectName + '</option>');
+            });
+        })
+        $.ajax({
+            type: 'POST',
+            url: '/partOfDay',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            data: "{}"
+        }).done( function (response) {
+            var partsOfDay=response;
+            $.each(partsOfDay, function (i, item) {
+                // $("#vakkenCohort").append('<option value="">' + response[i].subjectName + '</option>');
+            });
+        })
+        $.ajax({
+            type: 'POST',
+            url: '/subjectInfo',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            data: payload
+        }).done( function (response) {
+            var urenVak=response['hours'];
+            });
+    });
+</script>
+<script>
+    function showCopySchedule(){
+        $("#scheduleCopy").show();
+    }
+</script>
+
+
+</body>
+</html>

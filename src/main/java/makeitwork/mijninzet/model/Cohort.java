@@ -1,13 +1,13 @@
 package makeitwork.mijninzet.model;
 
 
-import org.hibernate.annotations.SortNatural;
+import makeitwork.mijninzet.model.TeacherSchedule.CohortWeek;
+import makeitwork.mijninzet.model.preference.Subject;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.List;
 
 
 @Entity
@@ -15,6 +15,10 @@ import java.util.TreeSet;
 public class Cohort {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "cohortId")
+    private int cohortId;
+
     @Column(name = "cohortNaam", nullable = false)
     private String cohortName;
 
@@ -30,14 +34,35 @@ public class Cohort {
     @JoinColumn(name = "idgebruiker")
     private User user;
 
-    @ElementCollection
-    @SortNatural
-    @Column(name = "naamvak")
-    private SortedSet<String> subjectNames = new TreeSet<>();
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+            CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinTable(name = "cohort_vak", joinColumns = @JoinColumn(name = "cohortId"),
+            inverseJoinColumns = @JoinColumn(name = "codevak"))
+    private List<Subject> subjects;
 
-    public SortedSet<String> getSubjectNames() { return subjectNames; }
+    @OneToMany(mappedBy = "cohort",cascade= CascadeType.PERSIST)
+    private List<CohortWeek> cohortWeekList;
 
-    public void setSubjectNames(SortedSet<String> subjectNames) { this.subjectNames = subjectNames; }
+    public List<Subject> getSubjects() { return subjects; }
+
+    public void setSubjects(List<Subject> subjects) { this.subjects = subjects; }
+
+//    public List<String> getSubjectNames(){
+//        List<String> subjectNames = new ArrayList<>();
+//        for (Subject s : subjects){
+//            subjectNames.add(s.getSubjectName());
+//            }
+//        return subjectNames;
+//    }
+
+//    @ElementCollection
+//    @SortNatural
+//    @Column(name = "naamvak")
+//    private List<String> subjectNames = new ArrayList<>();
+//
+//    public List<String> getSubjectNames() { return subjectNames; }
+//
+//    public void setSubjectNames(List<String> subjectNames) { this.subjectNames = subjectNames; }
 
     public Cohort() {}
 
@@ -46,6 +71,10 @@ public class Cohort {
         this.startDate = startDate;
         this.endDate = endDate;
     }
+
+    public int getCohortId() { return cohortId; }
+
+    public void setCohortId(int cohortId) { this.cohortId = cohortId; }
 
     public User getUser() { return user; }
 
@@ -57,14 +86,26 @@ public class Cohort {
 
     public LocalDate getEndDate() { return endDate; }
 
-    public void addSubject(String subjectName) {
-        SortedSet<String> subjects = getSubjectNames();
-        if (!subjects.contains(subjectName)) subjects.add(subjectName);
+//    public void addSubject(String subjectName) {
+//        List<String> subjects = getSubjectNames();
+//        if (!subjects.contains(subjectName)) subjects.add(subjectName);
+//    }
+
+    public void addSubject(Subject subject){
+        List<Subject> subjects = getSubjects();
+        if(!subjects.contains(subject))
+            subjects.add(subject);
     }
 
-    public void removeSubject(String subjectName) {
-        SortedSet<String> subjects = getSubjectNames();
-        if (subjects.contains(subjectName)) subjects.remove(subjectName);
+//    public void removeSubject(String subjectName) {
+//        List<String> subjects = getSubjectNames();
+//        if (subjects.contains(subjectName)) subjects.remove(subjectName);
+//    }
+
+    public void removeSubject(Subject subject) {
+        List<Subject> subjects = getSubjects();
+        if (subjects.contains(subject))
+            subjects.remove(subject);
     }
 
     public void setCohortName(String cohortName) {
@@ -79,13 +120,22 @@ public class Cohort {
         this.endDate = endDate;
     }
 
+    public List<CohortWeek> getCohortWeekList() {
+        return cohortWeekList;
+    }
+
+    public void setCohortWeekList(List<CohortWeek> cohortWeekList) {
+        this.cohortWeekList = cohortWeekList;
+    }
 
     @Override
     public String toString() {
         return "Cohort{" +
-                "cohortName='" + cohortName + '\'' +
+                "cohortId=" + cohortId +
+                ", cohortName='" + cohortName + '\'' +
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
+                ", coordinator=" + user +
                 '}';
     }
 }
