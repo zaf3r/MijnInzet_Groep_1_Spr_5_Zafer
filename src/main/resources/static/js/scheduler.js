@@ -1,6 +1,7 @@
-//diverse variables
+//url variables
 var getrequestWeeksUrl;
 var getRequestDaysUrl;
+var getRequestTeacherUrl= "http://localhost:8080/api/getTeachers";
 var postRequestUrl;
 
 //Teacher Variables
@@ -40,24 +41,28 @@ var fridayEvSub  = document.querySelector('div[name="vrijdagAvondVak"]');
 //Other variables
 var cohortNaam = document.querySelector('select[name="cohortName"]');
 var cohortWeek = document.querySelector('select[name="weekNumber"]');
+var teacherNames = document.createElement("teacherNames");
 
 
+//Rest call event listeners
 $(function() {
     $(cohortNaam).on("change", cohortNaam, function () {
         getrequestWeeksUrl = "http://localhost:8080/api/cohort/weeks/"+cohortNaam.value;
         requestCallWeeks();
     });
-});
 
-$(function() {
     $(cohortWeek).on("change", cohortWeek, function () {
         getRequestDaysUrl = "http://localhost:8080/api/cohort/days/"+cohortNaam.value+"/"+cohortWeek.value;
         console.log(getRequestDaysUrl);
         requestCallDays();
     });
 
+    $( document ).ready(function () {
+        requestCallTeachers();
+    })
 });
 
+//Rest call functions
 function requestCallWeeks() {
     $(function () {
         $.getJSON(getrequestWeeksUrl, function (data) {
@@ -84,6 +89,24 @@ function requestCallDays() {
     });
 }
 
+function requestCallTeachers() {
+    $(function () {
+        $.getJSON(getRequestTeacherUrl, function (data) {
+            console.log(data);
+            data.forEach(function (teacher) {
+                var option = new Option(teacher.username, teacher.username);
+                teacherNames.append(option);
+            });
+            console.log(teacherNames);
+        }).fail(function () {
+        })
+    });
+}
+
+
+
+
+//below functions that manipulate the form
 
 //Load dropdown menu of weeks
 function loadDropDownWeeks(dropdownItems) {
