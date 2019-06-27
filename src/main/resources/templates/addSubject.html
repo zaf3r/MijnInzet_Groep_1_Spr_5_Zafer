@@ -63,7 +63,7 @@
                     <select  id="move1" name="subjectName" multiple="multiple" size="7" style="border: none">
                         <option th:each="subject: ${subjects}" th:value="${subject.subjectId}" th:text="${subject.subjectName}"></option>
                     </select><br>
-                    <div class = "delete">
+                    <div class = "delete" align="center">
                         <input type="submit" value="Delete" id="deletesubjectButton"/>
                     </div>
                 </form>

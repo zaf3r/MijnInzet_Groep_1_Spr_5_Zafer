@@ -48,8 +48,8 @@ div#buttons {
     border-style: none;
     height: 50px;
     width: 50px;
-    padding-left: 20px;
-    margin-left: 50px;
+    /*padding-left: 20px;*/
+    /*margin-left: 50px;*/
 }
 .tooltiptext {
     display: none;

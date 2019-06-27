@@ -43,9 +43,12 @@
     <div class="container">
     <form action="#" th:action="@{/teacher/taskSave/{taskId}}" th:object="${taak}" th:method="get">
         <div class="job-header-bar col-md-8 justify-content-right">
+            <div><p>&nbsp;&nbsp;&nbsp;&nbsp; Solliciteren
         <button type="submit" id="love" class="love"><i class="fas fa-thumbs-up" style="font-size: 2.5em;"></i>
             <input type="hidden" id="taskId" name="taskId" th:value="*{id}"></button>
             <span class="tooltiptext" id="showHover">Wil ik!</span>
+            </p>
+            </div>
         </div>
     </form>
 
