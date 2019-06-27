@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
+<link rel="stylesheet" type="text/css" th:href="@{/css/scheduler.css}">
 <link rel="stylesheet" type="text/css" th:href="@{/css/generic.css}"/>
 <link rel="stylesheet" type="text/css" th:href="@{/css/navbar.css}"/>
+
 
 <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -14,13 +16,11 @@
 <body>
 
 <div th:insert="~{navbar :: header}"></div>
-<br>
-<br>
-<br>
-<br>
+
 <div class="container">
     <section id="header" class="jumbotron text-center">
-        <h1>Roosterbeheer</h1>
+        <h1 id="rooster">Roosterbeheer</h1>
+        <p>Selecteer cohort en week, voeg docenten toe aan de workshops</p>
     </section>
 
 
@@ -28,10 +28,10 @@
     <div class = "select" align="center">
 
         <div>
-            <label>Selecteer cohort </label>
-                <select name="cohortName" id="cohortList" required style="width: 250px; border-color: lightgray" th:onchange="this.form.submit()">
-<!--                    <option value="">Selecteer een cohort:</option>-->
-<!--                    <option th:each="coh: ${cohorts}" th:value="${coh.cohortName}" th:text="${coh.cohortName}"></option>-->
+<!--            <label>Selecteer cohort </label>-->
+                <select name="cohortName" class="custom-select" id="select1">
+                    <option value="">Selecteer een cohort:</option>
+                    <option th:each="coh: ${cohorts}" th:value="${coh.cohortName}" th:text="${coh.cohortName}"></option>
                 </select>
 <!--        </div>-->
 
@@ -40,16 +40,16 @@
         <!--    select weeknummer-->
 <!--        <div >-->
 <!--            <form action="#" th:object="${cohorts}" th:action="@{showWeeks}" method="post">-->
-            <label>Selecteer weeknummer </label>
-            <select name="weekNumber" id="weekList" required style="width: 250px; border-color: lightgray" th:onchange="this.form.submit()">
-<!--                    <option value="">Selecteer een week:</option>-->
-<!--                    <option th:each="co: ${cohorts}" th:value="${co.weekId}" th:text="${co.weekNumber}"></option>-->
+<!--            <label>Selecteer cohort </label>-->
+            <select name="weekNumber" class="custom-select" id="select2">
+                    <option value="">Selecteer een week:</option>
+<!--                    <option th:each="coh: ${cohorts}" th:value="${coh.weekId}" th:text="${coh.weekNumber}"></option>-->
                 </select>
 <!--            </form>-->
         </div>
 
     </div>
-
+    <br>
     <!--    Table om docenten aan vakken toe te voegen-->
     <div>
 <!--        <form action="#" th:object="${teacherForm}" th:action="@{postTeacherToSchedule}" method="post" id = "teacherForm">-->

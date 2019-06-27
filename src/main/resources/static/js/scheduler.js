@@ -3,6 +3,10 @@ var getrequestWeeksUrl;
 var getRequestDaysUrl;
 var postRequestUrl;
 
+//diverse variables
+var noTeacher = "geen docent";
+var noSubject = "vacant";
+
 //Teacher Variables
 var mondayMoTeach = document.querySelector('option[name="maandagOchtendDocent"]');
 var mondayAfTeach = document.querySelector('option[name="maandagMiddagDocent"]');
@@ -178,7 +182,7 @@ function loadFridaySubs(courseScheduleSubArray) {
 
 //teacher functions
 function loadMondayTeach(courseScheduleTeachArray) {
-    courseScheduleTeachArray.forEach(function(tech) {
+    courseScheduleTeachArray.forEach(function(teach) {
             if(teach.weekday === "MONDAY") {
                 mondayMoTeach.value = teach.morning;
                 mondayAfTeach.value = teach.afternoon;
@@ -189,7 +193,7 @@ function loadMondayTeach(courseScheduleTeachArray) {
 }
 
 function loadTuesdayTeach(courseScheduleTeachArray) {
-    courseScheduleTeachArray.forEach(function(tech) {
+    courseScheduleTeachArray.forEach(function(teach) {
             if(teach.weekday === "TUESDAY") {
                 tuesdayMoTeach.value = teach.morning;
                 tuesdayAfTeach.value = teach.afternoon;
@@ -200,7 +204,7 @@ function loadTuesdayTeach(courseScheduleTeachArray) {
 }
 
 function loadWednesdayTeach(courseScheduleTeachArray) {
-    courseScheduleTeachArray.forEach(function(tech) {
+    courseScheduleTeachArray.forEach(function(teach) {
             if(teach.weekday === "WEDNESDAY") {
                 wednesdayMoTeach.value = teach.morning;
                 wednesdayAfTeach.value = teach.afternoon;
@@ -211,7 +215,7 @@ function loadWednesdayTeach(courseScheduleTeachArray) {
 }
 
 function loadThursdayTeach(courseScheduleTeachArray) {
-    courseScheduleTeachArray.forEach(function(tech) {
+    courseScheduleTeachArray.forEach(function(teach) {
             if(teach.weekday === "THURSDAY") {
                 thursdayMoTeach.value = teach.morning;
                 thursdayAfTeach.value = teach.afternoon;
@@ -223,7 +227,7 @@ function loadThursdayTeach(courseScheduleTeachArray) {
 
 
 function loadFridayTeach(courseScheduleTeachArray) {
-    courseScheduleTeachArray.forEach(function(tech) {
+    courseScheduleTeachArray.forEach(function(teach) {
             if(teach.weekday === "FRIDAY") {
                 fridayMoTeach.value = teach.morning;
                 fridayAfTeach.value = teach.afternoon;
