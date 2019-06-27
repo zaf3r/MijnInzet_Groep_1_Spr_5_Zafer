@@ -28,7 +28,7 @@ public class VacatureService {
     //    lijst met vacatures van een Docent: zijn lijst met taken
     public List<Task> getAllTasks(User user){
         List<Task> tasks = new ArrayList<>();
-        for (Task taskId: user.getTask()) {
+        for (Task taskId: user.getTasks()) {
             Task task = getTask(taskId.getId());
             tasks.add(task);
         }
@@ -38,7 +38,7 @@ public class VacatureService {
     //save Vacature in DB SQL
     public void addTask(Task task, User user){
         task.getUsers().add(user);
-        user.getTask().add(task);
+        user.getTasks().add(task);
         vacatureRepository.save(user);
         taskRepository.save(task);
     }
@@ -49,12 +49,8 @@ public class VacatureService {
 //        vacatureRepository.save(user);
 //    }
 
-//    public User getUser(int userId){
-//        return vacatureRepository.findUserById(userId);
-//    }
 
     // voor de MANAGER: lijst met tasks en users die gesolliciteerd hebben (lijst sollicitanten)
-
     public List<Task> allApplications() {
         List<Task> allTasks = taskRepository.findAll();
         Iterator<Task> iter = allTasks.iterator();

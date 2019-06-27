@@ -131,12 +131,16 @@ public class User implements Comparable{
         if (!approvedTasks.contains(sollicitatie)) approvedTasks.add(sollicitatie);
     }
 
-    @ElementCollection
-    @SortNatural
-    @Column(name = "vac")
+//    @ElementCollection
+//    @SortNatural
+//    @Column(name = "vac")
+    @ManyToMany
+    @JoinTable(name = "gewildeTaken",
+            joinColumns = @JoinColumn(name = "userid"),
+            inverseJoinColumns = @JoinColumn(name = "taskId"))
     private List<Task> task;
 
-    public List<Task> getTask() {
+    public List<Task> getTasks() {
         return task;
     }
 
@@ -146,13 +150,13 @@ public class User implements Comparable{
 
     //sollicitatie aan de lijst toevoegen
     public void addApplication(Task vacature) {
-        List<Task> vacatures = getTask();
+        List<Task> vacatures = getTasks();
         if (!vacatures.contains(vacature)) vacatures.add(vacature);
     }
 
 
 //    public void removeApplication(int vacature) {
-//        SortedSet<Integer> vacatures = getTask();
+//        SortedSet<Integer> vacatures = getTasks();
 //        if (vacatures.contains(vacature)) vacatures.remove(vacature);
 //    }
 

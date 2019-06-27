@@ -62,7 +62,7 @@ public class VacatureController implements  RetrieveUserRole{
     @GetMapping("/myTasks")
     public String MyTaskHandler(Model model, Principal principal) {
         User user = usersRepository.findByUsername(principal.getName());
-        model.addAttribute("myTasks", myTaskList(user));
+        model.addAttribute("myTasks", user.getTasks());
         Role role = retrieveRole(usersRepository,principal);
         model.addAttribute("roleUser", role);
         return "myTasks";
@@ -116,15 +116,17 @@ public class VacatureController implements  RetrieveUserRole{
         return elapsedDays;
     }
 
-        public List<Task> myTaskList(User sol) {
+        public List<Task> myWantedTaskList(User sol) {
         List<Task> tasks = allTasks();
-        List<Task> myTasks = vacatureService.getAllTasks(sol);
+        List<Task> myTasks = sol.getTasks();
+            System.out.println(myTasks);
         List<Task> possibleTasks = new ArrayList<>();
         for (Task t : myTasks) {
             if (!doesContaine(t, tasks)) {
                 possibleTasks.add(t);
             }
         }
+            System.out.println("zijn gewenste taken lijst is:" + possibleTasks);
         return possibleTasks;
     }
 

@@ -29,10 +29,30 @@
                             <tr>
                                 <td id = "taskTitle" th:text="${task.titel}"></td>
 
-                                <td th:each="user : ${task.users}">
-                                <span  id = "userName" th:text="${user.username}"></span>
-                                    <input type="hidden" id="userId" name="userId" th:value="${user.id}"/>
+                               <td>
+                                    <span th:each="user : ${task.users}">
+                                        <option th:text="${user.username}" th:value="${user.username}"></option>
+                                          <input type="hidden" id="userId" name="userId" th:value="${user.id}"/>
+                                    </span>
+
+<!--                                   -->
+<!--                                   -->
+
+<!--                                            <option th:each="user : ${task.users}" id = "userName" th:text="${user.username}" th:value="${user.id}">-->
+<!--                                            </option>-->
+<!--&lt;!&ndash;                                        <input type="hidden" id="userId" name="userId" th:value="${user.username}""/>&ndash;&gt;-->
+<!--                                    </select>-->
+
                                 </td>
+
+
+
+
+
+<!--                                <td th:each="user : ${task.users}">-->
+<!--                                        <span id = "userName" th:text="${user.username}"></span>-->
+<!--                                        <input type="hidden" id="userId" name="userId" th:value="${user.id}"/>-->
+<!--                                </td>-->
 
                                 <td th:text ="${task.getTaskStatus()}"></td>
                                 <td>
@@ -47,7 +67,7 @@
                                 <td><button type="submit" value="Opslaan" id="opslaanSolliciatie">
                                 <input type="hidden" id="taskId" name="taskId" th:value="*{id}"/></button>
                                 </td>
-                                //let op: submit weghalen is ik toch Ajax wil gebruiken
+
                             </tr>
                         </form>
 
@@ -61,67 +81,5 @@
         </div>
 </section>
 </div>
-
-<!--<script>-->
-
-<!--        var button = document.getElementById("opslaanSolliciatie").addEventListener("click",-->
-
-<!--        function(event) {-->
-<!--            event.preventDefault();-->
-<!--            console.log("default prevenbted");-->
-<!--            alert("jsjsjs");-->
-<!--            var taskTitle = document.getElementById("taskTitle").value;-->
-<!--            var userName = document.getElementById("userName").value;-->
-<!--            var statusTask = document.getElementById("status").value;-->
-
-<!--            var url = "/manager/saveSollicitaties";-->
-
-<!--            var request = new XMLHttpRequest();-->
-<!--            request.open('POST', url, true);-->
-<!--            request.setRequestHeader('Content-Type', 'application/json');-->
-<!--            console.log(request);-->
-
-
-<!--            var data = {titel : taskTitle, userName: userName, status: statusTask};-->
-
-<!--            console.log (JSON.stringify(data));-->
-
-<!--            request.send(JSON.stringify(data));-->
-
-<!--            request.onreadystatechange = function() {-->
-
-<!--                if(request.readyState === XMLHttpRequest.DONE){-->
-
-<!--                    if(request.status === 200){-->
-<!--                        console.log(request.response);-->
-<!--                    } else {-->
-<!--                        alert("iets ging fout")-->
-<!--                        console.log(request.status)-->
-<!--                    }-->
-<!--                    }-->
-<!--                }-->
-<!--        });-->
-
-            // $("#applicationform").on("change", function () {
-            //
-            //     var formData = {
-            //         taskTitle: $("#taskTitle").val(),
-            //         userName: $("#userName").val(),
-            //         statusTask: $(this).find(':selected').text();
-            //
-            // }
-            //     payload = JSON.stringify(formData);
-            //
-            //     $.ajax({
-            //         type: "get",
-            //         contentType: "application/json; charset=utf-8",
-            //         url: "/manager/saveSollicitaties/{status}",
-            //         dataType: "json",
-            //         data: payload
-            //     }).done(function (response) {
-            //             console.log (response)
-            //         })
-            // });
-<!--// </script>-->
 </body>
 </html>

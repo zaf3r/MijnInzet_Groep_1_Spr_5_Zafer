@@ -68,10 +68,6 @@ div#buttons {
 
 }
 
-/*.job-header-bar {*/
-/*    margin-left: 50%;*/
-/*}*/
-
 #saveTask {
     background-color: yellow;
     height: 40px;
@@ -159,4 +155,18 @@ h2.description {
 #message {
     width: 200px;
     height: 200px;
+}
+
+#linkButton {
+    background-color: #FFBEBE;
+    border-style: none;
+    border-radius: 4px;
+    margin: 0 10px 30px 5px;
+    padding: 8px 12px 8px 12px;
+    color: #444444;
+    font-family: "Open Sans", sans-serif;
+}
+
+#link {
+    padding-top: 20px;
 }
