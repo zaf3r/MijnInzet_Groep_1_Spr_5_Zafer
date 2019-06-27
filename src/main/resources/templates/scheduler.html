@@ -29,9 +29,9 @@
 
         <div>
             <label>Selecteer cohort </label>
-                <select name="cohortName" id="cohortList" required style="width: 250px; border-color: lightgray" th:onchange="this.form.submit()">
-<!--                    <option value="">Selecteer een cohort:</option>-->
-<!--                    <option th:each="coh: ${cohorts}" th:value="${coh.cohortName}" th:text="${coh.cohortName}"></option>-->
+                <select name="cohortName" id="cohortList" required style="width: 250px; border-color: lightgray">
+                    <option value="">Selecteer een cohort:</option>
+                    <option th:each="coh: ${cohorts}" th:value="${coh.cohortName}" th:text="${coh.cohortName}"></option>
                 </select>
 <!--        </div>-->
 
@@ -41,7 +41,7 @@
 <!--        <div >-->
 <!--            <form action="#" th:object="${cohorts}" th:action="@{showWeeks}" method="post">-->
             <label>Selecteer weeknummer </label>
-            <select name="weekNumber" id="weekList" required style="width: 250px; border-color: lightgray" th:onchange="this.form.submit()">
+            <select name="weekNumber" id="weekList" required style="width: 250px; border-color: lightgray">
 <!--                    <option value="">Selecteer een week:</option>-->
 <!--                    <option th:each="co: ${cohorts}" th:value="${co.weekId}" th:text="${co.weekNumber}"></option>-->
                 </select>
