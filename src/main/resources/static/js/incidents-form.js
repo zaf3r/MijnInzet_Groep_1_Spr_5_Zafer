@@ -110,7 +110,7 @@ function postCall() {
              mondayMo.value = day.morning;
              mondayMo.parentNode.classList = day.morning;
              mondayAf.value = day.afternoon;
-             mondayAf.parentNode.classList = day.evening;
+             mondayAf.parentNode.classList = day.afternoon;
              mondayEv.value = day.evening;
              mondayEv.parentNode.classList = day.evening;
             }
