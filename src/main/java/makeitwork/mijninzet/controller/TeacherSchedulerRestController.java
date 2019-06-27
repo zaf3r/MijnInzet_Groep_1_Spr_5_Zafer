@@ -1,9 +1,11 @@
 package makeitwork.mijninzet.controller;
 
 import makeitwork.mijninzet.model.Cohort;
+import makeitwork.mijninzet.model.Role;
 import makeitwork.mijninzet.model.TeacherSchedule.CohortDay;
 import makeitwork.mijninzet.model.TeacherSchedule.CohortWeek;
 import makeitwork.mijninzet.model.TeacherSchedule.CohortWeekDTO;
+import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.repository.CohortRepository;
 import makeitwork.mijninzet.repository.CohortWeekRepository;
 import makeitwork.mijninzet.repository.UserRepository;
@@ -18,6 +20,8 @@ import java.util.List;
 @RequestMapping("/api")
 public class TeacherSchedulerRestController {
 
+    final Role TEACHER_ROLE = new Role(1, "Docent");
+
     final private CohortDay COHORT_DAY_LOADER = new CohortDay();
 
     @Autowired
@@ -28,6 +32,11 @@ public class TeacherSchedulerRestController {
 
     @Autowired
     UserRepository userRepository;
+
+    @GetMapping("/getTeachers")
+    public List<User> findTeacherListHandler() {
+        return userRepository.findAllByRole(TEACHER_ROLE);
+    }
 
     @GetMapping("/cohort/weeks/{cohortName}")
     public List<Long> findCohortWeeksHandler(@PathVariable("cohortName") String cohortNaam) {
