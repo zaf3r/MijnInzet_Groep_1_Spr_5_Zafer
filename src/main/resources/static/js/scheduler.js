@@ -190,5 +190,3 @@ function loadFridayTeach(courseScheduleTeachArray) {
 }
 
 
-
-EventListeners
