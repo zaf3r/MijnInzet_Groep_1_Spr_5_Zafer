@@ -41,7 +41,7 @@ var fridayEvSub  = document.querySelector('div[name="vrijdagAvondVak"]');
 //Other variables
 var cohortNaam = document.querySelector('select[name="cohortName"]');
 var cohortWeek = document.querySelector('select[name="weekNumber"]');
-var teacherNames = document.createElement("teacherNames");
+var teacherNames = document.createElement("select");
 
 
 //Rest call event listeners
@@ -77,7 +77,6 @@ function requestCallWeeks() {
 function requestCallDays() {
     $(function () {
         $.getJSON(getRequestDaysUrl, function (data) {
-            console.log(data);
             loadMondayTeach(data);
             loadTuesdayTeach(data);
             loadWednesdayTeach(data);
@@ -103,9 +102,6 @@ function requestCallTeachers() {
     });
 }
 
-
-
-
 //below functions that manipulate the form
 
 //Load dropdown menu of weeks
@@ -117,6 +113,78 @@ function loadDropDownWeeks(dropdownItems) {
         var option = new Option(item, item);
         $(cohortWeek).append(option);
     })
+}
+
+//teacher functions
+function loadMondayTeach(courseScheduleTeachArray) {
+    courseScheduleTeachArray.forEach(function(data) {
+            if(data.dayOfWeek === "MONDAY") {
+                mondayMoTeach.innerHTML = teacherNames.innerHTML;
+                mondayMoTeach.value = data.teacherMorning.username;
+                mondayAfTeach.innerHTML = teacherNames.innerHTML;
+                mondayAfTeach.value = data.teacherAfternoon.username;
+                mondayEvTeach.innerHTML = teacherNames.innerHTML;
+                mondayEvTeach.value = data.teacherEvening.username;
+            }
+        }
+    )
+}
+
+function loadTuesdayTeach(courseScheduleTeachArray) {
+    courseScheduleTeachArray.forEach(function(data) {
+            if(data.dayOfWeek === "TUESDAY") {
+                tuesdayMoTeach.innerHTML = teacherNames.innerHTML;
+                tuesdayMoTeach.value = data.teacherMorning.username;
+                tuesdayAfTeach.innerHTML = teacherNames.innerHTML;
+                tuesdayAfTeach.value = data.teacherAfternoon.username;
+                tuesdayEvTeach.innerHTML = teacherNames.innerHTML;
+                tuesdayEvTeach.value = data.teacherEvening.username;
+            }
+        }
+    )
+}
+
+
+function loadWednesdayTeach(courseScheduleTeachArray) {
+    courseScheduleTeachArray.forEach(function(data) {
+        if(data.dayOfWeek === "WEDNESDAY") {
+            wednesdayMoTeach.innerHTML = teacherNames.innerHTML;
+            wednesdayMoTeach.value = data.teacherMorning.username;
+            wednesdayAfTeach.innerHTML = teacherNames.innerHTML;
+            wednesdayAfTeach.value = data.teacherAfternoon.username;
+            wednesdayEvTeach.innerHTML = teacherNames.innerHTML;
+            wednesdayEvTeach.value = data.teacherEvening.username;
+            }
+        }
+    )
+}
+
+function loadThursdayTeach(courseScheduleTeachArray) {
+    courseScheduleTeachArray.forEach(function(data) {
+        if(data.dayOfWeek === "THURSDAY") {
+            thursdayMoTeach.innerHTML = teacherNames.innerHTML;
+            thursdayMoTeach.value = data.teacherMorning.username;
+            thursdayAfTeach.innerHTML = teacherNames.innerHTML;
+            thursdayAfTeach.value = data.teacherAfternoon.username;
+            thursdayEvTeach.innerHTML = teacherNames.innerHTML;
+            thursdayEvTeach.value = data.teacherEvening.username;
+            }
+        }
+    )
+}
+
+function loadFridayTeach(courseScheduleTeachArray) {
+    courseScheduleTeachArray.forEach(function(data) {
+        if(data.dayOfWeek === "FRIDAY") {
+            fridayMoTeach.innerHTML = teacherNames.innerHTML;
+            fridayMoTeach.value = data.teacherMorning.username;
+            fridayAfTeach.innerHTML = teacherNames.innerHTML;
+            fridayAfTeach.value = data.teacherAfternoon.username;
+            fridayEvTeach.innerHTML = teacherNames.innerHTML;
+            fridayEvTeach.value = data.teacherEvening.username;
+            }
+        }
+    )
 }
 
 //subject functions
@@ -199,69 +267,6 @@ function loadFridaySubs(courseScheduleSubArray) {
                 else
                     fridayEvSub.value = sub.evening;
                 fridayEvSub.parentNode.classList = sub.evening;
-            }
-        }
-    )
-}
-
-
-//teacher functions
-function loadMondayTeach(courseScheduleTeachArray) {
-
-    courseScheduleTeachArray.forEach(function(data) {
-            if(data.dayOfWeek === "MONDAY") {
-                var firstOption = new Option(data.teacherMorning.username, data.teacherMorning.username);
-                $(mondayMoTeach).append(firstOption);
-
-                var firstOption = new Option(data.teacherMorning.username, data.teacherMorning.username);
-                $(mondayAfTeach).append(firstOption);
-
-                var firstOption = new Option(data.teacherMorning.username, data.teacherMorning.username);
-                $(mondayEvTeach).append(firstOption);
-            }
-        }
-    )
-}
-
-function loadTuesdayTeach(courseScheduleTeachArray) {
-    courseScheduleTeachArray.forEach(function(teach) {
-            if(teach.weekday === "TUESDAY") {
-                tuesdayMoTeach.value = teach.morning;
-                tuesdayAfTeach.value = teach.afternoon;
-                tuesdayEvTeach.value = teach.evening;
-            }
-        }
-    )
-}
-
-function loadWednesdayTeach(courseScheduleTeachArray) {
-    courseScheduleTeachArray.forEach(function(teach) {
-            if(teach.weekday === "WEDNESDAY") {
-                wednesdayMoTeach.value = teach.morning;
-                wednesdayAfTeach.value = teach.afternoon;
-                wednesdayEvTeach.value = teach.evening;
-            }
-        }
-    )
-}
-
-function loadThursdayTeach(courseScheduleTeachArray) {
-    courseScheduleTeachArray.forEach(function(teach) {
-            if(teach.weekday === "THURSDAY") {
-                thursdayMoTeach.value = teach.morning;
-                thursdayAfTeach.value = teach.afternoon;
-                thursdayEvTeach.value = teach.evening;
-            }
-        }
-    )
-}
-
-function loadFridayTeach(courseScheduleTeachArray) {
-    courseScheduleTeachArray.forEach(function(teach) {
-            if(teach.weekday === "FRIDAY") {
-                fridayMoTeach.value = teach.morning;
-                fridayAfTeach.value = teach.afternoon;
-                fridayEvTeach.value = teach.evening;
             }
         }
     )
