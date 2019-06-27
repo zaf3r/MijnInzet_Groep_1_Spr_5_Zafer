@@ -15,6 +15,9 @@
     <title>Jouw takenoverzicht</title>
 
 </head>
+<div th:if="${roleUser.roleName == 'Terminator'}">
+    <header th:insert="~{navbar :: header}"></header>
+</div>
 <div th:if="${roleUser.roleName == 'Docent'}">
     <header th:insert="~{navbarDocent :: header}"></header>
 </div>

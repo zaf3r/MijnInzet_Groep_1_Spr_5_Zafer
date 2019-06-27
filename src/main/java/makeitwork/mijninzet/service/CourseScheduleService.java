@@ -117,10 +117,18 @@ public class CourseScheduleService implements RetrieveUserRole {
     public Cohort fullCohort(Cohort cohort){
         return cohortRepository.findByCohortName(cohort.getCohortName());
     }
+//    public List<Subject> vakkenCohort(Cohort cohort){
+//        List<Subject> subjects=new ArrayList<>();
+//        for (String name:fullCohort(cohort).getSubjectNames()) {
+//            subjects.add(subjectRepository.findBySubjectName(name));
+//        }
+//        return subjects;
+//    }
+
     public List<Subject> vakkenCohort(Cohort cohort){
         List<Subject> subjects=new ArrayList<>();
-        for (String name:fullCohort(cohort).getSubjectNames()) {
-            subjects.add(subjectRepository.findBySubjectName(name));
+        for (Subject subject:fullCohort(cohort).getSubjects()) {
+            subjects.add(subject);
         }
         return subjects;
     }

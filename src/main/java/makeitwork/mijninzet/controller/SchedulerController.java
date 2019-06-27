@@ -1,10 +1,11 @@
 package makeitwork.mijninzet.controller;
 
 import makeitwork.mijninzet.model.Cohort;
+import makeitwork.mijninzet.model.Role;
 import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.model.preference.Subject;
 import makeitwork.mijninzet.repository.CohortRepository;
-import makeitwork.mijninzet.repository.SubjectRepository;
+import makeitwork.mijninzet.repository.CourseScheduleRepository;
 import makeitwork.mijninzet.repository.UserRepository;
 import makeitwork.mijninzet.service.CohortService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,35 +16,49 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.persistence.Transient;
+import java.security.Principal;
 import java.util.List;
 
 @Controller
 @RequestMapping("/scheduler")
-public class SchedulerController {
-
+public class SchedulerController implements RetrieveUserRole{
 
     @Autowired
-    private SubjectRepository subRepo;
+    UserRepository userRepository;
+//    @Autowired
+//    private SubjectRepository subRepo;
     @Autowired
     private CohortRepository coRepo;
     @Autowired
     private CohortService cohortRepo;
     @Autowired
     private UserRepository userRepo;
+    @Autowired
+    private CourseScheduleRepository coSchRepo;
+
+
+    @Transient
+    private final String TEACHER = "Docent";
+    @Transient
+    private final String NOSUBJECT = "Vacant";
 
     private String selectedCohort;
     private String selectedTeacher;
     //private List<User> selectedTeacherList;
     private List<Subject> selectedSubject;
+    //private List<Week> selectedWeek;
 
 
     @GetMapping("/vakdocent")
-    public String teacherHandler(Model model){
+    public String teacherHandler(Model model, Principal principal){
         //maybe create a new set for each subject?
         model.addAttribute("cohorts", getAllCohorts());
         model.addAttribute("allTeachers", getTeachters());
-        model.addAttribute("teachers", selectedTeacher);
-        model.addAttribute("subjects", selectedSubject);
+        //model.addAttribute("teachers", selectedTeacher);
+        //model.addAttribute("subjects", selectedSubject);
+        Role role = retrieveRole(userRepo,principal);
+        model.addAttribute("roleUser", role);
         return "vakdocent";
     }
 
@@ -53,14 +68,23 @@ public class SchedulerController {
     }
 
     public List<User> getTeachters(){
-        List<User> allTeachers = cohortRepo.teacherList();
+        List<User> allTeachers = cohortRepo.userList(TEACHER);
         return allTeachers;
     }
 
+
+
+    //dit is niet langer een list in een drop down menu maar een stuk tekst in elk vakje.
     public List<Subject> selectedSubjectsList(Cohort cohort){
         List<Subject> selectedSubjects = cohortRepo.getAllSubjects(cohort);
         return selectedSubjects;
     }
+
+//    public List<Weeks> getWeeks(Cohort cohort){
+//        List<Weeks> allWeeksInCohort = cohortRepo.getWeekList(cohort);
+//        return allWeeksInCohort;
+//    }
+
 
 //    @PostMapping("/showSubjects")
 //    public String showSubjects(@RequestParam("cohortName") String cohortName){
@@ -80,8 +104,16 @@ public class SchedulerController {
         return "redirect:/roosteraar/vakdocent";
     }
 
+//    @PostMapping("/showWeeks")
+//    public int showWeeks(@RequestParam("weekId") int weekId, Model model) {
+//        Cohort cohort = cohortRepo.findByCohortName(cohortName);
+//        selectedCohort = cohortName;
+//        model.addAttribute("cohortName", selectedCohort);
+//        weekList(cohort);
+//        return "return:/roosteraar/vakdocent";
+//    }
 
-//    @PostMapping("/postTeacherToSubject")
+//    @PostMapping("/postTeacherToSchedule")
 //    public String postTeachers(@RequestParam("teacherName") String teacherName){
 //        User user = userRepo.findByUsername(teacherName);
 //        cohort.setUser(teacherName);
@@ -93,6 +125,8 @@ public class SchedulerController {
     public void subjectList(Cohort cohort){
         selectedSubject = selectedSubjectsList(cohort);
     }
+
+    //public void weekList(CourseSchedule weeks) { selectedWeek = selectedWeekList(weeks); }
 
 
 }
