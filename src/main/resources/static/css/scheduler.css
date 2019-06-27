@@ -57,7 +57,7 @@ th, td {
 select {
     position: static;
     /*margin-bottom: 30px;*/
-    width: 30%;
+    width: 100%;
 
 }
 

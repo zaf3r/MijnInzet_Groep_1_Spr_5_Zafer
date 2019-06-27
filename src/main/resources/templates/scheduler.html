@@ -28,31 +28,25 @@
     <div class = "select" align="center">
 
         <div>
-<!--            <label>Selecteer cohort </label>-->
                 <select name="cohortName" class="custom-select" id="select1">
                     <option value="">Selecteer een cohort:</option>
                     <option th:each="coh: ${cohorts}" th:value="${coh.cohortName}" th:text="${coh.cohortName}"></option>
                 </select>
-<!--        </div>-->
+
 
 
 
         <!--    select weeknummer-->
-<!--        <div >-->
-<!--            <form action="#" th:object="${cohorts}" th:action="@{showWeeks}" method="post">-->
-<!--            <label>Selecteer cohort </label>-->
             <select name="weekNumber" class="custom-select" id="select2">
                     <option value="">Selecteer een week:</option>
-<!--                    <option th:each="coh: ${cohorts}" th:value="${coh.weekId}" th:text="${coh.weekNumber}"></option>-->
                 </select>
-<!--            </form>-->
+
         </div>
 
     </div>
     <br>
     <!--    Table om docenten aan vakken toe te voegen-->
     <div>
-<!--        <form action="#" th:object="${teacherForm}" th:action="@{postTeacherToSchedule}" method="post" id = "teacherForm">-->
             <table id = "docentTabel">
                 <tr>
                     <th></th>
@@ -70,27 +64,27 @@
                     </th>
                     <td >
                         <div name="maandagOchtendVak"></div>
-                        <select name="maandagOchtendDocent" required>
+                        <select name="maandagOchtendDocent" class="custom-select" required>
                         </select>
                     </td>
                     <td >
                         <div name="dinsdagOchtendVak"></div>
-                        <select name="dinsdagOchtendDocent" required>
+                        <select name="dinsdagOchtendDocent" class="custom-select" required>
                         </select>
                     </td>
                     <td>
                         <div name="woensdagOchtendVak" ></div>
-                        <select name="woensdagOchtendDocent" required>
+                        <select name="woensdagOchtendDocent" class="custom-select" required>
                         </select>
                     </td>
                     <td >
                         <div name="donderdagOchtendVak"></div>
-                        <select name="donderdagOchtendDocent" required>
+                        <select name="donderdagOchtendDocent" class="custom-select" required>
                         </select>
                     </td>
                     <td>
                         <div name="vrijdagOchtendVak"></div>
-                        <select name="vrijdagOchtendDocent" required>
+                        <select name="vrijdagOchtendDocent" class="custom-select" required>
                         </select>
                     </td>
                 </tr>
@@ -102,27 +96,27 @@
                     </th>
                     <td>
                         <div name="maandagMiddagVak"></div>
-                        <select name="maandagMiddagDocent" required>
+                        <select name="maandagMiddagDocent" class="custom-select" required>
                         </select>
                     </td>
                     <td>
                         <div name="dinsdagMiddagVak"></div>
-                        <select name="dinsdagMiddagDocent" required>
+                        <select name="dinsdagMiddagDocent" class="custom-select" required>
                         </select>
                     </td>
                     <td>
                         <div name="woensdagMiddagVak"></div>
-                        <select name="woensdagMiddagDocent" required>
+                        <select name="woensdagMiddagDocent" class="custom-select" required>
                         </select>
                     </td>
                     <td>
                         <div name="donderdagMiddagVak"></div>
-                        <select name="donderdagMiddagDocent" required>
+                        <select name="donderdagMiddagDocent" class="custom-select" required>
                         </select>
                     </td>
                     <td >
                         <div name="vrijdagMiddagVak"></div>
-                        <select name="vrijdagMiddagDocent" required>
+                        <select name="vrijdagMiddagDocent" class="custom-select" required>
                         </select>
                     </td>
                 </tr>
@@ -134,34 +128,34 @@
                     </th>
                     <td >
                         <div name="maandagAvondVak"></div>
-                        <select name="maandagAvondDocent" required>
+                        <select name="maandagAvondDocent" class="custom-select" required>
                         </select>
                     </td>
                     <td>
                         <div name="dinsdagAvondVak"></div>
-                        <select name="dinsdagAvondDocent" required>
+                        <select name="dinsdagAvondDocent" class="custom-select" required>
                         </select>
                     </td>
                     <td>
                         <div name="woensdagAvondVak"></div>
-                        <select name="woensdagAvondDocent" required>
+                        <select name="woensdagAvondDocent" class="custom-select" required>
                         </select>
                     </td>
                     <td>
                         <div name="donderdagAvondVak"></div>
-                        <select name="donderdagAvondDocent" required>
+                        <select name="donderdagAvondDocent" class="custom-select" required>
                         </select>
                     </td>
                     <td>
                         <div name="vrijdagAvondVak"></div>
-                        <select name="vrijdagAvondDocent" required>
+                        <select name="vrijdagAvondDocent" class="custom-select" required>
                         </select>
                     </td>
                 </tr>
             </table>
 
             <button id="button" type="button" class="btn btn-success"> Opslaan</button>
-<!--        </form>-->
+
     </div>
     <br>
     <br>
