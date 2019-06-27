@@ -52,7 +52,6 @@ public class VacatureController {
         return "redirect:/teacher/taskOverview";
     }
 
-//TODO checken versie Baseet
     @GetMapping("/myTasks")
     public String MyTaskHandler(Model model, Principal principal) {
         User user = usersRepository.findByUsername(principal.getName());
@@ -128,5 +127,13 @@ public class VacatureController {
         }
         return false;
     }
+
+    //    @PostMapping("/taskDelete/{taskId}")
+//    public String DeleteTaskHandler(@ModelAttribute("myTask") Task myTask, @RequestParam("taskId") String taakId, Principal principal){
+//        myTask = opening(taakId);
+//        System.out.println(myTask);
+//        vacatureService.removeTask(myTask, usersRepository.findByUsername(principal.getName()));
+//        return "redirect:/myTasks";
+//    }
 
 }

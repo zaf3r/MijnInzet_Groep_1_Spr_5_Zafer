@@ -1,7 +1,5 @@
 package makeitwork.mijninzet.controller;
 
-import com.mongodb.BasicDBObject;
-import makeitwork.mijninzet.model.SollicitatieDTO;
 import makeitwork.mijninzet.model.Task;
 import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.repository.TaskRepository;
