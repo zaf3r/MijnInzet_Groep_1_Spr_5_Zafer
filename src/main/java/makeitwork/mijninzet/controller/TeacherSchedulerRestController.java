@@ -55,7 +55,7 @@ public class TeacherSchedulerRestController {
         return cohortWeek.getCohortDayList();
     }
 
-    @PostMapping("/saveSubjectSchule")
+    @PostMapping("/saveTeacherSchedule")
     public void saveIncidentListHandler(@RequestBody CohortWeekDTO cohortWeekDTO) {
         Cohort cohort = cohortRepository.findByCohortName(cohortWeekDTO.getCohort());
         CohortWeek cohortWeek = cohortWeekRepository.findCohortWeekByCohortAndWeekNumber(cohort, cohortWeekDTO.getWeekNumber());

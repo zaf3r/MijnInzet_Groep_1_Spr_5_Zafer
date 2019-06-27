@@ -203,6 +203,7 @@ public class CohortController implements RetrieveUserRole {
                 cohortDay.setTeacherAfternoon(retrieveDefaultTeacher());
                 cohortDay.setTeacherEvening(retrieveDefaultTeacher());
                 cohortDay.setCohortWeek(cohortWeek);
+                cohortDay.setDayOfWeek(dayOfWeek);
                 cohortDayList.add(cohortDay);
             }
         }
