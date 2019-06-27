@@ -175,7 +175,7 @@ public class CohortController implements RetrieveUserRole {
             CohortWeek cohortWeek = new CohortWeek();
             cohortWeek.setCohort(cohort);
             cohortWeek.setWeekNumber(weekNumber);
-            cohortWeek.setCohortDayList(generateCohortDays(startDate));
+            cohortWeek.setCohortDayList(generateCohortDays(startDate, cohortWeek));
             cohortWeekList.add(cohortWeek);
 
             startDate = startDate.plusWeeks(WEEK_INCREMENTATION);
@@ -190,7 +190,7 @@ public class CohortController implements RetrieveUserRole {
         return userRepository.findByUsername(USERNAME_DEFAULT_USER);
     }
 
-    public List<CohortDay> generateCohortDays(LocalDate date) {
+    public List<CohortDay> generateCohortDays(LocalDate date, CohortWeek cohortWeek) {
         List<CohortDay> cohortDayList = new ArrayList<>();
 
         for (DayOfWeek dayOfWeek : DayOfWeek.values()) {
@@ -202,6 +202,8 @@ public class CohortController implements RetrieveUserRole {
                 cohortDay.setTeacherMorning(retrieveDefaultTeacher());
                 cohortDay.setTeacherAfternoon(retrieveDefaultTeacher());
                 cohortDay.setTeacherEvening(retrieveDefaultTeacher());
+                cohortDay.setCohortWeek(cohortWeek);
+                cohortDay.setDayOfWeek(dayOfWeek);
                 cohortDayList.add(cohortDay);
             }
         }

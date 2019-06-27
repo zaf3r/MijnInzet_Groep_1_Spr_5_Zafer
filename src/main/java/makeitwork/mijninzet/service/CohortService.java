@@ -74,6 +74,8 @@ public class CohortService {
 //        }
 //        return coordinators;
 //    }
+
+
     public List<User> userList(String roleType){
         List<User> userList = new ArrayList<>();
         List<User> users = userRepository.findAll();
@@ -85,16 +87,6 @@ public class CohortService {
         return userList;
     }
 
-    public List<User> teacherList(){
-        List<User> teachers = new ArrayList<>();
-        List<User> users = userRepository.findAll();
-        for (User user : users){
-            List<Role> roles = user.getRole();
-            if (roles.contains(roleRepository.findByRoleName(TEACHER)))
-                teachers.add(user);
-        }
-        return teachers;
-    }
 
     public Cohort getCohort(String name){
         return cohortRepository.findByCohortName(name);

@@ -3,6 +3,7 @@
 <html lang="en">
 <link rel="stylesheet" type="text/css" th:href="@{/css/generic.css}"/>
 <link rel="stylesheet" type="text/css" th:href="@{/css/navbar.css}"/>
+<script type="text/javascript" src="/js/scheduler.js" th:src="@{/js/scheduler.js}"></script>
 <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap" rel="stylesheet">
@@ -22,19 +23,183 @@
         <h1>Roosterbeheer</h1>
     </section>
 
-<!--&lt;!&ndash;select cohort&ndash;&gt;-->
-<!--    <div class = "select" align="center">-->
+
+    <!--select cohort-->
+    <div class = "select" align="center">
+
+        <div >
+            <form action="#" th:object="${cohorts}" th:action="@{showSubjects}" method="post">
+                <select name="cohortName" id="cohortList" required style="width: 250px; border-color: lightgray" th:onchange="this.form.submit()">
+                    <option value="">Selecteer een cohort:</option>
+                    <option th:each="coh: ${cohorts}" th:value="${coh.cohortName}" th:text="${coh.cohortName}"></option>
+                </select>
+            </form>
+        </div>
+
+
+
+<!--        &lt;!&ndash;    select weeknummer&ndash;&gt;-->
 
 <!--        <div >-->
-<!--            <form action="#" th:object="${cohorts}" th:action="@{showSubjects}" method="post">-->
-<!--                <select name="cohortName" id="cohortList" required style="width: 250px; border-color: lightgray" th:onchange="this.form.submit()">-->
-<!--                    <option value="">Selecteer een cohort:</option>-->
-<!--                    <option th:each="co: ${cohorts}" th:value="${co.cohortName}" th:text="${co.cohortName}"></option>-->
+<!--            <form action="#" th:object="${cohorts}" th:action="@{showWeeks}" method="post">-->
+<!--                <select name="weekNumber" id="weekList" required style="width: 250px; border-color: lightgray" th:onchange="this.form.submit()">-->
+<!--                    <option value="">Selecteer een week:</option>-->
+<!--                    <option th:each="co: ${cohorts}" th:value="${co.weekId}" th:text="${co.weekNumber}"></option>-->
 <!--                </select>-->
 <!--            </form>-->
 <!--        </div>-->
 
 <!--    </div>-->
+
+<!--    &lt;!&ndash;    Table om docenten aan vakken toe te voegen&ndash;&gt;-->
+<!--    <div th:if="${currentSubject == null}">-->
+<!--        <form action="#" th:object="${currentSubject}" th:action="@{addCurrentSubject}"-->
+<!--              th:object="${teacherForm}" th:action="@{postTeacherToSchedule}" method="post" id = "teacherForm">-->
+<!--            <table id = "docentTabel">-->
+<!--                <tr>-->
+<!--                    <th>Select All</th>-->
+<!--                    <th>maandag</th>-->
+<!--                    <th>dinsdag</th>-->
+<!--                    <th>woensdag</th>-->
+<!--                    <th>donderdag</th>-->
+<!--                    <th>vrijdag</th>-->
+<!--                </tr>-->
+
+<!--                <tr th:each="subject : ${currentSubject}">-->
+<!--                    <th>-->
+<!--                        <p>Ochtend</p>-->
+<!--                        <p>9:00-12:30</p>-->
+<!--                    </th>-->
+<!--                    <td th:text="${Subject.name}">-->
+<!--                        <div name="maandagOchtendVak" th: ></div>-->
+<!--                        <select name="teacher" id="teacher" required>-->
+<!--                            <option value="">Selecteer een docent</option>-->
+<!--                            <option name="maandagOchtendDocent" th:each="teacher: ${teachers}" th:value="${teacher.teacherName}" th:text="${teacher.teacherName}"></option>-->
+<!--                        </select>-->
+<!--                    </td>-->
+<!--                    <td th:text="${Subject.name}">-->
+<!--                        <div name="dinsdagOchtendVak" th: ></div>-->
+<!--                        <select name="teacher" id="teacher" required>-->
+<!--                            <option value="">Selecteer een docent</option>-->
+<!--                            <option name="dinsdagOchtendDocent" th:each="teacher: ${teachers}" th:value="${teacher.teacherName}" th:text="${teacher.teacherName}"></option>-->
+<!--                        </select>-->
+<!--                    </td>-->
+<!--                    <td th:text="${Subject.name}">-->
+<!--                        <div name="woensdagOchtendVak" th: ></div>-->
+<!--                        <select name="teacher" id="teacher" required>-->
+<!--                            <option value="">Selecteer een docent</option>-->
+<!--                            <option name="woensdagOchtendDocent" th:each="teacher: ${teachers}" th:value="${teacher.teacherName}" th:text="${teacher.teacherName}"></option>-->
+<!--                        </select>-->
+<!--                    </td>-->
+<!--                    <td th:text="${Subject.name}">-->
+<!--                        <div name="donderdagOchtendVak" th: ></div>-->
+<!--                        <select name="teacher" id="teacher" required>-->
+<!--                            <option value="">Selecteer een docent</option>-->
+<!--                            <option name="donderdagOchtendDocent" th:each="teacher: ${teachers}" th:value="${teacher.teacherName}" th:text="${teacher.teacherName}"></option>-->
+<!--                        </select>-->
+<!--                    </td>-->
+<!--                    <td th:text="${Subject.name}">-->
+<!--                        <div name="vrijdagOchtendVak" th: ></div>-->
+<!--                        <select name="teacher" id="teacher" required>-->
+<!--                            <option value="">Selecteer een docent</option>-->
+<!--                            <option name="vrijdagOchtendDocent" th:each="teacher: ${teachers}" th:value="${teacher.teacherName}" th:text="${teacher.teacherName}"></option>-->
+<!--                        </select>-->
+<!--                    </td>-->
+<!--                </tr>-->
+
+<!--                <tr th:each="subject : ${currentSubject}">-->
+<!--                    <th>-->
+<!--                        <p>Middag</p>-->
+<!--                        <p>13:00-17:30</p>-->
+<!--                    </th>-->
+<!--                    <td th:text="${Subject.name}">-->
+<!--                        <div name="maandagMiddagVak" th: ></div>-->
+<!--                        <select name="teacher" id="teacher" required>-->
+<!--                            <option value="">Selecteer een docent</option>-->
+<!--                            <option name="maandagMiddagDocent" th:each="teacher: ${teachers}" th:value="${teacher.teacherName}" th:text="${teacher.teacherName}"></option>-->
+<!--                        </select>-->
+<!--                    </td>-->
+<!--                    <td th:text="${Subject.name}">-->
+<!--                        <div name="dinsdagMiddagVak" th: ></div>-->
+<!--                        <select name="teacher" id="teacher" required>-->
+<!--                            <option value="">Selecteer een docent</option>-->
+<!--                            <option name="dinsdagMiddagDocent" th:each="teacher: ${teachers}" th:value="${teacher.teacherName}" th:text="${teacher.teacherName}"></option>-->
+<!--                        </select>-->
+<!--                    </td>-->
+<!--                    <td th:text="${Subject.name}">-->
+<!--                        <div name="woensdagMiddagVak" th: ></div>-->
+<!--                        <select name="teacher" id="teacher" required>-->
+<!--                            <option value="">Selecteer een docent</option>-->
+<!--                            <option name="woensdagMiddagDocent" th:each="teacher: ${teachers}" th:value="${teacher.teacherName}" th:text="${teacher.teacherName}"></option>-->
+<!--                        </select>-->
+<!--                    </td>-->
+<!--                    <td th:text="${Subject.name}">-->
+<!--                        <div name="donderdagMiddagVak" th: ></div>-->
+<!--                        <select name="teacher" id="teacher" required>-->
+<!--                            <option value="">Selecteer een docent</option>-->
+<!--                            <option name="donderdagMiddagDocent" th:each="teacher: ${teachers}" th:value="${teacher.teacherName}" th:text="${teacher.teacherName}"></option>-->
+<!--                        </select>-->
+<!--                    </td>-->
+<!--                    <td th:text="${Subject.name}">-->
+<!--                        <div name="vrijdagMiddagVak" th: ></div>-->
+<!--                        <select name="teacher" id="teacher" required>-->
+<!--                            <option value="">Selecteer een docent</option>-->
+<!--                            <option name="vrijdagMiddagDocent" th:each="teacher: ${teachers}" th:value="${teacher.teacherName}" th:text="${teacher.teacherName}"></option>-->
+<!--                        </select>-->
+<!--                    </td>-->
+<!--                </tr>-->
+
+<!--                <tr th:each="subject : ${currentSubject}">-->
+<!--                    <th>-->
+<!--                        <p>Avond</p>-->
+<!--                        <p>18:00-21:00</p>-->
+<!--                    </th>-->
+<!--                    <td th:text="${Subject.name}">-->
+<!--                        <div name="maandagAvondVak" th: ></div>-->
+<!--                        <select name="teacher" id="teacher" required>-->
+<!--                            <option value="">Selecteer een docent</option>-->
+<!--                            <option name="maandagAvondDocent" th:each="teacher: ${teachers}" th:value="${teacher.teacherName}" th:text="${teacher.teacherName}"></option>-->
+<!--                        </select>-->
+<!--                    </td>-->
+<!--                    <td th:text="${Subject.name}">-->
+<!--                        <div name="dinsdagAvondVak" th: ></div>-->
+<!--                        <select name="teacher" id="teacher" required>-->
+<!--                            <option value="">Selecteer een docent</option>-->
+<!--                            <option name="dinsdagAvondDocent" th:each="teacher: ${teachers}" th:value="${teacher.teacherName}" th:text="${teacher.teacherName}"></option>-->
+<!--                        </select>-->
+<!--                    </td>-->
+<!--                    <td th:text="${Subject.name}">-->
+<!--                        <div name="woensdagAvondVak" th: ></div>-->
+<!--                        <select name="teacher" id="teacher" required>-->
+<!--                            <option value="">Selecteer een docent</option>-->
+<!--                            <option name="woensdagAvondDocent" th:each="teacher: ${teachers}" th:value="${teacher.teacherName}" th:text="${teacher.teacherName}"></option>-->
+<!--                        </select>-->
+<!--                    </td>-->
+<!--                    <td th:text="${Subject.name}">-->
+<!--                        <div name="donderdagAvondVak" th: ></div>-->
+<!--                        <select name="teacher" id="teacher" required>-->
+<!--                            <option value="">Selecteer een docent</option>-->
+<!--                            <option name="donderdagAvondDocent" th:each="teacher: ${teachers}" th:value="${teacher.teacherName}" th:text="${teacher.teacherName}"></option>-->
+<!--                        </select>-->
+<!--                    </td>-->
+<!--                    <td th:text="${Subject.name}">-->
+<!--                        <div name="vrijdagAvondVak" th: ></div>-->
+<!--                        <select name="teacher" id="teacher" required>-->
+<!--                            <option value="">Selecteer een docent</option>-->
+<!--                            <option name="vrijdagAvondDocent" th:each="teacher: ${teachers}" th:value="${teacher.teacherName}" th:text="${teacher.teacherName}"></option>-->
+<!--                        </select>-->
+<!--                    </td>-->
+<!--                </tr>-->
+<!--            </table>-->
+
+<!--            <button id="button" type="button" class="btn btn-success"> Opslaan</button>-->
+<!--        </form>-->
+<!--    </div>-->
+
+
+<!--end of HTML code-->
+<!--start of testcode-->
+
 
 <!--&lt;!&ndash;    een form met lijst vakken en dropdown voor elk teachers&ndash;&gt;-->
 <!--    <form th:object="${teacherForm}" th:action="@{postTeacherToSubject}" method="post" id = "teacherForm">-->
@@ -88,43 +253,43 @@
 <!--    </div>-->
 
 
-<!--&lt;!&ndash; add teacher   &ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash; add teacher   &ndash;&gt;&ndash;&gt;-->
 
-<!--<div>-->
-<!--    <label>docent:</label>-->
-<!--    <select name="teacher" id="teacher" required>-->
-<!--        <option value="">Selecteer een docent</option>-->
-<!--        <option th:each="co: ${coordinators}" th:value="${co.id}" th:text="${co.username}"></option>-->
-<!--    </select>-->
-<!--</div>-->
+<!--&lt;!&ndash;<div>&ndash;&gt;-->
+<!--&lt;!&ndash;    <label>docent:</label>&ndash;&gt;-->
+<!--&lt;!&ndash;    <select name="teacher" id="teacher" required>&ndash;&gt;-->
+<!--&lt;!&ndash;        <option value="">Selecteer een docent</option>&ndash;&gt;-->
+<!--&lt;!&ndash;        <option th:each="co: ${coordinators}" th:value="${co.id}" th:text="${co.username}"></option>&ndash;&gt;-->
+<!--&lt;!&ndash;    </select>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
 
-<!--    <div class = "select" align="center">-->
-<!--        <label for="allCohorts"></label>-->
-<!--        <div id="allCohorts" class="dropdown">-->
-<!--            <button class="dropbtn">Dropdown</button>-->
-<!--            <form>-->
-<!--            <select name="cohortName" multiple="multiple" size="7" style="width: 250px; height: 200px; border-color: lightgray">&ndash;&gt;-->
-<!--                    <option th:each="cohort: ${cohorts}" th:value="${cohort.cohortName}" th:text="${cohort.cohortName}"></option>-->
-<!--                </select>-->
-<!--            <div class="list">-->
-<!--                <input type="submit" th:onclick="" value="Selecteer" id="lijstCohort"/>-->
-<!--            </div>-->
-<!--            </form>-->
-<!--        </div>-->
-                    <!--        <table id="allCohorts">-->
-<!--            <tr collspan="2">-->
-<!--                <td>-->
-<!--                    <form action="#" th:object="${cohorts}" th:action="@{showSubjects}" method="post">-->
-<!--                        <select name="cohortName" multiple="multiple" size="7" style="width: 250px; height: 200px; border-color: lightgray">-->
-<!--                            <option th:each="cohort: ${cohorts}" th:value="${cohort.cohortName}" th:text="${cohort.cohortName}"></option>-->
-<!--                        </select><br>-->
-<!--                        <div class="list">-->
-<!--                            <input type="submit" th:onclick="" value="Selecteer" id="lijstCohort"/>-->
-<!--                        </div>-->
-<!--                    </form>-->
-<!--                </td>-->
-<!--            <tr>-->
-<!--        </table>-->
+<!--&lt;!&ndash;    <div class = "select" align="center">&ndash;&gt;-->
+<!--&lt;!&ndash;        <label for="allCohorts"></label>&ndash;&gt;-->
+<!--&lt;!&ndash;        <div id="allCohorts" class="dropdown">&ndash;&gt;-->
+<!--&lt;!&ndash;            <button class="dropbtn">Dropdown</button>&ndash;&gt;-->
+<!--&lt;!&ndash;            <form>&ndash;&gt;-->
+<!--&lt;!&ndash;            <select name="cohortName" multiple="multiple" size="7" style="width: 250px; height: 200px; border-color: lightgray">&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                    <option th:each="cohort: ${cohorts}" th:value="${cohort.cohortName}" th:text="${cohort.cohortName}"></option>&ndash;&gt;-->
+<!--&lt;!&ndash;                </select>&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="list">&ndash;&gt;-->
+<!--&lt;!&ndash;                <input type="submit" th:onclick="" value="Selecteer" id="lijstCohort"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </form>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--                    &lt;!&ndash;        <table id="allCohorts">&ndash;&gt;-->
+<!--&lt;!&ndash;            <tr collspan="2">&ndash;&gt;-->
+<!--&lt;!&ndash;                <td>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <form action="#" th:object="${cohorts}" th:action="@{showSubjects}" method="post">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <select name="cohortName" multiple="multiple" size="7" style="width: 250px; height: 200px; border-color: lightgray">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <option th:each="cohort: ${cohorts}" th:value="${cohort.cohortName}" th:text="${cohort.cohortName}"></option>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </select><br>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div class="list">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <input type="submit" th:onclick="" value="Selecteer" id="lijstCohort"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </form>&ndash;&gt;-->
+<!--&lt;!&ndash;                </td>&ndash;&gt;-->
+<!--&lt;!&ndash;            <tr>&ndash;&gt;-->
+<!--&lt;!&ndash;        </table>&ndash;&gt;-->
 
 
     </div>

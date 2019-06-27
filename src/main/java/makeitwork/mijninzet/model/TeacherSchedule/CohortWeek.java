@@ -15,13 +15,14 @@ public class CohortWeek {
     private long weekId;
 
     @Column(name = "weekNumber")
-    private int weekNumber;
+    private long weekNumber;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "cohortId")
     private Cohort cohort;
 
-    @OneToMany(mappedBy = "cohortWeek",cascade= CascadeType.PERSIST)
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "cohortWeek" ,cascade= {CascadeType.PERSIST, CascadeType.MERGE})
     private List<CohortDay> cohortDayList;
 
     public long getWeekId() {
@@ -32,11 +33,11 @@ public class CohortWeek {
         this.weekId = weekId;
     }
 
-    public int getWeekNumber() {
+    public long getWeekNumber() {
         return weekNumber;
     }
 
-    public void setWeekNumber(int weekNumber) {
+    public void setWeekNumber(long weekNumber) {
         this.weekNumber = weekNumber;
     }
 
@@ -54,5 +55,15 @@ public class CohortWeek {
 
     public void setCohortDayList(List<CohortDay> cohortDayList) {
         this.cohortDayList = cohortDayList;
+    }
+
+    @Override
+    public String toString() {
+        return "CohortWeek{" +
+                "weekId=" + weekId +
+                ", weekNumber=" + weekNumber +
+                ", cohort=" + cohort +
+                ", cohortDayList=" + cohortDayList +
+                '}';
     }
 }
