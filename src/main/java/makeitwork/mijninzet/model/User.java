@@ -1,5 +1,6 @@
 package makeitwork.mijninzet.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import makeitwork.mijninzet.model.preference.Preference;
 import org.hibernate.annotations.SortNatural;
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -62,6 +63,7 @@ public class User implements Comparable{
     @Column(name = "idgebruiker")
     private int id;
 
+    @JsonIgnore
     @NotNull(message=COLUMN_PASSWORD+VERPLICHT)
     @Size(min=MIN_PWD, message= "minimale lengte van een password is "+MIN_PWD)
     @Column(name = COLUMN_PASSWORD)
@@ -77,10 +79,12 @@ public class User implements Comparable{
     @Column(name = COLUMN_PREFIX)
     private String namePrefix;
 
+    @JsonIgnore
     @NotNull(message=COLUMN_FAMILYNAME+VERPLICHT)
     @Column(name = COLUMN_FAMILYNAME)
     private String familyName;
 
+    @JsonIgnore
     @NotNull(message=COLUMN_EMAIL+VERPLICHT)
     @Column(name = COLUMN_EMAIL)
     private String email;

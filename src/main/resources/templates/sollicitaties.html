@@ -24,7 +24,7 @@
                 <div th:each="task : ${tasks}">
                     <table id="sollicitaties">
 
-                        <th:fieldset>
+
 <!--                            <form action="#" th:action="@{/sollicitaties}" th:object="${task}" id="applicationform" method="get">-->
                                 <form action="#" id="applicationform" th:action="@{manager/saveSollicitaties/{status}}" th:object="${task}" method="post">
                             <tr>
@@ -42,9 +42,6 @@
                                 <button type="submit" value="Opslaan" id="opslaanSolliciatie"></button>
                             </tr>
                              </form>
-
-
-                        </th:fieldset>
 
 
                      </table>

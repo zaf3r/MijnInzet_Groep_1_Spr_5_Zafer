@@ -40,12 +40,12 @@ public class SollicitatieController {
     }
 
     @PostMapping("manager/saveSollicitaties/{status}")
-    public @ResponseBody User saveApplicationHandler (User data) {
+    public @ResponseBody Task saveApplicationHandler (Task data) {
         System.out.println("input data is" + data);
-        User ret = data;
+        Task ret = data;
         var output = new BasicDBObject();
         try {
-            var user = vacatureRepository.save(data);
+            var user = taskRepository.save(data);
 
             ret = user;
 
