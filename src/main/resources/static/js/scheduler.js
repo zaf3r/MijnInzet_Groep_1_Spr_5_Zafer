@@ -1,4 +1,3 @@
-
 //diverse variables
 var noTeacher = "geen docent";
 var noSubject = "vacant";
