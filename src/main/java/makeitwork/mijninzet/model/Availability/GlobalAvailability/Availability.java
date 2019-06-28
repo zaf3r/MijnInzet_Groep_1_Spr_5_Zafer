@@ -1,5 +1,6 @@
 package makeitwork.mijninzet.model.Availability.GlobalAvailability;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import makeitwork.mijninzet.model.Availability.Weekday;
 import makeitwork.mijninzet.model.User;
 
@@ -14,6 +15,7 @@ public class Availability {
     @Column(name = "idbeschikbaarheid")
     private long id;
 
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "idgebruiker")
     private User user;

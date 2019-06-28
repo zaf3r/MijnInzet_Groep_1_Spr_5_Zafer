@@ -1,6 +1,7 @@
 package makeitwork.mijninzet.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import makeitwork.mijninzet.model.Availability.GlobalAvailability.Availability;
 import makeitwork.mijninzet.model.preference.Preference;
 import org.hibernate.annotations.SortNatural;
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -108,6 +109,8 @@ public class User{
 //    @Column(name="Naam")
 //    private String naam;
 
+    @OneToMany(mappedBy = "user",cascade= CascadeType.ALL)
+    private List<Availability> availabilityList;
 
     @OneToMany(mappedBy = "user",cascade= CascadeType.ALL)
     @JsonIgnore
