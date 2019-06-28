@@ -37,10 +37,6 @@ public class CourseSchedule {
     @Column(name="status")
     private StatusCourseSchedule status;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="docent")
-    private User user;
-
     public CourseSchedule() {
     }
 
@@ -74,14 +70,6 @@ public class CourseSchedule {
 
     public void setDate(LocalDate date) {
         this.date = date;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public Weekday getWeekday() {
