@@ -15,7 +15,21 @@
 </head>
 <body>
 
-<div th:insert="~{navbar :: header}"></div>
+<div th:if="${roleUser.roleName == 'Terminator'}">
+    <header th:insert="~{navbar :: header}"></header>
+</div>
+<div th:if="${roleUser.roleName == 'Docent'}">
+    <header th:insert="~{navbarDocent :: header}"></header>
+</div>
+<div th:if="${roleUser.roleName == 'Administrateur'}">
+    <header th:insert="~{navbarAdministrateur :: header}"></header>
+</div>
+<div th:if="${roleUser.roleName == 'Manager'}">
+    <header th:insert="~{navbarManager :: header}"></header>
+</div>
+<div th:if="${roleUser.roleName == 'Roosteraar'}">
+    <header th:insert="~{navbarRoosteraar :: header}"></header>
+</div>
 
 <div class="container">
     <section id="header" class="jumbotron text-center">
@@ -169,8 +183,6 @@
     </div>
 
 </div>
-
-<footer th:insert="~{footer :: footer}"></footer>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="/js/scheduler.js" th:src="@{/js/scheduler.js}"></script>
