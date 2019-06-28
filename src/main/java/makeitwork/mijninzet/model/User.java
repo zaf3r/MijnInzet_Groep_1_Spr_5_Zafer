@@ -109,7 +109,7 @@ public class User{
 //    @Column(name="Naam")
 //    private String naam;
 
-    @OneToMany(mappedBy = "user",cascade= CascadeType.ALL)
+    @OneToMany(mappedBy = "user",cascade= CascadeType.PERSIST)
     private List<Availability> availabilityList;
 
     @OneToMany(mappedBy = "user",cascade= CascadeType.ALL)
@@ -234,7 +234,15 @@ public class User{
         this.preferenceSet = preferenceSet;
     }
 
-//    public String getNaam() {
+    public List<Availability> getAvailabilityList() {
+        return availabilityList;
+    }
+
+    public void setAvailabilityList(List<Availability> availabilityList) {
+        this.availabilityList = availabilityList;
+    }
+
+    //    public String getNaam() {
 //        return naam;
 //    }
 
