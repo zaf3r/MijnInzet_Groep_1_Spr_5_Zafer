@@ -89,26 +89,27 @@ public class CourseScheduleService implements RetrieveUserRole {
     }
     public List<Cohort> cohortsToPlan(Principal principal){
         //a list of cohorts in need for planning from the actual user of the system
-        List<Cohort> cohorts=cohortRepository.findAll();
+        User user=userRepository.findByUsername(principal.getName());
+        List<Cohort> cohorts=cohortRepository.findByUser((user));
+        System.out.printf("\n\nhoeveel in cohorts %d\n\n",cohorts.size());
+//        this code prevents a stackoverflow due to bad design in the class CohortWeek
+//        the list(Cohortweek> is emptied and thereby an indefinite loop via Gson/Jackson
+//        prevented.
         for (Cohort cohort: cohorts) {
             List<CohortWeek> cohortWeek = new ArrayList<>();
             cohort.setCohortWeekList(cohortWeek);
         }
         List<Cohort> cohorts1=new ArrayList<>();
-       if(!plannedCohorts().isEmpty()) cohorts.removeAll(plannedCohorts());
-        User actualUser = userRepository.findByUsername(principal.getName());
-        if (!cohorts.isEmpty()) {
-            for (Cohort cohort : cohorts) {
-                if (cohort.getUser().getUsername() == actualUser.getUsername())
-                    if  (!cohorts1.contains(cohort)) cohorts1.add(cohort);
-            }
-        }
-        listCohortEmpty(cohorts1);
+        if(!plannedCohorts().isEmpty()) cohorts.removeAll(plannedCohorts());
+//                System.out.printf("\n\ndit is cohorts1: %s\n\n",cohorts1);
+//                System.out.printf("\n\ndit is cohort: %s\n\n",cohort);
+//
+        listCohortEmpty(cohorts);
         return cohorts;
     }
     private List<Cohort> listCohortEmpty(List<Cohort> cohorts){
         //a list with one cohort, if the original list is empty
-        //the cohort in the list contains a meaningfull message for te user
+        //the cohort in the list contains a meaningfull message for the user
         if(cohorts.isEmpty()){
             Cohort cohort=new Cohort();
             cohort.setCohortName("Helaas geen cohort in dit bestand.");

@@ -14,7 +14,8 @@
             max-width: 500px;
             margin: auto;
         }
-        .grid-container{
+
+        .grid-container {
             display: grid;
             grid-template-columns: 40em 40em;
             justify-content: space-evenly;
@@ -22,6 +23,7 @@
             padding: 0px;
             width: 82em;
         }
+
         .grid-container1 {
             display: grid;
             grid-template-columns: 12em 5em 5em 5em 5em 10em;
@@ -30,8 +32,9 @@
             justify-content: space-evenly;
             width: 33em;
         }
-        .grid-container2{
-            display:grid;
+
+        .grid-container2 {
+            display: grid;
             grid-template-rows: 5em 5em 5em;
             grid-template-columns: 10em 10em
         }
@@ -43,34 +46,39 @@
             font-size: inherit;
             text-align: center;
         }
-        .regelsPerLes{
+
+        .regelsPerLes {
             width: 31em;
         }
+
         input.largerCheckbox {
             width: 110%;
             height: 110%;
         }
-        input.largerText{
-            width:110%;
+
+        input.largerText {
+            width: 110%;
             height: 110%;
             font-size: 110%;
         }
     </style>
 </head>
 <div>
-<div class="content">
-<div class="grid-container"></div>
-    <div class="cohorts"   >
-     <label for="cohorts2Plan" class=""><h3>Rooster voor</h3></label>
-        <div class="">
-            <select class="" id="cohorts2Plan" name="cohorts2Plan" style="width: 35em;"></select>
+    <div class="content">
+        <div class="grid-container"></div>
+        <div class="cohorts">
+            <label for="cohorts2Plan" class=""><h3>Rooster voor</h3></label>
+            <div class="">
+                <select class="" id="cohorts2Plan" name="cohorts2Plan" style="width: 35em;"></select>
+            </div>
         </div>
-    </div>
 
-    <div class="subjects">
-        <label for="vakkenCohort" class=""><h3>Vakken om in te roosteren</h3></label>
-        <div class="">
-            <select class="" id="vakkenCohort" name="vakkenCohort" required multiple="multiple" size="7" style="width: 250px"/>
+        <div class="subjects">
+            <label for="vakkenCohort" class=""><h3>Vakken om in te roosteren</h3></label>
+            <div class="">
+                <select class="" id="vakkenCohort" name="vakkenCohort" required multiple="multiple" size="7"
+                        style="width: 250px"/>
+            </div>
         </div>
     </div>
 </div>
@@ -114,12 +122,10 @@
     var subjectName;
     var date;
     var partOfDay;
-    var status="";
-    </script>
+    var status = "";
+</script>
 <script>
     $(document).ready(function () {
-        //todo alleen cohorts van ingelogde gebruiker ophalen!
-        console.log("cohorts gaan opgehaald worden");
         $.ajax({
             type: "POST",
             url: "/cohortsToPlan",
@@ -136,27 +142,27 @@
         });
     });
 
-    $("#cohorts2Plan").on("change", function() {
-            var selectedText = $(this).find(':selected').text();
-            cohortName=selectedText;
-            payload = JSON.stringify({cohortName: selectedText });
-            $.ajax({
-                type: 'POST',
-                url: '/vakkenCohort',
-                contentType: 'application/json; charset=utf-8',
-                dataType: 'json',
-                data: payload
-            }).done( function (response) {
-                var n=1;
-                $("#vakkenCohort").empty();
-                $.each(response, function (i, item) {
-                    $("#vakkenCohort").append('<option value="">' + response[i].subjectName + '</option>');
-                });
-            })
-    });
-    $("#vakkenCohort").on("change", function() {
+    $("#cohorts2Plan").on("change", function () {
         var selectedText = $(this).find(':selected').text();
-        subject=selectedText;
+        cohortName = selectedText;
+        payload = JSON.stringify({cohortName: selectedText});
+        $.ajax({
+            type: 'POST',
+            url: '/vakkenCohort',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            data: payload
+        }).done(function (response) {
+            var n = 1;
+            $("#vakkenCohort").empty();
+            $.each(response, function (i, item) {
+                $("#vakkenCohort").append('<option value="">' + response[i].subjectName + '</option>');
+            });
+        })
+    });
+    $("#vakkenCohort").on("change", function () {
+        var selectedText = $(this).find(':selected').text();
+        subject = selectedText;
         payload = JSON.stringify({subjectName: selectedText});
         $.ajax({
             type: 'POST',
@@ -166,42 +172,51 @@
             data: payload
         }).done(function (response) {
             var days = response;
-            var n=1;
+            var n = 1;
             $("#regelPerLes").empty();
             $.each(days, function (i, item) {
-                n=(i+1)*10;
-                $("#regelPerLes").append('<div class="grid-item"><input type="date" class="largerText"  name="date" id="'+n+'" onchange="checkDate(event,id)"></div>');
+                n = (i + 1) * 10;
+                $("#regelPerLes").append('<div class="grid-item"><input type="date" class="largerText"  name="date" id="' + n + '" onchange="checkDate(event,id)"></div>');
                 n++;
-                $("#regelPerLes").append('<div class="grid-item"><input type="checkbox" class="largerCheckbox" name="dayPart" style="display:none" onclick="showStore(id)" id="'+n+'"></div> ');
+                $("#regelPerLes").append('<div class="grid-item"><input type="checkbox" class="largerCheckbox" name="dayPart" style="display:none" onclick="showStore(id)" id="' + n + '"></div> ');
                 n++;
-                $("#regelPerLes").append('<div class="grid-item"><input type="checkbox" class="largerCheckbox" name="dayPart" style="display:none" onclick="showStore(id)" id="'+n+'"></div> ');
+                $("#regelPerLes").append('<div class="grid-item"><input type="checkbox" class="largerCheckbox" name="dayPart" style="display:none" onclick="showStore(id)" id="' + n + '"></div> ');
                 n++;
-                $("#regelPerLes").append('<div class="grid-item"><input type="checkbox" class="largerCheckbox" name="dayPart" style="display:none" onclick="showStore(id)" id="'+n+'"></div> ');
+                $("#regelPerLes").append('<div class="grid-item"><input type="checkbox" class="largerCheckbox" name="dayPart" style="display:none" onclick="showStore(id)" id="' + n + '"></div> ');
                 n++;
-                $("#regelPerLes").append('<div class="grid-item"><input type="checkbox" class="largerCheckbox" name="store" id="'+n+'" style="display:none" onclick="storeCourse(id)"></div> ');
+                $("#regelPerLes").append('<div class="grid-item"><input type="checkbox" class="largerCheckbox" name="store" id="' + n + '" style="display:none" onclick="storeCourse(id)"></div> ');
                 n++;
-                $("#regelPerLes").append('<div class="grid-item"><span type="text" id="'+n+'" style="display:none">opgeslagen</span></div> ');
+                $("#regelPerLes").append('<div class="grid-item"><span type="text" id="' + n + '" style="display:none">opgeslagen</span></div> ');
             });
         })
     });
 </script>
 
 <script>
-    function storeCourse(id){
-        if ($("input[type=checkbox]["+elementContent(id,3)+"]:checked").val()=="on")
-            {partOfDay="OCHTEND"; storeCourseService(id)};
-        if ($("input[type=checkbox]["+elementContent(id,2)+"]:checked").val()=='on')
-            {partOfDay="MIDDAG"; storeCourseService(id)};
-        if ($("input[type=checkbox]["+elementContent(id,1)+"]:checked").val()=="on")
-            {partOfDay="AVOND"; storeCourseService(id)};
+    function storeCourse(id) {
+        if ($("input[type=checkbox][" + elementContent(id, 3) + "]:checked").val() == "on") {
+            partOfDay = "OCHTEND";
+            storeCourseService(id)
+        }
+        ;
+        if ($("input[type=checkbox][" + elementContent(id, 2) + "]:checked").val() == 'on') {
+            partOfDay = "MIDDAG";
+            storeCourseService(id)
+        }
+        ;
+        if ($("input[type=checkbox][" + elementContent(id, 1) + "]:checked").val() == "on") {
+            partOfDay = "AVOND";
+            storeCourseService(id)
+        }
+        ;
     }
 </script>
 <script>
-    function storeCourseService(id){
-        date=dateLocal;
-        subjectName=subject;
-        var course={cohortName,subjectName,date,partOfDay,status};
-        var payload=JSON.stringify(course);
+    function storeCourseService(id) {
+        date = dateLocal;
+        subjectName = subject;
+        var course = {cohortName, subjectName, date, partOfDay, status};
+        var payload = JSON.stringify(course);
         console.log(payload);
         $.ajax({
             type: 'POST',
@@ -209,34 +224,32 @@
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
             data: payload
-        }).done( function (response) {
+        }).done(function (response) {
             if (response["exists"]) {
                 console.log("opgeslagen");
-                var teller=  (parseInt(id)+1).toString();
+                var teller = (parseInt(id) + 1).toString();
                 document.getElementById(teller).style.display = "block";
             }
         });
-
     }
 </script>
 
 <script>
-    function show(id,view){
-        var see=view?'block':'none';
-        var teller=  (parseInt(id)+1).toString();
+    function show(id, view) {
+        var see = view ? 'block' : 'none';
+        var teller = (parseInt(id) + 1).toString();
         document.getElementById(teller).style.display = see;//morgen
-        var teller=  (parseInt(id)+2).toString();
+        var teller = (parseInt(id) + 2).toString();
         document.getElementById(teller).style.display = see;//middag
-        var teller=  (parseInt(id)+3).toString();
+        var teller = (parseInt(id) + 3).toString();
         document.getElementById(teller).style.display = see;//avond
-        var teller=  (parseInt(id)+4).toString();
+        var teller = (parseInt(id) + 4).toString();
         document.getElementById(teller).style.display = see;//opslaan
-
-
     }
 </script>
 <script>
     function showStore(id){
+        //todo van boeken tot geboekt weergeven
         //deze functie moet checkbox opslaan tonen of verbergen
         //de box mag alleen getoond worden als 1 van de dagdelen is checked
         // var oneOfThree=false;
