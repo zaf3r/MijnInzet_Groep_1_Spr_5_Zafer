@@ -1,21 +1,27 @@
 package makeitwork.mijninzet.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
+import com.google.gson.stream.JsonReader;
 import makeitwork.mijninzet.controller.RetrieveUserRole;
 import makeitwork.mijninzet.model.*;
 import makeitwork.mijninzet.model.Availability.PartOfDay;
 import makeitwork.mijninzet.model.Availability.Weekday;
+import makeitwork.mijninzet.model.TeacherSchedule.CohortWeek;
 import makeitwork.mijninzet.model.preference.Subject;
 import makeitwork.mijninzet.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
+import javax.imageio.IIOException;
+import java.io.IOException;
 import java.security.Principal;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
+
+
 
 @Service
 public class CourseScheduleService implements RetrieveUserRole {
@@ -33,7 +39,7 @@ public class CourseScheduleService implements RetrieveUserRole {
     HolidayScheduleRepository holidays;
 
     static final int URENLESBLOK=4;
-    static final String STATUS_PLANNING_COHORT="DEFINITIEF";
+//    static final String STATUS_PLANNING_COHORT=StatusCourseSchedule.DEFINITIEF.ordinal();
 
     public void storeCourseSchedule(CourseSchedule schedule){
         courseScheduleRepository.saveAndFlush(schedule);
@@ -54,44 +60,42 @@ public class CourseScheduleService implements RetrieveUserRole {
         List<Cohort> cohortsPlan=new ArrayList<>(cohorts(scheduledCourses()));
         return cohortsPlan;
     }
-    public List<Cohort> plannedCohorts(List<CourseSchedule> courses){
-        //all cohorts with a final planning
-        List<Cohort> cohortsPlan=new ArrayList<>(cohorts(finalPlannedCourses(scheduledCourses())));
-        return cohortsPlan;
-    }
+
     private List<CourseSchedule> scheduledCourses(){
         //list of all courses
         return courseScheduleRepository.findAll();
     }
-    private SortedSet<Cohort> cohorts(List<CourseSchedule> schedules) {
+    private List<Cohort> cohorts(List<CourseSchedule> schedules) {
         //a list of courses is converted into a list of unique cohorts
-        SortedSet<Cohort> cohorts = new TreeSet<>();
+        List<Cohort> cohorts=new ArrayList<>();
+        List<CourseSchedule> schedules1 = new ArrayList<>();
         for (CourseSchedule course : schedules) {
-            var cohort = course.getCohort();
-            if (!cohorts.contains(cohort)) cohorts.add(cohort);
-        }
+            for (Cohort cohort:cohorts) {
+                if (course.getCohort().getCohortId()==cohort.getCohortId()) break;
+            }
+            cohorts.add(course.getCohort());
+            }
         return cohorts;
     }
-    private List<CourseSchedule> finalPlannedCourses(List<CourseSchedule> schedules){
+    private List<CourseSchedule> finalPlannedCourses(){
         //all courses with status=DEFINITIEF (planning is casted in concrete)
-        List<CourseSchedule> courses =new ArrayList<>();
-        for (CourseSchedule course:schedules) {
-            var status=course.getStatus().name();
-            if (status==STATUS_PLANNING_COHORT) {
-                courses.add(course);
-            }
-        }
+        List<CourseSchedule> courses=new ArrayList<>();
+        List<CourseSchedule> allCourses =courseScheduleRepository.findAll();
+        //todo de definitiefe cohorts verwijderen
         return courses;
     }
     public List<Cohort> plannedCohorts(){
-        List<Cohort> plannedCohorts=new ArrayList<>(cohorts(finalPlannedCourses(scheduledCourses())));
-        return plannedCohorts;
+        return cohorts(finalPlannedCourses());
     }
     public List<Cohort> cohortsToPlan(Principal principal){
         //a list of cohorts in need for planning from the actual user of the system
         List<Cohort> cohorts=cohortRepository.findAll();
+        for (Cohort cohort: cohorts) {
+            List<CohortWeek> cohortWeek = new ArrayList<>();
+            cohort.setCohortWeekList(cohortWeek);
+        }
         List<Cohort> cohorts1=new ArrayList<>();
-        if(!plannedCohorts().isEmpty()) cohorts.removeAll(plannedCohorts());
+       if(!plannedCohorts().isEmpty()) cohorts.removeAll(plannedCohorts());
         User actualUser = userRepository.findByUsername(principal.getName());
         if (!cohorts.isEmpty()) {
             for (Cohort cohort : cohorts) {
@@ -100,7 +104,7 @@ public class CourseScheduleService implements RetrieveUserRole {
             }
         }
         listCohortEmpty(cohorts1);
-        return cohorts1;
+        return cohorts;
     }
     private List<Cohort> listCohortEmpty(List<Cohort> cohorts){
         //a list with one cohort, if the original list is empty
@@ -117,14 +121,13 @@ public class CourseScheduleService implements RetrieveUserRole {
     public Cohort fullCohort(Cohort cohort){
         return cohortRepository.findByCohortName(cohort.getCohortName());
     }
-//    public List<Subject> vakkenCohort(Cohort cohort){
-//        List<Subject> subjects=new ArrayList<>();
-//        for (String name:fullCohort(cohort).getSubjectNames()) {
-//            subjects.add(subjectRepository.findBySubjectName(name));
-//        }
-//        return subjects;
-//    }
 
+    public Cohort cohort(String cohortName){
+        return cohortRepository.findByCohortName(cohortName);
+    }
+    public Subject subject(String subjectName){
+        return subjectRepository.findBySubjectName(subjectName);
+    }
     public List<Subject> vakkenCohort(Cohort cohort){
         List<Subject> subjects=new ArrayList<>();
         for (Subject subject:fullCohort(cohort).getSubjects()) {
@@ -169,13 +172,25 @@ public class CourseScheduleService implements RetrieveUserRole {
 //            todo deze functie afmaken
         }
     }
-    public Boolean isNonTeachingDay(String date){
-        //eerst van json naar een string: new Gson().fromJson(date,String.class)
-        //daarna de string omzetten in localdate:LocalDate.parse(new Gson().fromJson(date,String.class))
-        //daarna (dus alles achter return) zit de localdate in HolidaySchedule? zo ja=> geen les!
-        System.out.printf("\n%s\n\n",date);
-        var datum=new Gson().fromJson(date, HolidaySchedule.class);
-        System.out.printf("\n%s\n\n",datum.toString());
-        return holidays.findByLocalDate(datum.getLocalDate());
+    public Boolean isNonTeachingDay(LocalDate date){
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("\"yyyy-MM-dd\"");
+//        LocalDate day = LocalDate.parse(date, formatter);
+        System.out.printf("\n\n datum om mee te zoeken%\n\n",date);
+        return holidays.findByLocalDate(date);
+    }
+    public CourseSchedule storeCourse(receiveCourse course){
+        CourseSchedule schedule=new CourseSchedule();
+        schedule.setCohort(cohortRepository.findByCohortName(course.getCohortName()));
+        schedule.setSubject(subjectRepository.findBySubjectName(course.getSubjectName()));
+        schedule.setDate(course.getDate());
+        switch (course.getPartOfDay()){
+            case "OCHTEND": schedule.setPartOfDay(PartOfDay.OCHTEND); break;
+            case "MIDDAG": schedule.setPartOfDay(PartOfDay.MIDDAG); break;
+            case "AVOND": schedule.setPartOfDay(PartOfDay.AVOND); break;
+            default: break;
+        }
+        if (course.getStatus()==null) schedule.setStatus(StatusCourseSchedule.INPLANNING);
+        else {schedule.setStatus(StatusCourseSchedule.DEFINITIEF);}
+        return courseScheduleRepository.saveAndFlush(schedule);
     }
 }

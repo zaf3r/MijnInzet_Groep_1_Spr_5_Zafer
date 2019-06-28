@@ -1,5 +1,6 @@
 package makeitwork.mijninzet.model.TeacherSchedule;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import makeitwork.mijninzet.model.Cohort;
 
 import javax.persistence.*;
@@ -17,6 +18,7 @@ public class CohortWeek {
     @Column(name = "weekNumber")
     private int weekNumber;
 
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "cohortId")
     private Cohort cohort;

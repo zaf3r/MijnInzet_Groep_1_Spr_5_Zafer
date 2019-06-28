@@ -3,9 +3,13 @@ package makeitwork.mijninzet.controller;
 import com.google.gson.Gson;
 import com.mongodb.BasicDBObject;
 import makeitwork.mijninzet.model.Cohort;
+import makeitwork.mijninzet.model.CourseSchedule;
+import makeitwork.mijninzet.model.HolidaySchedule;
 import makeitwork.mijninzet.model.preference.Subject;
+import makeitwork.mijninzet.model.receiveCourse;
 import makeitwork.mijninzet.repository.CohortRepository;
 import makeitwork.mijninzet.repository.CourseScheduleRepository;
+import makeitwork.mijninzet.repository.HolidayScheduleRepository;
 import makeitwork.mijninzet.service.CohortService;
 import makeitwork.mijninzet.service.CourseScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -32,7 +37,6 @@ public class CourseScheduleController {
     @PostMapping("/cohortsToPlan")
     public @ResponseBody
     String cohortsToPlan(@RequestBody String requestPayload, Principal principal) {
-        System.out.printf("\n\n de cohorten: %s\n\n", service.cohortsToPlan(principal));
         return new Gson().toJson(service.cohortsToPlan(principal));
     }
 
@@ -76,8 +80,22 @@ public class CourseScheduleController {
     @PostMapping("/checkDate")
     public @ResponseBody
     String nonTeachingDay(@RequestBody String requestPayload) {
+//        BasicDBObject output = new BasicDBObject();
+        System.out.printf("\n\n datum om mee te zoeken%\n\n",requestPayload);
+//        if (service.isNonTeachingDay(requestPayload))
+//            output.put("exists", true);
+//        else {
+//            output.put("exists", false);
+//        }
+//        return output.toJson();
+        return "";
+    }
+    @PostMapping("/storeCourse")
+    public @ResponseBody
+    String storeCourseSchedule(@RequestBody receiveCourse requestPayload) {
+        CourseSchedule course=service.storeCourse(requestPayload);
         BasicDBObject output = new BasicDBObject();
-        if (service.isNonTeachingDay(requestPayload))
+        if (course!=null)
             output.put("exists", true);
         else {
             output.put("exists", false);

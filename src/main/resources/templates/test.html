@@ -10,6 +10,10 @@
             crossorigin="anonymous">
     </script>
     <style>
+        .content {
+            max-width: 500px;
+            margin: auto;
+        }
         .grid-container{
             display: grid;
             grid-template-columns: 40em 40em;
@@ -20,11 +24,11 @@
         }
         .grid-container1 {
             display: grid;
-            grid-template-columns: 10em 5em 5em 5em 5em;
+            grid-template-columns: 12em 5em 5em 5em 5em 10em;
             background-color: inherit;
             padding: 0px;
             justify-content: space-evenly;
-            width: 31em;
+            width: 33em;
         }
         .grid-container2{
             display:grid;
@@ -53,7 +57,8 @@
         }
     </style>
 </head>
-<body>
+<div>
+<div class="content">
 <div class="grid-container"></div>
     <div class="cohorts"   >
      <label for="cohorts2Plan" class=""><h3>Rooster voor</h3></label>
@@ -85,8 +90,6 @@
 <br><br>
         <h3>Geeft het vakkenrooster</h3><br>
         <div class="grid-container1">
-<!--            todo submit knop opslaan -->
-            <!--            todo herhalingen met dropdown-->
             <!--            todo tonen in overzicht container2-->
             <!--            todo herhalingen met dropdown-->
             <!--            todo hele column voor geselecteerde data invullen "onclick"-->
@@ -97,13 +100,26 @@
                 <div class="grid-item">middag</div>
                 <div class="grid-item">avond</div>
                 <div class="grid-item">opslaan</div>
+                <div class="grid-item"></div>
         </div>
             <div class="grid-container1" id="regelPerLes">
 <!--Let op: dit is geen lege <div>. Op de plek worden in de DOM regels voor het vakkenrooster geplaatst-->
             </div>
+</div>
 
 <script>
+    var cohortName;
+    var subject;
+    var dateLocal;
+    var subjectName;
+    var date;
+    var partOfDay;
+    var status="";
+    </script>
+<script>
     $(document).ready(function () {
+        //todo alleen cohorts van ingelogde gebruiker ophalen!
+        console.log("cohorts gaan opgehaald worden");
         $.ajax({
             type: "POST",
             url: "/cohortsToPlan",
@@ -119,9 +135,10 @@
             }
         });
     });
+
     $("#cohorts2Plan").on("change", function() {
-            var selectedVal = $(this).find(':selected').val();
             var selectedText = $(this).find(':selected').text();
+            cohortName=selectedText;
             payload = JSON.stringify({cohortName: selectedText });
             $.ajax({
                 type: 'POST',
@@ -139,6 +156,7 @@
     });
     $("#vakkenCohort").on("change", function() {
         var selectedText = $(this).find(':selected').text();
+        subject=selectedText;
         payload = JSON.stringify({subjectName: selectedText});
         $.ajax({
             type: 'POST',
@@ -152,51 +170,127 @@
             $("#regelPerLes").empty();
             $.each(days, function (i, item) {
                 n=(i+1)*10;
-                $("#regelPerLes").append('<div class="grid-item"><input type="date" class="largerText"  name="date" id="'+n+'" onchange="checkDate(event)"></div>');
+                $("#regelPerLes").append('<div class="grid-item"><input type="date" class="largerText"  name="date" id="'+n+'" onchange="checkDate(event,id)"></div>');
                 n++;
-                $("#regelPerLes").append('<div class="grid-item"><input type="checkbox" class="largerCheckbox" name="dayPart" id="'+n+'"></div> ');
+                $("#regelPerLes").append('<div class="grid-item"><input type="checkbox" class="largerCheckbox" name="dayPart" style="display:none" onclick="showStore(id)" id="'+n+'"></div> ');
                 n++;
-                $("#regelPerLes").append('<div class="grid-item"><input type="checkbox" class="largerCheckbox" name="dayPart" id="'+n+'"></div> ');
+                $("#regelPerLes").append('<div class="grid-item"><input type="checkbox" class="largerCheckbox" name="dayPart" style="display:none" onclick="showStore(id)" id="'+n+'"></div> ');
                 n++;
-                $("#regelPerLes").append('<div class="grid-item"><input type="checkbox" class="largerCheckbox" name="dayPart" id="'+n+'"></div> ');
+                $("#regelPerLes").append('<div class="grid-item"><input type="checkbox" class="largerCheckbox" name="dayPart" style="display:none" onclick="showStore(id)" id="'+n+'"></div> ');
                 n++;
-                $("#regelPerLes").append('<div class="grid-item"><input type="checkbox" class="largerCheckbox" name="store" id="'+n+'" onclick="storeCourse(id)"></div> ');
+                $("#regelPerLes").append('<div class="grid-item"><input type="checkbox" class="largerCheckbox" name="store" id="'+n+'" style="display:none" onclick="storeCourse(id)"></div> ');
+                n++;
+                $("#regelPerLes").append('<div class="grid-item"><span type="text" id="'+n+'" style="display:none">opgeslagen</span></div> ');
             });
         })
     });
-    $("#date").on("change",console.log("jquery datum test"));
-</script>
-<script>
-    function storeCourse(id){
-        var date = $("input[type=checkbox]["+elementContent(id,3)+"]:input").val();
-        console.log("datum: "+date);
-        console.log("ochtend: "+$("input[type=checkbox]["+elementContent(id,3)+"]:checked").val());
-        console.log("middag: "+$("input[type=checkbox]["+elementContent(id,2)+"]:checked").val());
-        console.log("avond: "+$("input[type=checkbox]["+elementContent(id,2)+"]:checked").val());
-    }
 </script>
 
 <script>
-    function checkDate(event) {
-        var localDate = (event.target.value);
-        console.log("localDate :"+datum);
-        payload = JSON.stringify({localDate});
+    function storeCourse(id){
+        if ($("input[type=checkbox]["+elementContent(id,3)+"]:checked").val()=="on")
+            {partOfDay="OCHTEND"; storeCourseService(id)};
+        if ($("input[type=checkbox]["+elementContent(id,2)+"]:checked").val()=='on')
+            {partOfDay="MIDDAG"; storeCourseService(id)};
+        if ($("input[type=checkbox]["+elementContent(id,1)+"]:checked").val()=="on")
+            {partOfDay="AVOND"; storeCourseService(id)};
+    }
+</script>
+<script>
+    function storeCourseService(id){
+        date=dateLocal;
+        subjectName=subject;
+        var course={cohortName,subjectName,date,partOfDay,status};
+        var payload=JSON.stringify(course);
+        console.log(payload);
         $.ajax({
             type: 'POST',
-            url: '/checkDate',
+            url: '/storeCourse',
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
             data: payload
         }).done( function (response) {
-            NonTeachingDay = $("#TeachingDayMsg");
             if (response["exists"]) {
-            //todo boodschap vakantie tonen
-            //    todo datum leeg maken
-            } else {
-                //todo datum voor payload opslaan
+                console.log("opgeslagen");
+                var teller=  (parseInt(id)+1).toString();
+                document.getElementById(teller).style.display = "block";
             }
+        });
 
-        })
+    }
+</script>
+
+<script>
+    function show(id,view){
+        var see=view?'block':'none';
+        var teller=  (parseInt(id)+1).toString();
+        document.getElementById(teller).style.display = see;//morgen
+        var teller=  (parseInt(id)+2).toString();
+        document.getElementById(teller).style.display = see;//middag
+        var teller=  (parseInt(id)+3).toString();
+        document.getElementById(teller).style.display = see;//avond
+        var teller=  (parseInt(id)+4).toString();
+        document.getElementById(teller).style.display = see;//opslaan
+
+
+    }
+</script>
+<script>
+    function showStore(id){
+        //deze functie moet checkbox opslaan tonen of verbergen
+        //de box mag alleen getoond worden als 1 van de dagdelen is checked
+        // var oneOfThree=false;
+        // if (id%11!=0){id=(id%11)};
+        // var teller=  (parseInt(id)).toString();
+        // if ($("input[type=checkbox]["+elementContent(id,0)+"]:checked").val()=="on"){oneOfThree=true};
+        // if ($("input[type=checkbox]["+elementContent(id,1)+"]:checked").val()=='on'){oneOfThree=true};
+        // if ($("input[type=checkbox]["+elementContent(id,2)+"]:checked").val()=="on"){oneOfThree=true};
+        // var teller=  (parseInt(id+3)).toString();
+        // if(oneOfThree){document.getElementById(teller).style.display = "block";
+        // } else {document.getElementById(teller).style.display = "none"}
+    }
+</script>
+
+<script>
+    function checkDate(event,id) {
+        dateLocal = event.target.value;
+        var view;
+        if (dateLocal!=''){view=true};
+        if (dateLocal==''){view=false};
+        show(id,view);
+        showStore(id);
+        //todo is de datum een vakantiedag?
+        payload = JSON.stringify(dateLocal);
+        if (dateLocal!='') {
+            console.log("payload vakantiedag?: "+payload);
+            // $.ajax({
+            //     type: 'POST',
+            //     url: '/checkDate',
+            //     contentType: 'application/json; charset=utf-8',
+            //     dataType: 'json',
+            //     data: payload
+            // }).done(function (response) {
+            //     // NonTeachingDay = $("#TeachingDayMsg");
+            //     if (response["exists"]) {
+            //         //todo boodschap vakantie tonen
+            //         //    todo datum leeg maken
+            //     }
+            // })
+        }
+        // $.ajax({
+        //     type: 'POST',
+        //     url: '/dateBezet',
+        //     contentType: 'application/json; charset=utf-8',
+        //     dataType: 'json',
+        //     data: payload
+        // }).done( function (response) {
+        //     NonTeachingDay = $("#TeachingDayMsg");
+        //     if (response["exists"]) {
+        //         //todo ochtend checkbox verwijderen
+        //         //todo middag verwijderen
+        //          //todo avond verwijderen
+        //     }
+        // })
     }
 </script>
 

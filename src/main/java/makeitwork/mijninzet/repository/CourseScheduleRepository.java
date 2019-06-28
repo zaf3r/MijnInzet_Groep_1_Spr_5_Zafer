@@ -13,4 +13,6 @@ public interface CourseScheduleRepository extends JpaRepository<CourseSchedule,I
     List<CourseSchedule>  findAllByCohort(Cohort cohort);
 
 
+
+
 }

@@ -1,5 +1,6 @@
 package makeitwork.mijninzet.model.TeacherSchedule;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.model.preference.Subject;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -25,6 +26,7 @@ public class CohortDay {
     @Column(name = "Dag")
     private DayOfWeek dayOfWeek;
 
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "weekId")
     private CohortWeek cohortWeek;
