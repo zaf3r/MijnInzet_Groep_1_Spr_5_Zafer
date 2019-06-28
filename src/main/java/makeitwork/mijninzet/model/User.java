@@ -36,6 +36,9 @@ public class User{
     private final String COLUMN_HOURS="Uren";
 
     @Transient
+    private final String COLUMN_HOURSALLOCATED="urenBezetting";
+
+    @Transient
     private final String COLUMN_ID = "idgebruiker";
 
     @Transient
@@ -78,6 +81,9 @@ public class User{
 
     @Column(name = COLUMN_HOURS)
     private int hours;
+
+    @Column(name = COLUMN_HOURSALLOCATED)
+    private int hoursAllocated;
 
     @Column(name = COLUMN_SURNAME)
     private String surname;
@@ -209,6 +215,14 @@ public class User{
         this.email = email;
     }
 
+    public int getHoursAllocated() {
+        return hoursAllocated;
+    }
+
+    public void setHoursAllocated(int hoursAllocated) {
+        this.hoursAllocated = hoursAllocated;
+    }
+
     public Set<Preference> getPreferenceSet() {
         return preferenceSet;
     }
@@ -270,6 +284,7 @@ public class User{
                 ", password='" + password + '\'' +
                 ", username='" + username + '\'' +
                 ", hours='" + hours + '\'' +
+                ", hoursAllocated='" + hoursAllocated + '\'' +
                 ", surname='" + surname + '\'' +
                 ", namePrefix='" + namePrefix + '\'' +
                 ", familyName='" + familyName + '\'' +
