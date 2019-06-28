@@ -9,10 +9,7 @@ import makeitwork.mijninzet.service.VacatureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.time.LocalDate;
@@ -73,7 +70,17 @@ public class VacatureController implements  RetrieveUserRole{
         User user = usersRepository.findByUsername(principal.getName());
         List<Task> myApplications = user.getSollicitaties();
         model.addAttribute("takenToDo", myApplications);
-        return "myApplications";
+        Role role = retrieveRole(usersRepository,principal);
+        model.addAttribute("roleUser", role);
+        return "myApprovedTasks";
+    }
+
+    @PostMapping("/taskDelete/{taskId}")
+    public String DeleteTaskHandler(@ModelAttribute("myTask") Task myTask, @RequestParam("taskId") int taakId, Principal principal){
+        myTask = getTask(taakId);
+        System.out.println(myTask);
+        vacatureService.removeTask(myTask, usersRepository.findByUsername(principal.getName()));
+        return "redirect:/teacher/myTasks";
     }
 
     public Task getTask(int id){
@@ -138,13 +145,5 @@ public class VacatureController implements  RetrieveUserRole{
         }
         return false;
     }
-
-    //    @PostMapping("/taskDelete/{taskId}")
-//    public String DeleteTaskHandler(@ModelAttribute("myTask") Task myTask, @RequestParam("taskId") String taakId, Principal principal){
-//        myTask = opening(taakId);
-//        System.out.println(myTask);
-//        vacatureService.removeTask(myTask, usersRepository.findByUsername(principal.getName()));
-//        return "redirect:/myTasks";
-//    }
 
 }

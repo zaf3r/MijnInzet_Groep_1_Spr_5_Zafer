@@ -43,11 +43,13 @@ public class VacatureService {
         taskRepository.save(task);
     }
     //wordt een taak uit zijn eigen lijst verwijderd
-//    public void removeTask(Task task, User user) {
-//        System.out.println("Task: " + task);
-//        user.removeApplication(task.getId());
-//        vacatureRepository.save(user);
-//    }
+    public void removeTask(Task task, User user) {
+        System.out.println("Task: " + task);
+        user.getTasks().remove(task);
+        task.getUsers().remove(user);
+        vacatureRepository.save(user);
+        taskRepository.save(task);
+    }
 
 
     // voor de MANAGER: lijst met tasks en users die gesolliciteerd hebben (lijst sollicitanten)

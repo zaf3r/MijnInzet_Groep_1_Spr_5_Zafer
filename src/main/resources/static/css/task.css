@@ -3,6 +3,10 @@
     margin-top: 80px;
 }
 
+.contentTable {
+    margin-top: 110px;
+}
+
 #gallery {
     margin-top: 50px;
 }
@@ -169,4 +173,8 @@ h2.description {
 
 #link {
     padding-top: 20px;
+}
+
+.table{
+    font-size: 1.7em;
 }
