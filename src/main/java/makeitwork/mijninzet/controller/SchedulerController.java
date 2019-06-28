@@ -59,7 +59,7 @@ public class SchedulerController implements RetrieveUserRole{
         //model.addAttribute("subjects", selectedSubject);
         Role role = retrieveRole(userRepo,principal);
         model.addAttribute("roleUser", role);
-        return "vakdocent";
+        return "scheduler";
     }
 
     public List<Cohort> getAllCohorts(){
@@ -91,7 +91,7 @@ public class SchedulerController implements RetrieveUserRole{
 //        Cohort cohort = coRepo.findByCohortName(cohortName);
 //        selectedCohort = cohortName;
 //        subjectList(cohort);
-//        return "redirect:/roosteraar/vakdocent";
+//        return "redirect:/scheduler/vakdocent";
 //    }
 
 
@@ -101,7 +101,7 @@ public class SchedulerController implements RetrieveUserRole{
         selectedCohort = cohortName;
         model.addAttribute("cohortName", selectedCohort);
         subjectList(cohort);
-        return "redirect:/roosteraar/vakdocent";
+        return "redirect:/schedular/vakdocent";
     }
 
 //    @PostMapping("/showWeeks")
@@ -110,7 +110,7 @@ public class SchedulerController implements RetrieveUserRole{
 //        selectedCohort = cohortName;
 //        model.addAttribute("cohortName", selectedCohort);
 //        weekList(cohort);
-//        return "return:/roosteraar/vakdocent";
+//        return "return:/scheduler/vakdocent";
 //    }
 
 //    @PostMapping("/postTeacherToSchedule")
@@ -119,7 +119,7 @@ public class SchedulerController implements RetrieveUserRole{
 //        cohort.setUser(teacherName);
 //        selectedTeacher = teacherName;
 //        .save()
-//        return "redirect:/roosteraar/vakdocent";
+//        return "redirect:/scheduler/vakdocent";
 //    }
 
     public void subjectList(Cohort cohort){

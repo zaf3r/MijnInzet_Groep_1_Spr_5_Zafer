@@ -32,6 +32,11 @@ public class userRepository {
         }
 
         @Override
+        public List<User> findAllByRole(Role role) {
+            return null;
+        }
+
+        @Override
         public List<User> findAll() {
             return null;
         }

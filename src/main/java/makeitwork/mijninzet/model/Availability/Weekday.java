@@ -1,11 +1,11 @@
 package makeitwork.mijninzet.model.Availability;
 
 public enum Weekday {
-    MONDAY("monday"),
-    TUESDAY("tuesday"),
-    WEDNESDAY("wednesday"),
-    THURSDAY("thursday"),
-    FRIDAY("friday");
+    MONDAY("MONDAY"),
+    TUESDAY("TUESDAY"),
+    WEDNESDAY("WEDNESDAY"),
+    THURSDAY("THURSDAY"),
+    FRIDAY("FRIDAY");
 
     private final String weekdayAsString;
 
