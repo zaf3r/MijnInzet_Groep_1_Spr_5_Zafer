@@ -26,6 +26,7 @@ public class TeacherSchedulerRestController {
     final private Role TEACHER_ROLE = new Role(1, "Docent");
     final private CohortDay COHORT_DAY_LOADER = new CohortDay();
     final private DateTimeFormatter STRING_TO_DATE_FORMATER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    final private long INCREMENT_DAY_HIBERNATE_FIX = 1;
 
     final String MORNING = "morning";
     final String AFTERNOON = "afternoon";
@@ -88,7 +89,6 @@ public class TeacherSchedulerRestController {
             teacherIsAlreadyScheduled =
                     (cohortDayRepository.findAllByDateAndTeacherEvening(dateScheduled, teacher).size() >= MAX_PLACEMENT);
         }
-        System.out.println(teacherIsAlreadyScheduled);
         return teacherIsAlreadyScheduled;
     }
 
@@ -155,11 +155,10 @@ public class TeacherSchedulerRestController {
         return cohortWeek;
     }
 
-    public CohortDay cohortDayLoader(CohortDay cohortDay, String teacherMorning, String teacherAfternoon, String teacherEvening) {
+    public void cohortDayLoader(CohortDay cohortDay, String teacherMorning, String teacherAfternoon, String teacherEvening) {
         cohortDay.setTeacherMorning(userRepository.findByUsername(teacherMorning));
         cohortDay.setTeacherAfternoon(userRepository.findByUsername(teacherAfternoon));
         cohortDay.setTeacherEvening(userRepository.findByUsername(teacherEvening));
-        return cohortDay;
     }
 
     public void loadAvailability(User user) {

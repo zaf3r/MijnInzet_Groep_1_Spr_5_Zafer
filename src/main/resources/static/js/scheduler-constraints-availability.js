@@ -109,13 +109,13 @@ function availabilityWednesdayMo(teacher, availability) {
 function availabilityWednesdayAf(teacher, availability) {
     if (!availability) {
         noAvailabilityAlert(teacher);
-        addHardConstraintClass(wednesdayAf);
+        addHardConstraintClass(wednesdayAfTeach);
 
     } else if (!availability.afternoon) {
         alert("Docent " + teacher.username + " is niet beschikbaar op woensdag middag");
-        addHardConstraintClass(wednesdayAf);
+        addHardConstraintClass(wednesdayAfTeach);
     } else {
-        removeHardConstraintClass(wednesdayAf);
+        removeHardConstraintClass(wednesdayAfTeach);
     }
 }
 
