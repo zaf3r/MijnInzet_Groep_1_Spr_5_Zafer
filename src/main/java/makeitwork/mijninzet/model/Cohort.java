@@ -88,21 +88,11 @@ public class Cohort {
 
     public LocalDate getEndDate() { return endDate; }
 
-//    public void addSubject(String subjectName) {
-//        List<String> subjects = getSubjectNames();
-//        if (!subjects.contains(subjectName)) subjects.add(subjectName);
-//    }
-
     public void addSubject(Subject subject){
         List<Subject> subjects = getSubjects();
         if(!subjects.contains(subject))
             subjects.add(subject);
     }
-
-//    public void removeSubject(String subjectName) {
-//        List<String> subjects = getSubjectNames();
-//        if (subjects.contains(subjectName)) subjects.remove(subjectName);
-//    }
 
     public void removeSubject(Subject subject) {
         List<Subject> subjects = getSubjects();

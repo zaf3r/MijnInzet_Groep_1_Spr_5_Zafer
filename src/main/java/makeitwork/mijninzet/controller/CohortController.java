@@ -1,5 +1,6 @@
 package makeitwork.mijninzet.controller;
 
+import com.google.gson.Gson;
 import makeitwork.mijninzet.model.Cohort;
 import makeitwork.mijninzet.model.Role;
 import makeitwork.mijninzet.model.TeacherSchedule.CohortDay;
@@ -46,6 +47,8 @@ public class CohortController implements RetrieveUserRole {
     private String selectedCohort;
     private List<Subject> possibleSubjectList;
     private List<Subject> selectedSubjectList;
+    private List<Cohort> theCohorts;
+    private User actualUser;
 
     @GetMapping("/cohort")
     public String CohortHandler(Model model, Principal principal){
@@ -53,22 +56,40 @@ public class CohortController implements RetrieveUserRole {
 
         model.addAttribute("attr1", cohort);
         model.addAttribute("coordinators", getCoordinators());
-//        model.addAttribute("cohorts", getAllCohorts());
         Role role = retrieveRole(userRepository,principal);
         model.addAttribute("roleUser", role);
         return "cohort";
     }
 
+//    @GetMapping("/cohortSubject")
+//    public String AddSubjectHandler(Model model, Principal principal){
+//        User user = userRepository.findByUsername(principal.getName());
+//        model.addAttribute("cohorts", getAllCohorts(user));
+//        model.addAttribute("subjects", selectedSubjectList);
+//        model.addAttribute("possibleSubjects", possibleSubjectList);
+//        Role role = retrieveRole(userRepository,principal);
+//        model.addAttribute("roleUser", role);
+//
+//        return "cohortSubject";
+//    }
+
     @GetMapping("/cohortSubject")
     public String AddSubjectHandler(Model model, Principal principal){
-        User user = userRepository.findByUsername(principal.getName());
-        model.addAttribute("cohorts", getAllCohorts(user));
-        model.addAttribute("subjects", selectedSubjectList);
-        model.addAttribute("possibleSubjects", possibleSubjectList);
+        actualUser = userRepository.findByUsername(principal.getName());
         Role role = retrieveRole(userRepository,principal);
         model.addAttribute("roleUser", role);
-
+        System.out.println(actualUser);
         return "cohortSubject";
+    }
+
+    @PostMapping("/cohortsToSelect")
+    public @ResponseBody
+    String cohortsToPlan(@RequestBody String requestPayload, Principal principal){
+//        User user = userRepository.findByUsername(principal.getName());
+        List<Cohort> cohorts = getAllCohorts(actualUser);
+        System.out.println("Hi!" + actualUser);
+        System.out.println(cohorts);
+        return new Gson().toJson(cohorts);
     }
 
     public List<User> getCoordinators(){
@@ -122,14 +143,6 @@ public class CohortController implements RetrieveUserRole {
     }
 
     @PostMapping("/addSubjects")
-//    public String addSubjectHandler(@RequestParam("subjectName") int subjectId ){
-//        Cohort cohort = coRepo.findByCohortName(selectedCohort);
-//        Subject subject = subRepo.findBySubjectId(subjectId);
-//        cohortService.addSubject(cohort, subject);
-//        subjectList(cohort);
-//        return "redirect:/manager/cohortSubject";
-//    }
-
     public String addSubjectHandler(@RequestParam("subjectName") int subjectId ){
         Cohort cohort = coRepo.findByCohortName(selectedCohort);
         Subject subject = subRepo.findBySubjectId(subjectId);
@@ -141,16 +154,6 @@ public class CohortController implements RetrieveUserRole {
     }
 
     @PostMapping("/removeSubjects")
-//    public String removeSubjectHandler(@RequestParam("selectedSubjectList") int subjectId){
-//        Cohort cohort = coRepo.findByCohortName(selectedCohort);
-//        Subject subject = subRepo.findBySubjectId(subjectId);
-//
-//        cohortService.removeSubject(cohort, subject);
-//        subjectList(cohort);
-//
-//        return "redirect:/manager/cohortSubject";
-//    }
-
     public String removeSubjectHandler(@RequestParam("selectedSubjectList") int subjectId){
         Cohort cohort = coRepo.findByCohortName(selectedCohort);
         Subject subject = subRepo.findBySubjectId(subjectId);

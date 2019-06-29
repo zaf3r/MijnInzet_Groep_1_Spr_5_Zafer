@@ -138,6 +138,7 @@ function postCallWeekObject() {
     weekDayObject.fridayEveningTeacher = fridayEvTeach.value;
 
     var WeekDayJson = JSON.stringify(weekDayObject);
+    console.log(WeekDayJson);
 
     $.ajax({
         type: "POST",
