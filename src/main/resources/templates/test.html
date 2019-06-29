@@ -284,15 +284,19 @@
     function checkDate(event,id) {
         dateLocal = event.target.value;
         var view;
-        if (dateLocal!=''){view=true};
-        if (dateLocal==''){view=false};
-        var date=dateLocal;
-        var desc='vakantie';
-        show(id,view);
-        // showStore(id);
-        //todo dagdeel is bezet
-        payload = JSON.stringify({date,desc});
-        if (dateLocal!='') {
+        if (dateLocal != '') {
+            view = true
+        }
+        ;
+        if (dateLocal == '') {
+            view = false
+        }
+        ;
+        var date = dateLocal;
+        var desc = 'vakantie';
+        show(id, view);
+        payload = JSON.stringify({date, desc});
+        if (dateLocal != '') {
             $.ajax({
                 type: 'POST',
                 url: '/checkDate',
@@ -303,41 +307,46 @@
                 if (response["exists"]) {
                     console.log(date);
                     console.log("is vakantie")
-                    view= !response["exists"]
-                    show(id,view);
+                    view = !response["exists"]
+                    show(id, view);
                     var teller = (parseInt(id) + 7).toString();
                     document.getElementById(teller).style.display = "block";
                 } else {
                     console.log(date);
-                    console.log("is geen vakantie")
-                    view= true;
-                    show(id,view);
+                    view = true;
+                    show(id, view);
                     var teller = (parseInt(id) + 7).toString();
                     document.getElementById(teller).style.display = "none";
                     $.ajax({
                         type: 'POST',
-                        url: '/checkDate',
+                        url: '/plannedWorkshop',
                         contentType: 'application/json; charset=utf-8',
                         dataType: 'json',
                         data: payload
                     }).done(function (response) {
                         if (response["exists"]) {
-                            console.log(date);
-                            console.log("heeft planning")
-                            view= !response["exists"]
-                            show(id,view);
-                            var teller = (parseInt(id) + 7).toString();
-                            document.getElementById(teller).style.display = "block";
+                            console.log(response);
+                            console.log("heeft planning");
+                            var teller = (parseInt(id) + 1).toString();
+                            {if (response["morgen"]) {document.getElementById(teller).style.display = "none";}}
+                            var teller = (parseInt(id) + 2).toString();
+                            {if (response["middag"]){document.getElementById(teller).style.display = "none";}}
+                            var teller = (parseInt(id) + 3).toString();
+                            {if (response["avond"]){document.getElementById(teller).style.display = "none";}}
+                            var teller = (parseInt(id) + 4).toString();
+                            if (response["morgen"]&&response["middag"]&&response["avond"]){
+                            document.getElementById(teller).style.display = "none"}
                         } else {
-                            console.log(date);
+                            console.log(response);
                             console.log("heeft geen planning")
-                            view= true;
+                            view=true;
                             show(id,view);
-
                         }
+                    })
                 }
-            })
-        };
+            });
+        }
+    }
         // $.ajax({
         //     type: 'POST',
         //     url: '/dateBezet',
@@ -352,7 +361,7 @@
         //          //todo avond verwijderen
         //     }
         // })
-    }
+
 </script>
 
 <script>

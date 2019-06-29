@@ -93,4 +93,24 @@ public class CourseScheduleController {
         }
         return output.toJson();
     }
+    @PostMapping("/plannedWorkshop")
+    public @ResponseBody
+    String plannedWorkshops(@RequestBody receiveDatum requestPayload) {
+        List<CourseSchedule> courses=service.daySchedule(requestPayload);
+        BasicDBObject output = new BasicDBObject();
+        if (courses.isEmpty())
+            output.put("exists", false);
+        else {
+            output.put("exists", true);
+            for (CourseSchedule course:courses) {
+                switch (course.getPartOfDay().ordinal()){
+                    case 0: {output.put("morgen", true); break;}
+                    case 1: {output.put("middag", true); break;}
+                    case 2: {output.put("avond", true); break;}
+                }
+            }
+        }
+        return output.toJson();
+    }
+
 }

@@ -190,4 +190,14 @@ public class CourseScheduleService implements RetrieveUserRole {
         else {schedule.setStatus(StatusCourseSchedule.DEFINITIEF);}
         return courseScheduleRepository.saveAndFlush(schedule);
     }
+
+    public List<CourseSchedule> daySchedule(receiveDatum date) {
+        //this method checks if on a given date courses are planned
+        List<CourseSchedule> schedulesSource = courseScheduleRepository.findAll();
+        List<CourseSchedule> schedules = new ArrayList<>();
+        for (CourseSchedule course : schedulesSource) {
+            if (course.getDate().isEqual(date.getDate())) schedules.add(course);
+        }
+        return schedules;
+    }
 }
