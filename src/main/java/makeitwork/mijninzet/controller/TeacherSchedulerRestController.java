@@ -28,7 +28,7 @@ public class TeacherSchedulerRestController {
     final private DateTimeFormatter STRING_TO_DATE_FORMATER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     final String MORNING = "morning";
-    final String AFTERNOON = "afternnoon";
+    final String AFTERNOON = "afternoon";
     final String EVENING = "evening";
     final int MAX_PLACEMENT = 1;
 
@@ -80,14 +80,15 @@ public class TeacherSchedulerRestController {
 
         if(dayPart.equals(MORNING)) {
             teacherIsAlreadyScheduled =
-                    (cohortDayRepository.findAllByDateAndTeacherMorning(dateScheduled, teacher).size() == MAX_PLACEMENT);
+                    (cohortDayRepository.findAllByDateAndTeacherMorning(dateScheduled, teacher).size() >= MAX_PLACEMENT);
         } else if (dayPart.equals(AFTERNOON)) {
             teacherIsAlreadyScheduled =
-                    (cohortDayRepository.findAllByDateAndTeacherAfternoon(dateScheduled, teacher).size() == MAX_PLACEMENT);
+                    (cohortDayRepository.findAllByDateAndTeacherAfternoon(dateScheduled, teacher).size() >= MAX_PLACEMENT);
         } else {
             teacherIsAlreadyScheduled =
-                    (cohortDayRepository.findAllByDateAndTeacherEvening(dateScheduled, teacher).size() == MAX_PLACEMENT);
+                    (cohortDayRepository.findAllByDateAndTeacherEvening(dateScheduled, teacher).size() >= MAX_PLACEMENT);
         }
+        System.out.println(teacherIsAlreadyScheduled);
         return teacherIsAlreadyScheduled;
     }
 

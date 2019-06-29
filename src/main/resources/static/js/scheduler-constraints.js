@@ -5,7 +5,7 @@ mondayMoTeach.addEventListener("change", function () {
     availAbilityMondayMo(teacher, availability);
 
     if (!mondayMoTeach.parentNode.classList.contains(HardConstraint)) {
-        cohortClashMondayMo(teacher,dateMonday,morning, mondayMoTeach);
+        cohortClash(teacher,dateMonday,morning, mondayMoTeach);
     }
 
 });
@@ -15,14 +15,21 @@ mondayAfTeach.addEventListener("change", function () {
     var availability = findAvailability(monday, teacher.availabilityList);
     availAbilityMondayAf(teacher, availability);
 
-});
+/*    if (!mondayAfTeach.parentNode.classList.contains(HardConstraint)) {
+        cohortClash(teacher,dateMonday,afternoon, mondayAfTeach);
+    }*/
 
+});
 
 
 mondayEvTeach.addEventListener("change", function () {
     var teacher = findTeacher(mondayEvTeach.value);
     var availability = findAvailability(monday, teacher.availabilityList);
-    availabilityMondayEv(teacher, availability)
+    availabilityMondayEv(teacher, availability);
+
+/*    if (!mondayEvTeach.parentNode.classList.contains(HardConstraint)) {
+        cohortClash(teacher,dateMonday,evening, mondayEvTeach);
+    }*/
 });
 
 tuesdayMoTeach.addEventListener("change", function () {

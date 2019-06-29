@@ -55,7 +55,7 @@ var dateThursday;
 var dateFriday;
 
 var morning = "morning";
-var afternoon = "afternooon";
+var afternoon = "afternoon";
 var evening = "evening";
 
 //Other variables
@@ -354,8 +354,8 @@ function loadFridayTeach(courseScheduleTeachArray) {
 
 function resetClassColours() {
     $.each(allTableCells, function () {
-        if ($(this).hasClass("availabilityConstraint")) {
-            $(this).removeClass("availabilityConstraint");
+        if ($(this).hasClass(HardConstraint)) {
+            $(this).removeClass(HardConstraint);
         }
     })
 }
