@@ -1,6 +1,7 @@
 package makeitwork.mijninzet.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import makeitwork.mijninzet.model.Availability.GlobalAvailability.Availability;
 import makeitwork.mijninzet.model.preference.Preference;
 import org.hibernate.annotations.SortNatural;
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -34,6 +35,9 @@ public class User{
 
     @Transient
     private final String COLUMN_HOURS="Uren";
+
+    @Transient
+    private final String COLUMN_HOURSALLOCATED="urenBezetting";
 
     @Transient
     private final String COLUMN_ID = "idgebruiker";
@@ -79,6 +83,9 @@ public class User{
     @Column(name = COLUMN_HOURS)
     private int hours;
 
+    @Column(name = COLUMN_HOURSALLOCATED)
+    private int hoursAllocated;
+
     @Column(name = COLUMN_SURNAME)
     private String surname;
 
@@ -102,6 +109,8 @@ public class User{
 //    @Column(name="Naam")
 //    private String naam;
 
+    @OneToMany(mappedBy = "user",cascade= CascadeType.PERSIST)
+    private List<Availability> availabilityList;
 
     @OneToMany(mappedBy = "user",cascade= CascadeType.ALL)
     @JsonIgnore
@@ -209,6 +218,14 @@ public class User{
         this.email = email;
     }
 
+    public int getHoursAllocated() {
+        return hoursAllocated;
+    }
+
+    public void setHoursAllocated(int hoursAllocated) {
+        this.hoursAllocated = hoursAllocated;
+    }
+
     public Set<Preference> getPreferenceSet() {
         return preferenceSet;
     }
@@ -217,7 +234,15 @@ public class User{
         this.preferenceSet = preferenceSet;
     }
 
-//    public String getNaam() {
+    public List<Availability> getAvailabilityList() {
+        return availabilityList;
+    }
+
+    public void setAvailabilityList(List<Availability> availabilityList) {
+        this.availabilityList = availabilityList;
+    }
+
+    //    public String getNaam() {
 //        return naam;
 //    }
 
@@ -270,6 +295,7 @@ public class User{
                 ", password='" + password + '\'' +
                 ", username='" + username + '\'' +
                 ", hours='" + hours + '\'' +
+                ", hoursAllocated='" + hoursAllocated + '\'' +
                 ", surname='" + surname + '\'' +
                 ", namePrefix='" + namePrefix + '\'' +
                 ", familyName='" + familyName + '\'' +

@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Controller
@@ -35,7 +37,7 @@ public class AvailabilityController implements RetrieveUserRole{
     public String getAvailabilityForm(Principal principal, Model model) {
 
         User user = userRepository.findByUsername(principal.getName());
-        Set<Availability> availabilitySet;
+        List<Availability> availabilitySet;
 
         if(availabilityRepository.findAllByUser(user).isEmpty()) {
             availabilitySet = emptyAvailabilityStarter(user);
@@ -78,7 +80,7 @@ public class AvailabilityController implements RetrieveUserRole{
                                        Principal principal) {
 
         User user = userRepository.findByUsername(principal.getName());
-        Set<Availability> availabilitySet = availabilityRepository.findAllByUser(user);
+        List<Availability> availabilitySet = availabilityRepository.findAllByUser(user);
 
         setValuesAvailability(AVAILABILITY_LOADER.findMonday(availabilitySet),
                 mondayMo, mondayAf, mondayEv, user);
@@ -100,8 +102,8 @@ public class AvailabilityController implements RetrieveUserRole{
      * @param user current session user
      * @return availabiilityForm containing all the possible options
      */
-    public Set<Availability> emptyAvailabilityStarter(User user) {
-        Set<Availability> availabilitySet = new LinkedHashSet<>();
+    public List<Availability> emptyAvailabilityStarter(User user) {
+        List<Availability> availabilitySet = new ArrayList<>();
 
         for (Weekday weekday: Weekday.values()) {
             Availability availability = new Availability();

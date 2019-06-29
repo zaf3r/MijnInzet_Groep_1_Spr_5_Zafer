@@ -1,26 +1,27 @@
 package makeitwork.mijninzet.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
+import com.google.gson.stream.JsonReader;
 import makeitwork.mijninzet.controller.RetrieveUserRole;
+import makeitwork.mijninzet.model.*;
 import makeitwork.mijninzet.model.Availability.PartOfDay;
 import makeitwork.mijninzet.model.Availability.Weekday;
-import makeitwork.mijninzet.model.Cohort;
-import makeitwork.mijninzet.model.CourseSchedule;
-import makeitwork.mijninzet.model.User;
+import makeitwork.mijninzet.model.TeacherSchedule.CohortWeek;
 import makeitwork.mijninzet.model.preference.Subject;
-import makeitwork.mijninzet.repository.CohortRepository;
-import makeitwork.mijninzet.repository.CourseScheduleRepository;
-import makeitwork.mijninzet.repository.SubjectRepository;
-import makeitwork.mijninzet.repository.UserRepository;
+import makeitwork.mijninzet.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
+import javax.imageio.IIOException;
+import java.io.IOException;
 import java.security.Principal;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
+
+
 
 @Service
 public class CourseScheduleService implements RetrieveUserRole {
@@ -34,17 +35,17 @@ public class CourseScheduleService implements RetrieveUserRole {
     SubjectRepository subjectRepository;
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    HolidayScheduleRepository holidays;
+
+    static final int URENLESBLOK=4;
+//    static final String STATUS_PLANNING_COHORT=StatusCourseSchedule.DEFINITIEF.ordinal();
 
     public void storeCourseSchedule(CourseSchedule schedule){
         courseScheduleRepository.saveAndFlush(schedule);
     }
 
-    public void deleteCourseSchedule(Cohort cohort){
-        List<CourseSchedule> schedules=courseScheduleRepository.findAllByCohort(cohort);
-        for (CourseSchedule schedule:schedules) {
-            courseScheduleRepository.delete(schedule);
-        }
-    }
+
     public List<CourseSchedule> courseSchedule(Cohort cohort){
         //a list of courses given a cohort
         return courseScheduleRepository.findAllByCohort(cohort);
@@ -54,57 +55,55 @@ public class CourseScheduleService implements RetrieveUserRole {
         List<Cohort> cohortsPlan=new ArrayList<>(cohorts(scheduledCourses()));
         return cohortsPlan;
     }
-    public List<Cohort> plannedCohorts(List<CourseSchedule> courses){
-        //all cohorts with a final planning
-        List<Cohort> cohortsPlan=new ArrayList<>(cohorts(finalPlannedCourses(scheduledCourses())));
-        return cohortsPlan;
-    }
+
     private List<CourseSchedule> scheduledCourses(){
         //list of all courses
         return courseScheduleRepository.findAll();
     }
-    private SortedSet<Cohort> cohorts(List<CourseSchedule> schedules) {
+    private List<Cohort> cohorts(List<CourseSchedule> schedules) {
         //a list of courses is converted into a list of unique cohorts
-        SortedSet<Cohort> cohorts = new TreeSet<>();
+        List<Cohort> cohorts=new ArrayList<>();
+        List<CourseSchedule> schedules1 = new ArrayList<>();
         for (CourseSchedule course : schedules) {
-            var cohort = course.getCohort();
-            if (!cohorts.contains(cohort)) cohorts.add(cohort);
-        }
+            for (Cohort cohort:cohorts) {
+                if (course.getCohort().getCohortId()==cohort.getCohortId()) break;
+            }
+            cohorts.add(course.getCohort());
+            }
         return cohorts;
     }
-    private List<CourseSchedule> finalPlannedCourses(List<CourseSchedule> schedules){
+    private List<CourseSchedule> finalPlannedCourses(){
         //all courses with status=DEFINITIEF (planning is casted in concrete)
-        List<CourseSchedule> courses =new ArrayList<>();
-        for (CourseSchedule course:schedules) {
-            var status=course.getStatus().name();
-            var checkValueStatus="DEFINITIEF";
-            if (status==checkValueStatus) {
-                courses.add(course);
-            }
-        }
+        List<CourseSchedule> courses=new ArrayList<>();
+        List<CourseSchedule> allCourses =courseScheduleRepository.findAll();
+        //todo de definitiefe cohorts verwijderen
         return courses;
     }
     public List<Cohort> plannedCohorts(){
-        List<Cohort> plannedCohorts=new ArrayList<>(cohorts(finalPlannedCourses(scheduledCourses())));
-        return listCohortEmpty(plannedCohorts);
+        return cohorts(finalPlannedCourses());
     }
     public List<Cohort> cohortsToPlan(Principal principal){
         //a list of cohorts in need for planning from the actual user of the system
-        List<Cohort> cohorts=cohortRepository.findAll();
-        List<Cohort> cohorts1=new ArrayList<>();
-        cohorts.removeAll(plannedCohorts());
-        User actualUser = userRepository.findByUsername(principal.getName());
-        if (!cohorts.isEmpty()) {
-            for (Cohort cohort : cohorts) {
-                if (cohort.getUser().getUsername() == actualUser.getUsername()) cohorts1.add(cohort) ;
-            }
+        User user=userRepository.findByUsername(principal.getName());
+        List<Cohort> cohorts=cohortRepository.findByUser((user));
+//        this code prevents a stackoverflow due to bad design in the class CohortWeek
+//        the list(Cohortweek> is emptied and thereby an indefinite loop via Gson/Jackson
+//        prevented.
+        for (Cohort cohort: cohorts) {
+            List<CohortWeek> cohortWeek = new ArrayList<>();
+            cohort.setCohortWeekList(cohortWeek);
         }
-        listCohortEmpty(cohorts1);
-        return cohorts1;
+        List<Cohort> cohorts1=new ArrayList<>();
+        if(!plannedCohorts().isEmpty()) cohorts.removeAll(plannedCohorts());
+//                System.out.printf("\n\ndit is cohorts1: %s\n\n",cohorts1);
+//                System.out.printf("\n\ndit is cohort: %s\n\n",cohort);
+//
+        listCohortEmpty(cohorts);
+        return cohorts;
     }
     private List<Cohort> listCohortEmpty(List<Cohort> cohorts){
         //a list with one cohort, if the original list is empty
-        //the cohort in the list contains a meaningfull message for te user
+        //the cohort in the list contains a meaningfull message for the user
         if(cohorts.isEmpty()){
             Cohort cohort=new Cohort();
             cohort.setCohortName("Helaas geen cohort in dit bestand.");
@@ -117,14 +116,13 @@ public class CourseScheduleService implements RetrieveUserRole {
     public Cohort fullCohort(Cohort cohort){
         return cohortRepository.findByCohortName(cohort.getCohortName());
     }
-//    public List<Subject> vakkenCohort(Cohort cohort){
-//        List<Subject> subjects=new ArrayList<>();
-//        for (String name:fullCohort(cohort).getSubjectNames()) {
-//            subjects.add(subjectRepository.findBySubjectName(name));
-//        }
-//        return subjects;
-//    }
 
+    public Cohort cohort(String cohortName){
+        return cohortRepository.findByCohortName(cohortName);
+    }
+    public Subject subject(String subjectName){
+        return subjectRepository.findBySubjectName(subjectName);
+    }
     public List<Subject> vakkenCohort(Cohort cohort){
         List<Subject> subjects=new ArrayList<>();
         for (Subject subject:fullCohort(cohort).getSubjects()) {
@@ -150,7 +148,56 @@ public class CourseScheduleService implements RetrieveUserRole {
         Subject subject= new Gson().fromJson(subjectname, Subject.class);
         return subjectRepository.findBySubjectName(subject.getSubjectName());
     }
+    public List<String> aantalDagen(String subjectName){
+        Subject subject=subjectInfo(subjectName);
+        List<String> dagen=new ArrayList<>();
+        var aantal= (int) subjectRepository.findBySubjectName(subject.getSubjectName()).getHours()/URENLESBLOK;
+        for (var i=0;i<aantal;i++){
+            dagen.add("dag"+i+1);
+        }
+        return dagen;
+    }
+    public void vakkenPlanningCohortDefinitief(String cohortName){
+        List<Subject> subjectInPlanning=vakkenCohort(cohortService.getCohort(cohortName));
+        List<CourseSchedule> courses=courseSchedule(cohortRepository.findByCohortName(cohortName));
+        List<Subject> subjectHours=new ArrayList<>(); // this list will cointans subjects with the sum of their planned hours
+        for (CourseSchedule course:courses) {
+            if (course.getStatus()==StatusCourseSchedule.DEFINITIEF)  courses.remove(course);
+           // else { if (!subjectHours.contains(course.getSubject()))
+//            todo deze functie afmaken
+        }
+    }
+    public Boolean isNonTeachingDay(receiveDatum date){
+        List<HolidaySchedule> listHolidays=holidays.findAll();
+        var present=false;
+        for (HolidaySchedule day:listHolidays) {
+            if (day.getLocalDate().isEqual(date.getDate())){present=true;break;}
+        }
+        return present;
+    }
+    public CourseSchedule storeCourse(receiveCourse course){
+        CourseSchedule schedule=new CourseSchedule();
+        schedule.setCohort(cohortRepository.findByCohortName(course.getCohortName()));
+        schedule.setSubject(subjectRepository.findBySubjectName(course.getSubjectName()));
+        schedule.setDate(course.getDate());
+        switch (course.getPartOfDay()){
+            case "OCHTEND": schedule.setPartOfDay(PartOfDay.OCHTEND); break;
+            case "MIDDAG": schedule.setPartOfDay(PartOfDay.MIDDAG); break;
+            case "AVOND": schedule.setPartOfDay(PartOfDay.AVOND); break;
+            default: break;
+        }
+        if (course.getStatus()==null) schedule.setStatus(StatusCourseSchedule.INPLANNING);
+        else {schedule.setStatus(StatusCourseSchedule.DEFINITIEF);}
+        return courseScheduleRepository.saveAndFlush(schedule);
+    }
 
-
-
+    public List<CourseSchedule> daySchedule(receiveDatum date) {
+        //this method checks if on a given date courses are planned
+        List<CourseSchedule> schedulesSource = courseScheduleRepository.findAll();
+        List<CourseSchedule> schedules = new ArrayList<>();
+        for (CourseSchedule course : schedulesSource) {
+            if (course.getDate().isEqual(date.getDate())) schedules.add(course);
+        }
+        return schedules;
+    }
 }

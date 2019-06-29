@@ -48,21 +48,7 @@
         <h4 class="text-center2" align="center">Selecteer een cohort en voeg er vakken aan toe</h4>
 
         <div class = "select" align="center">
-
-<!--                        <div class="vakkenCohort">-->
-<!--&lt;!&ndash;                            <form action="#" th:object="${cohorts}" th:action="@{showSubjects}" method="post">&ndash;&gt;-->
-<!--                            <form action="#" th:object="${cohorts}">-->
-<!--                                <select name="cohortName" id="cohortList" required style="width: 250px; border-color: lightgray" onclick="showSubjects()">-->
-<!--                                    <option value="">Selecteer een cohort:</option>-->
-<!--                                    <option th:each="coh: ${cohorts}" th:value="${coh.cohortName}" th:text="${coh.cohortName}"></option>-->
-<!--                                </select>-->
-<!--                            </form>-->
-<!--                        </div>-->
             <select class="form-control" name="cohortNameList" id="cohortList"></select>
-<!--            <div class="col-sm-10">-->
-<!--                -->
-<!--            </div>-->
-
         </div>
 
         <table align="center">
@@ -70,15 +56,7 @@
                 <td>
                     <div class = "vakkenCohort">
                         <div class="listLabel" align="center">Lijst met alle vakken</div>
-<!--                        <form action="#" th:object="${possibleSubjects}" th:action="@{addSubjects}" method="post">-->
-<!--                            <select  id="subjectName" name="subjectName" required multiple="multiple" size="7" style="width: 250px">-->
-<!--                                <option th:each="subject: ${possibleSubjects}" th:value="${subject.subjectId}" th:text="${subject.subjectName}"></option>-->
-<!--                            </select>-->
-<!--                            <input type="submit" th:onclick="" value=">" id="voegToe"/>-->
-<!--                        </form>-->
-                        <select class="form-control" name="possibleSubjects" id="possibleSubjects" required size="7" style="width: 250px">
-                        </select>
-<!--                        <input type="button" value=">" onclick = "rightSingle()">-->
+                        <select class="form-control" name="possibleSubjects" id="possibleSubjects" required size="7" style="width: 250px"></select>
                     </div>
                 </td>
                 <td>
@@ -88,20 +66,11 @@
                 <td>
                     <div class = "vakkenCohort">
                         <div class="listLabel" align="center">Vakken in het cohort</div>
-<!--                        <form action="#" th:object="${subjects}" th:action="@{removeSubjects}" method="post">-->
-<!--                            <input type="submit" th:onclick="" value="<" id="remove"/>-->
-<!--                            <select  id="selectedSubjectList" name="selectedSubjectList" required multiple="multiple" size="7" style="width: 250px">-->
-<!--                                <option th:each="subject: ${subjects}" th:value="${subject.subjectId}" th:text="${subject.subjectName}"></option>-->
-<!--                            </select>-->
-<!--                        </form>-->
-<!--                        <input type="submit" value="<">-->
                         <select class="form-control" name="selectedSubjects" id="selectedSubjects" required size="7" style="width: 250px"></select>
-
                     </div>
                 </td>
             <tr>
         </table>
-<!--        <button id="button" type="submit" class="btn btn-success" onclick="postCohort()">Opslaan</button>-->
     </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"

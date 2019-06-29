@@ -1,9 +1,11 @@
 package makeitwork.mijninzet.model.Availability.GlobalAvailability;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import makeitwork.mijninzet.model.Availability.Weekday;
 import makeitwork.mijninzet.model.User;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -14,6 +16,7 @@ public class Availability {
     @Column(name = "idbeschikbaarheid")
     private long id;
 
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "idgebruiker")
     private User user;
@@ -79,7 +82,7 @@ public class Availability {
         this.evening = evening;
     }
 
-    public Availability findMonday(Set<Availability> availabilityList) {
+    public Availability findMonday(List<Availability> availabilityList) {
         for (Availability availability : availabilityList) {
             if(availability.getWeekday()==Weekday.MONDAY) {
                 return availability;
@@ -88,7 +91,7 @@ public class Availability {
         return null;
     }
 
-    public Availability findTuesday(Set<Availability> availabilityList) {
+    public Availability findTuesday(List<Availability> availabilityList) {
         for (Availability availability : availabilityList) {
             if(availability.getWeekday()==Weekday.TUESDAY) {
                 return availability;
@@ -97,7 +100,7 @@ public class Availability {
         return null;
     }
 
-    public Availability findWednesday(Set<Availability> availabilityList) {
+    public Availability findWednesday(List<Availability> availabilityList) {
         for (Availability availability : availabilityList) {
             if(availability.getWeekday()==Weekday.WEDNESDAY) {
                 return availability;
@@ -106,7 +109,7 @@ public class Availability {
         return null;
     }
 
-    public Availability findThursday(Set<Availability> availabilityList) {
+    public Availability findThursday(List<Availability> availabilityList) {
         for (Availability availability : availabilityList) {
             if(availability.getWeekday()==Weekday.THURSDAY) {
                 return availability;
@@ -115,7 +118,7 @@ public class Availability {
         return null;
     }
 
-    public Availability findFriday(Set<Availability> availabilityList) {
+    public Availability findFriday(List<Availability> availabilityList) {
         for (Availability availability : availabilityList) {
             if(availability.getWeekday()==Weekday.FRIDAY) {
                 return availability;

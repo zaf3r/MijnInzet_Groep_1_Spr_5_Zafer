@@ -1,10 +1,12 @@
 package makeitwork.mijninzet.controller;
 
 import com.google.gson.Gson;
-import makeitwork.mijninzet.model.Cohort;
+import com.mongodb.BasicDBObject;
+import makeitwork.mijninzet.model.*;
 import makeitwork.mijninzet.model.preference.Subject;
 import makeitwork.mijninzet.repository.CohortRepository;
 import makeitwork.mijninzet.repository.CourseScheduleRepository;
+import makeitwork.mijninzet.repository.HolidayScheduleRepository;
 import makeitwork.mijninzet.service.CohortService;
 import makeitwork.mijninzet.service.CourseScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -30,37 +33,84 @@ public class CourseScheduleController {
 
     @PostMapping("/cohortsToPlan")
     public @ResponseBody
-    String cohortsToPlan(@RequestBody String requestPayload, Principal principal){
+    String cohortsToPlan(@RequestBody String requestPayload, Principal principal) {
         return new Gson().toJson(service.cohortsToPlan(principal));
     }
+
     @PostMapping("/vakkenCohort")
     public @ResponseBody
-    String vakkenVanCohort(@RequestBody String requestPayload){
-        List<Subject> subjects=service.vakkenCohort(new Gson().fromJson(requestPayload, Cohort.class));
+    String vakkenVanCohort(@RequestBody String requestPayload) {
+        List<Subject> subjects = service.vakkenCohort(new Gson().fromJson(requestPayload, Cohort.class));
         return new Gson().toJson(subjects);
     }
+
     @PostMapping("/schedulesToCopy")
     public @ResponseBody
-    String schedulesToCopy(@RequestBody String requestPayload){
+    String schedulesToCopy(@RequestBody String requestPayload) {
         return new Gson().toJson(service.plannedCohorts());
     }
+
     @PostMapping("/weekDays")
     public @ResponseBody
-    String weekDays(@RequestBody String requestPayload){
+    String weekDays(@RequestBody String requestPayload) {
         return new Gson().toJson(service.daysOfWeek());
     }
+
     @PostMapping("/partOfDay")
     public @ResponseBody
-    String partOfDay(@RequestBody String requestPayload){
+    String partOfDay(@RequestBody String requestPayload) {
         return new Gson().toJson(service.partsOfDay());
     }
+
     @PostMapping("/subjectInfo")
     public @ResponseBody
-    String subjectInfo(@RequestBody String requestPayload){
+    String subjectInfo(@RequestBody String requestPayload) {
         return new Gson().toJson(service.subjectInfo(requestPayload));
     }
 
+    @PostMapping("/aantalDagen")
+    public @ResponseBody
+    String numberOfCourses(@RequestBody String requestPayload) {
+        return new Gson().toJson(service.aantalDagen(requestPayload));
+    }
 
-
+    @PostMapping("/checkDate")
+    public @ResponseBody
+    String nonTeachingDay(@RequestBody receiveDatum requestPayload) {
+        BasicDBObject output = new BasicDBObject();
+        output.put("exists", service.isNonTeachingDay(requestPayload));
+        return output.toJson();
+    }
+    @PostMapping("/storeCourse")
+    public @ResponseBody
+    String storeCourseSchedule(@RequestBody receiveCourse requestPayload) {
+        CourseSchedule course=service.storeCourse(requestPayload);
+        BasicDBObject output = new BasicDBObject();
+        if (course!=null)
+            output.put("exists", true);
+        else {
+            output.put("exists", false);
+        }
+        return output.toJson();
+    }
+    @PostMapping("/plannedWorkshop")
+    public @ResponseBody
+    String plannedWorkshops(@RequestBody receiveDatum requestPayload) {
+        List<CourseSchedule> courses=service.daySchedule(requestPayload);
+        BasicDBObject output = new BasicDBObject();
+        if (courses.isEmpty())
+            output.put("exists", false);
+        else {
+            output.put("exists", true);
+            for (CourseSchedule course:courses) {
+                switch (course.getPartOfDay().ordinal()){
+                    case 0: {output.put("morgen", true); break;}
+                    case 1: {output.put("middag", true); break;}
+                    case 2: {output.put("avond", true); break;}
+                }
+            }
+        }
+        return output.toJson();
+    }
 
 }

@@ -1,5 +1,6 @@
 package makeitwork.mijninzet.model.preference;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -20,7 +21,7 @@ public class Subject {
     @Column(nullable = true, name = "uren")
     int hours;
 
-    @JsonIgnore
+    @JsonBackReference
     @OneToMany(mappedBy = "subject", cascade= {CascadeType.PERSIST,CascadeType.REMOVE})
     private Set<Preference> preferenceSet = new HashSet<>();
 
