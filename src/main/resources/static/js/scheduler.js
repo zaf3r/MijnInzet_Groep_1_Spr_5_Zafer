@@ -45,7 +45,7 @@ var teacherNames = document.createElement("select");
 var noSubject = "Geen vak";
 var weekDayObject = new Object();
 var button = document.querySelector("#button");
-
+var teacherObject = new Object();
 
 //Rest call event listeners
 $(function () {
@@ -102,6 +102,7 @@ function requestCallDays() {
 function requestCallTeachers() {
     $(function () {
         $.getJSON(getRequestTeacherUrl, function (data) {
+            teacherObject = data;
             data.forEach(function (teacher) {
                 var option = new Option(teacher.username, teacher.username);
                 teacherNames.append(option);

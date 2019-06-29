@@ -26,9 +26,11 @@ table {
 }
 
 
-/*#docentTabel td { background: #ffdec4; }*/
-
 #docentTabel tr td { background: #ffdec4; }
+
+.availabilityConstraint{
+    background: #ff002b !important;
+}
 
 th, td {
     border: 2px solid lightslategray;
