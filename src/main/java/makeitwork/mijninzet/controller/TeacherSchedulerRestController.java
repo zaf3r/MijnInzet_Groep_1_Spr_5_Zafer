@@ -77,6 +77,7 @@ public class TeacherSchedulerRestController {
         LocalDate dateScheduled = LocalDate.parse(localDate, STRING_TO_DATE_FORMATER);
         User teacher = userRepository.findByUsername(username);
         boolean teacherIsAlreadyScheduled;
+
         if(dayPart.equals(MORNING)) {
             teacherIsAlreadyScheduled =
                     (cohortDayRepository.findAllByDateAndTeacherMorning(dateScheduled, teacher).size() == MAX_PLACEMENT);

@@ -1,14 +1,14 @@
+
 mondayMoTeach.addEventListener("change", function () {
     var teacher = findTeacher(mondayMoTeach.value);
     var availability = findAvailability(monday, teacher.availabilityList);
     availAbilityMondayMo(teacher, availability);
+
     if (!mondayMoTeach.parentNode.classList.contains(HardConstraint)) {
-        cohortClashMondayMo(teacher,dateMonday,morning);
+        cohortClashMondayMo(teacher,dateMonday,morning, mondayMoTeach);
     }
 
 });
-
-
 
 mondayAfTeach.addEventListener("change", function () {
     var teacher = findTeacher(mondayAfTeach.value);

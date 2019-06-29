@@ -112,7 +112,6 @@ function requestCallDays() {
             loadWednesdayTeach(data);
             loadThursdayTeach(data);
             loadFridayTeach(data);
-            console.log(data);
             loadDates(data);
         }).fail(function () {
             console.log("Failed to make a request")
