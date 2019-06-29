@@ -46,6 +46,8 @@ var noSubject = "Geen vak";
 var weekDayObject = new Object();
 var button = document.querySelector("#button");
 var teacherObject = new Object();
+var allTableCells = document.querySelectorAll("td");
+
 
 //Rest call event listeners
 $(function () {
@@ -55,10 +57,12 @@ $(function () {
         if(!button.disabled) {
             $(button).attr("disabled", true);
         }
+        resetClassColours();
     });
 
     $(cohortWeek).on("change", cohortWeek, function () {
         getRequestDaysUrl = "http://localhost:8080/api/cohort/days/" + cohortNaam.value + "/" + cohortWeek.value;
+        resetClassColours();
         requestCallDays();
         if(button.disabled) {
             $(button).removeAttr('disabled');
@@ -320,4 +324,12 @@ function loadFridayTeach(courseScheduleTeachArray) {
             }
         }
     )
+}
+
+function resetClassColours() {
+    $.each(allTableCells, function () {
+        if ($(this).hasClass("availabilityConstraint")) {
+            $(this).removeClass("availabilityConstraint");
+        }
+    })
 }
