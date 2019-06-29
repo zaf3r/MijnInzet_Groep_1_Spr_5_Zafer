@@ -18,6 +18,7 @@ function findAvailability(day, availabilityList) {
 function availAbilityMondayMo(teacher, availability) {
     if (!availability) {
         noAvailabilityAlert(teacher);
+        addHardConstraintClass(mondayMoTeach);
 
     } else if (!availability.morning) {
         alert("Docent " + teacher.username + " is niet beschikbaar op maandag ochtend");
@@ -30,6 +31,7 @@ function availAbilityMondayMo(teacher, availability) {
 function availAbilityMondayAf(teacher, availability) {
     if (!availability) {
         noAvailabilityAlert(teacher);
+        addHardConstraintClass(mondayAfTeach);
 
     } else if (!availability.afternoon) {
         alert("Docent " + teacher.username + " is niet beschikbaar op maandag middag");
@@ -42,6 +44,7 @@ function availAbilityMondayAf(teacher, availability) {
 function availabilityMondayEv(teacher, availability) {
     if (!availability) {
         noAvailabilityAlert(teacher);
+        addHardConstraintClass(mondayEvTeach);
 
     } else if (!availability.evening) {
         alert("Docent " + teacher.username + " is niet beschikbaar op maandag avond");
@@ -54,6 +57,7 @@ function availabilityMondayEv(teacher, availability) {
 function availabilityTuesdayMo(teacher, availability) {
     if (!availability) {
         noAvailabilityAlert(teacher);
+        addHardConstraintClass(tuesdayMoTeach);
 
     } else if (!availability.morning) {
         alert("Docent " + teacher.username + " is niet beschikbaar op dinsdag ochtend");
@@ -66,6 +70,7 @@ function availabilityTuesdayMo(teacher, availability) {
 function availabilityTuesdayAf(teacher, availability) {
     if (!availability) {
         noAvailabilityAlert(teacher);
+        addHardConstraintClass(tuesdayAfTeach);
 
     } else if (!availability.afternoon) {
         alert("Docent " + teacher.username + " is niet beschikbaar op dinsdag middag");
@@ -78,6 +83,7 @@ function availabilityTuesdayAf(teacher, availability) {
 function availabilityTuesdayEv(teacher, availability) {
     if (!availability) {
         noAvailabilityAlert(teacher);
+        addHardConstraintClass(tuesdayEvTeach);
 
     } else if (!availability.evening) {
         alert("Docent " + teacher.username + " is niet beschikbaar op dinsdag avond");
@@ -90,6 +96,7 @@ function availabilityTuesdayEv(teacher, availability) {
 function availabilityWednesdayMo(teacher, availability) {
     if (!availability) {
         noAvailabilityAlert(teacher);
+        addHardConstraintClass(wednesdayMoTeach);
 
     } else if (!availability.morning) {
         alert("Docent " + teacher.username + " is niet beschikbaar op woensdag ochtend");
@@ -102,6 +109,7 @@ function availabilityWednesdayMo(teacher, availability) {
 function availabilityWednesdayAf(teacher, availability) {
     if (!availability) {
         noAvailabilityAlert(teacher);
+        addHardConstraintClass(wednesdayAf);
 
     } else if (!availability.afternoon) {
         alert("Docent " + teacher.username + " is niet beschikbaar op woensdag middag");
@@ -114,6 +122,7 @@ function availabilityWednesdayAf(teacher, availability) {
 function availabilityWednesdayEv(teacher, availability) {
     if (!availability) {
         noAvailabilityAlert(teacher);
+        addHardConstraintClass(wednesdayEvTeach);
 
     } else if (!availability.evening) {
         alert("Docent " + teacher.username + " is niet beschikbaar op woensdag avond");
@@ -126,6 +135,7 @@ function availabilityWednesdayEv(teacher, availability) {
 function availabilityThursdayMo(teacher, availability) {
     if (!availability) {
         noAvailabilityAlert(teacher);
+        addHardConstraintClass(thursdayMoTeach);
 
     } else if (!availability.morning) {
         alert("Docent " + teacher.username + " is niet beschikbaar op donderdag ochtend");
@@ -138,6 +148,7 @@ function availabilityThursdayMo(teacher, availability) {
 function availabilityThursdayAf(teacher, availability) {
     if (!availability) {
         noAvailabilityAlert(teacher);
+        addHardConstraintClass(thursdayAfTeach);
 
     } else if (!availability.afternoon) {
         alert("Docent " + teacher.username + " is niet beschikbaar op donderdag middag");
@@ -150,6 +161,7 @@ function availabilityThursdayAf(teacher, availability) {
 function availabilityThursdayEv(teacher, availability) {
     if (!availability) {
         noAvailabilityAlert(teacher);
+        addHardConstraintClass(thursdayEvTeach);
 
     } else if (!availability.evening) {
         alert("Docent " + teacher.username + " is niet beschikbaar op donderdag avond");
@@ -162,6 +174,7 @@ function availabilityThursdayEv(teacher, availability) {
 function availabilityFridayMo(teacher, availability) {
     if (!availability) {
         noAvailabilityAlert(teacher);
+        addHardConstraintClass(fridayMoTeach);
 
     } else if (!availability.morning) {
         alert("Docent " + teacher.username + " is niet beschikbaar op vrijdag ochtend");
@@ -174,6 +187,7 @@ function availabilityFridayMo(teacher, availability) {
 function availabilityFridayAf(teacher, availability) {
     if (!availability) {
         noAvailabilityAlert(teacher);
+        addHardConstraintClass(fridayAfTeach);
 
     } else if (!availability.afternoon) {
         alert("Docent " + teacher.username + " is niet beschikbaar op vrijdag middag");
@@ -186,6 +200,7 @@ function availabilityFridayAf(teacher, availability) {
 function availabilityFridayEv(teacher, availability) {
     if (!availability) {
         noAvailabilityAlert(teacher);
+        addHardConstraintClass(fridayEvTeach);
 
     } else if (!availability.evening) {
         alert("Docent " + teacher.username + " is niet beschikbaar op vrijdag avond");
