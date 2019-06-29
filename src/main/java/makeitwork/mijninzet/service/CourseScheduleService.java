@@ -45,12 +45,7 @@ public class CourseScheduleService implements RetrieveUserRole {
         courseScheduleRepository.saveAndFlush(schedule);
     }
 
-    public void deleteCourseSchedule(Cohort cohort){
-        List<CourseSchedule> schedules=courseScheduleRepository.findAllByCohort(cohort);
-        for (CourseSchedule schedule:schedules) {
-            courseScheduleRepository.delete(schedule);
-        }
-    }
+
     public List<CourseSchedule> courseSchedule(Cohort cohort){
         //a list of courses given a cohort
         return courseScheduleRepository.findAllByCohort(cohort);
@@ -91,7 +86,6 @@ public class CourseScheduleService implements RetrieveUserRole {
         //a list of cohorts in need for planning from the actual user of the system
         User user=userRepository.findByUsername(principal.getName());
         List<Cohort> cohorts=cohortRepository.findByUser((user));
-        System.out.printf("\n\nhoeveel in cohorts %d\n\n",cohorts.size());
 //        this code prevents a stackoverflow due to bad design in the class CohortWeek
 //        the list(Cohortweek> is emptied and thereby an indefinite loop via Gson/Jackson
 //        prevented.
@@ -173,11 +167,13 @@ public class CourseScheduleService implements RetrieveUserRole {
 //            todo deze functie afmaken
         }
     }
-    public Boolean isNonTeachingDay(LocalDate date){
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("\"yyyy-MM-dd\"");
-//        LocalDate day = LocalDate.parse(date, formatter);
-        System.out.printf("\n\n datum om mee te zoeken%\n\n",date);
-        return holidays.findByLocalDate(date);
+    public Boolean isNonTeachingDay(receiveDatum date){
+        List<HolidaySchedule> listHolidays=holidays.findAll();
+        var present=false;
+        for (HolidaySchedule day:listHolidays) {
+            if (day.getLocalDate().isEqual(date.getDate())){present=true;break;}
+        }
+        return present;
     }
     public CourseSchedule storeCourse(receiveCourse course){
         CourseSchedule schedule=new CourseSchedule();

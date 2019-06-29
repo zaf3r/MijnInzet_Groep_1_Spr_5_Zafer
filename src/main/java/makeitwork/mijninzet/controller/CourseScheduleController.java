@@ -2,11 +2,8 @@ package makeitwork.mijninzet.controller;
 
 import com.google.gson.Gson;
 import com.mongodb.BasicDBObject;
-import makeitwork.mijninzet.model.Cohort;
-import makeitwork.mijninzet.model.CourseSchedule;
-import makeitwork.mijninzet.model.HolidaySchedule;
+import makeitwork.mijninzet.model.*;
 import makeitwork.mijninzet.model.preference.Subject;
-import makeitwork.mijninzet.model.receiveCourse;
 import makeitwork.mijninzet.repository.CohortRepository;
 import makeitwork.mijninzet.repository.CourseScheduleRepository;
 import makeitwork.mijninzet.repository.HolidayScheduleRepository;
@@ -79,16 +76,10 @@ public class CourseScheduleController {
 
     @PostMapping("/checkDate")
     public @ResponseBody
-    String nonTeachingDay(@RequestBody String requestPayload) {
-//        BasicDBObject output = new BasicDBObject();
-        System.out.printf("\n\n datum om mee te zoeken%\n\n",requestPayload);
-//        if (service.isNonTeachingDay(requestPayload))
-//            output.put("exists", true);
-//        else {
-//            output.put("exists", false);
-//        }
-//        return output.toJson();
-        return "";
+    String nonTeachingDay(@RequestBody receiveDatum requestPayload) {
+        BasicDBObject output = new BasicDBObject();
+        output.put("exists", service.isNonTeachingDay(requestPayload));
+        return output.toJson();
     }
     @PostMapping("/storeCourse")
     public @ResponseBody

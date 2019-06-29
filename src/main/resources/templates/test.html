@@ -108,7 +108,7 @@
                 <div class="grid-item">middag</div>
                 <div class="grid-item">avond</div>
                 <div class="grid-item">opslaan</div>
-                <div class="grid-item"></div>
+                <div class="grid-item"><span id="workshops" style="display: block" value="workshops"></span> </div>
         </div>
             <div class="grid-container1" id="regelPerLes">
 <!--Let op: dit is geen lege <div>. Op de plek worden in de DOM regels voor het vakkenrooster geplaatst-->
@@ -186,7 +186,11 @@
                 n++;
                 $("#regelPerLes").append('<div class="grid-item"><input type="checkbox" class="largerCheckbox" name="store" id="' + n + '" style="display:none" onclick="storeCourse(id)"></div> ');
                 n++;
-                $("#regelPerLes").append('<div class="grid-item"><span type="text" id="' + n + '" style="display:none">opgeslagen</span></div> ');
+                o=n+1
+                p=o+1;
+                $("#regelPerLes").append('<div class="grid-item"><span type="text" id="' + n + '" style="display:none">opgeslagen</span>' +
+                    '                                            <span type="text" id="' + o + '" style="display:none">geef minimaal 1 dagdeel op</span>' +
+                    '                                            <span type="text" id="' + p + '" style="display:none">op deze dag zijn geen onderwijs activiteiten</span></div> ');
             });
         })
     });
@@ -209,6 +213,15 @@
             storeCourseService(id)
         }
         ;
+        if (($("input[type=checkbox][" + elementContent(id, 3) + "]:checked").val() != "on")&&
+        ($("input[type=checkbox][" + elementContent(id, 2) + "]:checked").val() != 'on')&&
+        ($("input[type=checkbox][" + elementContent(id, 1) + "]:checked").val() != "on")){
+            document.getElementById(id).checked = false;
+            var teller = (parseInt(id) + 2).toString();
+            document.getElementById(teller).style.display = "block";
+
+
+    }
     }
 </script>
 <script>
@@ -226,9 +239,9 @@
             data: payload
         }).done(function (response) {
             if (response["exists"]) {
-                console.log("opgeslagen");
                 var teller = (parseInt(id) + 1).toString();
                 document.getElementById(teller).style.display = "block";
+            //    todo aantal workshops
             }
         });
     }
@@ -249,6 +262,9 @@
 </script>
 <script>
     function showStore(id){
+        // var pointer=(id-(id%11));
+        // var teller = (parseInt(pointer) + 5).toString();
+        // document.getElementById(teller).style.display = "none";
         //todo van boeken tot geboekt weergeven
         //deze functie moet checkbox opslaan tonen of verbergen
         //de box mag alleen getoond worden als 1 van de dagdelen is checked
@@ -270,26 +286,58 @@
         var view;
         if (dateLocal!=''){view=true};
         if (dateLocal==''){view=false};
+        var date=dateLocal;
+        var desc='vakantie';
         show(id,view);
-        showStore(id);
-        //todo is de datum een vakantiedag?
-        payload = JSON.stringify(dateLocal);
+        // showStore(id);
+        //todo dagdeel is bezet
+        payload = JSON.stringify({date,desc});
         if (dateLocal!='') {
-            console.log("payload vakantiedag?: "+payload);
-            // $.ajax({
-            //     type: 'POST',
-            //     url: '/checkDate',
-            //     contentType: 'application/json; charset=utf-8',
-            //     dataType: 'json',
-            //     data: payload
-            // }).done(function (response) {
-            //     // NonTeachingDay = $("#TeachingDayMsg");
-            //     if (response["exists"]) {
-            //         //todo boodschap vakantie tonen
-            //         //    todo datum leeg maken
-            //     }
-            // })
-        }
+            $.ajax({
+                type: 'POST',
+                url: '/checkDate',
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                data: payload
+            }).done(function (response) {
+                if (response["exists"]) {
+                    console.log(date);
+                    console.log("is vakantie")
+                    view= !response["exists"]
+                    show(id,view);
+                    var teller = (parseInt(id) + 7).toString();
+                    document.getElementById(teller).style.display = "block";
+                } else {
+                    console.log(date);
+                    console.log("is geen vakantie")
+                    view= true;
+                    show(id,view);
+                    var teller = (parseInt(id) + 7).toString();
+                    document.getElementById(teller).style.display = "none";
+                    $.ajax({
+                        type: 'POST',
+                        url: '/checkDate',
+                        contentType: 'application/json; charset=utf-8',
+                        dataType: 'json',
+                        data: payload
+                    }).done(function (response) {
+                        if (response["exists"]) {
+                            console.log(date);
+                            console.log("heeft planning")
+                            view= !response["exists"]
+                            show(id,view);
+                            var teller = (parseInt(id) + 7).toString();
+                            document.getElementById(teller).style.display = "block";
+                        } else {
+                            console.log(date);
+                            console.log("heeft geen planning")
+                            view= true;
+                            show(id,view);
+
+                        }
+                }
+            })
+        };
         // $.ajax({
         //     type: 'POST',
         //     url: '/dateBezet',
