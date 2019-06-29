@@ -4,7 +4,7 @@ var tuesday = "TUESDAY";
 var wednesday = "WEDNESDAY";
 var thursday = "THURSDAY";
 var friday = "FRIDAY";
-var availabilityConstraintClass = "availabilityConstraint";
+var HardConstraint = "HardConstraint";
 
 //Constraint - Availability
 function findAvailability(day, availabilityList) {
@@ -21,13 +21,9 @@ function availAbilityMondayMo(teacher, availability) {
 
     } else if (!availability.morning) {
         alert("Docent " + teacher.username + " is niet beschikbaar op maandag ochtend");
-        if (!mondayMoTeach.parentNode.classList.contains(availabilityConstraintClass)) {
-            mondayMoTeach.parentNode.classList.add(availabilityConstraintClass);
-        }
+        addHardConstraintClass(mondayMoTeach);
     } else {
-        if (mondayMoTeach.parentNode.classList.contains(availabilityConstraintClass)) {
-            mondayMoTeach.parentNode.classList.remove(availabilityConstraintClass);
-        }
+        removeHardConstraintClass(mondayMoTeach);
     }
 }
 
@@ -37,13 +33,9 @@ function availAbilityMondayAf(teacher, availability) {
 
     } else if (!availability.afternoon) {
         alert("Docent " + teacher.username + " is niet beschikbaar op maandag middag");
-        if (!mondayAfTeach.parentNode.classList.contains(availabilityConstraintClass)) {
-            mondayAfTeach.parentNode.classList.add(availabilityConstraintClass);
-        }
+        addHardConstraintClass(mondayAfTeach);
     } else {
-        if (mondayAfTeach.parentNode.classList.contains(availabilityConstraintClass)) {
-            mondayAfTeach.parentNode.classList.remove(availabilityConstraintClass);
-        }
+        removeHardConstraintClass(mondayAfTeach);
     }
 }
 
@@ -53,13 +45,9 @@ function availabilityMondayEv(teacher, availability) {
 
     } else if (!availability.evening) {
         alert("Docent " + teacher.username + " is niet beschikbaar op maandag avond");
-        if (!mondayEvTeach.parentNode.classList.contains(availabilityConstraintClass)) {
-            mondayEvTeach.parentNode.classList.add(availabilityConstraintClass);
-        }
+        addHardConstraintClass(mondayEvTeach);
     } else {
-        if (mondayEvTeach.parentNode.classList.contains(availabilityConstraintClass)) {
-            mondayEvTeach.parentNode.classList.remove(availabilityConstraintClass);
-        }
+        removeHardConstraintClass(mondayEvTeach);
     }
 }
 
@@ -69,13 +57,9 @@ function availabilityTuesdayMo(teacher, availability) {
 
     } else if (!availability.morning) {
         alert("Docent " + teacher.username + " is niet beschikbaar op dinsdag ochtend");
-        if (!tuesdayMoTeach.parentNode.classList.contains(availabilityConstraintClass)) {
-            tuesdayMoTeach.parentNode.classList.add(availabilityConstraintClass);
-        }
+        addHardConstraintClass(tuesdayMoTeach);
     } else {
-        if (tuesdayMoTeach.parentNode.classList.contains(availabilityConstraintClass)) {
-            tuesdayMoTeach.parentNode.classList.remove(availabilityConstraintClass);
-        }
+        removeHardConstraintClass(tuesdayMoTeach);
     }
 }
 
@@ -85,13 +69,9 @@ function availabilityTuesdayAf(teacher, availability) {
 
     } else if (!availability.afternoon) {
         alert("Docent " + teacher.username + " is niet beschikbaar op dinsdag middag");
-        if (!tuesdayAfTeach.parentNode.classList.contains(availabilityConstraintClass)) {
-            tuesdayAfTeach.parentNode.classList.add(availabilityConstraintClass);
-        }
+        addHardConstraintClass(tuesdayAfTeach);
     } else {
-        if (tuesdayAfTeach.parentNode.classList.contains(availabilityConstraintClass)) {
-            tuesdayAfTeach.parentNode.classList.remove(availabilityConstraintClass);
-        }
+        removeHardConstraintClass(tuesdayAfTeach);
     }
 }
 
@@ -101,13 +81,9 @@ function availabilityTuesdayEv(teacher, availability) {
 
     } else if (!availability.evening) {
         alert("Docent " + teacher.username + " is niet beschikbaar op dinsdag avond");
-        if (!tuesdayEvTeach.parentNode.classList.contains(availabilityConstraintClass)) {
-            tuesdayEvTeach.parentNode.classList.add(availabilityConstraintClass);
-        }
+        addHardConstraintClass(tuesdayEvTeach);
     } else {
-        if (tuesdayEvTeach.parentNode.classList.contains(availabilityConstraintClass)) {
-            tuesdayEvTeach.parentNode.classList.remove(availabilityConstraintClass);
-        }
+        removeHardConstraintClass(tuesdayEvTeach);
     }
 }
 
@@ -117,13 +93,9 @@ function availabilityWednesdayMo(teacher, availability) {
 
     } else if (!availability.morning) {
         alert("Docent " + teacher.username + " is niet beschikbaar op woensdag ochtend");
-        if (!wednesdayMoTeach.parentNode.classList.contains(availabilityConstraintClass)) {
-            wednesdayMoTeach.parentNode.classList.add(availabilityConstraintClass);
-        }
+        addHardConstraintClass(wednesdayMoTeach);
     } else {
-        if (wednesdayMoTeach.parentNode.classList.contains(availabilityConstraintClass)) {
-            wednesdayMoTeach.parentNode.classList.remove(availabilityConstraintClass);
-        }
+        removeHardConstraintClass(wednesdayMoTeach);
     }
 }
 
@@ -133,13 +105,9 @@ function availabilityWednesdayAf(teacher, availability) {
 
     } else if (!availability.afternoon) {
         alert("Docent " + teacher.username + " is niet beschikbaar op woensdag middag");
-        if (!wednesdayAfTeach.parentNode.classList.contains(availabilityConstraintClass)) {
-            wednesdayAfTeach.parentNode.classList.add(availabilityConstraintClass);
-        }
+        addHardConstraintClass(wednesdayAf);
     } else {
-        if (wednesdayAfTeach.parentNode.classList.contains(availabilityConstraintClass)) {
-            wednesdayAfTeach.parentNode.classList.remove(availabilityConstraintClass);
-        }
+        removeHardConstraintClass(wednesdayAf);
     }
 }
 
@@ -149,13 +117,9 @@ function availabilityWednesdayEv(teacher, availability) {
 
     } else if (!availability.evening) {
         alert("Docent " + teacher.username + " is niet beschikbaar op woensdag avond");
-        if (!wednesdayEvTeach.parentNode.classList.contains(availabilityConstraintClass)) {
-            wednesdayEvTeach.parentNode.classList.add(availabilityConstraintClass);
-        }
+        addHardConstraintClass(wednesdayEvTeach);
     } else {
-        if (wednesdayEvTeach.parentNode.classList.contains(availabilityConstraintClass)) {
-            wednesdayEvTeach.parentNode.classList.remove(availabilityConstraintClass);
-        }
+        removeHardConstraintClass(wednesdayEvTeach);
     }
 }
 
@@ -165,13 +129,9 @@ function availabilityThursdayMo(teacher, availability) {
 
     } else if (!availability.morning) {
         alert("Docent " + teacher.username + " is niet beschikbaar op donderdag ochtend");
-        if (!thursdayMoTeach.parentNode.classList.contains(availabilityConstraintClass)) {
-            thursdayMoTeach.parentNode.classList.add(availabilityConstraintClass);
-        }
+        addHardConstraintClass(thursdayMoTeach);
     } else {
-        if (thursdayMoTeach.parentNode.classList.contains(availabilityConstraintClass)) {
-            thursdayMoTeach.parentNode.classList.remove(availabilityConstraintClass);
-        }
+        removeHardConstraintClass(thursdayMoTeach);
     }
 }
 
@@ -181,13 +141,9 @@ function availabilityThursdayAf(teacher, availability) {
 
     } else if (!availability.afternoon) {
         alert("Docent " + teacher.username + " is niet beschikbaar op donderdag middag");
-        if (!thursdayAfTeach.parentNode.classList.contains(availabilityConstraintClass)) {
-            thursdayAfTeach.parentNode.classList.add(availabilityConstraintClass);
-        }
+        addHardConstraintClass(thursdayAfTeach);
     } else {
-        if (thursdayAfTeach.parentNode.classList.contains(availabilityConstraintClass)) {
-            thursdayAfTeach.parentNode.classList.remove(availabilityConstraintClass);
-        }
+        removeHardConstraintClass(thursdayAfTeach);
     }
 }
 
@@ -197,13 +153,9 @@ function availabilityThursdayEv(teacher, availability) {
 
     } else if (!availability.evening) {
         alert("Docent " + teacher.username + " is niet beschikbaar op donderdag avond");
-        if (!thursdayEvTeach.parentNode.classList.contains(availabilityConstraintClass)) {
-            thursdayEvTeach.parentNode.classList.add(availabilityConstraintClass);
-        }
+        addHardConstraintClass(thursdayEvTeach);
     } else {
-        if (thursdayEvTeach.parentNode.classList.contains(availabilityConstraintClass)) {
-            thursdayEvTeach.parentNode.classList.remove(availabilityConstraintClass);
-        }
+        removeHardConstraintClass(thursdayEvTeach);
     }
 }
 
@@ -213,13 +165,9 @@ function availabilityFridayMo(teacher, availability) {
 
     } else if (!availability.morning) {
         alert("Docent " + teacher.username + " is niet beschikbaar op vrijdag ochtend");
-        if (!fridayMoTeach.parentNode.classList.contains(availabilityConstraintClass)) {
-            fridayMoTeach.parentNode.classList.add(availabilityConstraintClass);
-        }
+        addHardConstraintClass(fridayMoTeach);
     } else {
-        if (fridayMoTeach.parentNode.classList.contains(availabilityConstraintClass)) {
-            fridayMoTeach.parentNode.classList.remove(availabilityConstraintClass);
-        }
+        removeHardConstraintClass(fridayMoTeach);
     }
 }
 
@@ -229,13 +177,9 @@ function availabilityFridayAf(teacher, availability) {
 
     } else if (!availability.afternoon) {
         alert("Docent " + teacher.username + " is niet beschikbaar op vrijdag middag");
-        if (!fridayAfTeach.parentNode.classList.contains(availabilityConstraintClass)) {
-            fridayAfTeach.parentNode.classList.add(availabilityConstraintClass);
-        }
+        addHardConstraintClass(fridayAfTeach);
     } else {
-        if (fridayAfTeach.parentNode.classList.contains(availabilityConstraintClass)) {
-            fridayAfTeach.parentNode.classList.remove(availabilityConstraintClass);
-        }
+        removeHardConstraintClass(fridayAfTeach);
     }
 }
 
@@ -245,13 +189,9 @@ function availabilityFridayEv(teacher, availability) {
 
     } else if (!availability.evening) {
         alert("Docent " + teacher.username + " is niet beschikbaar op vrijdag avond");
-        if (!fridayEvTeach.parentNode.classList.contains(availabilityConstraintClass)) {
-            fridayEvTeach.parentNode.classList.add(availabilityConstraintClass);
-        }
+        addHardConstraintClass(fridayEvTeach);
     } else {
-        if (fridayEvTeach.parentNode.classList.contains(availabilityConstraintClass)) {
-            fridayEvTeach.parentNode.classList.remove(availabilityConstraintClass);
-        }
+        removeHardConstraintClass(fridayEvTeach);
     }
 }
 

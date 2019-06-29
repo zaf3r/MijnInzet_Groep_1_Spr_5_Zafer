@@ -1,7 +1,6 @@
 //url variables
 var getrequestWeeksUrl;
 var getRequestDaysUrl;
-var getRequestScheduledConstraintUrl;
 var getRequestTeacherUrl = "http://localhost:8080/api/getTeachers";
 var postRequestUrl =  "http://localhost:8080/api/saveTeacherSchedule";
 
@@ -113,6 +112,7 @@ function requestCallDays() {
             loadWednesdayTeach(data);
             loadThursdayTeach(data);
             loadFridayTeach(data);
+            console.log(data);
             loadDates(data);
         }).fail(function () {
             console.log("Failed to make a request")
@@ -359,4 +359,21 @@ function resetClassColours() {
             $(this).removeClass("availabilityConstraint");
         }
     })
+}
+
+function loadDates(dataCohortWeek) {
+    dataCohortWeek.forEach(function (day) {
+        if(day.dayOfWeek === monday){
+            dateMonday = day.date;
+        } else if(day.dayOfWeek === tuesday) {
+            dateTuesday = day.date;
+        } else if(day.dayOfWeek === wednesday) {
+            dateWednesday = day.date;
+        } else if (day.dayOfWeek === thursday) {
+            dateThursday = day.date;
+        } else {
+            dateFriday = day.date;
+        }
+    })
+
 }

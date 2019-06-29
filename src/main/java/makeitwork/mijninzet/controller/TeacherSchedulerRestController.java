@@ -25,7 +25,7 @@ public class TeacherSchedulerRestController {
 
     final private Role TEACHER_ROLE = new Role(1, "Docent");
     final private CohortDay COHORT_DAY_LOADER = new CohortDay();
-    DateTimeFormatter STRING_TO_DATE_FORMATER = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+    final private DateTimeFormatter STRING_TO_DATE_FORMATER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     final String MORNING = "morning";
     final String AFTERNOON = "afternnoon";
@@ -68,7 +68,7 @@ public class TeacherSchedulerRestController {
         return preferenceRepository.findAll();
     }
 
-    @GetMapping("cohort/scheduled/{userName}/{dayPart}/{date}/")
+    @GetMapping("/cohort/scheduled/{userName}/{dayPart}/{date}")
     public boolean teacherScheduledConstraintCheckHandler(@PathVariable("userName") String username,
                                                           @PathVariable("dayPart") String dayPart,
                                                           @PathVariable("date") String localDate) {
