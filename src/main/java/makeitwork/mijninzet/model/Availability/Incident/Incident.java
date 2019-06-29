@@ -1,10 +1,16 @@
 package makeitwork.mijninzet.model.Availability.Incident;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import makeitwork.mijninzet.model.Availability.DayFinder;
 import makeitwork.mijninzet.model.Availability.Weekday;
 import makeitwork.mijninzet.model.User;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -28,6 +34,12 @@ public class Incident implements DayFinder<Incident,Weekday> {
     @Enumerated(EnumType.STRING)
     @Column(name = "dag")
     private Weekday weekday;
+
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
+    @DateTimeFormat(pattern = "MM/dd/yyyy")
+    @Column(name = "datumIncident")
+    private LocalDate dateIncident;
 
     @Column(name = "ochtend")
     private boolean morning;
@@ -110,6 +122,14 @@ public class Incident implements DayFinder<Incident,Weekday> {
             }
         }
         return null;
+    }
+
+    public LocalDate getDateIncident() {
+        return dateIncident;
+    }
+
+    public void setDateIncident(LocalDate dateIncident) {
+        this.dateIncident = dateIncident;
     }
 
     @Override
