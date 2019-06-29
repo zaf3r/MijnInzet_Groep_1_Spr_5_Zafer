@@ -7,10 +7,15 @@ var friday = "FRIDAY";
 var availabilityConstraintClass = "availabilityConstraint";
 
 //Constraint - Availability
-mondayMoTeach.addEventListener("change", function () {
-    var teacher = findTeacher(mondayMoTeach.value);
-    var availability = findAvailability(monday, teacher.availabilityList);
+function findAvailability(day, availabilityList) {
+    for (i = 0; i < availabilityList.length; i++) {
+        if (availabilityList[i].weekday === day) {
+            return availabilityList[i];
+        }
+    }
+}
 
+function availAbilityMondayMo(teacher, availability) {
     if (!availability) {
         noAvailabilityAlert(teacher);
 
@@ -24,12 +29,9 @@ mondayMoTeach.addEventListener("change", function () {
             mondayMoTeach.parentNode.classList.remove(availabilityConstraintClass);
         }
     }
-});
+}
 
-mondayAfTeach.addEventListener("change", function () {
-    var teacher = findTeacher(mondayAfTeach.value);
-    var availability = findAvailability(monday, teacher.availabilityList);
-
+function availAbilityMondayAf(teacher, availability) {
     if (!availability) {
         noAvailabilityAlert(teacher);
 
@@ -43,12 +45,9 @@ mondayAfTeach.addEventListener("change", function () {
             mondayAfTeach.parentNode.classList.remove(availabilityConstraintClass);
         }
     }
-});
+}
 
-mondayEvTeach.addEventListener("change", function () {
-    var teacher = findTeacher(mondayEvTeach.value);
-    var availability = findAvailability(monday, teacher.availabilityList);
-
+function availabilityMondayEv(teacher, availability) {
     if (!availability) {
         noAvailabilityAlert(teacher);
 
@@ -62,12 +61,9 @@ mondayEvTeach.addEventListener("change", function () {
             mondayEvTeach.parentNode.classList.remove(availabilityConstraintClass);
         }
     }
-});
+}
 
-tuesdayMoTeach.addEventListener("change", function () {
-    var teacher = findTeacher(tuesdayMoTeach.value);
-    var availability = findAvailability(tuesday, teacher.availabilityList);
-
+function availabilityTuesdayMo(teacher, availability) {
     if (!availability) {
         noAvailabilityAlert(teacher);
 
@@ -81,12 +77,9 @@ tuesdayMoTeach.addEventListener("change", function () {
             tuesdayMoTeach.parentNode.classList.remove(availabilityConstraintClass);
         }
     }
-});
+}
 
-tuesdayAfTeach.addEventListener("change", function () {
-    var teacher = findTeacher(tuesdayAfTeach.value);
-    var availability = findAvailability(tuesday, teacher.availabilityList);
-
+function availabilityTuesdayAf(teacher, availability) {
     if (!availability) {
         noAvailabilityAlert(teacher);
 
@@ -100,12 +93,9 @@ tuesdayAfTeach.addEventListener("change", function () {
             tuesdayAfTeach.parentNode.classList.remove(availabilityConstraintClass);
         }
     }
-});
+}
 
-tuesdayEvTeach.addEventListener("change", function () {
-    var teacher = findTeacher(tuesdayEvTeach.value);
-    var availability = findAvailability(tuesday, teacher.availabilityList);
-
+function availabilityTuesdayEv(teacher, availability) {
     if (!availability) {
         noAvailabilityAlert(teacher);
 
@@ -119,12 +109,9 @@ tuesdayEvTeach.addEventListener("change", function () {
             tuesdayEvTeach.parentNode.classList.remove(availabilityConstraintClass);
         }
     }
-});
+}
 
-wednesdayMoTeach.addEventListener("change", function () {
-    var teacher = findTeacher(wednesdayMoTeach.value);
-    var availability = findAvailability(wednesday, teacher.availabilityList);
-
+function availabilityWednesdayMo(teacher, availability) {
     if (!availability) {
         noAvailabilityAlert(teacher);
 
@@ -138,12 +125,9 @@ wednesdayMoTeach.addEventListener("change", function () {
             wednesdayMoTeach.parentNode.classList.remove(availabilityConstraintClass);
         }
     }
-});
+}
 
-wednesdayAfTeach.addEventListener("change", function () {
-    var teacher = findTeacher(wednesdayAfTeach.value);
-    var availability = findAvailability(wednesday, teacher.availabilityList);
-
+function availabilityWednesdayAf(teacher, availability) {
     if (!availability) {
         noAvailabilityAlert(teacher);
 
@@ -157,12 +141,9 @@ wednesdayAfTeach.addEventListener("change", function () {
             wednesdayAfTeach.parentNode.classList.remove(availabilityConstraintClass);
         }
     }
-});
+}
 
-wednesdayEvTeach.addEventListener("change", function () {
-    var teacher = findTeacher(wednesdayEvTeach.value);
-    var availability = findAvailability(wednesday, teacher.availabilityList);
-
+function availabilityWednesdayEv(teacher, availability) {
     if (!availability) {
         noAvailabilityAlert(teacher);
 
@@ -176,12 +157,9 @@ wednesdayEvTeach.addEventListener("change", function () {
             wednesdayEvTeach.parentNode.classList.remove(availabilityConstraintClass);
         }
     }
-});
+}
 
-thursdayMoTeach.addEventListener("change", function () {
-    var teacher = findTeacher(thursdayMoTeach.value);
-    var availability = findAvailability(thursday, teacher.availabilityList);
-
+function availabilityThursdayMo(teacher, availability) {
     if (!availability) {
         noAvailabilityAlert(teacher);
 
@@ -195,12 +173,9 @@ thursdayMoTeach.addEventListener("change", function () {
             thursdayMoTeach.parentNode.classList.remove(availabilityConstraintClass);
         }
     }
-});
+}
 
-thursdayAfTeach.addEventListener("change", function () {
-    var teacher = findTeacher(thursdayAfTeach.value);
-    var availability = findAvailability(thursday, teacher.availabilityList);
-
+function availabilityThursdayAf(teacher, availability) {
     if (!availability) {
         noAvailabilityAlert(teacher);
 
@@ -214,12 +189,9 @@ thursdayAfTeach.addEventListener("change", function () {
             thursdayAfTeach.parentNode.classList.remove(availabilityConstraintClass);
         }
     }
-});
+}
 
-thursdayEvTeach.addEventListener("change", function () {
-    var teacher = findTeacher(thursdayEvTeach.value);
-    var availability = findAvailability(thursday, teacher.availabilityList);
-
+function availabilityThursdayEv(teacher, availability) {
     if (!availability) {
         noAvailabilityAlert(teacher);
 
@@ -233,12 +205,9 @@ thursdayEvTeach.addEventListener("change", function () {
             thursdayEvTeach.parentNode.classList.remove(availabilityConstraintClass);
         }
     }
-});
+}
 
-fridayMoTeach.addEventListener("change", function () {
-    var teacher = findTeacher(fridayMoTeach.value);
-    var availability = findAvailability(friday, teacher.availabilityList);
-
+function availabilityFridayMo(teacher, availability) {
     if (!availability) {
         noAvailabilityAlert(teacher);
 
@@ -252,12 +221,9 @@ fridayMoTeach.addEventListener("change", function () {
             fridayMoTeach.parentNode.classList.remove(availabilityConstraintClass);
         }
     }
-});
+}
 
-fridayAfTeach.addEventListener("change", function () {
-    var teacher = findTeacher(fridayAfTeach.value);
-    var availability = findAvailability(friday, teacher.availabilityList);
-
+function availabilityFridayAf(teacher, availability) {
     if (!availability) {
         noAvailabilityAlert(teacher);
 
@@ -271,12 +237,9 @@ fridayAfTeach.addEventListener("change", function () {
             fridayAfTeach.parentNode.classList.remove(availabilityConstraintClass);
         }
     }
-});
+}
 
-fridayEvTeach.addEventListener("change", function () {
-    var teacher = findTeacher(fridayEvTeach.value);
-    var availability = findAvailability(friday, teacher.availabilityList);
-
+function availabilityFridayEv(teacher, availability) {
     if (!availability) {
         noAvailabilityAlert(teacher);
 
@@ -290,20 +253,13 @@ fridayEvTeach.addEventListener("change", function () {
             fridayEvTeach.parentNode.classList.remove(availabilityConstraintClass);
         }
     }
-});
+}
+
 
 function findTeacher(teacherUserName) {
     for (i = 0; i < teacherObject.length; i++) {
         if (teacherObject[i].username === teacherUserName) {
             return teacherObject[i];
-        }
-    }
-}
-
-function findAvailability(day, availabilityList) {
-    for (i = 0; i < availabilityList.length; i++) {
-        if (availabilityList[i].weekday === day) {
-            return availabilityList[i];
         }
     }
 }
