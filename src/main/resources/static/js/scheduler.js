@@ -1,6 +1,7 @@
 //url variables
 var getrequestWeeksUrl;
 var getRequestDaysUrl;
+var getRequestScheduledConstraintUrl;
 var getRequestTeacherUrl = "http://localhost:8080/api/getTeachers";
 var postRequestUrl =  "http://localhost:8080/api/saveTeacherSchedule";
 
@@ -38,14 +39,29 @@ var fridayMoSub = document.querySelector('div[name="vrijdagOchtendVak"]');
 var fridayAfSub = document.querySelector('div[name="vrijdagMiddagVak"]');
 var fridayEvSub = document.querySelector('div[name="vrijdagAvondVak"]');
 
-//Other variables
+//Rest call results
+var weekDayObject = new Object();
+var teacherObject = new Object();
+
+//Specific HTML fields
 var cohortNaam = document.querySelector('select[name="cohortName"]');
 var cohortWeek = document.querySelector('select[name="weekNumber"]');
+var button = document.querySelector("#button");
+
+// Dates of days
+var dateMonday;
+var dateTuesday;
+var dateWednesday;
+var dateThursday;
+var dateFriday;
+
+var morning = "morning";
+var afternoon = "afternooon";
+var evening = "evening";
+
+//Other variables
 var teacherNames = document.createElement("select");
 var noSubject = "Geen vak";
-var weekDayObject = new Object();
-var button = document.querySelector("#button");
-var teacherObject = new Object();
 var allTableCells = document.querySelectorAll("td");
 
 
@@ -97,6 +113,7 @@ function requestCallDays() {
             loadWednesdayTeach(data);
             loadThursdayTeach(data);
             loadFridayTeach(data);
+            loadDates(data);
         }).fail(function () {
             console.log("Failed to make a request")
         })
@@ -173,6 +190,8 @@ function loadDropDownWeeks(dropdownItems) {
 function loadMondayTeach(courseScheduleTeachArray) {
     courseScheduleTeachArray.forEach(function (data) {
             if (data.dayOfWeek === "MONDAY") {
+                dateMonday = data.date;
+
                 mondayMoTeach.innerHTML = teacherNames.innerHTML;
                 mondayMoTeach.value = data.teacherMorning.username;
                 if (data.subjectMorning) {
@@ -204,6 +223,8 @@ function loadMondayTeach(courseScheduleTeachArray) {
 function loadTuesdayTeach(courseScheduleTeachArray) {
     courseScheduleTeachArray.forEach(function (data) {
             if (data.dayOfWeek === "TUESDAY") {
+                dateTuesday = data.date;
+
                 tuesdayMoTeach.innerHTML = teacherNames.innerHTML;
                 tuesdayMoTeach.value = data.teacherMorning.username;
                 if (data.subjectMorning) {
@@ -236,6 +257,8 @@ function loadTuesdayTeach(courseScheduleTeachArray) {
 function loadWednesdayTeach(courseScheduleTeachArray) {
     courseScheduleTeachArray.forEach(function (data) {
             if (data.dayOfWeek === "WEDNESDAY") {
+                dateWednesday = data.date;
+
                 wednesdayMoTeach.innerHTML = teacherNames.innerHTML;
                 wednesdayMoTeach.value = data.teacherMorning.username;
                 if (data.subjectMorning) {
@@ -267,6 +290,8 @@ function loadWednesdayTeach(courseScheduleTeachArray) {
 function loadThursdayTeach(courseScheduleTeachArray) {
     courseScheduleTeachArray.forEach(function (data) {
             if (data.dayOfWeek === "THURSDAY") {
+                dateThursday = data.date;
+
                 thursdayMoTeach.innerHTML = teacherNames.innerHTML;
                 thursdayMoTeach.value = data.teacherMorning.username;
                 if (data.subjectMorning) {
@@ -298,6 +323,8 @@ function loadThursdayTeach(courseScheduleTeachArray) {
 function loadFridayTeach(courseScheduleTeachArray) {
     courseScheduleTeachArray.forEach(function (data) {
             if (data.dayOfWeek === "FRIDAY") {
+                dateFriday = data.date;
+
                 fridayMoTeach.innerHTML = teacherNames.innerHTML;
                 fridayMoTeach.value = data.teacherMorning.username;
                 if (data.subjectMorning) {
