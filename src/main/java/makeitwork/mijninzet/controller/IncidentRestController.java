@@ -10,12 +10,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api")
 public class IncidentRestController {
+
+    //Ordinal values of Calender Api Days
+    final int MONDAY = 2;
+    final int TUESDAY = 3;
+    final int WEDNESDAY = 4;
+    final int THURSDAY = 5;
+    final int FRIDAY = 6;
+
+    final long DATE_CORRECTION_HIBERNATE = 1;
+
+
+    Calendar calendar = Calendar.getInstance();
+    final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 
     @Autowired
     UserRepository userRepository;
@@ -115,8 +133,33 @@ public class IncidentRestController {
             incident.setWeeknumber(weekNumber);
             incident.setWeekday(weekday);
             incident.setUser(user);
+
+            addDateToIncident(incident);
+
             incidentList.add(incident);
         }
         return incidentList;
+    }
+
+    void addDateToIncident(Incident incident) {
+        calendar.set(Calendar.YEAR, incident.getYear());
+        calendar.set(Calendar.WEEK_OF_YEAR, incident.getWeeknumber());
+        calendar.set(Calendar.DAY_OF_WEEK, retrieveOrdinalValueOfDay(incident.getWeekday()));
+        LocalDate dateIncident = calendar.getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        incident.setDateIncident(dateIncident.plusDays(DATE_CORRECTION_HIBERNATE));
+    }
+
+    public int retrieveOrdinalValueOfDay(Weekday weekday) {
+        if(weekday.equals(Weekday.MONDAY)){
+            return MONDAY;
+        } else if(weekday.equals(Weekday.TUESDAY)) {
+            return TUESDAY;
+        } else if(weekday.equals(Weekday.WEDNESDAY)) {
+            return WEDNESDAY;
+        } else if(weekday.equals(Weekday.THURSDAY)) {
+            return THURSDAY;
+        } else {
+            return FRIDAY;
+        }
     }
 }
