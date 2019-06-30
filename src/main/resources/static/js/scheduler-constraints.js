@@ -1,4 +1,5 @@
 var HardConstraint = "HardConstraint";
+var incidentConstraint = "IncidentConstraint";
 
 mondayMoTeach.addEventListener("change", function () {
     var teacher = findTeacher(mondayMoTeach.value);
@@ -165,14 +166,16 @@ fridayEvTeach.addEventListener("change", function () {
 function removeHardConstraintClass(dayPartTeacher) {
     if (dayPartTeacher.parentNode.classList.contains(HardConstraint)) {
         dayPartTeacher.parentNode.classList.remove(HardConstraint);
+    } else if (dayPartTeacher.parentNode.classList.contains(incidentConstraint)) {
+        dayPartTeacher.parentNode.classList.remove(incidentConstraint)
     }
 }
 
 function addHardConstraintClass(dayPartTeacher) {
-    console.log("adding...");
+    console.log(dayPartTeacher.parentNode);
+    console.log(HardConstraint);
+
     if (!dayPartTeacher.parentNode.classList.contains(HardConstraint)) {
-        console.log(dayPartTeacher.parentNode);
         dayPartTeacher.parentNode.classList.add(HardConstraint);
-        console.log("added");
     }
 }

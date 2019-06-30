@@ -2,8 +2,7 @@ var requestUserIncidentUrl;
 var incidentCheckBoolean;
 
 
-function incidentClash(dayPartCell) {
-    dayPartCellSelected = dayPartCell;
+function incidentClash() {
     requestUserIncident();
 
 }
@@ -25,10 +24,9 @@ function requestUserIncident() {
 }
 
 function incidentClashTest() {
-    console.log(incidentCheckBoolean);
     if (!incidentCheckBoolean) {
-        alert("Docent " + teacherSelected.username + " Is heeft een incident (afwezigheid) gemeld op "+ dateSelected + " voor het bettrefende dagdeel." +
-            " Indien u geen incident wilt met " + teacherSelected.username  + ", graag niet zonder");
+        // alert("Docent " + teacherSelected.username + " Is heeft een incident (afwezigheid) gemeld op "+ dateSelected + " voor het bettrefende dagdeel." +
+        //     " Indien u geen incident wilt met " + teacherSelected.username  + ", graag niet zonder");
         addHardConstraintClass(dayPartCellSelected);
     } else {
         removeHardConstraintClass(dayPartCellSelected);
