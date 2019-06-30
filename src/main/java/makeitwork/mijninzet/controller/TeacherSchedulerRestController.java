@@ -104,9 +104,11 @@ public class TeacherSchedulerRestController {
                                                           @PathVariable("dateString") String dateString) {
 
 
-        LocalDate dateScheduled = parseStringToLocalDate(dateString);
+        LocalDate dateScheduled = parseStringToLocalDate(dateString).plusDays(INCREMENT_DAY_HIBERNATE_FIX);
         User teacher = userRepository.findByUsername(username);
         boolean teacherIsAlreadyScheduled;
+
+        System.out.println(cohortDayRepository.findAllByDateAndTeacherMorning(dateScheduled, teacher));
 
         if(dayPart.equals(MORNING)) {
             teacherIsAlreadyScheduled =

@@ -1,4 +1,3 @@
-var HardConstraint = "HardConstraint";
 
 mondayMoTeach.addEventListener("change", function () {
     var teacher = findTeacher(mondayMoTeach.value);

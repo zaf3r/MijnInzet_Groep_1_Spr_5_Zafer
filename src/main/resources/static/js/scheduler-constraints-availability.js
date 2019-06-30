@@ -4,6 +4,7 @@ var tuesday = "TUESDAY";
 var wednesday = "WEDNESDAY";
 var thursday = "THURSDAY";
 var friday = "FRIDAY";
+var HardConstraint = "HardConstraint";
 
 //Constraint - Availability
 function findAvailability(day, availabilityList) {
