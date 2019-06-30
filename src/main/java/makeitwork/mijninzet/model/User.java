@@ -154,16 +154,6 @@ public class User implements Comparable{
         if (!vacatures.contains(vacature)) vacatures.add(vacature);
     }
 
-
-//    public void removeApplication(int vacature) {
-//        SortedSet<Integer> vacatures = getTasks();
-//        if (vacatures.contains(vacature)) vacatures.remove(vacature);
-//    }
-
-    //contracturen?
-//    @Transient
-//    private String roleType = roleName.getRoleName();
-
     public User() {}
 
     public User(List<Task> sollicitaties) {

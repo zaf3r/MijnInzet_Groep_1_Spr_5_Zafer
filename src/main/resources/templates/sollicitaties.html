@@ -20,24 +20,11 @@
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Open+Sans&display=swap" rel="stylesheet">
 
 </head>
-<div th:if="${roleUser.roleName == 'Terminator'}">
-    <header th:insert="~{navbar :: header}"></header>
-</div>
-<div th:if="${roleUser.roleName == 'Docent'}">
-    <header th:insert="~{navbarDocent :: header}"></header>
-</div>
-<div th:if="${roleUser.roleName == 'Administrateur'}">
-    <header th:insert="~{navbarAdministrateur :: header}"></header>
-</div>
-<div th:if="${roleUser.roleName == 'Manager'}">
-    <header th:insert="~{navbarManager :: header}"></header>
-</div>
-<div th:if="${roleUser.roleName == 'Roosteraar'}">
-    <header th:insert="~{navbarRoosteraar :: header}"></header>
-</div>
 <body>
 <div class="content">
-    <h1>Sollicitaties</h1>
+    <div id = "h1" class="jumbotron text-center">
+        <h1 class = "" >Sollicitaties</h1>
+    </div>
     <div class = "contentTable">
         <div class="container">
             <div class="table-responsive">
@@ -56,16 +43,24 @@
                         <form action="#" id="applicationform" th:action="@{/manager/saveSollicitaties}" th:object="${task}" method="post">
 
                                 <td id = "taskTitle" th:text="${task.titel}"></td>
-                                <td th:each="user : ${task.users}">
-                                    <span  id = "userName" th:text="${user.username}"></span>
-                                    <input type="hidden" id="userId" name="userId" th:value="${user.id}"/>
-                                </td>
+<!--                            <label class = "user"></label>-->
+                            <td>
+                                <select name="docent" id="docent" required>
+                                    <option value=""></option>
+                                    <option th:each="user: ${task.users}" th:value="${user.id}" th:text="${user.username}"></option>
+                                </select>
+
+                            </td>
+
+<!--                                <td th:each="user : ${task.users}">-->
+<!--                                    <span  id = "userName" th:text="${user.username}"></span>-->
+<!--
+                              </td>-->
                                 <td th:text ="${task.getTaskStatus()}"></td>
                                 <td>
                                     <select name="status" id="status" required>
                                         <option value="">Geef status</option>
-                                        <span th:each="status : ${statussen}">
-                                    <option th:text="${status}" th:value="${status}"></option></span>
+                                    <option th:each="status : ${statussen}" th:text="${status}" th:value="${status}"></option>
                                     </select>
                                 </td>
                                 <td><button type="submit" value="Opslaan" id="opslaanSolliciatie">

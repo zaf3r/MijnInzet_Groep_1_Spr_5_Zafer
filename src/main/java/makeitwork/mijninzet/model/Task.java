@@ -9,7 +9,7 @@ import java.util.List;
 public class Task implements Comparable{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String titel;
@@ -81,20 +81,33 @@ public class Task implements Comparable{
         this.taskStatus = taskStatus;
     }
 
+    public String enumToString (TaskStatus status) {
+       if (status == TaskStatus.OPEN){
+           return "Open";
+       } else {
+           return "Goedgekeurd";
+       }
+    }
 
     public Task() {
     }
 
-    public Task(int id, TaskStatus taskStatus) {
+    public Task(int id, String titel) {
         this.id = id;
+        this.titel = titel;
         this.taskStatus = TaskStatus.OPEN;
     }
 
-    public Task(String title, String description, int uren, String startDate) {
+    public Task(String title, String description, int uren, String locatie, LocalDate date, String startDate, LocalDate endDate, String longD) {
         this.titel = title;
         this.beschrijving = description;
         this.uren = uren;
         this.startdatum = startDate;
+        this.locatie = locatie;
+        this.sluitdatum = date;
+        this.einddatum = endDate;
+        this.beschrijvingLang = longD;
+        this.taskStatus = TaskStatus.OPEN;
     }
 
     public Task(int id, String title, String description, int uren) {

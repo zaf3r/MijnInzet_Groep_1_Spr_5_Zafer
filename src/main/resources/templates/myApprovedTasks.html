@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Mijn Taken</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/task.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/navbar.css}"/>
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
@@ -15,6 +17,9 @@
 
 <div class = "contentTable">
     <div class="container">
+        <div id = "h1" class="jumbotron text-center">
+            <h1 class = "" >Mijn Taken</h1>
+        </div>
         <div class="table-responsive">
             <table class="table table-hover">
                 <thead>
@@ -28,7 +33,9 @@
                 <tbody th:each="task : ${takenToDo}">
                 <form action="#" th:action="@{/teacher/myApplications}" th:object="${takenToDo}" method="get">
                     <td th:text="${task.titel}"></td>
-                    </td>
+                    <td th:text="${task.locatie}"></td>
+                    <td th:text="${task.einddatum}"></td>
+                    <td th:text="${task.uren}"></td>
                 </form>
 
                 </tbody>

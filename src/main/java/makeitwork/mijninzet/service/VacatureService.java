@@ -83,10 +83,6 @@ public class VacatureService {
         task.setTaskStatus(Task.TaskStatus.APPROVED);
     }
 
-//    public Task getApprovedTask(int taskId, int userId){
-//        return taskRepository.findApprovedTaskById(taskId, userId);
-//    }
-
     public void saveApprovedTasks(User user, Task task){
         user.getSollicitaties().add(task);
         System.out.println("Opgeslagen user is" + user);
@@ -94,12 +90,6 @@ public class VacatureService {
         task.setTaskStatus(Task.TaskStatus.APPROVED);
         vacatureRepository.save(user);
     }
-
-
-
-
-
-
 
     //stel taak is komen te vervallen, moet deze taak overal uit de DB (bij teacher) verwijderd worden.
     public void removeTaskFromOverview(Task task){
