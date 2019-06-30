@@ -1,4 +1,4 @@
-package makeitwork.mijninzet.model;
+package makeitwork.mijninzet.model.CourseSchedule;
 
 public class Temp {
     //    class with the only purpose of easily translating a JSON-file into attributes of User and Role.

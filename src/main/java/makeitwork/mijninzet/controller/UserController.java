@@ -3,7 +3,7 @@ package makeitwork.mijninzet.controller;
 import com.google.gson.Gson;
 import com.mongodb.BasicDBObject;
 import makeitwork.mijninzet.model.Role;
-import makeitwork.mijninzet.model.Temp;
+import makeitwork.mijninzet.model.CourseSchedule.Temp;
 import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.repository.RoleRepository;
 import makeitwork.mijninzet.repository.UserRepository;

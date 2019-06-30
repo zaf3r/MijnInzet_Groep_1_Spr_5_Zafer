@@ -1,4 +1,4 @@
-package makeitwork.mijninzet.model;
+package makeitwork.mijninzet.model.CourseSchedule;
 
 import makeitwork.mijninzet.model.Availability.PartOfDay;
 
