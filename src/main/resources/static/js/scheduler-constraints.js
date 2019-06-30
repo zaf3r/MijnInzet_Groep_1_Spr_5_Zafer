@@ -1,3 +1,4 @@
+var HardConstraint = "HardConstraint";
 
 mondayMoTeach.addEventListener("change", function () {
     var teacher = findTeacher(mondayMoTeach.value);
@@ -7,9 +8,8 @@ mondayMoTeach.addEventListener("change", function () {
     if (!mondayMoTeach.parentNode.classList.contains(HardConstraint)) {
         cohortClash(teacher,dateMonday,morning, mondayMoTeach);
     }
-
     if (!mondayMoTeach.parentNode.classList.contains(HardConstraint)) {
-        incidentClash();
+        incidentClash(mondayMoTeach);
     }
 });
 
@@ -22,6 +22,9 @@ mondayAfTeach.addEventListener("change", function () {
         cohortClash(teacher,dateMonday,afternoon, mondayAfTeach);
     }
 
+    if (!mondayAfTeach.parentNode.classList.contains(HardConstraint)) {
+        incidentClash(mondayAfTeach);
+    }
 });
 
 
@@ -32,6 +35,10 @@ mondayEvTeach.addEventListener("change", function () {
 
     if (!mondayEvTeach.parentNode.classList.contains(HardConstraint)) {
         cohortClash(teacher,dateMonday,evening, mondayEvTeach);
+    }
+
+    if (!mondayEvTeach.parentNode.classList.contains(HardConstraint)) {
+        incidentClash(mondayEvTeach);
     }
 });
 
@@ -162,7 +169,10 @@ function removeHardConstraintClass(dayPartTeacher) {
 }
 
 function addHardConstraintClass(dayPartTeacher) {
+    console.log("adding...");
     if (!dayPartTeacher.parentNode.classList.contains(HardConstraint)) {
+        console.log(dayPartTeacher.parentNode);
         dayPartTeacher.parentNode.classList.add(HardConstraint);
+        console.log("added");
     }
 }

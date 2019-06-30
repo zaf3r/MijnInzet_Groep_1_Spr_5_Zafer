@@ -95,7 +95,6 @@ public class TeacherSchedulerRestController {
                 noIncident = incident.isEvening();
             }
         }
-        System.out.println(noIncident);
         return noIncident;
     }
 

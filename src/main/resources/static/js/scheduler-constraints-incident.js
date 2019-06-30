@@ -1,7 +1,9 @@
 var requestUserIncidentUrl;
 var incidentCheckBoolean;
 
-function incidentClash() {
+
+function incidentClash(dayPartCell) {
+    dayPartCellSelected = dayPartCell;
     requestUserIncident();
 
 }
@@ -15,7 +17,6 @@ function requestUserIncident() {
             console.log(data);
         }).fail(function () {
             console.log("Failed to make a request");
-            console.log(requestUserIncidentUrl);
         })
             .done(function () {
                 incidentClashTest()
@@ -24,8 +25,10 @@ function requestUserIncident() {
 }
 
 function incidentClashTest() {
+    console.log(incidentCheckBoolean);
     if (!incidentCheckBoolean) {
-        alert("You have a clash!");
+        alert("Docent " + teacherSelected.username + " Is heeft een incident (afwezigheid) gemeld op "+ dateSelected + " voor het bettrefende dagdeel." +
+            " Indien u geen incident wilt met " + teacherSelected.username  + ", graag niet zonder");
         addHardConstraintClass(dayPartCellSelected);
     } else {
         removeHardConstraintClass(dayPartCellSelected);
