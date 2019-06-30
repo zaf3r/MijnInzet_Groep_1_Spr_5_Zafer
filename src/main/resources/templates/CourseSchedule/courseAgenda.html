@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:display="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -82,6 +83,7 @@
 </script>
 <script>
     $(document).ready(function () {
+        //todo min max date op cohort begin and end
         $.ajax({
             type: "POST",
             url: "/cohortsToPlan",
@@ -97,26 +99,23 @@
             }
         });
     });
+    $.ajax({
+        type: "POST",
+        url: "/agenda",
+        contentType: "application/json; charset-utf-8",
+        dataType: "json",
+        data: "{}",
+        success: function (response) {
 
-    $("#cohorts2Plan").on("change", function () {
-        var selectedText = $(this).find(':selected').text();
-        cohortName = selectedText;
-        payload = JSON.stringify({cohortName: selectedText});
-        $.ajax({
-            type: 'POST',
-            url: '/vakkenCohort',
-            contentType: 'application/json; charset=utf-8',
-            dataType: 'json',
-            data: payload
-        }).done(function (response) {
-            var n = 1;
-            $("#vakkenCohort").empty();
-            $.each(response, function (i, item) {
-                $("#vakkenCohort").append('<option value="">' + response[i].subjectName + '</option>');
-            });
-        })
+            // $("#cohorts2Plan").empty();
+            // $("#cohorts2Plan").append('<option value="-1">vakkenRooster tijdens cohort</option>')
+            // $.each(response, function (i, item) {
+            //     $("#cohorts2Plan").append('<option value="">' + response[i].cohortName + '</option>');
+            // });
+        }
     });
-    //todo min max date op cohort begin and end
+
+
     $("#vakkenCohort").on("change", function () {
         //show at the view the number of the maximum courseSchedule possibilities
         var selectedText = $(this).find(':selected').text();
