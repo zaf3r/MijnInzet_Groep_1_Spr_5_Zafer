@@ -20,7 +20,6 @@ public class VacatureService {
     @Autowired
     private TaskRepository taskRepository;
 
-
     public Task getTask(int taskId){
         return taskRepository.findTaskById(taskId);
     }
@@ -37,11 +36,14 @@ public class VacatureService {
 
     //save Vacature in DB SQL
     public void addTask(Task task, User user){
-        task.getUsers().add(user);
-        user.getTasks().add(task);
-        vacatureRepository.save(user);
-        taskRepository.save(task);
-    }
+//        boolean solliciteren = checkHoursSolliciteren(task, user);
+//        if(solliciteren = true) {
+            task.getUsers().add(user);
+            user.getTasks().add(task);
+            vacatureRepository.save(user);
+            taskRepository.save(task);
+        }
+//    }
     //wordt een taak uit zijn eigen lijst verwijderd
     public void removeTask(Task task, User user) {
         System.out.println("Task: " + task);
@@ -56,7 +58,7 @@ public class VacatureService {
     public List<Task> allApplications() {
         List<Task> allTasks = taskRepository.findAll();
         Iterator<Task> iter = allTasks.iterator();
-        while (iter.hasNext()) {
+        if (iter.hasNext()) {
             Task t = iter.next();
             if (t.getTaskStatus() == (Task.TaskStatus.APPROVED)) {
                 iter.remove();}
@@ -91,14 +93,32 @@ public class VacatureService {
         vacatureRepository.save(user);
     }
 
-    //stel taak is komen te vervallen, moet deze taak overal uit de DB (bij teacher) verwijderd worden.
-    public void removeTaskFromOverview(Task task){
-
-//        for (User user: vacatureRepository.findAll()) {
-//            removeTask(task,teacher);
-//        }
-        taskRepository.delete(task);
+    //TODO de uren final maken ivm software maintanance
+    public int totalHoursApplied (Task task, User user) {
+        int allocatedHours = user.getHoursAllocated(); //0
+        int taskHoursPossible = task.getUren(); //4
+        int hoursTotal = allocatedHours + taskHoursPossible; //4
+        return hoursTotal;
     }
+//
+//    public void addHours (Task task, User user){
+//        (user.getHoursAllocated()) + (task.getUren())
+//        int allocatedHours = user.getHoursAllocated(); //0
+//        int taskHoursPossible = task.getUren(); //4
+//        int hoursTotal = allocatedHours + taskHoursPossible; //4
+//    }
+//
+//    public boolean checkHoursSolliciteren (Task task, User user) {
+//        int contractHours = user.getHours(); //40
+//        int allocatedHours = user.getHoursAllocated(); //0
+//        int taskHoursPossible = task.getUren(); //4
+//        int hoursTotal = allocatedHours + taskHoursPossible; //4
+//        if(hoursTotal <= contractHours) {
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
 
 
 
