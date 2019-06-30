@@ -108,8 +108,6 @@ public class TeacherSchedulerRestController {
         User teacher = userRepository.findByUsername(username);
         boolean teacherIsAlreadyScheduled;
 
-        System.out.println(cohortDayRepository.findAllByDateAndTeacherMorning(dateScheduled, teacher));
-
         if(dayPart.equals(MORNING)) {
             teacherIsAlreadyScheduled =
                     (cohortDayRepository.findAllByDateAndTeacherMorning(dateScheduled, teacher).size() >= MAX_PLACEMENT);
