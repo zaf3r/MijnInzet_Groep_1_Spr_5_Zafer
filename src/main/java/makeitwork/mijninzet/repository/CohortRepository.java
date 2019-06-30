@@ -10,6 +10,6 @@ public interface CohortRepository extends JpaRepository<Cohort, Integer> {
   Cohort findByCohortName(String name);
   List<Cohort> findByUser(User user);
 
-  Cohort findCohortByCohortId (int id);
+  List<Cohort> findAllByUser(User user);
 
 }

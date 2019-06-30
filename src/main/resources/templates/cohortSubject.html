@@ -13,12 +13,16 @@
 <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script type="text/javascript" src="/js/cohort.js" th:src="@{/js/cohort.js}"></script>
+<!--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
+<!--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
+
 <head>
     <meta charset="UTF-8">
     <title>AddSubjectsToCohort</title>
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous"></script>
 </head>
 <body>
 <div th:if="${roleUser.roleName == 'Terminator'}">
@@ -38,47 +42,31 @@
 </div>
 <div class="container">
     <section id="headerAddSubjects" class="jumbotron text-center">
-        <h1>Vakken toevoeg aan cohort</h1>
+        <h1>Vakken toevoegen aan een cohort</h1>
     </section>
     <div>
-        <h4 class="text-center2" align="center">Voeg hier de vakken aan het gekozen Cohort toe:</h4>
+        <h4 class="text-center2" align="center">Selecteer een cohort en voeg er vakken aan toe</h4>
 
         <div class = "select" align="center">
-
-                        <div class="vakkenCohort">
-                            <form action="#" th:object="${cohorts}" th:action="@{showSubjects}" method="post">
-                                <select name="cohortName" id="cohortList" required style="width: 250px; border-color: lightgray" th:onchange="this.form.submit()">
-                                    <option value="">Selecteer een cohort:</option>
-                                    <option th:each="coh: ${cohorts}" th:value="${coh.cohortName}" th:text="${coh.cohortName}">
-                                    </option>
-                                </select>
-                            </form>
-                        </div>
-
+            <select class="form-control" name="cohortNameList" id="cohortList"></select>
         </div>
 
         <table align="center">
             <tr collspan="2">
                 <td>
                     <div class = "vakkenCohort">
-                        <div class="subjectName">Uit te kiezen vakken:</div>
-                        <form action="#" th:object="${possibleSubjects}" th:action="@{addSubjects}" method="post">
-                            <select  id="subjectName" name="subjectName" required multiple="multiple" size="7" style="width: 250px">
-                                <option th:each="subject: ${possibleSubjects}" th:value="${subject.subjectId}" th:text="${subject.subjectName}"></option>
-                            </select>
-                            <input type="submit" th:onclick="" value=">" id="voegToe"/>
-                        </form>
+                        <div class="listLabel" align="center">Lijst met alle vakken</div>
+                        <select class="form-control" name="possibleSubjects" id="possibleSubjects" required size="7" style="width: 250px"></select>
                     </div>
                 </td>
                 <td>
+                    <input type="button" id="addSubjectButton" value=">>" onclick="add()"><br>
+                    <input type="button" id="removeSubjectButton" value="<<" onclick="remove()">
+                </td>
+                <td>
                     <div class = "vakkenCohort">
-                        <div class="selectedSubjectList">Selecteer een of meerdere vakken:</div>
-                        <form action="#" th:object="${subjects}" th:action="@{removeSubjects}" method="post">
-                            <input type="submit" th:onclick="" value="<" id="remove"/>
-                            <select  id="selectedSubjectList" name="selectedSubjectList" required multiple="multiple" size="7" style="width: 250px">
-                                <option th:each="subject: ${subjects}" th:value="${subject.subjectId}" th:text="${subject.subjectName}"></option>
-                            </select>
-                        </form>
+                        <div class="listLabel" align="center">Vakken in het cohort</div>
+                        <select class="form-control" name="selectedSubjects" id="selectedSubjects" required size="7" style="width: 250px"></select>
                     </div>
                 </td>
             <tr>
@@ -89,6 +77,6 @@
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
+<script type="text/javascript" src="/js/cohort-subject.js"></script>
 </body>
 </html>

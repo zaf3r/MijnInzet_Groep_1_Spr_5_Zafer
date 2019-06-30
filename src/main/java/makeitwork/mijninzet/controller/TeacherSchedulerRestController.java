@@ -1,16 +1,20 @@
 package makeitwork.mijninzet.controller;
 
+import makeitwork.mijninzet.model.Availability.GlobalAvailability.Availability;
 import makeitwork.mijninzet.model.Cohort;
+import makeitwork.mijninzet.model.Role;
 import makeitwork.mijninzet.model.TeacherSchedule.CohortDay;
 import makeitwork.mijninzet.model.TeacherSchedule.CohortWeek;
 import makeitwork.mijninzet.model.TeacherSchedule.CohortWeekDTO;
-import makeitwork.mijninzet.repository.CohortRepository;
-import makeitwork.mijninzet.repository.CohortWeekRepository;
-import makeitwork.mijninzet.repository.UserRepository;
+import makeitwork.mijninzet.model.User;
+import makeitwork.mijninzet.model.preference.Preference;
+import makeitwork.mijninzet.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +22,17 @@ import java.util.List;
 @RequestMapping("/api")
 public class TeacherSchedulerRestController {
 
+
+    final private Role TEACHER_ROLE = new Role(1, "Docent");
     final private CohortDay COHORT_DAY_LOADER = new CohortDay();
+    final private DateTimeFormatter STRING_TO_DATE_FORMATER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    final private long INCREMENT_DAY_HIBERNATE_FIX = 1;
+
+    final String MORNING = "morning";
+    final String AFTERNOON = "afternoon";
+    final String EVENING = "evening";
+    final int MAX_PLACEMENT = 1;
+
 
     @Autowired
     CohortWeekRepository cohortWeekRepository;
@@ -28,6 +42,56 @@ public class TeacherSchedulerRestController {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    PreferenceRepository preferenceRepository;
+
+    @Autowired
+    AvailabilityRepository availabilityRepository;
+
+    @Autowired
+    CohortDayRepository cohortDayRepository;
+
+    //TO CLEAN
+    @GetMapping("/getTeachers")
+    public List<User> findTeacherListHandler() {
+
+        List<User> teacherList = userRepository.findAllByRole(TEACHER_ROLE);
+        for(User user : teacherList) {
+            loadAvailability(user);
+        }
+        return teacherList;
+    }
+
+    //TO CLEAN
+    @GetMapping("/getPreferences")
+    public List<Preference> findAllPreferencesHandler() {
+        return preferenceRepository.findAll();
+    }
+
+    @GetMapping("/cohort/scheduled/{userName}/{dayPart}/{date}")
+    public boolean teacherScheduledConstraintCheckHandler(@PathVariable("userName") String username,
+                                                          @PathVariable("dayPart") String dayPart,
+                                                          @PathVariable("date") String localDate) {
+
+
+        LocalDate dateScheduled = LocalDate.parse(localDate, STRING_TO_DATE_FORMATER);
+        User teacher = userRepository.findByUsername(username);
+        boolean teacherIsAlreadyScheduled;
+
+        if(dayPart.equals(MORNING)) {
+            teacherIsAlreadyScheduled =
+                    (cohortDayRepository.findAllByDateAndTeacherMorning(dateScheduled, teacher).size() >= MAX_PLACEMENT);
+        } else if (dayPart.equals(AFTERNOON)) {
+            teacherIsAlreadyScheduled =
+                    (cohortDayRepository.findAllByDateAndTeacherAfternoon(dateScheduled, teacher).size() >= MAX_PLACEMENT);
+        } else {
+            teacherIsAlreadyScheduled =
+                    (cohortDayRepository.findAllByDateAndTeacherEvening(dateScheduled, teacher).size() >= MAX_PLACEMENT);
+        }
+        return teacherIsAlreadyScheduled;
+    }
+
 
     @GetMapping("/cohort/weeks/{cohortName}")
     public List<Long> findCohortWeeksHandler(@PathVariable("cohortName") String cohortNaam) {
@@ -91,10 +155,14 @@ public class TeacherSchedulerRestController {
         return cohortWeek;
     }
 
-    public CohortDay cohortDayLoader(CohortDay cohortDay, String teacherMorning, String teacherAfternoon, String teacherEvening) {
+    public void cohortDayLoader(CohortDay cohortDay, String teacherMorning, String teacherAfternoon, String teacherEvening) {
         cohortDay.setTeacherMorning(userRepository.findByUsername(teacherMorning));
         cohortDay.setTeacherAfternoon(userRepository.findByUsername(teacherAfternoon));
         cohortDay.setTeacherEvening(userRepository.findByUsername(teacherEvening));
-        return cohortDay;
+    }
+
+    public void loadAvailability(User user) {
+        List<Availability> availabilityList = availabilityRepository.findAllByUser(user);
+        user.setAvailabilityList(availabilityList);
     }
 }

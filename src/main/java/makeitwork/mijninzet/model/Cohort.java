@@ -1,6 +1,7 @@
 package makeitwork.mijninzet.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import makeitwork.mijninzet.model.TeacherSchedule.CohortWeek;
 import makeitwork.mijninzet.model.preference.Subject;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -40,29 +41,13 @@ public class Cohort {
             inverseJoinColumns = @JoinColumn(name = "codevak"))
     private List<Subject> subjects;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "cohort",cascade= CascadeType.PERSIST)
     private List<CohortWeek> cohortWeekList;
 
     public List<Subject> getSubjects() { return subjects; }
 
     public void setSubjects(List<Subject> subjects) { this.subjects = subjects; }
-
-//    public List<String> getSubjectNames(){
-//        List<String> subjectNames = new ArrayList<>();
-//        for (Subject s : subjects){
-//            subjectNames.add(s.getSubjectName());
-//            }
-//        return subjectNames;
-//    }
-
-//    @ElementCollection
-//    @SortNatural
-//    @Column(name = "naamvak")
-//    private List<String> subjectNames = new ArrayList<>();
-//
-//    public List<String> getSubjectNames() { return subjectNames; }
-//
-//    public void setSubjectNames(List<String> subjectNames) { this.subjectNames = subjectNames; }
 
     public Cohort() {}
 
@@ -86,21 +71,11 @@ public class Cohort {
 
     public LocalDate getEndDate() { return endDate; }
 
-//    public void addSubject(String subjectName) {
-//        List<String> subjects = getSubjectNames();
-//        if (!subjects.contains(subjectName)) subjects.add(subjectName);
-//    }
-
     public void addSubject(Subject subject){
         List<Subject> subjects = getSubjects();
         if(!subjects.contains(subject))
             subjects.add(subject);
     }
-
-//    public void removeSubject(String subjectName) {
-//        List<String> subjects = getSubjectNames();
-//        if (subjects.contains(subjectName)) subjects.remove(subjectName);
-//    }
 
     public void removeSubject(Subject subject) {
         List<Subject> subjects = getSubjects();

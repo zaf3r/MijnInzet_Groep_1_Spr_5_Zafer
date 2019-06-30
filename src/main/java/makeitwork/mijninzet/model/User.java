@@ -1,6 +1,7 @@
 package makeitwork.mijninzet.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import makeitwork.mijninzet.model.Availability.GlobalAvailability.Availability;
 import makeitwork.mijninzet.model.preference.Preference;
 import org.hibernate.annotations.SortNatural;
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -34,6 +35,9 @@ public class User implements Comparable{
 
     @Transient
     private final String COLUMN_HOURS="Uren";
+
+    @Transient
+    private final String COLUMN_HOURSALLOCATED="urenBezetting";
 
     @Transient
     private final String COLUMN_ID = "idgebruiker";
@@ -80,6 +84,9 @@ public class User implements Comparable{
     @Column(name = COLUMN_HOURS)
     private int hours;
 
+    @Column(name = COLUMN_HOURSALLOCATED)
+    private int hoursAllocated;
+
     @Column(name = COLUMN_SURNAME)
     private String surname;
 
@@ -111,6 +118,9 @@ public class User implements Comparable{
             joinColumns = @JoinColumn(name = COLUMN_ID),
             inverseJoinColumns = @JoinColumn(name = PK_COLUMN_OTHER_ENTITY))
     private List<Role> role;
+
+    @OneToMany(mappedBy = "user", cascade= CascadeType.PERSIST)
+    private List<Availability> availabilityList;
 
     @ElementCollection
     @SortNatural
@@ -239,6 +249,14 @@ public class User implements Comparable{
         this.email = email;
     }
 
+    public int getHoursAllocated() {
+        return hoursAllocated;
+    }
+
+    public void setHoursAllocated(int hoursAllocated) {
+        this.hoursAllocated = hoursAllocated;
+    }
+
     public Set<Preference> getPreferenceSet() {
         return preferenceSet;
     }
@@ -247,6 +265,21 @@ public class User implements Comparable{
         this.preferenceSet = preferenceSet;
     }
 
+    public List<Availability> getAvailabilityList() {
+        return availabilityList;
+    }
+
+    public void setAvailabilityList(List<Availability> availabilityList) {
+        this.availabilityList = availabilityList;
+    }
+
+    //    public String getNaam() {
+//        return naam;
+//    }
+
+    //    public String getRoleType() {
+//        return roleType;
+//    }
     public String encryptPassword (String plain_password){
         return BCrypt.hashpw(plain_password, BCrypt.gensalt());
     }
@@ -289,6 +322,7 @@ public class User implements Comparable{
                 ", password='" + password + '\'' +
                 ", username='" + username + '\'' +
                 ", hours='" + hours + '\'' +
+                ", hoursAllocated='" + hoursAllocated + '\'' +
                 ", surname='" + surname + '\'' +
                 ", namePrefix='" + namePrefix + '\'' +
                 ", familyName='" + familyName + '\'' +

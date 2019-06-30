@@ -36,9 +36,8 @@
 <div class="container">
     <section id="header" class="jumbotron text-center">
         <h1>Uw wekelijkse beschikbaarheid</h1>
-        <p>Geef hieronder per dag aan welke dagdelen u beschikbaar bent</p>
+        <p>Selecteer de dag(en) en bijbehorende dagdelen waarop u beschikbaar bent</p>
     </section>
-
 
         <section align="center">
             <select class="custom-select" id="selectSemester">
@@ -48,6 +47,7 @@
                 <option value="3">Three</option>
             </select>
         </section>
+
     <form action="#" th:action="@{/availability/postAvailabilityForm}" th:object="${availabilityForm}" method = post>
     <table id = "deTabel">
         <tr>
