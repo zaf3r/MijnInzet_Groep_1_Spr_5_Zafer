@@ -78,4 +78,23 @@ div.selectedSubjectList {
     padding-left: 57px;
 }
 
+#addSubjectButton {
+    border: 2px solid lightcoral;
+    background-color: white;
+    margin: 20px;
+}
 
+#removeSubjectButton {
+    border: 2px solid lightcoral;
+    background-color: white;
+    margin: 20px;
+}
+
+#cohortList{
+    width: 30%;
+    margin-bottom: 20px;
+}
+.listLabel{
+    color: #666666;
+    margin-bottom: 10px;
+}

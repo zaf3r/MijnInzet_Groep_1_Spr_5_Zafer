@@ -49,23 +49,6 @@ public class Cohort {
 
     public void setSubjects(List<Subject> subjects) { this.subjects = subjects; }
 
-//    public List<String> getSubjectNames(){
-//        List<String> subjectNames = new ArrayList<>();
-//        for (Subject s : subjects){
-//            subjectNames.add(s.getSubjectName());
-//            }
-//        return subjectNames;
-//    }
-
-//    @ElementCollection
-//    @SortNatural
-//    @Column(name = "naamvak")
-//    private List<String> subjectNames = new ArrayList<>();
-//
-//    public List<String> getSubjectNames() { return subjectNames; }
-//
-//    public void setSubjectNames(List<String> subjectNames) { this.subjectNames = subjectNames; }
-
     public Cohort() {}
 
     public Cohort(String cohortName, LocalDate startDate, LocalDate endDate) {
@@ -88,21 +71,11 @@ public class Cohort {
 
     public LocalDate getEndDate() { return endDate; }
 
-//    public void addSubject(String subjectName) {
-//        List<String> subjects = getSubjectNames();
-//        if (!subjects.contains(subjectName)) subjects.add(subjectName);
-//    }
-
     public void addSubject(Subject subject){
         List<Subject> subjects = getSubjects();
         if(!subjects.contains(subject))
             subjects.add(subject);
     }
-
-//    public void removeSubject(String subjectName) {
-//        List<String> subjects = getSubjectNames();
-//        if (subjects.contains(subjectName)) subjects.remove(subjectName);
-//    }
 
     public void removeSubject(Subject subject) {
         List<Subject> subjects = getSubjects();

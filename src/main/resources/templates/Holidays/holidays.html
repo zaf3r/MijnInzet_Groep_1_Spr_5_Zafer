@@ -10,7 +10,7 @@
             crossorigin="anonymous">
     </script>
     <style>
-        .grid-container{
+        /*.grid-container{*/
 
         .grid-container1 {
             display: grid;
@@ -41,7 +41,7 @@
         }
     </style>
 </head>
-<div>
+
 <h3>Vakantiedagen</h3>
     <div class="grid-container1">
         <div class="grid-item"><h4>datum</h4></div>
@@ -67,7 +67,7 @@
 
 <script>
     $(document).ready(function () {
-        $("#dagen").on("load", function() {
+        $("#dagen").on("load", function () {
             $.ajax({
                 type: 'GET',
                 url: '/theHolidays',
@@ -75,13 +75,14 @@
                 dataType: 'json',
                 data: "{}",
                 success: function (response) {
-                $("#regelPerLes").empty();
-                $.each(days, function (i, item) {
-                    $("#dagen").append('<div class="grid-item">response[i].localDate</div> ');
-                    $("#dagen").append('<div class="grid-item">response[i].description</div> ');
+                    $("#regelPerLes").empty();
+                    $.each(days, function (i, item) {
+                        $("#dagen").append('<div class="grid-item">response[i].localDate</div> ');
+                        $("#dagen").append('<div class="grid-item">response[i].description</div> ');
 
-                })
+                    })
+                }
             })
-        })
-    });
+        });
+    })
 </script>
