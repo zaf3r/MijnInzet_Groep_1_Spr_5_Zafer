@@ -51,7 +51,7 @@ public class SollicitatieController implements  RetrieveUserRole {
     @PostMapping("/saveSollicitaties")
     public String saveApplicatonHandler (Principal principal, Model model,
                                          @RequestParam("taskId") int taakId, @RequestParam("docent")User user,
-                                         @ModelAttribute Task resultaat, @RequestParam("status") Task task) {
+                                         @ModelAttribute Task resultaat) {
         resultaat = getTask(taakId);
         System.out.println("taak is : " + resultaat);
         System.out.println("docent is : " + user);

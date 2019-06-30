@@ -81,14 +81,6 @@ public class Task implements Comparable{
         this.taskStatus = taskStatus;
     }
 
-    public String enumToString (TaskStatus status) {
-       if (status == TaskStatus.OPEN){
-           return "Open";
-       } else {
-           return "Goedgekeurd";
-       }
-    }
-
     public Task() {
     }
 
