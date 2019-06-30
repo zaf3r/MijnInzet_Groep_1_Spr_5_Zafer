@@ -8,6 +8,9 @@ mondayMoTeach.addEventListener("change", function () {
         cohortClash(teacher,dateMonday,morning, mondayMoTeach);
     }
 
+    if (!mondayMoTeach.parentNode.classList.contains(HardConstraint)) {
+        incidentClash();
+    }
 });
 
 mondayAfTeach.addEventListener("change", function () {

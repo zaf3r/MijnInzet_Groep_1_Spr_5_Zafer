@@ -23,14 +23,12 @@ function requestCallCohortClash() {
             console.log("Failed to make a request");
         })
             .done(function () {
-                console.log("I am in the done part");
                 cohortClashTest();
             })
     })
 }
 
 function cohortClashTest() {
-    console.log(clashValue);
     if(clashValue) {
         console.log(clashValue);
         console.log("I am in the test");

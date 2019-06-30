@@ -2,6 +2,7 @@ package makeitwork.mijninzet.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import makeitwork.mijninzet.model.Availability.GlobalAvailability.Availability;
+import makeitwork.mijninzet.model.Availability.Incident.Incident;
 import makeitwork.mijninzet.model.preference.Preference;
 import org.hibernate.annotations.SortNatural;
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -112,6 +113,9 @@ public class User{
     @OneToMany(mappedBy = "user",cascade= CascadeType.PERSIST)
     private List<Availability> availabilityList;
 
+    @OneToMany(mappedBy = "user",cascade= CascadeType.PERSIST)
+    private List<Incident> incidentList;
+
     @OneToMany(mappedBy = "user",cascade= CascadeType.ALL)
     @JsonIgnore
     private Set<Preference> preferenceSet =  new HashSet<>();
@@ -122,7 +126,6 @@ public class User{
             joinColumns = @JoinColumn(name = COLUMN_ID),
             inverseJoinColumns = @JoinColumn(name = PK_COLUMN_OTHER_ENTITY))
     private List<Role> role;
-
 ;
 
     //contracturen?
@@ -240,6 +243,14 @@ public class User{
 
     public void setAvailabilityList(List<Availability> availabilityList) {
         this.availabilityList = availabilityList;
+    }
+
+    public List<Incident> getIncidentList() {
+        return incidentList;
+    }
+
+    public void setIncidentList(List<Incident> incidentList) {
+        this.incidentList = incidentList;
     }
 
     //    public String getNaam() {
