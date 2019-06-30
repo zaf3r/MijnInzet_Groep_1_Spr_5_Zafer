@@ -8,6 +8,7 @@ import makeitwork.mijninzet.repository.HolidayScheduleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,7 +17,7 @@ import java.util.ListIterator;
 
 
 @Service
-public class CourseScheduleAgenda {
+public class CourseAgendaService {
 
     @Autowired
     HolidayScheduleRepository holidays;
@@ -48,33 +49,52 @@ public class CourseScheduleAgenda {
     }
 
     public List<Agenda> addWorkshops(List<Agenda> agenda,LocalDate begin, LocalDate closing) {
-        List<CourseSchedule> workshops = courseScheduleRepository.findAllByDateAfter(begin.plusDays(-1));
-        workshops.removeAll(courseScheduleRepository.findAllByDateAfter(closing));
-        if (!workshops.isEmpty()) {
-            for (CourseSchedule course : workshops) {
-                Agenda agendaItem = new Agenda();
-                agendaItem.setDate(course.getDate());
-                agendaItem.setDayPart(course.getPartOfDay());
-                agendaItem.setDescriptionTop(course.getCohort().getCohortName());
-                agendaItem.setDescriptionMiddle(course.getSubject().getSubjectName());
-                agendaItem.setId(course.getCourseId());
-                agenda.add(agendaItem);
+        try{
+            List<CourseSchedule> workshops = courseScheduleRepository.findAll();
+//            ListIterator<Agenda> agendaIterator = agenda.listIterator();
+//            while (agendaIterator.hasNext()){
+//                if (agendaIterator.next().getDate().isBefore(begin)
+//                        ||agendaIterator.next().getDate().isAfter(closing)){
+//                    agendaIterator.remove();
+//                }
+//            }
+//            System.out.printf("\n\nEr blijven %d workshops over\n\n",workshops.size());
+//
+            if (!workshops.isEmpty()) {
+                for (CourseSchedule course : workshops) {
+                    Agenda agendaItem = new Agenda();
+                    agendaItem.setDate(course.getDate());
+                    agendaItem.setDayPart(course.getPartOfDay());
+                    agendaItem.setDescriptionTop(course.getCohort().getCohortName());
+                    agendaItem.setDescriptionMiddle(course.getSubject().getSubjectName());
+                    agendaItem.setId(course.getCourseId());
+                    agenda.add(agendaItem);
+                }
             }
-        }
+        } catch (NullPointerException e) {
+            System.out.printf("\n\nGeen workshops: %s\n\n",e);
+        };
         return agenda;
     }
     public List<Agenda> addHolidays(List<Agenda> agenda,LocalDate begin, LocalDate closing) {
-        List<HolidaySchedule> daysOff =holidays.findAllByLocalDateAfter(begin.plusDays(-1));
-        daysOff.removeAll(holidays.findAllByLocalDateAfter(closing));
-        if (!daysOff.isEmpty()){
-            for (HolidaySchedule holiday: daysOff) {
-                Agenda agendaItem=new Agenda();
-                agendaItem.setDate(holiday.getLocalDate());
-                agendaItem.setDescriptionTop(holiday.getDescription());
-                agenda.add(agendaItem);
-            }}
+
+        try {
+            List<HolidaySchedule> daysOff = holidays.findAll();
+            if (!daysOff.isEmpty()) {
+//                daysOff.removeAll(holidays.findAllByLocalDateAfter(closing));
+                for (HolidaySchedule holiday : daysOff) {
+                    Agenda agendaItem = new Agenda();
+                    agendaItem.setDate(holiday.getLocalDate());
+                    agendaItem.setDescriptionTop(holiday.getDescription());
+                    agenda.add(agendaItem);
+                }
+            }
+        }catch (NullPointerException e) {
+            System.out.printf("\n\nGeen vakantierooster: %s\n\n",e);
+        };
         return agenda;
     }
+
     public List<Agenda> addMissingDates(List<Agenda> agenda,LocalDate begin, LocalDate closing) {
         ListIterator<Agenda> agendaIterator = agenda.listIterator();
         var insertDate=begin;
@@ -94,8 +114,8 @@ public class CourseScheduleAgenda {
         addHolidays(agenda,begin,closing);
         addWorkshops(agenda,begin,closing);
         Collections.sort(agenda);
-        addDatesAtBeginning(agenda,begin,closing);
-        addMissingDates(agenda,begin,closing);
+//        addDatesAtBeginning(agenda,begin,closing);
+//        addMissingDates(agenda,begin,closing);
         return agenda;
     }
 }
