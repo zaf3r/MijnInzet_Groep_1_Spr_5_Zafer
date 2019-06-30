@@ -47,11 +47,15 @@ div#buttons {
     padding-bottom: 5px;
 }
 #love {
-    color: midnightblue;
-    background-color: white;
-    border-style: none;
-    height: 50px;
-    width: 50px;
+    background-color: yellow;
+    height: 40px;
+    width: 170px;
+    text-align: center;
+    font-size: 15px;
+    border: none;
+    display: inline-block;
+    margin: 10px;
+    color: #444444;
     /*padding-left: 20px;*/
     /*margin-left: 50px;*/
 }
@@ -81,6 +85,7 @@ div#buttons {
     border: none;
     display: inline-block;
     margin: 10px;
+    color: #444444;
 }
 
 #saveTask:hover{
@@ -185,4 +190,16 @@ h2.description {
 
 .table{
     font-size: 1.6em;
+}
+
+.hours {
+    border-radius: 50%;
+    border: solid 2px #FFBEBE;
+    font-size: 1.1em;
+    padding: 2px;
+}
+
+#hours {
+    color: #444444;
+    font-family: "Open Sans", sans-serif;
 }

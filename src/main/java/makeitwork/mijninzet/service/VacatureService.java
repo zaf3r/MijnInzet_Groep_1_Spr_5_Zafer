@@ -35,15 +35,16 @@ public class VacatureService {
     }
 
     //save Vacature in DB SQL
-    public void addTask(Task task, User user){
-//        boolean solliciteren = checkHoursSolliciteren(task, user);
-//        if(solliciteren = true) {
-            task.getUsers().add(user);
-            user.getTasks().add(task);
-            vacatureRepository.save(user);
-            taskRepository.save(task);
-        }
-//    }
+    public void addTask(Task task, User user) {
+        boolean solliciteren = checkHoursSolliciteren(task, user);
+        if (solliciteren = true) {
+        task.getUsers().add(user);
+        user.getTasks().add(task);
+        vacatureRepository.save(user);
+        taskRepository.save(task);
+    }
+    }
+
     //wordt een taak uit zijn eigen lijst verwijderd
     public void removeTask(Task task, User user) {
         System.out.println("Task: " + task);
@@ -58,14 +59,14 @@ public class VacatureService {
     public List<Task> allApplications() {
         List<Task> allTasks = taskRepository.findAll();
         Iterator<Task> iter = allTasks.iterator();
-        if (iter.hasNext()) {
+        while (iter.hasNext()) {
             Task t = iter.next();
             if (t.getTaskStatus() == (Task.TaskStatus.APPROVED)) {
                 iter.remove();}
             if (t.getUsers().isEmpty()) {
-                    iter.remove();
-                }
+                iter.remove();
             }
+        }
         return allTasks;
     }
 
@@ -77,7 +78,7 @@ public class VacatureService {
             return new ArrayList<>();
         }
     }
-//TODO is geen List<> denk ik
+    //TODO is geen List<> denk ik
     public void approveSollicitant(User user, Task task){
         List<User> approved = new ArrayList<>();
         approved.add(user);
@@ -90,35 +91,35 @@ public class VacatureService {
         System.out.println("Opgeslagen user is" + user);
         task.setUitvoerder(user);
         task.setTaskStatus(Task.TaskStatus.APPROVED);
+        int hours = addHours(task, user);
+        user.setHoursAllocated(hours);
         vacatureRepository.save(user);
     }
 
     //TODO de uren final maken ivm software maintanance
-    public int totalHoursApplied (Task task, User user) {
+    public int hoursToApply (User user) {
+        int allocatedHours = user.getHoursAllocated(); //5
+        int contractHours = user.getHours(); //40
+        int hourstoFillIn = contractHours - allocatedHours; //35
+        return hourstoFillIn;
+    }
+
+    public int addHours (Task task, User user){
         int allocatedHours = user.getHoursAllocated(); //0
         int taskHoursPossible = task.getUren(); //4
-        int hoursTotal = allocatedHours + taskHoursPossible; //4
-        return hoursTotal;
+        return Integer.sum(allocatedHours, taskHoursPossible); //4
     }
-//
-//    public void addHours (Task task, User user){
-//        (user.getHoursAllocated()) + (task.getUren())
-//        int allocatedHours = user.getHoursAllocated(); //0
-//        int taskHoursPossible = task.getUren(); //4
-//        int hoursTotal = allocatedHours + taskHoursPossible; //4
-//    }
-//
-//    public boolean checkHoursSolliciteren (Task task, User user) {
-//        int contractHours = user.getHours(); //40
-//        int allocatedHours = user.getHoursAllocated(); //0
-//        int taskHoursPossible = task.getUren(); //4
-//        int hoursTotal = allocatedHours + taskHoursPossible; //4
-//        if(hoursTotal <= contractHours) {
-//            return true;
-//        } else {
-//            return false;
-//        }
-//    }
+
+    public boolean checkHoursSolliciteren (Task task, User user) {
+        int contractHours = user.getHours(); //40
+        int allocatedHours = user.getHoursAllocated(); //0
+        int taskHoursPossible = task.getUren(); //4
+        if((allocatedHours + taskHoursPossible) <= contractHours) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 
 

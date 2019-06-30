@@ -1,10 +1,43 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/generic.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/navbar.css}"/>
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Docentenrooster</title>
 </head>
 <body>
 
+<div class = "select" align="center">
+    <div>
+        <select name="cohortName" class="custom-select" id="select1">
+            <option selected disabled hidden>Selecteer een cohort</option>
+            <option th:each="coh: ${cohorts}" th:value="${coh.cohortName}" th:text="${coh.cohortName}"></option>
+        </select>
+    </div>
+</div>
+
+<div class = "contentTable">
+    <div class="table-responsive">
+        <table class="table table">
+            <thead>
+            <th>
+            <th scope = "col">Maandag</th>
+            <th scope = "col">Dinsdag</th>
+            <th scope = "col">Woensdag</th>
+            <th scope = "col">Donderdag</th>
+            <th scope = "col">Vrijdag</th>
+            </tr>
+            </thead>
+
+
+
+
+        </table>
+    </div>
+</div>
 </body>
 </html>

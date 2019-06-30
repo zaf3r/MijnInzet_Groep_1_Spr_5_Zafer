@@ -36,7 +36,7 @@ public class VacatureController implements RetrieveUserRole {
     public String MenuHandler(Model model, Principal principal) {
         User user = usersRepository.findByUsername(principal.getName());
         model.addAttribute("allTasks", tasks2React(user));
-
+        model.addAttribute("user", vacatureService.hoursToApply(user));
         Role role = retrieveRole(usersRepository, principal);
         model.addAttribute("roleUser", role);
 

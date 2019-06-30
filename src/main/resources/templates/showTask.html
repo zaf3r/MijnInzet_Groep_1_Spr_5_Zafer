@@ -34,7 +34,7 @@
 
 <body>
 <section id="containerContent">
-
+<!--    <i class="fas fa-thumbs-up" style="font-size: 2.5em;"></i>-->
     <form action="#" th:action="@{taskOverview}" th:object="${taak}" th:method="get">
         <div class="job-header">
         <h1 class="job-header header"><span th:text="*{titel}"/></h1>
@@ -43,14 +43,14 @@
     <div class="container">
         <form action="#" th:action="@{/teacher/taskSave/{taskId}}" th:object="${taak}" th:method="get">
             <div class="job-header-bar col-md-8 justify-content-right">
-                <button type="submit" id="love" class="love"><i class="fas fa-thumbs-up" style="font-size: 2.5em;"></i>
+                <button type="submit" id="love" class="love" align="right" value ='Opslaan'>Opslaan
                     <input type="hidden" id="taskId" name="taskId" th:value="*{id}"></button>
             </div>
         </form>
 
         <form action="#" th:action="@{/teacher/taskOverview}" th:object="${taak}" th:method="get">
             <div class="job-header-bar col-md-8 justify-content-right py-1">
-                <input type='submit' name='thing' value='terug naar overzicht' id="saveTask" align="right"/>
+                <input type='submit' name='thing' value='Terug naar overzicht' id="saveTask" align="right"/>
             </div>
         <div class="row justify-content-md-center">
             <div class="col col-lg-2">
