@@ -2,7 +2,7 @@ package makeitwork.mijninzet.controller.CourseSchedule;
 
 import com.google.gson.Gson;
 import makeitwork.mijninzet.model.CourseSchedule.receiveBeginClosingDate;
-import makeitwork.mijninzet.service.CourseSchedule.CourseScheduleAgenda;
+import makeitwork.mijninzet.service.CourseSchedule.CourseAgendaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,11 +14,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class AgendaController {
     @Autowired
-    CourseScheduleAgenda agenda;
+    CourseAgendaService agenda;
 
     @GetMapping("/test1")
     public String agendaFrontEnd(Model model){
-        System.out.printf("Dit is test1/courseAgenda");
         return "CourseSchedule/courseAgenda";
     }
 

@@ -19,7 +19,7 @@ public class CourseScheduleFrontEnd {
 
     @GetMapping("/test")
     public String testFrontEnd(Model model) {
-        return "test";
+        return "CourseSchedule/test";
     }
 
 }
