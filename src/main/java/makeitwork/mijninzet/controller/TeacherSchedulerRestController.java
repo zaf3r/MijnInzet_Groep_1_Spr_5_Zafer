@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,9 +22,17 @@ import java.util.List;
 @RequestMapping("/api")
 public class TeacherSchedulerRestController {
 
-    final Role TEACHER_ROLE = new Role(1, "Docent");
 
+    final private Role TEACHER_ROLE = new Role(1, "Docent");
     final private CohortDay COHORT_DAY_LOADER = new CohortDay();
+    final private DateTimeFormatter STRING_TO_DATE_FORMATER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    final private long INCREMENT_DAY_HIBERNATE_FIX = 1;
+
+    final String MORNING = "morning";
+    final String AFTERNOON = "afternoon";
+    final String EVENING = "evening";
+    final int MAX_PLACEMENT = 1;
+
 
     @Autowired
     CohortWeekRepository cohortWeekRepository;
@@ -39,6 +49,9 @@ public class TeacherSchedulerRestController {
     @Autowired
     AvailabilityRepository availabilityRepository;
 
+    @Autowired
+    CohortDayRepository cohortDayRepository;
+
     //TO CLEAN
     @GetMapping("/getTeachers")
     public List<User> findTeacherListHandler() {
@@ -54,6 +67,29 @@ public class TeacherSchedulerRestController {
     @GetMapping("/getPreferences")
     public List<Preference> findAllPreferencesHandler() {
         return preferenceRepository.findAll();
+    }
+
+    @GetMapping("/cohort/scheduled/{userName}/{dayPart}/{date}")
+    public boolean teacherScheduledConstraintCheckHandler(@PathVariable("userName") String username,
+                                                          @PathVariable("dayPart") String dayPart,
+                                                          @PathVariable("date") String localDate) {
+
+
+        LocalDate dateScheduled = LocalDate.parse(localDate, STRING_TO_DATE_FORMATER);
+        User teacher = userRepository.findByUsername(username);
+        boolean teacherIsAlreadyScheduled;
+
+        if(dayPart.equals(MORNING)) {
+            teacherIsAlreadyScheduled =
+                    (cohortDayRepository.findAllByDateAndTeacherMorning(dateScheduled, teacher).size() >= MAX_PLACEMENT);
+        } else if (dayPart.equals(AFTERNOON)) {
+            teacherIsAlreadyScheduled =
+                    (cohortDayRepository.findAllByDateAndTeacherAfternoon(dateScheduled, teacher).size() >= MAX_PLACEMENT);
+        } else {
+            teacherIsAlreadyScheduled =
+                    (cohortDayRepository.findAllByDateAndTeacherEvening(dateScheduled, teacher).size() >= MAX_PLACEMENT);
+        }
+        return teacherIsAlreadyScheduled;
     }
 
 
@@ -119,11 +155,10 @@ public class TeacherSchedulerRestController {
         return cohortWeek;
     }
 
-    public CohortDay cohortDayLoader(CohortDay cohortDay, String teacherMorning, String teacherAfternoon, String teacherEvening) {
+    public void cohortDayLoader(CohortDay cohortDay, String teacherMorning, String teacherAfternoon, String teacherEvening) {
         cohortDay.setTeacherMorning(userRepository.findByUsername(teacherMorning));
         cohortDay.setTeacherAfternoon(userRepository.findByUsername(teacherAfternoon));
         cohortDay.setTeacherEvening(userRepository.findByUsername(teacherEvening));
-        return cohortDay;
     }
 
     public void loadAvailability(User user) {
