@@ -1,5 +1,6 @@
 package makeitwork.mijninzet.model.Availability.Incident;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
@@ -21,6 +22,7 @@ public class Incident implements DayFinder<Incident,Weekday> {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
 
+    @JsonBackReference
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "idgebruiker")
     private User user;
@@ -35,8 +37,6 @@ public class Incident implements DayFinder<Incident,Weekday> {
     @Column(name = "dag")
     private Weekday weekday;
 
-    @JsonDeserialize(using = LocalDateDeserializer.class)
-    @JsonSerialize(using = LocalDateSerializer.class)
     @DateTimeFormat(pattern = "MM/dd/yyyy")
     @Column(name = "datumIncident")
     private LocalDate dateIncident;
