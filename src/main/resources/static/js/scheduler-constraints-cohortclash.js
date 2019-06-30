@@ -34,7 +34,5 @@ function cohortClashTest() {
         alert("Docent " + teacherSelected.username + " Is al gepland op "+ dateSelected + " voor het bettrefende dagdeel." +
             " Docenten zijn ondanks de verwachting die gesteld worden, ook maar mensen en kunnen niet op twee verschillende plekken tegelijk zijn.");
         addHardConstraintClass(dayPartCellSelected);
-    } else {
-        removeHardConstraintClass(dayPartCellSelected);
     }
 }

@@ -23,8 +23,6 @@ function availAbilityMondayMo(teacher, availability) {
     } else if (!availability.morning) {
         alert("Docent " + teacher.username + " is niet beschikbaar op maandag ochtend");
         addHardConstraintClass(mondayMoTeach);
-    } else {
-        removeHardConstraintClass(mondayMoTeach);
     }
 }
 
@@ -36,8 +34,6 @@ function availAbilityMondayAf(teacher, availability) {
     } else if (!availability.afternoon) {
         alert("Docent " + teacher.username + " is niet beschikbaar op maandag middag");
         addHardConstraintClass(mondayAfTeach);
-    } else {
-        removeHardConstraintClass(mondayAfTeach);
     }
 }
 
@@ -49,8 +45,6 @@ function availabilityMondayEv(teacher, availability) {
     } else if (!availability.evening) {
         alert("Docent " + teacher.username + " is niet beschikbaar op maandag avond");
         addHardConstraintClass(mondayEvTeach);
-    } else {
-        removeHardConstraintClass(mondayEvTeach);
     }
 }
 
@@ -62,8 +56,6 @@ function availabilityTuesdayMo(teacher, availability) {
     } else if (!availability.morning) {
         alert("Docent " + teacher.username + " is niet beschikbaar op dinsdag ochtend");
         addHardConstraintClass(tuesdayMoTeach);
-    } else {
-        removeHardConstraintClass(tuesdayMoTeach);
     }
 }
 
@@ -75,8 +67,6 @@ function availabilityTuesdayAf(teacher, availability) {
     } else if (!availability.afternoon) {
         alert("Docent " + teacher.username + " is niet beschikbaar op dinsdag middag");
         addHardConstraintClass(tuesdayAfTeach);
-    } else {
-        removeHardConstraintClass(tuesdayAfTeach);
     }
 }
 
@@ -88,8 +78,6 @@ function availabilityTuesdayEv(teacher, availability) {
     } else if (!availability.evening) {
         alert("Docent " + teacher.username + " is niet beschikbaar op dinsdag avond");
         addHardConstraintClass(tuesdayEvTeach);
-    } else {
-        removeHardConstraintClass(tuesdayEvTeach);
     }
 }
 
@@ -101,8 +89,6 @@ function availabilityWednesdayMo(teacher, availability) {
     } else if (!availability.morning) {
         alert("Docent " + teacher.username + " is niet beschikbaar op woensdag ochtend");
         addHardConstraintClass(wednesdayMoTeach);
-    } else {
-        removeHardConstraintClass(wednesdayMoTeach);
     }
 }
 
@@ -114,8 +100,6 @@ function availabilityWednesdayAf(teacher, availability) {
     } else if (!availability.afternoon) {
         alert("Docent " + teacher.username + " is niet beschikbaar op woensdag middag");
         addHardConstraintClass(wednesdayAfTeach);
-    } else {
-        removeHardConstraintClass(wednesdayAfTeach);
     }
 }
 
@@ -127,8 +111,6 @@ function availabilityWednesdayEv(teacher, availability) {
     } else if (!availability.evening) {
         alert("Docent " + teacher.username + " is niet beschikbaar op woensdag avond");
         addHardConstraintClass(wednesdayEvTeach);
-    } else {
-        removeHardConstraintClass(wednesdayEvTeach);
     }
 }
 
@@ -140,8 +122,6 @@ function availabilityThursdayMo(teacher, availability) {
     } else if (!availability.morning) {
         alert("Docent " + teacher.username + " is niet beschikbaar op donderdag ochtend");
         addHardConstraintClass(thursdayMoTeach);
-    } else {
-        removeHardConstraintClass(thursdayMoTeach);
     }
 }
 
@@ -153,8 +133,6 @@ function availabilityThursdayAf(teacher, availability) {
     } else if (!availability.afternoon) {
         alert("Docent " + teacher.username + " is niet beschikbaar op donderdag middag");
         addHardConstraintClass(thursdayAfTeach);
-    } else {
-        removeHardConstraintClass(thursdayAfTeach);
     }
 }
 
@@ -166,8 +144,6 @@ function availabilityThursdayEv(teacher, availability) {
     } else if (!availability.evening) {
         alert("Docent " + teacher.username + " is niet beschikbaar op donderdag avond");
         addHardConstraintClass(thursdayEvTeach);
-    } else {
-        removeHardConstraintClass(thursdayEvTeach);
     }
 }
 
@@ -179,8 +155,6 @@ function availabilityFridayMo(teacher, availability) {
     } else if (!availability.morning) {
         alert("Docent " + teacher.username + " is niet beschikbaar op vrijdag ochtend");
         addHardConstraintClass(fridayMoTeach);
-    } else {
-        removeHardConstraintClass(fridayMoTeach);
     }
 }
 
@@ -192,8 +166,6 @@ function availabilityFridayAf(teacher, availability) {
     } else if (!availability.afternoon) {
         alert("Docent " + teacher.username + " is niet beschikbaar op vrijdag middag");
         addHardConstraintClass(fridayAfTeach);
-    } else {
-        removeHardConstraintClass(fridayAfTeach);
     }
 }
 
@@ -205,8 +177,6 @@ function availabilityFridayEv(teacher, availability) {
     } else if (!availability.evening) {
         alert("Docent " + teacher.username + " is niet beschikbaar op vrijdag avond");
         addHardConstraintClass(fridayEvTeach);
-    } else {
-        removeHardConstraintClass(fridayEvTeach);
     }
 }
 

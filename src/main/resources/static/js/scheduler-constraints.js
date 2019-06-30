@@ -107,7 +107,7 @@ wednesdayAfTeach.addEventListener("change", function () {
         cohortClash(teacher,dateWednesday,afternoon,wednesdayAfTeach);
     }
 
-    if (!wednesdayMoTeach.parentNode.classList.contains(HardConstraint)) {
+    if (!wednesdayAfTeach.parentNode.classList.contains(HardConstraint)) {
         incidentClash();
     }
 });
