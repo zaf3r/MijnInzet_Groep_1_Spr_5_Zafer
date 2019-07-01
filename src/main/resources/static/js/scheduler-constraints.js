@@ -8,6 +8,9 @@ mondayMoTeach.addEventListener("change", function () {
         cohortClash(teacher,dateMonday,morning, mondayMoTeach);
     }
 
+    if (!mondayMoTeach.parentNode.classList.contains(HardConstraint)) {
+        incidentClash();
+    }
 });
 
 mondayAfTeach.addEventListener("change", function () {
@@ -19,6 +22,9 @@ mondayAfTeach.addEventListener("change", function () {
         cohortClash(teacher,dateMonday,afternoon, mondayAfTeach);
     }
 
+    if (!mondayAfTeach.parentNode.classList.contains(HardConstraint)) {
+        incidentClash();
+    }
 });
 
 
@@ -30,6 +36,10 @@ mondayEvTeach.addEventListener("change", function () {
     if (!mondayEvTeach.parentNode.classList.contains(HardConstraint)) {
         cohortClash(teacher,dateMonday,evening, mondayEvTeach);
     }
+
+    if (!mondayEvTeach.parentNode.classList.contains(HardConstraint)) {
+        incidentClash();
+    }
 });
 
 tuesdayMoTeach.addEventListener("change", function () {
@@ -39,6 +49,10 @@ tuesdayMoTeach.addEventListener("change", function () {
 
     if (!tuesdayMoTeach.parentNode.classList.contains(HardConstraint)) {
         cohortClash(teacher,dateTuesday,morning, tuesdayMoTeach);
+    }
+
+    if (!tuesdayMoTeach.parentNode.classList.contains(HardConstraint)) {
+        incidentClash();
     }
 });
 
@@ -50,6 +64,10 @@ tuesdayAfTeach.addEventListener("change", function () {
     if (!tuesdayAfTeach.parentNode.classList.contains(HardConstraint)) {
         cohortClash(teacher,dateTuesday,afternoon, tuesdayAfTeach);
     }
+
+    if (!tuesdayAfTeach.parentNode.classList.contains(HardConstraint)) {
+        incidentClash();
+    }
 });
 
 tuesdayEvTeach.addEventListener("change", function () {
@@ -60,6 +78,10 @@ tuesdayEvTeach.addEventListener("change", function () {
     if (!tuesdayEvTeach.parentNode.classList.contains(HardConstraint)) {
         cohortClash(teacher,dateTuesday,evening, tuesdayEvTeach);
     }
+
+    if (!tuesdayEvTeach.parentNode.classList.contains(HardConstraint)) {
+        incidentClash();
+    }
 });
 
 wednesdayMoTeach.addEventListener("change", function () {
@@ -68,7 +90,11 @@ wednesdayMoTeach.addEventListener("change", function () {
     availabilityWednesdayMo(teacher, availability);
 
     if (!wednesdayMoTeach.parentNode.classList.contains(HardConstraint)) {
-        cohortClash(teacher,dateWednesday,morning, wednesdayMoTeach);
+        cohortClash(teacher,dateWednesday,morning,wednesdayMoTeach);
+    }
+
+    if (!wednesdayMoTeach.parentNode.classList.contains(HardConstraint)) {
+        incidentClash();
     }
 });
 
@@ -78,7 +104,11 @@ wednesdayAfTeach.addEventListener("change", function () {
     availabilityWednesdayAf(teacher, availability);
 
     if (!wednesdayAfTeach.parentNode.classList.contains(HardConstraint)) {
-        cohortClash(teacher,dateWednesday,afternoon, wednesdayAfTeach);
+        cohortClash(teacher,dateWednesday,afternoon,wednesdayAfTeach);
+    }
+
+    if (!wednesdayAfTeach.parentNode.classList.contains(HardConstraint)) {
+        incidentClash();
     }
 });
 
@@ -90,6 +120,10 @@ wednesdayEvTeach.addEventListener("change", function () {
     if (!wednesdayEvTeach.parentNode.classList.contains(HardConstraint)) {
         cohortClash(teacher,dateWednesday,evening, wednesdayEvTeach);
     }
+
+    if (!wednesdayEvTeach.parentNode.classList.contains(HardConstraint)) {
+        incidentClash();
+    }
 });
 
 thursdayMoTeach.addEventListener("change", function () {
@@ -99,6 +133,10 @@ thursdayMoTeach.addEventListener("change", function () {
 
     if (!thursdayMoTeach.parentNode.classList.contains(HardConstraint)) {
         cohortClash(teacher,dateThursday,morning, thursdayMoTeach);
+    }
+
+    if (!thursdayMoTeach.parentNode.classList.contains(HardConstraint)) {
+        incidentClash();
     }
 });
 
@@ -110,6 +148,10 @@ thursdayAfTeach.addEventListener("change", function () {
     if (!thursdayAfTeach.parentNode.classList.contains(HardConstraint)) {
         cohortClash(teacher,dateThursday,afternoon, thursdayAfTeach);
     }
+
+    if (!thursdayAfTeach.parentNode.classList.contains(HardConstraint)) {
+        incidentClash();
+    }
 });
 
 thursdayEvTeach.addEventListener("change", function () {
@@ -119,6 +161,10 @@ thursdayEvTeach.addEventListener("change", function () {
 
     if (!thursdayEvTeach.parentNode.classList.contains(HardConstraint)) {
         cohortClash(teacher,dateThursday,evening, thursdayEvTeach);
+    }
+
+    if (!thursdayEvTeach.parentNode.classList.contains(HardConstraint)) {
+        incidentClash();
     }
 });
 
@@ -130,6 +176,10 @@ fridayMoTeach.addEventListener("change", function () {
     if (!fridayMoTeach.parentNode.classList.contains(HardConstraint)) {
         cohortClash(teacher,dateFriday,morning, fridayMoTeach);
     }
+
+    if (!fridayMoTeach.parentNode.classList.contains(HardConstraint)) {
+        incidentClash();
+    }
 });
 
 fridayAfTeach.addEventListener("change", function () {
@@ -140,6 +190,11 @@ fridayAfTeach.addEventListener("change", function () {
     if (!fridayAfTeach.parentNode.classList.contains(HardConstraint)) {
         cohortClash(teacher,dateFriday,afternoon, fridayAfTeach);
     }
+
+    if (!fridayAfTeach.parentNode.classList.contains(HardConstraint)) {
+        incidentClash();
+    }
+
 });
 
 fridayEvTeach.addEventListener("change", function () {
@@ -149,6 +204,10 @@ fridayEvTeach.addEventListener("change", function () {
 
     if (!fridayEvTeach.parentNode.classList.contains(HardConstraint)) {
         cohortClash(teacher,dateFriday,evening, fridayEvTeach);
+    }
+
+    if (!fridayEvTeach.parentNode.classList.contains(HardConstraint)) {
+        incidentClash();
     }
 });
 

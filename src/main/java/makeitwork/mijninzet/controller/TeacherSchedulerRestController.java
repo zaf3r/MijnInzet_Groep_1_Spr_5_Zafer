@@ -1,6 +1,7 @@
 package makeitwork.mijninzet.controller;
 
 import makeitwork.mijninzet.model.Availability.GlobalAvailability.Availability;
+import makeitwork.mijninzet.model.Availability.Incident.Incident;
 import makeitwork.mijninzet.model.Cohort;
 import makeitwork.mijninzet.model.Role;
 import makeitwork.mijninzet.model.TeacherSchedule.CohortDay;
@@ -33,6 +34,9 @@ public class TeacherSchedulerRestController {
     final String EVENING = "evening";
     final int MAX_PLACEMENT = 1;
 
+
+    @Autowired
+    IncidentRepository incidentRepository;
 
     @Autowired
     CohortWeekRepository cohortWeekRepository;
@@ -69,13 +73,38 @@ public class TeacherSchedulerRestController {
         return preferenceRepository.findAll();
     }
 
-    @GetMapping("/cohort/scheduled/{userName}/{dayPart}/{date}")
+    @GetMapping("/teacher/incident/{userName}/{dayPart}/{dateString}")
+    public boolean teacherIncidentCheckHandler(@PathVariable("userName") String userName,
+                                               @PathVariable("dateString") String dateString,
+                                               @PathVariable("dayPart") String dayPart) {
+
+        LocalDate dateIncident = parseStringToLocalDate(dateString).plusDays(INCREMENT_DAY_HIBERNATE_FIX);
+        User user = userRepository.findByUsername(userName);
+        Incident incident = incidentRepository.findIncidentByUserAndDateIncident(user,dateIncident);
+
+        boolean noIncident;
+
+        if(incident == null) {
+            noIncident = true;
+        } else {
+            if(dayPart.equals(MORNING)) {
+                noIncident = incident.isMorning();
+            } else if (dayPart.equals(AFTERNOON)) {
+                noIncident = incident.isAfternoon();
+            } else {
+                noIncident = incident.isEvening();
+            }
+        }
+        return noIncident;
+    }
+
+    @GetMapping("/cohort/scheduled/{userName}/{dayPart}/{dateString}")
     public boolean teacherScheduledConstraintCheckHandler(@PathVariable("userName") String username,
                                                           @PathVariable("dayPart") String dayPart,
-                                                          @PathVariable("date") String localDate) {
+                                                          @PathVariable("dateString") String dateString) {
 
 
-        LocalDate dateScheduled = LocalDate.parse(localDate, STRING_TO_DATE_FORMATER);
+        LocalDate dateScheduled = parseStringToLocalDate(dateString).plusDays(INCREMENT_DAY_HIBERNATE_FIX);
         User teacher = userRepository.findByUsername(username);
         boolean teacherIsAlreadyScheduled;
 
@@ -164,5 +193,9 @@ public class TeacherSchedulerRestController {
     public void loadAvailability(User user) {
         List<Availability> availabilityList = availabilityRepository.findAllByUser(user);
         user.setAvailabilityList(availabilityList);
+    }
+
+    public LocalDate parseStringToLocalDate(String date) {
+        return LocalDate.parse(date, STRING_TO_DATE_FORMATER);
     }
 }
