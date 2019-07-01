@@ -28,13 +28,20 @@
 
 .grid-container1 {
     display: grid;
+    grid-template-columns: 14em 7em 7em 7em 7em 10em;
+    background-color: inherit;
+    padding: 0px;
+    justify-content: space-evenly;
+    width: 50em;
+}
+.grid-container3 {
+    display: grid;
     grid-template-columns: 7em 7em 7em 7em 7em 7em 7em;
     background-color: inherit;
     padding: 0px;
     justify-content: space-evenly;
     width: 50em;
 }
-
 .grid-container2 {
     display: grid;
     grid-template-rows: 5em 5em 5em;
