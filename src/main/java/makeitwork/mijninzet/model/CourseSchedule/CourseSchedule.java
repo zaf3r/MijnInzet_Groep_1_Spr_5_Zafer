@@ -1,5 +1,6 @@
 package makeitwork.mijninzet.model.CourseSchedule;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import makeitwork.mijninzet.model.Availability.PartOfDay;
 import makeitwork.mijninzet.model.Cohort;
 import makeitwork.mijninzet.model.User;
@@ -37,6 +38,7 @@ public class CourseSchedule implements Comparable<CourseSchedule>{
     @Column(name="status")
     private StatusCourseSchedule status;
 
+    @JsonIgnore
     @ManyToOne()
     @JoinColumn(name="docent")
     private User user;
