@@ -15,42 +15,44 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 </head>
-<div th:if="${roleUser.roleName == 'Terminator'}">
-    <header th:insert="~{navbar :: header}"></header>
-</div>
-<div th:if="${roleUser.roleName == 'Docent'}">
-    <header th:insert="~{navbarDocent :: header}"></header>
-</div>
-<div th:if="${roleUser.roleName == 'Administrateur'}">
-    <header th:insert="~{navbarAdministrateur :: header}"></header>
-</div>
-<div th:if="${roleUser.roleName == 'Manager'}">
-    <header th:insert="~{navbarManager :: header}"></header>
-</div>
-<div th:if="${roleUser.roleName == 'Roosteraar'}">
-    <header th:insert="~{navbarRoosteraar :: header}"></header>
-</div>
+
 <body>
 <div><h1>Voeg een nieuwe vacature toe</h1></div>
 
-<form id="taskForm" action="/addTask" method="POST">
-    <label for="Titel">Titel:</label>
-    <input type="text" id="titel" class="titel">
-    <label for="intro">Intro:</label>
-    <input type="text" id="intro">
+<form action ="#" th:action="@{/manager/createNewTask}" th:object="${createTask}" id="taskForm" method="post">
+
+    <label th:placeholder="Titel"/>Titel:
+    <input type="text" id="titel" class="titel" th:field="*{titel}" required title = "Vul een titel in">
+
+    <label th:placeholder="Beschrijving" for="intro"/>Intro:
+    <input type="text" id="intro" class="intro" th:field="*{beschrijving}" required intro = "Beschrijf kort waar de vacature over gaat">
+
     <label for="uren">Aantal uren:</label>
-    <input type="text" id = "uren" >
+    <input type="text" id = "uren" th:field="*{uren}" required>
+
     <label for="locatie">Locatie:</label>
-    <input type="text" id="locatie">
-    <label for ="deadline">Sluitingsdatum:</label>
-    <input type="date" id="deadline"><br>
+    <input type="text" id="locatie" th:field="*{locatie}" required>
+
+    <label for ="sluitdatum">Sluitingsdatum:</label>
+    <input type="date" id="sluitdatum" th:field="*{sluitdatum}" required>
+
+    <label for ="startdatum">Startdatum:</label>
+    <input type ="text" id="startdatum" required th:field="*{startdatum}">
+
+    <label for="einddatum"> Einddatum:</label>
+    <input type="date" id="einddatum" required th:field="*{einddatum}">
+
     <label for="beschrijving">Beschrijving:</label><br>
-    <textarea rows 20 cols 800 id="beschrijving"></textarea><br>
+    <input type="text" id="beschrijving" th:field = "*{beschrijvingLang}" required></textarea><br>
     <button type="submit" id="opslaan" name="opslaan">Sla op</button>
-    <button type="reset" id="resetForm" name="resetForm" onclick="textFunction()">Opnieuw</button>
+    <button type="reset" id="resetForm" name="resetForm" >Opnieuw</button>
+<!--    onclick="textFunction()"-->
+
+<!--</form>    -->
+
 
     <footer th:insert="~{footer :: footer}"></footer>
-</form>
+
 <script>
     $("#taskForm").submit(function () {
         var payload = JSON.stringify({
@@ -66,7 +68,7 @@
         });
         $.ajax({
             type: 'POST',
-            url: "/addTask",
+            url: "/manager/createNewTask",
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
             data: payload
