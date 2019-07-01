@@ -1,21 +1,18 @@
-
+.avond{
+    background-color: azure;
+}
 .content {
-    max-width: 500px;
+    max-width: 700px;
     margin: auto;
 }
 .contentData{
     max-width: 65em;
     margin: auto;
 }
-.grid-containerData{
-    display: grid;
-    grid-template-columns: 10em 10em 10em;
-    grid-template-rows: auto;
-    justify-content: space-evenly;
-    background-color: inherit;
-    padding: 0px;
-    width: 33em;
+.datum{
+    font-size: 120%;
 }
+
 
 .grid-container {
     display: grid;
@@ -24,6 +21,15 @@
     background-color: inherit;
     padding: 0px;
     width: 82em;
+}
+.grid-containerData{
+    display: grid;
+    grid-template-columns: 15em 10em 10em;
+    grid-template-rows: auto;
+    justify-content: space-evenly;
+    background-color: inherit;
+    padding: 0px;
+    width: 33em;
 }
 
 .grid-container1 {
@@ -36,11 +42,12 @@
 }
 .grid-container3 {
     display: grid;
-    grid-template-columns: 7em 7em 7em 7em 7em 7em 7em;
+    grid-template-columns: 10em 10em 10em 10em 10em 10em 10em;
+    grid-row-gap: 5px;
     background-color: inherit;
     padding: 0px;
     justify-content: space-evenly;
-    width: 50em;
+    width: 52em;
 }
 .grid-container2 {
     display: grid;
@@ -55,20 +62,20 @@
     font-size: inherit;
     text-align: center;
 }
-.selectionData{
-    width: 20em;
+.grid-item1 {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    font-size: inherit;
+    text-align: center;
+    justify-self: stretch;
 }
-
-.regelsPerLes {
-    width: 31em;
-}
-
-input.largerCheckbox {
+.input.largerCheckbox {
     width: 110%;
     height: 110%;
 }
 
-input.largerText {
+.input.largerText {
     width: 110%;
     height: 110%;
     font-size: 110%;
@@ -77,3 +84,29 @@ input.largerText {
     width: 19em;
     font-size: 110%;
 }
+.kop{
+    font-size: large;
+    margin: auto;
+}
+.middag{
+    background-color: #c6ebfe;
+}
+.morgen{
+    background-color: #62B7C2;
+}
+.regelsPerLes {
+    width: 31em;
+}
+.regelsPerWeek{
+    width: 52em;
+}
+.selectionData{
+    margin: auto;
+    width: 30%;
+    border: #e5e5e5;
+    padding: 10px;
+}
+
+
+
+

@@ -12,12 +12,14 @@ public class Agenda implements Comparable<Agenda>{
     //must be generated.
 
     private LocalDate date;
-    private PartOfDay dayPart;
-    private String descriptionTop;
-    private String descriptionMiddle;
-    private String descriptionLow;
-    private String classOff; //reference to the class-type which acts as donor for the info
-    private int id; //the PK of the implied classOff
+    private int dayPart;
+    private String descriptionTop="";
+    private String subjectMorning="";
+    private String cohortMorning="";
+    private String subjectAfternoon="";
+    private String cohortAfternoon="";
+    private String subjectNight="";
+    private String cohortNight="";
 
     public Agenda() {
     }
@@ -30,11 +32,11 @@ public class Agenda implements Comparable<Agenda>{
         this.date = date;
     }
 
-    public PartOfDay getDayPart() {
+    public int getDayPart() {
         return dayPart;
     }
 
-    public void setDayPart(PartOfDay dayPart) {
+    public void setDayPart(int dayPart) {
         this.dayPart = dayPart;
     }
 
@@ -46,36 +48,52 @@ public class Agenda implements Comparable<Agenda>{
         this.descriptionTop = descriptionTop;
     }
 
-    public String getDescriptionMiddle() {
-        return descriptionMiddle;
+    public String getSubjectMorning() {
+        return subjectMorning;
     }
 
-    public void setDescriptionMiddle(String descriptionMiddle) {
-        this.descriptionMiddle = descriptionMiddle;
+    public void setSubjectMorning(String subjectMorning) {
+        this.subjectMorning = subjectMorning;
     }
 
-    public String getDescriptionLow() {
-        return descriptionLow;
+    public String getCohortMorning() {
+        return cohortMorning;
     }
 
-    public void setDescriptionLow(String descriptionLow) {
-        this.descriptionLow = descriptionLow;
+    public void setCohortMorning(String cohortMorning) {
+        this.cohortMorning = cohortMorning;
     }
 
-    public String getClassOff() {
-        return classOff;
+    public String getSubjectAfetrnoon() {
+        return subjectAfternoon;
     }
 
-    public void setClassOff(String classOff) {
-        this.classOff = classOff;
+    public void setSubjectAfternoon(String subjectAfetrnoon) {
+        this.subjectAfternoon = subjectAfetrnoon;
     }
 
-    public int getId() {
-        return id;
+    public String getCohortAfternoon() {
+        return cohortAfternoon;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setCohortAfternoon(String cohortAfternoon) {
+        this.cohortAfternoon = cohortAfternoon;
+    }
+
+    public String getSubjectNight() {
+        return subjectNight;
+    }
+
+    public void setSubjectNight(String subjectNight) {
+        this.subjectNight = subjectNight;
+    }
+
+    public String getCohortNight() {
+        return cohortNight;
+    }
+
+    public void setCohortNight(String cohortNight) {
+        this.cohortNight = cohortNight;
     }
 
     @Override
