@@ -14,348 +14,148 @@
 <!--    <script type="text/javascript" src="/js/courseSchedule.js"></script>-->
 
 </head>
-<div>
+<body>
+<div class="kop">Het vakkenrooster</div><br><br>
+<div class="selectionData">
+    <div class="criteria">Selectia criteria</div>
     <div class="grid-containerData">
-        <div class="selectionData">
-            <div class="grid-item">
-<!--                <p>van welk cohort</p>-->
-                <select class="" id="cohorts2Plan" name="cohorts2Plan"></select>
-            </div>
-            <div class="grid-item">
-<!--                <p class="text_data">begindatum</p>-->
-                <p><input type="date" class="selectData" name="selectData" id="startDate"></p>
-            </div>
-            <div class="grid-item">
-<!--                <p class="text_data">einddatum</p>-->
-                <p><input type="date" class="selectData" name="selectData" id="closingDate"></p>
-            </div>
+        <div class="grid-item">
+            <select class="" id="cohorts2Plan" name="cohorts2Plan"></select>
+        </div>
+        <div class="grid-item">
+            <p class="text_data">begindatum</p>
+            <p><input type="date" class="selectData" name="selectData" id="startDate" onchange="storeStartDate(event)">
+            </p>
+        </div>
+        <div class="grid-item">
+            <p class="text_data">einddatum</p>
+            <p><input type="date" class="selectData" name="selectData" id="closingDate" onchange="storeEndDate(event)">
+            </p>
         </div>
     </div>
-
-
-        <div class="subjects">
-            <label for="vakkenCohort" class=""><h3>Vakken om in te roosteren</h3></label>
-            <div class="">
-                <select class="" id="vakkenCohort" name="vakkenCohort" required multiple="multiple" size="7"
-                        style="width: 250px"/>
-            </div>
-        </div>
-
-<br>
-        <h3>Het rooster</h3><br>
-        <div class="grid-container1">
-                <div class="grid-item">maandag</div>
-                <div class="grid-item">dinsdag</div>
-                <div class="grid-item">woensdag</div>
-                <div class="grid-item">donderdag</div>
-                <div class="grid-item">vrijdag</div>
-                <div class="grid-item">zaterdag</div>
-                <div class="grid-item">zondag</div>
-
-        </div>
-            <div class="grid-container1" id="regelPerLes">
-<!--Let op: dit is geen lege <div>. Op de plek worden in de DOM regels voor het vakkenrooster geplaatst-->
-            </div>
 </div>
+
+
+<div class="content">
+    <br>
+    <div class="grid-container3">
+        <div class="grid-item1">maandag</div>
+        <div class="grid-item1">dinsdag</div>
+        <div class="grid-item1">woensdag</div>
+        <div class="grid-item1">donderdag</div>
+        <div class="grid-item1">vrijdag</div>
+        <div class="grid-item1">zaterdag</div>
+        <div class="grid-item1">zondag</div>
+
+    </div>
+    <div class="grid-container3" id="regelPerWeek">
+        <!--Let op: dit is geen lege <div>. Op de plek worden in de DOM regels voor het vakkenrooster geplaatst-->
+    </div>
+</div>
+
 
 <script>
     var cohortName;
-    var subject;
-    var dateLocal;
-    var subjectName;
-    var date;
-    var partOfDay;
-    var status = "";
-    var workshopExists=false;
+    var begin = "2019-06-12";
+    var closing = "2019-10-31";
 </script>
 <script>
     $(document).ready(function () {
-            //todo min max date op cohort begin and end
-            $.ajax({
-                type: "POST",
-                url: "/cohortsToPlan",
-                contentType: "application/json; charset-utf-8",
-                dataType: "json",
-                data: "{}",
-                success: function (response) {
-                    $("#cohorts2Plan").empty();
-                    $("#cohorts2Plan").append('<option value="-1">vakkenRooster tijdens cohort</option>')
-                    $.each(response, function (i, item) {
-                        $("#cohorts2Plan").append('<option value="">' + response[i].cohortName + '</option>');
-                    });
+        //todo min max date op cohort begin and end
+        $.ajax({
+            type: "POST",
+            url: "/cohortsToPlan",
+            contentType: "application/json; charset-utf-8",
+            dataType: "json",
+            data: "{}",
+            success: function (response) {
+                $("#cohorts2Plan").empty();
+                $("#cohorts2Plan").append('<option value="-1">Kies een cohort</option>')
+                $.each(response, function (i, item) {
+                    $("#cohorts2Plan").append('<option value="">' + response[i].cohortName + '</option>');
+                });
+            }
+        })
+    });
+    // $("#cohorts2Plan").on("change", function () {
+    //     cohortName = $(this).find(':selected').text();
+    //     payload = JSON.stringify({cohortName});
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "/cohort",
+    //         contentType: "application/json; charset-utf-8",
+    //         dataType: "json",
+    //         data: payload,
+    //     }).done(function (response) {});
+    //     //begin en einddatum in date zetten
+    //     //begin en einddatum als min/max van begin/eind zetten
+    //
+    //
+    //
+    // });
+    $("#closingDate").on("change", function () {
+        $("#regelPerWeek").empty();
+        payload = JSON.stringify({begin, closing});
+        console.log(payload);
+        $.ajax({
+            type: "POST",
+            url: "/agenda",
+            contentType: "application/json; charset-utf-8",
+            dataType: "json",
+            data: payload,
+        }).done(function (response) {
+            var datumEerder = "eerder";
+            $("#regelPerWeek").empty();
+            $.each(response, function (i, item) {
+                var datum = response[i].date.day + '-' + response[i].date.month;
+                var titleHoliday = response[i].descriptionTop;
+                if (datum != datumEerder) {
+                    $("#regelPerWeek").append('<div class="grid-item1">' +
+                        '<p class="datum" id="' + datum + '">' + datum + '<br>' + titleHoliday + '</p>' +
+                        '<p class="morgen" id="' + datum + 'morgen">' + '&zwnj;' + '</p>' +
+                        '<p class="middag" id="' + datum + 'middag">' + '&zwnj;' + '</p>' +
+                        '<p class="avond" id="' + datum + 'avond">' + '&zwnj;' + '</p>' +
+                        '</div>');
+                    datumEerder = datum
                 }
             });
-        var begin="2019-06-01";
-        var closing="2019-06-05";
-        console.log("voor laden payload");
-        payload = JSON.stringify({begin,closing});
-        console.log(payload);
-            $.ajax({
-                type: "POST",
-                url: "/agenda",
-                contentType: "application/json; charset-utf-8",
-                dataType: "json",
-                data: payload,
-            }).done(function (response) {
-                    console.log("ben retour")
-                    console.log(response);
-
-
-                    // $("#cohorts2Plan").empty();
-                    // $("#cohorts2Plan").append('<option value="-1">vakkenRooster tijdens cohort</option>')
-                    // $.each(response, function (i, item) {
-                    //     $("#cohorts2Plan").append('<option value="">' + response[i].cohortName + '</option>');
-                    // });
-                })
-        });
+            //einde each
+            $.each(response, function (i, item) {
+                var datum = response[i].date.day + '-' + response[i].date.month;
+                var cohortMorning = response[i].cohortMorning;
+                var subjectMorning = response[i].subjectMorning;
+                var cohortMiddag = response[i].cohortAfternoon;
+                var subjectMiddag = response[i].subjectAfternoon;
+                var cohortAvond = response[i].cohortNight;
+                var subjectAvond = response[i].subjectNight;
+                pointer = datum + 'morgen';
+                if (subjectMorning != "") {
+                    document.getElementById(pointer).innerHTML = '<em>\n' + cohortMorning + '</em>\n<br>\n' + subjectMorning
+                }
+                ;
+                pointer = datum + 'middag';
+                if (subjectMiddag != "") {
+                    document.getElementById(pointer).innerHTML = '<em>\n' + cohortMiddag + '</em>\n<br>\n' + subjectMiddag
+                }
+                ;
+                pointer = datum + 'avond';
+                if (subjectAvond != "") {
+                    document.getElementById(pointer).innerHTML = '<em>\n' + cohortAvond + '</em>\n<br>\n' + subjectAvond
+                }
+                ;
+            })
+        })
+    });
 </script>
-
-<!--    $("#vakkenCohort").on("change", function () {-->
-<!--        //show at the view the number of the maximum courseSchedule possibilities-->
-<!--        var selectedText = $(this).find(':selected').text();-->
-<!--        subject = selectedText;-->
-<!--        payload = JSON.stringify({subjectName: selectedText});-->
-<!--        $.ajax({-->
-<!--            type: 'POST',-->
-<!--            url: '/aantalDagen',-->
-<!--            contentType: 'application/json; charset=utf-8',-->
-<!--            dataType: 'json',-->
-<!--            data: payload-->
-<!--        }).done(function (response) {-->
-<!--            var days = response;-->
-<!--            var n = 1;-->
-<!--            $("#regelPerLes").empty();-->
-<!--            $.each(days, function (i, item) {-->
-<!--                n = (i + 1) * 10;-->
-<!--                $("#regelPerLes").append('<div class="grid-item"><input type="date" class="largerText"  name="date" id="' + n + '" onchange="checkDate(event,id)"></div>');-->
-<!--                n++;-->
-<!--                $("#regelPerLes").append('<div class="grid-item"><input type="checkbox" class="largerCheckbox" name="dayPart" style="display:none" onclick="showStore(id)" id="' + n + '"></div> ');-->
-<!--                n++;-->
-<!--                $("#regelPerLes").append('<div class="grid-item"><input type="checkbox" class="largerCheckbox" name="dayPart" style="display:none" onclick="showStore(id)" id="' + n + '"></div> ');-->
-<!--                n++;-->
-<!--                $("#regelPerLes").append('<div class="grid-item"><input type="checkbox" class="largerCheckbox" name="dayPart" style="display:none" onclick="showStore(id)" id="' + n + '"></div> ');-->
-<!--                n++;-->
-<!--                $("#regelPerLes").append('<div class="grid-item"><input type="checkbox" class="largerCheckbox" name="store" id="' + n + '" style="display:none" onclick="storeCourse(id)"></div> ');-->
-<!--                n++;-->
-<!--                o=n+1-->
-<!--                p=o+1;-->
-<!--                q=p+1-->
-<!--                $("#regelPerLes").append('<div class="grid-item">   <span class="berichten" type="text" id="' + n + '" style="display:none">opgeslagen</span>' +-->
-<!--                    '                                               <span class="berichten" type="text" id="' + o + '" style="display:none">geef minimaal 1 dagdeel op</span>' +-->
-<!--                    '                                               <span class="berichten" type="text" id="' + p + '" style="display:none">op deze dag zijn geen onderwijs activiteiten</span>' +-->
-<!--                    '                                               <span class="berichten" type="text" id="' + q + '" style="display:none">bestaat al, niet opgeslagen</span></div> ');-->
-<!--            });-->
-<!--        })-->
-<!--    });-->
-<!--</script>-->
-
-<!--<script>-->
-<!--    function storeCourse(id) {-->
-<!--        //store the courseSchedule in the database-->
-<!--        checkWorkshop();-->
-<!--        if ($("input[type=checkbox][" + elementContent(id, 3) + "]:checked").val() == "on") {-->
-<!--            partOfDay = "OCHTEND";-->
-<!--            if (!workshopExists)storeCourseService(id);-->
-<!--        }-->
-<!--        ;-->
-<!--        if ($("input[type=checkbox][" + elementContent(id, 2) + "]:checked").val() == 'on') {-->
-<!--            partOfDay = "MIDDAG";-->
-<!--            if (!workshopExists)storeCourseService(id);-->
-<!--        }-->
-<!--        ;-->
-<!--        if ($("input[type=checkbox][" + elementContent(id, 1) + "]:checked").val() == "on") {-->
-<!--            partOfDay = "AVOND";-->
-<!--            if (!workshopExists)storeCourseService(id);-->
-<!--        }-->
-<!--        ;-->
-<!--        if (($("input[type=checkbox][" + elementContent(id, 3) + "]:checked").val() != "on")&&-->
-<!--        ($("input[type=checkbox][" + elementContent(id, 2) + "]:checked").val() != 'on')&&-->
-<!--        ($("input[type=checkbox][" + elementContent(id, 1) + "]:checked").val() != "on")){-->
-<!--            document.getElementById(id).checked = false;-->
-<!--            var teller = (parseInt(id) + 2).toString();-->
-<!--            document.getElementById(teller).style.display = "block";-->
-
-
-<!--    }-->
-<!--    }-->
-<!--</script>-->
-<!--<script>-->
-<!--    function storeCourseService(id) {-->
-<!--        // the course is transferred to the controller-->
-<!--        // and the status of insert/updated is managed.-->
-<!--        date = dateLocal;-->
-<!--        subjectName = subject;-->
-<!--        var course = {cohortName, subjectName, date, partOfDay, status};-->
-<!--        var payload = JSON.stringify(course);-->
-<!--        $.ajax({-->
-<!--            type: 'POST',-->
-<!--            url: '/storeCourse',-->
-<!--            contentType: 'application/json; charset=utf-8',-->
-<!--            dataType: 'json',-->
-<!--            data: payload-->
-<!--        }).done(function (response) {-->
-<!--            if (response["exists"]) {-->
-<!--                //the courseScheduel is stored in the database-->
-<!--                $(".berichten").hide();-->
-<!--                var teller = (parseInt(id) + 1).toString();-->
-<!--                document.getElementById(teller).style.display = "block";-->
-<!--            //    todo aantal workshops-->
-<!--            } else{-->
-<!--                // not stored presummable because the schedule allready was in the database-->
-<!--                $(".berichten").hide();-->
-<!--                var teller = (parseInt(id) + 4).toString();-->
-<!--                document.getElementById(teller).style.display = "block";-->
-<!--            }-->
-<!--        });-->
-<!--    }-->
-<!--</script>-->
-
-<!--<script>-->
-<!--    function show(id, view) {-->
-<!--        //show ("block" or not show ("none") the checkboxes-->
-<!--        var see = view ? 'block' : 'none';-->
-<!--        var teller = (parseInt(id) + 1).toString();-->
-<!--        document.getElementById(teller).style.display = see;//morgen-->
-<!--        var teller = (parseInt(id) + 2).toString();-->
-<!--        document.getElementById(teller).style.display = see;//middag-->
-<!--        var teller = (parseInt(id) + 3).toString();-->
-<!--        document.getElementById(teller).style.display = see;//avond-->
-<!--        var teller = (parseInt(id) + 4).toString();-->
-<!--        document.getElementById(teller).style.display = see;//opslaan-->
-<!--    }-->
-<!--</script>-->
-<!--<script>-->
-<!--    function showStore(id){-->
-<!--        // var pointer=(id-(id%11));-->
-<!--        // var teller = (parseInt(pointer) + 5).toString();-->
-<!--        // document.getElementById(teller).style.display = "none";-->
-<!--        //todo van boeken tot geboekt weergeven-->
-<!--        //deze functie moet checkbox opslaan tonen of verbergen-->
-<!--        //de box mag alleen getoond worden als 1 van de dagdelen is checked-->
-<!--        // var oneOfThree=false;-->
-<!--        // if (id%11!=0){id=(id%11)};-->
-<!--        // var teller=  (parseInt(id)).toString();-->
-<!--        // if ($("input[type=checkbox]["+elementContent(id,0)+"]:checked").val()=="on"){oneOfThree=true};-->
-<!--        // if ($("input[type=checkbox]["+elementContent(id,1)+"]:checked").val()=='on'){oneOfThree=true};-->
-<!--        // if ($("input[type=checkbox]["+elementContent(id,2)+"]:checked").val()=="on"){oneOfThree=true};-->
-<!--        // var teller=  (parseInt(id+3)).toString();-->
-<!--        // if(oneOfThree){document.getElementById(teller).style.display = "block";-->
-<!--        // } else {document.getElementById(teller).style.display = "none"}-->
-<!--    }-->
-<!--</script>-->
-<!--<script>-->
-<!--    function checkWorkshop(){-->
-<!--        var date = dateLocal;-->
-<!--        var desc = 'vakantie';-->
-<!--        payload = JSON.stringify({date, desc});-->
-<!--        if (dateLocal != '') {-->
-<!--            $.ajax({-->
-<!--                type: 'POST',-->
-<!--                url: '/plannedWorkshop',-->
-<!--                contentType: 'application/json; charset=utf-8',-->
-<!--                dataType: 'json',-->
-<!--                data: payload-->
-<!--            }).done(function (response) {-->
-<!--                if (response["exists"]) {-->
-<!--                    //on the selected date there are workshops (at least 1)-->
-<!--                    workshopExists=true;-->
-<!--                } else {-->
-<!--                    //no workshop found at the date-->
-<!--                    workshopExists=false;-->
-<!--                }-->
-
-<!--    })}};-->
-
-<!--</script>-->
-
-<!--<script>-->
-<!--    function checkDate(event,id) {-->
-<!--        dateLocal = event.target.value;-->
-<!--        var view;-->
-<!--        if (dateLocal != '') {-->
-<!--            view = true-->
-<!--        }-->
-<!--        ;-->
-<!--        if (dateLocal == '') {-->
-<!--            view = false-->
-<!--        }-->
-<!--        ;-->
-<!--        var date = dateLocal;-->
-<!--        var desc = 'vakantie';-->
-<!--        show(id, view);-->
-<!--        payload = JSON.stringify({date, desc});-->
-<!--        if (dateLocal != '') {-->
-<!--            $.ajax({-->
-<!--                type: 'POST',-->
-<!--                url: '/checkDate',-->
-<!--                contentType: 'application/json; charset=utf-8',-->
-<!--                dataType: 'json',-->
-<!--                data: payload-->
-<!--            }).done(function (response) {-->
-<!--                if (response["exists"]) {-->
-<!--                    //the selected date is present in "vakantierooster"-->
-<!--                    view = !response["exists"];-->
-<!--                    show(id, view);-->
-<!--                    $(".berichten").hide();-->
-<!--                    var teller = (parseInt(id) + 7).toString();-->
-<!--                    document.getElementById(teller).style.display = "block";-->
-<!--                } else {-->
-<!--                    //the selected is not a holiday-->
-<!--                    view = true;-->
-<!--                    show(id, view);-->
-<!--                    var teller = (parseInt(id) + 7).toString();-->
-<!--                    document.getElementById(teller).style.display = "none";-->
-<!--                    $.ajax({-->
-<!--                        type: 'POST',-->
-<!--                        url: '/plannedWorkshop',-->
-<!--                        contentType: 'application/json; charset=utf-8',-->
-<!--                        dataType: 'json',-->
-<!--                        data: payload-->
-<!--                    }).done(function (response) {-->
-<!--                        if (response["exists"]) {-->
-<!--                            //on the selected date there are workshops (at least 1)-->
-<!--                            var teller = (parseInt(id) + 1).toString();-->
-<!--                            {if (response["morgen"]) {document.getElementById(teller).style.display = "none";}}-->
-<!--                            var teller = (parseInt(id) + 2).toString();-->
-<!--                            {if (response["middag"]){document.getElementById(teller).style.display = "none";}}-->
-<!--                            var teller = (parseInt(id) + 3).toString();-->
-<!--                            {if (response["avond"]){document.getElementById(teller).style.display = "none";}}-->
-<!--                            var teller = (parseInt(id) + 4).toString();-->
-<!--                            if (response["morgen"]&&response["middag"]&&response["avond"]){-->
-<!--                            document.getElementById(teller).style.display = "none"}-->
-<!--                        } else {-->
-<!--                            //no workshop found at the date-->
-<!--                            view=true;-->
-<!--                            show(id,view);-->
-<!--                        }-->
-<!--                    })-->
-<!--                }-->
-<!--            });-->
-<!--        }-->
-<!--    }-->
-<!--        // $.ajax({-->
-<!--        //     type: 'POST',-->
-<!--        //     url: '/dateBezet',-->
-<!--        //     contentType: 'application/json; charset=utf-8',-->
-<!--        //     dataType: 'json',-->
-<!--        //     data: payload-->
-<!--        // }).done( function (response) {-->
-<!--        //     NonTeachingDay = $("#TeachingDayMsg");-->
-<!--        //     if (response["exists"]) {-->
-<!--        //         //todo ochtend checkbox verwijderen-->
-<!--        //         //todo middag verwijderen-->
-<!--        //          //todo avond verwijderen-->
-<!--        //     }-->
-<!--        // })-->
-
-<!--</script>-->
-
-<!--<script>-->
-<!--    function elementContent(id,i){-->
-<!--        var elementId=parseInt(id)-i;-->
-<!--        var elementIdString=elementId.toString();-->
-<!--        return "id='"+elementIdString+"'";-->
-<!--    }-->
-// </script>
+<script>
+    function storeStartDate(event) {
+        begin = event.target.value;
+    }
+</script>
+<script>
+    function storeEndDate(event) {
+        closing = event.target.value;
+    }
+</script>
 </body>
 </html>
