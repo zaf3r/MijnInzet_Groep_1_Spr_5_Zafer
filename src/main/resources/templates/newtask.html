@@ -23,41 +23,40 @@
 <body>
 
 <div class ="container">
-
     <div id = "h1" class="jumbotron text-center">
         <h1>Voeg een nieuwe vacature toe</h1>
     </div>
 
     <div class = "wrapper">
-        <form action ="#" th:action="@{/manager/createNewTask}" th:object="${createTask}" id="taskForm" method="post" th:align="center">
+        <form action ="#" th:action="@{/manager/createNewTask}" th:object="${createTask}" id="taskForm" method="post">
 
 
         <div class="form-group row">
             <label for ="titel" class="col-sm-2 col-form-label">Titel</label>
             <div class="col-sm-10">
-                <input type="text" id="titel" class="titel" th:field="*{titel}" placeholder=Titel required title = "Vul een titel in">
+                <input type="text" id="titel" class="titel" th:field="*{titel}" required title = "Vul een titel in">
             </div>
         </div>
 
         <div class="form-group row" id ="introbox">
             <label for="intro" class="col-sm-2 col-form-label">Beschrijving</label>
                 <div class="col-sm-10">
-                    <input type="text" id="intro" class="intro" th:field="*{beschrijving}" placeholder = "Korte intro"
-                           required intro = "Beschrijf kort waar de vacature over gaat">
+                    <textarea type="text" id="intro" class="intro" th:field="*{beschrijving}"
+                              required intro = "Beschrijf kort waar de vacature over gaat"></textarea>
                 </div>
         </div>
 
         <div class ="form-group row">
             <label for="uren" class="col-sm-2 col-form-label">Aantal uren:</label>
                 <div class="col-sm-10">
-                    <input type="text" id = "uren" th:field="*{uren}" required placeholder="Uren">
+                    <input type="text" id = "uren" th:field="*{uren}" required>
                 </div>
         </div>
 
         <div class ="form-group row">
             <label for ="locatie" class="col-sm-2 col-form-label">Locatie</label>
                 <div class="col-sm-10">
-                    <input type="text" id="locatie" th:field="*{locatie}" required placeholder="Locatie">
+                    <input type="text" id="locatie" th:field="*{locatie}" required>
                 </div>
         </div>
 
@@ -67,7 +66,7 @@
         <div class ="form-group row">
             <label for ="startdatum" class="col-sm-2 col-form-label">Startdatum:</label>
                 <div class="col-sm-10">
-                    <input type ="text" id="startdatum" required th:field="*{startdatum}" placeholder="Begindatum">
+                    <input type ="text" id="startdatum" required th:field="*{startdatum}">
                 </div>
         </div>
 
@@ -77,7 +76,8 @@
         <div class ="form-group row">
             <label for="beschrijvingLang" class="col-sm-2 col-form-label">Beschrijving:</label>
                 <div class="col-sm-10">
-                    <input type="text" id="beschrijvingLang" th:field = "*{beschrijvingLang}" required placeholder="Beschrijving" height="100px"></textarea><br>
+                    <textarea type="text" id="beschrijvingLang" th:field = "*{beschrijvingLang}" required height="100px" maxlength='240'></textarea>
+                    <p id="textleft"></p><br>
                 </div>
         </div>
 
@@ -134,6 +134,28 @@ console.log(payload);
             }
         });
 
+    const textarea = document.querySelector("textarea");
+
+    textarea.addEventListener("input", event => {
+        const target = event.currentTarget;
+        const maxLength = target.getAttribute("maxlength");
+        const currentLength = target.value.length;
+
+        if (currentLength >= maxLength) {
+            return console.log("You have reached the maximum number of characters.");
+        }
+
+        console.log(`${maxLength - currentLength} chars left`);
+    });
+
+    $('#beschrijvingLang').keyup(function (event) {
+        var max = 240;
+        var len = $(this).val().length;
+        var char = max - len;
+
+        $('#textleft').text("Nog " + char);
+
+    });
 
 </script>
 <script>
