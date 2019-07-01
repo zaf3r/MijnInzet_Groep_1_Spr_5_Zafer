@@ -1,5 +1,6 @@
 package makeitwork.mijninzet.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import makeitwork.mijninzet.model.Role;
 import makeitwork.mijninzet.model.Task;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.security.Principal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -43,8 +45,8 @@ public class SollicitatieController implements  RetrieveUserRole {
         model.addAttribute("tasks", tasks);
         Task.TaskStatus[] enums = Task.TaskStatus.values();
         model.addAttribute ( "statussen", enums);
-//        Role role = retrieveRole(userRepository,principal);
-//        model.addAttribute("roleUser", role);
+        Role role = retrieveRole(userRepository,principal);
+        model.addAttribute("roleUser", role);
         return "sollicitaties";
     }
 
@@ -68,19 +70,28 @@ public class SollicitatieController implements  RetrieveUserRole {
         return "newtask";
     }
 
-    @ModelAttribute
-    LocalDate myDate() {
-        return LocalDate.now();
+    @PostMapping("/createNewTask")
+    public @ResponseBody String saveTask (@RequestBody String payload){
+        System.out.println(payload);
+        Task task = deSerializeTemp(payload);
+        vacatureService.saveTasks(task);
+        return "redirect: /manager/taak";
     }
 
-    @PostMapping("/createNewTask")
-    public String saveNewTaskHandler(String titel, String description, int uren, String locatie,
-                                     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) @RequestParam LocalDate sluitdatum,
-                                     String startDate, @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) @RequestParam LocalDate einddatum, String longD){
-        Task task = new Task (titel, description, uren, locatie, sluitdatum, startDate, einddatum, longD);
-        taskRepository.save(task);
-        return "redirect:/manager/taak";
+    public Task deSerializeTemp(String requestPayload) {
+        Task task = new Gson().fromJson(requestPayload, Task.class);
+        return task;
     }
+
+
+//    @PostMapping("/createNewTask")
+//    public String saveNewTaskHandler(String titel, String description, int uren, String locatie,
+//                                     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) @RequestParam LocalDate sluitdatum,
+//                                     String startDate, @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) @RequestParam LocalDate einddatum, String longD){
+//        Task task = new Task (titel, description, uren, locatie, sluitdatum, startDate, einddatum, longD);
+//        taskRepository.save(task);
+//        return "redirect:/manager/taak";
+//    }
 
 //TODO bij geen sollicitaties: bericht momenteel nietmand gesolliciteerd
 
@@ -92,14 +103,4 @@ public class SollicitatieController implements  RetrieveUserRole {
         return vacatureRepository.findUserById(id);
     }
 
-    public void saveTask (String titel, String description, int hours, String location, LocalDate date,
-                          LocalDate endDate, String start, String longD) {
-        Task newTask = new Task(titel, description, hours, location, date, start, endDate, longD);
-        taskRepository.save(newTask);
-    }
-
-    public void saveTasks (Task task){
-        task = new Task();
-        taskRepository.save(task);
-    }
 }

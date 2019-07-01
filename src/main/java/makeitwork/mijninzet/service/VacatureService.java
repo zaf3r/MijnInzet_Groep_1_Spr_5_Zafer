@@ -20,7 +20,6 @@ public class VacatureService {
     @Autowired
     private TaskRepository taskRepository;
 
-
     public Task getTask(int taskId){
         return taskRepository.findTaskById(taskId);
     }
@@ -36,12 +35,16 @@ public class VacatureService {
     }
 
     //save Vacature in DB SQL
-    public void addTask(Task task, User user){
+    public void addTask(Task task, User user) {
+        boolean solliciteren = checkHoursSolliciteren(task, user);
+        if (solliciteren = true) {
         task.getUsers().add(user);
         user.getTasks().add(task);
         vacatureRepository.save(user);
         taskRepository.save(task);
     }
+    }
+
     //wordt een taak uit zijn eigen lijst verwijderd
     public void removeTask(Task task, User user) {
         System.out.println("Task: " + task);
@@ -56,14 +59,21 @@ public class VacatureService {
     public List<Task> allApplications() {
         List<Task> allTasks = taskRepository.findAll();
         Iterator<Task> iter = allTasks.iterator();
+
         while (iter.hasNext()) {
             Task t = iter.next();
             if (t.getTaskStatus() == (Task.TaskStatus.APPROVED)) {
                 iter.remove();}
             if (t.getUsers().isEmpty()) {
-                    iter.remove();
-                }
+                iter.remove();
             }
+        }
+        if(allTasks.isEmpty()) {
+            Task task = new Task();
+            task.setTitel("Momenteel geen sollicitaties");
+            allTasks.add(task);
+            return allTasks;
+        }
         return allTasks;
     }
 
@@ -75,7 +85,7 @@ public class VacatureService {
             return new ArrayList<>();
         }
     }
-//TODO is geen List<> denk ik
+    //TODO is geen List<> denk ik
     public void approveSollicitant(User user, Task task){
         List<User> approved = new ArrayList<>();
         approved.add(user);
@@ -88,16 +98,43 @@ public class VacatureService {
         System.out.println("Opgeslagen user is" + user);
         task.setUitvoerder(user);
         task.setTaskStatus(Task.TaskStatus.APPROVED);
+        int hours = addHours(task, user);
+        user.setHoursAllocated(hours);
         vacatureRepository.save(user);
     }
 
-    //stel taak is komen te vervallen, moet deze taak overal uit de DB (bij teacher) verwijderd worden.
-    public void removeTaskFromOverview(Task task){
+    //TODO de uren final maken ivm software maintanance
+    public int hoursToApply (User user) {
+        int allocatedHours = user.getHoursAllocated(); //5
+        int contractHours = user.getHours(); //40
+        int hourstoFillIn = contractHours - allocatedHours; //35
+        return hourstoFillIn;
+    }
 
-//        for (User user: vacatureRepository.findAll()) {
-//            removeTask(task,teacher);
-//        }
-        taskRepository.delete(task);
+    public int addHours (Task task, User user){
+        int allocatedHours = user.getHoursAllocated(); //0
+        int taskHoursPossible = task.getUren(); //4
+        return Integer.sum(allocatedHours, taskHoursPossible); //4
+    }
+
+    public boolean checkHoursSolliciteren (Task task, User user) {
+        int contractHours = user.getHours(); //40
+        int allocatedHours = user.getHoursAllocated(); //0
+        int taskHoursPossible = task.getUren(); //4
+        if((allocatedHours + taskHoursPossible) <= contractHours) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void saveTasks (Task task){
+        taskRepository.save(task);
+    }
+
+    public void saveTask (String titel, String description, int hours, String location, String longD) {
+        Task newTask = new Task(titel, description, hours, location, longD);
+        taskRepository.save(newTask);
     }
 
 
