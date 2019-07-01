@@ -59,6 +59,7 @@ public class VacatureService {
     public List<Task> allApplications() {
         List<Task> allTasks = taskRepository.findAll();
         Iterator<Task> iter = allTasks.iterator();
+
         while (iter.hasNext()) {
             Task t = iter.next();
             if (t.getTaskStatus() == (Task.TaskStatus.APPROVED)) {
@@ -66,6 +67,12 @@ public class VacatureService {
             if (t.getUsers().isEmpty()) {
                 iter.remove();
             }
+        }
+        if(allTasks.isEmpty()) {
+            Task task = new Task();
+            task.setTitel("Momenteel geen sollicitaties");
+            allTasks.add(task);
+            return allTasks;
         }
         return allTasks;
     }
@@ -119,6 +126,15 @@ public class VacatureService {
         } else {
             return false;
         }
+    }
+
+    public void saveTasks (Task task){
+        taskRepository.save(task);
+    }
+
+    public void saveTask (String titel, String description, int hours, String location, String longD) {
+        Task newTask = new Task(titel, description, hours, location, longD);
+        taskRepository.save(newTask);
     }
 
 

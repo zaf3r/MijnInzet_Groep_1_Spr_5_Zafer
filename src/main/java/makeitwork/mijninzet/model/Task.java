@@ -1,5 +1,7 @@
 package makeitwork.mijninzet.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -20,10 +22,11 @@ public class Task implements Comparable{
 
     private String beschrijvingLang;
 
+    @JsonIgnore
     private String startdatum;
-
+    @JsonIgnore
     private LocalDate einddatum;
-
+    @JsonIgnore
     private LocalDate sluitdatum;
 
     private int uren;
@@ -82,6 +85,7 @@ public class Task implements Comparable{
     }
 
     public Task() {
+        this.taskStatus = TaskStatus.OPEN;
     }
 
     public Task(int id, String titel) {
@@ -102,11 +106,14 @@ public class Task implements Comparable{
         this.taskStatus = TaskStatus.OPEN;
     }
 
-    public Task(int id, String title, String description, int uren) {
+    public Task(String titel, String description, int hours, String location, String longD) {
         this.id=id;
-        this.titel = title;
+        this.titel = titel;
         this.beschrijving = description;
-        this.uren = uren;
+        this.uren = hours;
+        this.locatie = location;
+        this.beschrijvingLang = longD;
+        this.taskStatus = TaskStatus.OPEN;
     }
 
     public void setTitel(String title) {

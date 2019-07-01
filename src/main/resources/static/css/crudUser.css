@@ -22,3 +22,8 @@
     background-color: yellow;
     border-style: none;
 }
+
+#intro {
+    height: 50px;
+    width: 50px;
+}
