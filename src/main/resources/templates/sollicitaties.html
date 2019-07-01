@@ -63,8 +63,8 @@
                                     <option th:each="status : ${statussen}" th:text="${status}" th:value="${status}"></option>
                                     </select>
                                 </td>
-                                <td><button type="submit" value="Opslaan" id="opslaanSolliciatie">
-                                    <input type="hidden" id="taskId" name="taskId" th:value="*{id}"/></button>
+                                <td><input type="submit" th:value="Opslaan" id="opslaanSolliciatie">
+                                    <input type="hidden" id="taskId" name="taskId" th:value="*{id}"/></input>
                                 </td>
                         </form>
                     </tbody>

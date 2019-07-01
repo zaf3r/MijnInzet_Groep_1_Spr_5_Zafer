@@ -7,6 +7,7 @@ import makeitwork.mijninzet.repository.VacatureRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -19,6 +20,8 @@ public class VacatureService {
     private VacatureRepository vacatureRepository;
     @Autowired
     private TaskRepository taskRepository;
+
+    JFrame frame;
 
     public Task getTask(int taskId){
         return taskRepository.findTaskById(taskId);
@@ -36,13 +39,12 @@ public class VacatureService {
 
     //save Vacature in DB SQL
     public void addTask(Task task, User user) {
-        boolean solliciteren = checkHoursSolliciteren(task, user);
-        if (solliciteren = true) {
+        if (checkHoursSolliciteren(task, user)) {
         task.getUsers().add(user);
         user.getTasks().add(task);
         vacatureRepository.save(user);
         taskRepository.save(task);
-    }
+        }
     }
 
     //wordt een taak uit zijn eigen lijst verwijderd
@@ -126,6 +128,11 @@ public class VacatureService {
         } else {
             return false;
         }
+    }
+
+    public String returnMessage (){
+        String message = "Sluit een nieuw contract af";
+        return message;
     }
 
     public void saveTasks (Task task){

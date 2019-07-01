@@ -203,3 +203,9 @@ h2.description {
     color: #444444;
     font-family: "Open Sans", sans-serif;
 }
+
+#opslaanSolliciatie {
+    border: solid 1px #444444;
+    border-radius: 4px;
+    color:#000000;
+}
