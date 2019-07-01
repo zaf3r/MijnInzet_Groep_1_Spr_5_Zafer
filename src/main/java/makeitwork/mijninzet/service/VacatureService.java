@@ -7,7 +7,6 @@ import makeitwork.mijninzet.repository.VacatureRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -20,8 +19,6 @@ public class VacatureService {
     private VacatureRepository vacatureRepository;
     @Autowired
     private TaskRepository taskRepository;
-
-    JFrame frame;
 
     public Task getTask(int taskId){
         return taskRepository.findTaskById(taskId);
@@ -69,14 +66,8 @@ public class VacatureService {
             if (t.getUsers().isEmpty()) {
                 iter.remove();
             }
-        }
-        if(allTasks.isEmpty()) {
-            Task task = new Task();
-            task.setTitel("Momenteel geen sollicitaties");
-            allTasks.add(task);
-            return allTasks;
-        }
-        return allTasks;
+        }return allTasks;
+
     }
 
     //voor het zelfde doel als bovenstaande
@@ -128,11 +119,6 @@ public class VacatureService {
         } else {
             return false;
         }
-    }
-
-    public String returnMessage (){
-        String message = "Sluit een nieuw contract af";
-        return message;
     }
 
     public void saveTasks (Task task){

@@ -45,8 +45,8 @@ public class SollicitatieController implements  RetrieveUserRole {
         model.addAttribute("tasks", tasks);
         Task.TaskStatus[] enums = Task.TaskStatus.values();
         model.addAttribute ( "statussen", enums);
-        Role role = retrieveRole(userRepository,principal);
-        model.addAttribute("roleUser", role);
+//        Role role = retrieveRole(userRepository,principal);
+//        model.addAttribute("roleUser", role);
         return "sollicitaties";
     }
 
