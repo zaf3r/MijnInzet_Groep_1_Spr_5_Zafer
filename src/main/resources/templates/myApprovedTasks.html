@@ -13,6 +13,21 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap" rel="stylesheet">
 
 </head>
+<div th:if="${roleUser.roleName == 'Terminator'}">
+    <header th:insert="~{navbar :: header}"></header>
+</div>
+<div th:if="${roleUser.roleName == 'Docent'}">
+    <header th:insert="~{navbarDocent :: header}"></header>
+</div>
+<div th:if="${roleUser.roleName == 'Administrateur'}">
+    <header th:insert="~{navbarAdministrateur :: header}"></header>
+</div>
+<div th:if="${roleUser.roleName == 'Manager'}">
+    <header th:insert="~{navbarManager :: header}"></header>
+</div>
+<div th:if="${roleUser.roleName == 'Roosteraar'}">
+    <header th:insert="~{navbarRoosteraar :: header}"></header>
+</div>
 <body>
 
 <div class = "contentTable">
