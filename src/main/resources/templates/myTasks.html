@@ -64,7 +64,10 @@
                         <td th:class="${task.getTaskStatus()}" th:text="${task.getTaskStatus()}"></td>
                     </form>
                     <form action="#" th:action="@{/teacher/taskDelete/{taskId}}" th:object="${myTasks}" method="post">
-                        <td> <button type="submit" id="dislike" class="love"><i class="fas fa-thumbs-down" style="font-size: 1.5em;"></i>
+                        <td th:if="${task.getTaskStatus().APPROVED}">In overleg
+                            </td>
+                        <td>
+                            <button type="submit" id="dislike" class="love"><i class="fas fa-thumbs-down" style="font-size: 1.5em;"></i>
                         <input type="hidden" id="taskId" name="taskId" th:value="${task.id}"></button></td>
                     </form>
                     </tbody>
@@ -104,8 +107,12 @@
         });
     }
 
+    function f() {
+        $('#dislike').hide();
 
-    $('#dislike').on('click', function () {
+    }
+
+    on('click', function () {
      if($('td').hasClass('APPROVED')) {
          alert("you can not delete this")
      }

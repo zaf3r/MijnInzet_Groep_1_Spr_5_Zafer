@@ -85,11 +85,14 @@ var allTableCells = document.querySelectorAll("td");
 var dateCourseScheduleSelected;
 
 
+
+
 //Rest call event listeners
 $(function () {
     $(cohortNaam).on("change", cohortNaam, function () {
         getrequestWeeksUrl = "http://localhost:8080/api/cohort/weeks/" + cohortNaam.value;
         requestCallWeeks();
+        resetCourses()
         if (!button.disabled) {
             $(button).attr("disabled", true);
         }
@@ -241,9 +244,9 @@ function postCallWeekObject() {
     weekDayObject.cohort = cohortNaam.value;
     weekDayObject.weekNumber = cohortWeek.value;
 
-    weekDayObject.mondayMorningTeacher = mondayMoTeach.value;
     weekDayObject.mondayAfternoonTeacher = mondayAfTeach.value;
     weekDayObject.mondayEveningTeacher = mondayEvTeach.value;
+    weekDayObject.mondayMorningTeacher = mondayMoTeach.value;
 
     weekDayObject.tuesdayMorningTeacher = tuesdayMoTeach.value;
     weekDayObject.tuesdayAfternoonTeacher = tuesdayAfTeach.value;
@@ -525,5 +528,29 @@ function loadDates(dataCohortWeek) {
             dateFriday = day.date;
         }
     })
+
+}
+
+function resetCourses() {
+
+    mondayMoSub.innerHTML = "";
+    mondayAfSub.innerHTML = "";
+    mondayEvSub.innerHTML = "";
+
+    tuesdayMoSub.innerHTML = "";
+    tuesdayAfSub.innerHTML = "";
+    tuesdayEvSub.innerHTML = "";
+
+    wednesdayMoSub.innerHTML = "";
+    wednesdayAfSub.innerHTML = "";
+    wednesdayEvSub.innerHTML = "";
+
+    thursdayMoSub.innerHTML = "";
+    thursdayAfSub.innerHTML = "";
+    thursdayEvSub.innerHTML = "";
+
+    fridayMoSub.innerHTML = "";
+    fridayAfSub.innerHTML = "";
+    fridayEvSub.innerHTML = "";
 
 }

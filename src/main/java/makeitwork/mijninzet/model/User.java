@@ -67,7 +67,7 @@ public class User implements Comparable{
 
     //Fields that are mapped by Hibernate
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idgebruiker")
     private int id;
 
