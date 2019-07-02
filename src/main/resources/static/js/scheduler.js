@@ -1,7 +1,11 @@
 //url variables
 var getrequestWeeksUrl;
 var getRequestDaysUrl;
-var getRequestCohortScheduleUrl;
+var getRequestCohortScheduleUrlMonday;
+var getRequestCohortScheduleUrlTuesday;
+var getRequestCohortScheduleUrlWednesday;
+var getRequestCohortScheduleUrlThursday;
+var getRequestCohortScheduleUrlFriday;
 var getRequestTeacherUrl = "http://localhost:8080/api/getTeachers";
 var postRequestUrl = "http://localhost:8080/api/saveTeacherSchedule";
 
@@ -126,16 +130,69 @@ function requestCallDays() {
     });
 }
 
-function requestCallSubjectSchedule() {
+function requestCallSubjectScheduleMonday() {
     $(function () {
-        getRequestCohortScheduleUrl = "http://localhost:8080/api/getCourseSchedule/" + dateCourseScheduleSelected + "/" + cohortNaam.value;
-        $.getJSON(getRequestDaysUrl, function (data) {
+        $.getJSON(getRequestCohortScheduleUrlMonday, function (data) {
             subjectScheduleObject = data;
         }).fail(function () {
             console.log("Failed to make a request")
         })
             .done(function () {
-                console.log("Request " + getRequestCohortScheduleUrl + " was succesfull")
+                console.log("Request " + getRequestCohortScheduleUrlMonday + " was succesfull")
+            })
+    });
+}
+
+
+function requestCallSubjectScheduleTuesday() {
+    $(function () {
+        $.getJSON(getRequestCohortScheduleUrlTuesday, function (data) {
+            subjectScheduleObject = data;
+        }).fail(function () {
+            console.log("Failed to make a request")
+        })
+            .done(function () {
+                console.log("Request " + getRequestCohortScheduleUrlTuesday + " was succesfull")
+            })
+    });
+}
+
+
+function requestCallSubjectScheduleWednesday() {
+    $(function () {
+        $.getJSON(getRequestCohortScheduleUrlWednesday, function (data) {
+            subjectScheduleObject = data;
+        }).fail(function () {
+            console.log("Failed to make a request")
+        })
+            .done(function () {
+                console.log("Request " + getRequestCohortScheduleUrlWednesday + " was succesfull")
+            })
+    });
+}
+
+function requestCallSubjectScheduleThursday() {
+    $(function () {
+        $.getJSON(getRequestCohortScheduleUrlThursday, function (data) {
+            subjectScheduleObject = data;
+        }).fail(function () {
+            console.log("Failed to make a request")
+        })
+            .done(function () {
+                console.log("Request " + getRequestCohortScheduleUrlThursday + " was succesfull")
+            })
+    });
+}
+
+function requestCallSubjectScheduleFriday() {
+    $(function () {
+        $.getJSON(getRequestCohortScheduleUrlFriday, function (data) {
+            subjectScheduleObject = data;
+        }).fail(function () {
+            console.log("Failed to make a request")
+        })
+            .done(function () {
+                console.log("Request " + getRequestCohortScheduleUrlFriday + " was succesfull")
             })
     });
 }
@@ -216,8 +273,10 @@ function loadMondayTeach(courseScheduleTeachArray) {
     courseScheduleTeachArray.forEach(function (data) {
             if (data.dayOfWeek === "MONDAY") {
                 dateMonday = data.date;
+                console.log(data.date);
                 dateCourseScheduleSelected = dateMonday;
-                requestCallSubjectSchedule();
+                getRequestCohortScheduleUrlMonday = "http://localhost:8080/api/getCourseSchedule/" + dateMonday + "/" + cohortNaam.value;
+                requestCallSubjectScheduleMonday();
 
                 mondayMoTeach.innerHTML = teacherNames.innerHTML;
                 mondayMoTeach.value = data.teacherMorning.username;
@@ -253,8 +312,9 @@ function loadTuesdayTeach(courseScheduleTeachArray) {
     courseScheduleTeachArray.forEach(function (data) {
             if (data.dayOfWeek === "TUESDAY") {
                 dateTuesday = data.date;
-                dateCourseScheduleSelected = dateTuesday;
-                requestCallSubjectSchedule();
+                console.log(data.date);
+                getRequestCohortScheduleUrlTuesday = "http://localhost:8080/api/getCourseSchedule/" + dateTuesday + "/" + cohortNaam.value;
+                requestCallSubjectScheduleTuesday();
 
                 tuesdayMoTeach.innerHTML = teacherNames.innerHTML;
                 tuesdayMoTeach.value = data.teacherMorning.username;
@@ -290,8 +350,9 @@ function loadWednesdayTeach(courseScheduleTeachArray) {
     courseScheduleTeachArray.forEach(function (data) {
             if (data.dayOfWeek === "WEDNESDAY") {
                 dateWednesday = data.date;
-                dateCourseScheduleSelected = dateWednesday;
-                requestCallSubjectSchedule();
+                console.log(data.date);
+                getRequestCohortScheduleUrlWednesday = "http://localhost:8080/api/getCourseSchedule/" + dateWednesday + "/" + cohortNaam.value;
+                requestCallSubjectScheduleWednesday();
 
                 wednesdayMoTeach.innerHTML = teacherNames.innerHTML;
                 wednesdayMoTeach.value = data.teacherMorning.username;
@@ -326,8 +387,10 @@ function loadThursdayTeach(courseScheduleTeachArray) {
     courseScheduleTeachArray.forEach(function (data) {
             if (data.dayOfWeek === "THURSDAY") {
                 dateThursday = data.date;
-                dateCourseScheduleSelected = dateThursday;
-                requestCallSubjectSchedule();
+                console.log(data.date);
+                getRequestCohortScheduleUrlThursday = "http://localhost:8080/api/getCourseSchedule/" + dateThursday + "/" + cohortNaam.value;
+                requestCallSubjectScheduleThursday();
+
 
                 thursdayMoTeach.innerHTML = teacherNames.innerHTML;
                 thursdayMoTeach.value = data.teacherMorning.username;
@@ -362,8 +425,9 @@ function loadFridayTeach(courseScheduleTeachArray) {
     courseScheduleTeachArray.forEach(function (data) {
             if (data.dayOfWeek === "FRIDAY") {
                 dateFriday = data.date;
-                dateCourseScheduleSelected = dateFriday;
-                requestCallSubjectSchedule();
+                console.log(data.date);
+                getRequestCohortScheduleUrlFriday = "http://localhost:8080/api/getCourseSchedule/" + dateFriday + "/" + cohortNaam.value;
+                requestCallSubjectScheduleFriday();
 
                 fridayMoTeach.innerHTML = teacherNames.innerHTML;
                 fridayMoTeach.value = data.teacherMorning.username;
