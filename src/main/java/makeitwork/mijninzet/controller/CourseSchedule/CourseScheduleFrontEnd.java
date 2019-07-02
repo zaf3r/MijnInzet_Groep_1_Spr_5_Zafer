@@ -8,18 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class CourseScheduleFrontEnd {
     @GetMapping("/courseSchedule")
     public String scheduleFrontEnd(Model model) {
-        return "newSchedule";
+        return "CourseSchedule/courseSchedule";
     }
-
-    @GetMapping("/holidays")
-    public String holidaysFrontEnd(Model model) {
-        return "holidays";
-    }
-
-
-    @GetMapping("/test")
-    public String testFrontEnd(Model model) {
-        return "CourseSchedule/test";
-    }
-
 }
+
+
+
