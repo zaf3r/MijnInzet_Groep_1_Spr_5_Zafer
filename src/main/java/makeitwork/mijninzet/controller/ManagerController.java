@@ -54,7 +54,6 @@ public class ManagerController implements RetrieveUserRole {
     @NotNull
     @RequestMapping(value = "saveSubject", method = RequestMethod.POST)
     public String saveSubject(@ModelAttribute("saveSubject") Subject subject, Model model) {
-
         try {
         model.addAttribute("subjectName", subject.getSubjectName());
         model.addAttribute("hours", subject.getHours());
