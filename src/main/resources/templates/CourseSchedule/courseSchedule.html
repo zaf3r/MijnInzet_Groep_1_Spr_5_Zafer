@@ -10,7 +10,7 @@
             crossorigin="anonymous">
     </script>
     <link rel="stylesheet" href="/css/courseSchedule.css">
-<!--    <script type="text/javascript" src="/js/courseSchedule.js"></script>-->
+
 
 </head>
 <div>
@@ -32,7 +32,7 @@
         </div>
     </div>
 </div>
-
+<!-- zonder deze code werkt de view niet naar behoren. -->
 <span style="display: none">
     <div class="subjectList" style="display: none" >
         <form action="#" style="display: none">
@@ -45,6 +45,7 @@
        </form>
     </div>
 </span>
+<!--      einde code -->
 <br><br>
         <h3>Geeft het vakkenrooster</h3><br>
         <div class="grid-container1">
@@ -110,7 +111,6 @@
             });
         })
     });
-    //todo min max date op cohort begin and end
     $("#vakkenCohort").on("change", function () {
         //show at the view the number of the maximum courseSchedule possibilities
         var selectedText = $(this).find(':selected').text();
@@ -225,25 +225,7 @@
         document.getElementById(teller).style.display = see;//opslaan
     }
 </script>
-<script>
-    function showStore(id){
-        // var pointer=(id-(id%11));
-        // var teller = (parseInt(pointer) + 5).toString();
-        // document.getElementById(teller).style.display = "none";
-        //todo van boeken tot geboekt weergeven
-        //deze functie moet checkbox opslaan tonen of verbergen
-        //de box mag alleen getoond worden als 1 van de dagdelen is checked
-        // var oneOfThree=false;
-        // if (id%11!=0){id=(id%11)};
-        // var teller=  (parseInt(id)).toString();
-        // if ($("input[type=checkbox]["+elementContent(id,0)+"]:checked").val()=="on"){oneOfThree=true};
-        // if ($("input[type=checkbox]["+elementContent(id,1)+"]:checked").val()=='on'){oneOfThree=true};
-        // if ($("input[type=checkbox]["+elementContent(id,2)+"]:checked").val()=="on"){oneOfThree=true};
-        // var teller=  (parseInt(id+3)).toString();
-        // if(oneOfThree){document.getElementById(teller).style.display = "block";
-        // } else {document.getElementById(teller).style.display = "none"}
-    }
-</script>
+
 <script>
     function checkWorkshop(){
         var date = dateLocal;
@@ -334,20 +316,6 @@
             });
         }
     }
-        // $.ajax({
-        //     type: 'POST',
-        //     url: '/dateBezet',
-        //     contentType: 'application/json; charset=utf-8',
-        //     dataType: 'json',
-        //     data: payload
-        // }).done( function (response) {
-        //     NonTeachingDay = $("#TeachingDayMsg");
-        //     if (response["exists"]) {
-        //         //todo ochtend checkbox verwijderen
-        //         //todo middag verwijderen
-        //          //todo avond verwijderen
-        //     }
-        // })
 
 </script>
 
