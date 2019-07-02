@@ -14,4 +14,5 @@ public interface CourseScheduleRepository extends JpaRepository<CourseSchedule,I
     List<CourseSchedule>  findAllByCohort(Cohort cohort);
     List<CourseSchedule> findAllByDate(LocalDate date);
     List<CourseSchedule> findAllByDateAfter(LocalDate begin);
+    List<CourseSchedule> findAllByCohortAndDate(Cohort cohort, LocalDate localDate);
 }

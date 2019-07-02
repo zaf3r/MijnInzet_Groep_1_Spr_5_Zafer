@@ -3,6 +3,7 @@ package makeitwork.mijninzet.controller;
 import makeitwork.mijninzet.model.Availability.GlobalAvailability.Availability;
 import makeitwork.mijninzet.model.Availability.Incident.Incident;
 import makeitwork.mijninzet.model.Cohort;
+import makeitwork.mijninzet.model.CourseSchedule.CourseSchedule;
 import makeitwork.mijninzet.model.Role;
 import makeitwork.mijninzet.model.TeacherSchedule.CohortDay;
 import makeitwork.mijninzet.model.TeacherSchedule.CohortWeek;
@@ -34,6 +35,8 @@ public class TeacherSchedulerRestController {
     final String EVENING = "evening";
     final int MAX_PLACEMENT = 1;
 
+    @Autowired
+    CourseScheduleRepository courseScheduleRepository;
 
     @Autowired
     IncidentRepository incidentRepository;
@@ -71,6 +74,14 @@ public class TeacherSchedulerRestController {
     @GetMapping("/getPreferences")
     public List<Preference> findAllPreferencesHandler() {
         return preferenceRepository.findAll();
+    }
+
+    @GetMapping("/getCourseSchedule/{date}/{cohortName}")
+        public List<CourseSchedule> findCourseScheduleHandler(@PathVariable("cohortName")String cohortName,
+                                                              @PathVariable("date") String dateString) {
+        Cohort cohort = cohortRepository.findByCohortName(cohortName);
+        LocalDate dateCourseSchedule = parseStringToLocalDate(dateString).plusDays(INCREMENT_DAY_HIBERNATE_FIX);
+        return courseScheduleRepository.findAllByCohortAndDate(cohort, dateCourseSchedule);
     }
 
     @GetMapping("/teacher/incident/{userName}/{dayPart}/{dateString}")
