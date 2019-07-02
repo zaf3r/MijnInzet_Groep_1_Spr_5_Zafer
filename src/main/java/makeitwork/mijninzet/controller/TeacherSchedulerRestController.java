@@ -19,6 +19,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api")
@@ -63,11 +64,15 @@ public class TeacherSchedulerRestController {
     @GetMapping("/getTeachers")
     public List<User> findTeacherListHandler() {
 
-        List<User> teacherList = userRepository.findAllByRole(TEACHER_ROLE);
-        for(User user : teacherList) {
+        Set<User> teacherSet = userRepository.findAllByRole(TEACHER_ROLE);
+        System.out.println(teacherSet);
+
+        for(User user : teacherSet) {
             loadAvailability(user);
         }
-        return teacherList;
+        List<User> userList = new ArrayList<>(teacherSet);
+
+        return userList;
     }
 
     //TO CLEAN
