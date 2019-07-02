@@ -40,6 +40,90 @@ INSERT INTO `mijninzet`.`vak` (`codeVak`, `naamvak`, `uren`) VALUES ('5', 'Compl
 INSERT INTO `mijninzet`.`vak` (`codeVak`, `naamvak`, `uren`) VALUES ('6', 'Data structures', '50');
 INSERT INTO `mijninzet`.`vak` (`codeVak`, `naamvak`, `uren`) VALUES ('7', 'Test driven development', '50');
 
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-01-01', 'Nieuwjaarsdag');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-07-08', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-07-09', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-07-10', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2020-07-11', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-07-12', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-07-13', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-07-14', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-07-15', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-07-16', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-07-17', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-07-18', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-07-19', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-07-20', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-07-21', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-07-22', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-07-23', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-07-24', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-07-25', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-07-26', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-07-27', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-07-28', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-07-29', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-07-30', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-07-31', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-08-01', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-08-02', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-08-03', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-08-04', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-08-05', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-08-06', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-08-07', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-08-08', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-08-09', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-08-10', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-08-11', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-08-12', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-08-13', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-08-14', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-08-15', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-08-16', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-08-17', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-08-18', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-08-19', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-08-20', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-08-21', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-08-22', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-08-23', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-08-24', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-08-25', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-08-26', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-08-27', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-08-28', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-08-29', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-08-30', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-08-31', 'Zomervakantie');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-09-01', 'Zomervakantie');
+
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-12-23', 'Kerstreces');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-12-24', 'Kerstreces');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-12-25', 'Kerstreces');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-12-26', 'Kerstreces');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-12-27', 'Kerstreces');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-12-28', 'Kerstreces');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-12-29', 'Kerstreces');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-12-30', 'Kerstreces');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-12-31', 'Oudjaarsdag');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2020-01-01', 'Nieuwjaardag');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2020-01-02', 'Kerstreces');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2020-01-03', 'Kerstreces');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2020-01-04', 'Kerstreces');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2020-01-05', 'Kerstreces');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2020-04-14', 'Goede Vrijdag');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2020-04-13', '2e Paasdag');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2020-05-21', 'Hemelvaart');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2020-05-22', 'verplicht vrij');
+insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2020-06-01', '2e Pinksterdag');
+
+
+
+
+
+
+
 
 
 -- -----------------------------------------------------
