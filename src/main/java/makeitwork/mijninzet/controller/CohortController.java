@@ -116,18 +116,18 @@ public class CohortController implements RetrieveUserRole {
     @PostMapping("/saveCohort")
     public String saveCohort(@ModelAttribute("saveCohort")Cohort cohort, @RequestParam("coordinator")User co) {
 
-        try {
+//        try {
             cohort.setUser(co);
             cohort.setStartDate(cohort.getStartDate().plusDays(INCREMENT_DAY_HIBERNATE_FIX));
             cohort.setEndDate(cohort.getEndDate().plusDays(INCREMENT_DAY_HIBERNATE_FIX));
 
             generateWeeksAndDays(cohort);
-        } catch (ConstraintViolationException ex) {
-            throw new ValidationException("Unable to determine current Hibernate session", ex);
-        } finally {
+//        } catch (ConstraintViolationException ex) {
+//            throw new ValidationException("Unable to determine current Hibernate session", ex);
+//        } finally {
             return "redirect:/manager/cohort";
         }
-    }
+//    }
 
 //    @PostMapping("/showSubjects")
 //    public String showSubjects(@RequestParam("cohortName") String cohortName, Model model){
