@@ -44,7 +44,7 @@
     </div>
     <div align="center">
     <label th:placeholder="uren"/>Aantal uren
-    <input type="number" th:field="*{hours}" required title="Vul het aantal uren in"/>
+    <input type="number" th:field="*{hours}" required title="Vul het aantal uren in" min="1"/>
     </div>
     <div align="center">
     <input type="submit" value="Opslaan" id="addsubjectButton"/>

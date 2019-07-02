@@ -1,3 +1,4 @@
+/*
 package makeitwork.mijninzet;
 
 import makeitwork.mijninzet.model.Role;
@@ -20,6 +21,51 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class userRepository {
 
+
+    public userRepository() {
+    }
+
+    @Test
+    public void saveGebruiker(){
+        User user = nieuweGebruiker("Merel","","Slingenberg","1234","info@slingenberg.nl");
+        var gelukt=userRepository.save(user);
+        System.out.printf("%s\n",gelukt);
+        System.out.printf("%s\n",user);
+        assertNotNull(gelukt);
+        assertNull(userRepository.save(user));
+
+        user = nieuweGebruiker("Huub","van","Thienen","1234","info@thienen.nl");
+        assertNotNull(userRepository.save(user));
+        assertNull(userRepository.save(user));
+
+        user = nieuweGebruiker("Gerke","de","Boer","1234","info@deboer.nl");
+        assertNotNull(userRepository.save(user));
+        assertNull(userRepository.save(user));
+    }
+
+
+    private User nieuweGebruiker(String voornaam,
+                                 String voorvoegsel,
+                                 String achternaam,
+                                 String password,
+                                 String email){
+        User user = new User();
+        user.setSurname(voornaam);
+        user.setNamePrefix(voorvoegsel);
+        user.setFamilyName(achternaam);
+        user.setUsername(voornaam+achternaam);
+        user.setPassword(user.encryptPassword(password));
+        user.setEmail(email);
+        Role role = new Role();
+        role.setRoleId(1);
+        role.setRoleName("Docent");
+        List<Role> rol=new ArrayList<>();
+        rol.add(role);
+        user.setRole(rol);
+        user.setActive(1);
+        return user;
+    }
+
     UserRepository userRepository = new UserRepository() {
         @Override
         public User findByUsername(String username) {
@@ -28,11 +74,6 @@ public class userRepository {
 
         @Override
         public User findByEmail(String email) {
-            return null;
-        }
-
-        @Override
-        public List<User> findAllByRole(Role role) {
             return null;
         }
 
@@ -156,49 +197,5 @@ public class userRepository {
             return false;
         }
     };
-
-
-    public userRepository() {
-    }
-
-    @Test
-    public void saveGebruiker(){
-        User user = nieuweGebruiker("Merel","","Slingenberg","1234","info@slingenberg.nl");
-        var gelukt=userRepository.save(user);
-        System.out.printf("%s\n",gelukt);
-        System.out.printf("%s\n",user);
-        assertNotNull(gelukt);
-        assertNull(userRepository.save(user));
-
-        user = nieuweGebruiker("Huub","van","Thienen","1234","info@thienen.nl");
-        assertNotNull(userRepository.save(user));
-        assertNull(userRepository.save(user));
-
-        user = nieuweGebruiker("Gerke","de","Boer","1234","info@deboer.nl");
-        assertNotNull(userRepository.save(user));
-        assertNull(userRepository.save(user));
-    }
-
-
-    private User nieuweGebruiker(String voornaam,
-                                 String voorvoegsel,
-                                 String achternaam,
-                                 String password,
-                                 String email){
-        User user = new User();
-        user.setSurname(voornaam);
-        user.setNamePrefix(voorvoegsel);
-        user.setFamilyName(achternaam);
-        user.setUsername(voornaam+achternaam);
-        user.setPassword(user.encryptPassword(password));
-        user.setEmail(email);
-        Role role = new Role();
-        role.setRoleId(1);
-        role.setRoleName("Docent");
-        List<Role> rol=new ArrayList<>();
-        rol.add(role);
-        user.setRole(rol);
-        user.setActive(1);
-        return user;
-    }
 }
+*/
