@@ -45,7 +45,7 @@ public class CourseAgendaService {
         Collections.sort(agenda);
         //second check if first date=Monday, if not count backwards untill the first Monday
         //deze functie java.lang.OutOfMemoryError: Java heap space
-        first= agenda.get(0).getDate().plusDays(1);
+        first= agenda.get(0).getDate().plusDays(0);
         if (!first.getDayOfWeek().equals(DayOfWeek.MONDAY)) {
             do {
                 first = first.plusDays(-1);
