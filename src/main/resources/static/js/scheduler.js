@@ -168,7 +168,7 @@ function requestCallSubjectScheduleTuesday() {
             console.log("Failed to make a request")
         })
             .done(function () {
-                console.log("Request " + getRequestCohortScheduleUrlTuesday + " was succesfull")
+                console.log("Request " + getRequestCohortScheduleUrlTuesday + " was succesfull");
                 console.log(subjectScheduleTuesday);
                 loadTuesdaySubjectSchedule(subjectScheduleTuesday);
             })
@@ -184,7 +184,7 @@ function requestCallSubjectScheduleWednesday() {
             console.log("Failed to make a request")
         })
             .done(function () {
-                console.log("Request " + getRequestCohortScheduleUrlWednesday + " was succesfull")
+                console.log("Request " + getRequestCohortScheduleUrlWednesday + " was succesfull");
                 console.log(subjectScheduleWednesday);
                 loadWednesdaySubjectSchedule(subjectScheduleWednesday);
             })
@@ -199,7 +199,7 @@ function requestCallSubjectScheduleThursday() {
             console.log("Failed to make a request")
         })
             .done(function () {
-                console.log("Request " + getRequestCohortScheduleUrlThursday + " was succesfull")
+                console.log("Request " + getRequestCohortScheduleUrlThursday + " was succesfull");
                 console.log(subjectScheduleThursday);
                 loadThursdaySubjectSchedule(subjectScheduleThursday);
             })
@@ -214,7 +214,7 @@ function requestCallSubjectScheduleFriday() {
             console.log("Failed to make a request")
         })
             .done(function () {
-                console.log("Request " + getRequestCohortScheduleUrlFriday + " was succesfull")
+                console.log("Request " + getRequestCohortScheduleUrlFriday + " was succesfull");
                 console.log(subjectScheduleFriday);
                 loadFridaySubjectSchedule(subjectScheduleFriday);
             })
@@ -552,5 +552,4 @@ function resetCourses() {
     fridayMoSub.innerHTML = "";
     fridayAfSub.innerHTML = "";
     fridayEvSub.innerHTML = "";
-
 }
