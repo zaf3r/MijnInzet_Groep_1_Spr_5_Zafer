@@ -17,6 +17,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.Transient;
+import javax.validation.ConstraintViolationException;
+import javax.validation.ValidationException;
 import java.security.Principal;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -113,13 +115,19 @@ public class CohortController implements RetrieveUserRole {
 
     @PostMapping("/saveCohort")
     public String saveCohort(@ModelAttribute("saveCohort")Cohort cohort, @RequestParam("coordinator")User co) {
-        cohort.setUser(co);
-        cohort.setStartDate(cohort.getStartDate().plusDays(INCREMENT_DAY_HIBERNATE_FIX));
-        cohort.setEndDate(cohort.getEndDate().plusDays(INCREMENT_DAY_HIBERNATE_FIX));
 
-        generateWeeksAndDays(cohort);
-        return "redirect:/manager/cohort";
-    }
+//        try {
+            cohort.setUser(co);
+            cohort.setStartDate(cohort.getStartDate().plusDays(INCREMENT_DAY_HIBERNATE_FIX));
+            cohort.setEndDate(cohort.getEndDate().plusDays(INCREMENT_DAY_HIBERNATE_FIX));
+
+            generateWeeksAndDays(cohort);
+//        } catch (ConstraintViolationException ex) {
+//            throw new ValidationException("Unable to determine current Hibernate session", ex);
+//        } finally {
+            return "redirect:/manager/cohort";
+        }
+//    }
 
 //    @PostMapping("/showSubjects")
 //    public String showSubjects(@RequestParam("cohortName") String cohortName, Model model){

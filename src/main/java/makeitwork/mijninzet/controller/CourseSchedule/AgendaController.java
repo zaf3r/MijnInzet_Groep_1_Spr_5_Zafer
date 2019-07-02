@@ -17,15 +17,25 @@ public class AgendaController {
     CourseAgendaService agenda;
 
     @GetMapping("/test1")
-    public String agendaFrontEnd(Model model){
+    public String agendaFrontEnd(Model model) {
         return "CourseSchedule/courseAgenda";
     }
 
     @PostMapping("/agenda")
     public @ResponseBody
     String cohortsToPlan(@RequestBody receiveBeginClosingDate requestPayload) {
-        var begin=requestPayload.getBegin();
-        var closing=requestPayload.getClosing();
-        return new Gson().toJson(agenda.Agenda(begin,closing));
+        var begin = requestPayload.getBegin();
+        var closing = requestPayload.getClosing();
+        var cohortName = requestPayload.getCohortName();
+        return new Gson().toJson(agenda.Agenda(begin, closing, cohortName));
+    }
+
+    @PostMapping("/cohort")
+    public @ResponseBody
+    String workshopForCohort(@RequestBody receiveBeginClosingDate requestPayload) {
+        var begin = requestPayload.getBegin();
+        var closing = requestPayload.getClosing();
+        var cohortName = (String) requestPayload.getCohortName();
+        return new Gson().toJson(agenda.cohort(cohortName));
     }
 }

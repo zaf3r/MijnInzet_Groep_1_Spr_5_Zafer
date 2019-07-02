@@ -1,7 +1,11 @@
 //url variables
 var getrequestWeeksUrl;
 var getRequestDaysUrl;
-var getRequestCohortScheduleUrl;
+var getRequestCohortScheduleUrlMonday;
+var getRequestCohortScheduleUrlTuesday;
+var getRequestCohortScheduleUrlWednesday;
+var getRequestCohortScheduleUrlThursday;
+var getRequestCohortScheduleUrlFriday;
 var getRequestTeacherUrl = "http://localhost:8080/api/getTeachers";
 var postRequestUrl = "http://localhost:8080/api/saveTeacherSchedule";
 
@@ -42,7 +46,18 @@ var fridayEvSub = document.querySelector('div[name="vrijdagAvondVak"]');
 //Rest call results
 var weekDayObject = new Object();
 var teacherObject = new Object();
+
+
 var subjectScheduleObject = new Object();
+
+//Course/Subject schedule
+var subjectScheduleMonday;
+var subjectScheduleTuesday;
+var subjectScheduleWednesday;
+var subjectScheduleThursday;
+var subjectScheduleFriday;
+
+
 
 //Specific HTML fields
 var cohortNaam = document.querySelector('select[name="cohortName"]');
@@ -60,9 +75,8 @@ var morning = "morning";
 var afternoon = "afternoon";
 var evening = "evening";
 
-var morningDutch = "ochtend";
-var afternoonDutch = "middag";
-var eveningDutch = "avond";
+var morningDutch = "OCHTEND";
+var afternoonDutch = "MIDDAG";
 
 //Other variables
 var teacherNames = document.createElement("select");
@@ -71,11 +85,14 @@ var allTableCells = document.querySelectorAll("td");
 var dateCourseScheduleSelected;
 
 
+
+
 //Rest call event listeners
 $(function () {
     $(cohortNaam).on("change", cohortNaam, function () {
         getrequestWeeksUrl = "http://localhost:8080/api/cohort/weeks/" + cohortNaam.value;
         requestCallWeeks();
+        resetCourses()
         if (!button.disabled) {
             $(button).attr("disabled", true);
         }
@@ -127,16 +144,79 @@ function requestCallDays() {
     });
 }
 
-function requestCallSubjectSchedule() {
+function requestCallSubjectScheduleMonday() {
     $(function () {
-        getRequestCohortScheduleUrl = "http://localhost:8080/api/getCourseSchedule/" + dateCourseScheduleSelected + "/" + cohortNaam.value;
-        $.getJSON(getRequestDaysUrl, function (data) {
-            subjectScheduleObject = data;
+        $.getJSON(getRequestCohortScheduleUrlMonday, function (data) {
+            subjectScheduleMonday = data;
         }).fail(function () {
             console.log("Failed to make a request")
         })
             .done(function () {
-                console.log("Request " + getRequestCohortScheduleUrl + " was succesfull")
+                console.log("Request " + getRequestCohortScheduleUrlMonday + " was succesfull");
+                console.log(subjectScheduleMonday);
+                loadMondaySubjectSchedule(subjectScheduleMonday);
+            })
+    });
+}
+
+
+function requestCallSubjectScheduleTuesday() {
+    $(function () {
+        $.getJSON(getRequestCohortScheduleUrlTuesday, function (data) {
+            subjectScheduleTuesday = data;
+        }).fail(function () {
+            console.log("Failed to make a request")
+        })
+            .done(function () {
+                console.log("Request " + getRequestCohortScheduleUrlTuesday + " was succesfull")
+                console.log(subjectScheduleTuesday);
+                loadTuesdaySubjectSchedule(subjectScheduleTuesday);
+            })
+    });
+}
+
+
+function requestCallSubjectScheduleWednesday() {
+    $(function () {
+        $.getJSON(getRequestCohortScheduleUrlWednesday, function (data) {
+            subjectScheduleWednesday = data;
+        }).fail(function () {
+            console.log("Failed to make a request")
+        })
+            .done(function () {
+                console.log("Request " + getRequestCohortScheduleUrlWednesday + " was succesfull")
+                console.log(subjectScheduleWednesday);
+                loadWednesdaySubjectSchedule(subjectScheduleWednesday);
+            })
+    });
+}
+
+function requestCallSubjectScheduleThursday() {
+    $(function () {
+        $.getJSON(getRequestCohortScheduleUrlThursday, function (data) {
+            subjectScheduleThursday = data;
+        }).fail(function () {
+            console.log("Failed to make a request")
+        })
+            .done(function () {
+                console.log("Request " + getRequestCohortScheduleUrlThursday + " was succesfull")
+                console.log(subjectScheduleThursday);
+                loadThursdaySubjectSchedule(subjectScheduleThursday);
+            })
+    });
+}
+
+function requestCallSubjectScheduleFriday() {
+    $(function () {
+        $.getJSON(getRequestCohortScheduleUrlFriday, function (data) {
+            subjectScheduleFriday = data;
+        }).fail(function () {
+            console.log("Failed to make a request")
+        })
+            .done(function () {
+                console.log("Request " + getRequestCohortScheduleUrlFriday + " was succesfull")
+                console.log(subjectScheduleFriday);
+                loadFridaySubjectSchedule(subjectScheduleFriday);
             })
     });
 }
@@ -145,12 +225,16 @@ function requestCallTeachers() {
     $(function () {
         $.getJSON(getRequestTeacherUrl, function (data) {
             teacherObject = data;
-            data.forEach(function (teacher) {
-                var option = new Option(teacher.username, teacher.username);
-                teacherNames.append(option);
-            });
         }).fail(function () {
         })
+            .done(function () {
+                console.log(teacherObject);
+                teacherObject.forEach(function (teacher) {
+                    var option = new Option(teacher.username, teacher.username);
+                    teacherNames.append(option);
+                    console.log(getRequestTeacherUrl);
+                })
+            })
     });
 }
 
@@ -160,9 +244,9 @@ function postCallWeekObject() {
     weekDayObject.cohort = cohortNaam.value;
     weekDayObject.weekNumber = cohortWeek.value;
 
-    weekDayObject.mondayMorningTeacher = mondayMoTeach.value;
     weekDayObject.mondayAfternoonTeacher = mondayAfTeach.value;
     weekDayObject.mondayEveningTeacher = mondayEvTeach.value;
+    weekDayObject.mondayMorningTeacher = mondayMoTeach.value;
 
     weekDayObject.tuesdayMorningTeacher = tuesdayMoTeach.value;
     weekDayObject.tuesdayAfternoonTeacher = tuesdayAfTeach.value;
@@ -213,8 +297,8 @@ function loadMondayTeach(courseScheduleTeachArray) {
     courseScheduleTeachArray.forEach(function (data) {
             if (data.dayOfWeek === "MONDAY") {
                 dateMonday = data.date;
+                console.log(data.date);
                 dateCourseScheduleSelected = dateMonday;
-                requestCallSubjectSchedule();
 
                 mondayMoTeach.innerHTML = teacherNames.innerHTML;
                 mondayMoTeach.value = data.teacherMorning.username;
@@ -223,34 +307,100 @@ function loadMondayTeach(courseScheduleTeachArray) {
                 mondayAfTeach.value = data.teacherAfternoon.username;
 
                 mondayEvTeach.innerHTML = teacherNames.innerHTML;
+                mondayEvTeach.innerHTML = teacherNames.innerHTML;
                 mondayEvTeach.value = data.teacherEvening.username;
 
                 mondayMoSub.innerHTML = noSubject;
                 mondayAfSub.innerHTML = noSubject;
                 mondayEvSub.innerHTML = noSubject;
 
-                if(!subjectScheduleObject) {
-                    subjectScheduleObject.forEach(function (courseSchedule) {
-                        if (courseSchedule.partOfDay === morningDutch) {
-                            mondayMoSub.innerHTML = courseSchedule.subject.subjectName;
-                        } else if (courseSchedule.partOfDay === afternoonDutch) {
-                            mondayAfSub.innerHTML = courseSchedule.subject.subjectName;
-                        } else {
-                            mondayEvSub.innerHTML = courseSchedule.subject.subjectName;
-                        }
-                    })
-                }
+                getRequestCohortScheduleUrlMonday = "http://localhost:8080/api/getCourseSchedule/" + dateMonday + "/" + cohortNaam.value;
+                requestCallSubjectScheduleMonday();
             }
         }
     )
+}
+
+function loadMondaySubjectSchedule(subjectSchedule) {
+    if(subjectSchedule) {
+        subjectSchedule.forEach(function (courseSchedule) {
+            if (courseSchedule.partOfDay === morningDutch) {
+                console.log("Inside the right one");
+                mondayMoSub.innerHTML = courseSchedule.subject.subjectName;
+            } else if (courseSchedule.partOfDay === afternoonDutch) {
+                mondayAfSub.innerHTML = courseSchedule.subject.subjectName;
+            } else {
+                mondayEvSub.innerHTML = courseSchedule.subject.subjectName;
+            }
+        })
+    } else {
+        console.log("Empty");
+    }
+
+
+}
+
+function loadTuesdaySubjectSchedule(subjectScheduleObject) {
+    if(!subjectScheduleObject) {
+        subjectScheduleObject.forEach(function (courseSchedule) {
+            if (courseSchedule.partOfDay === morningDutch) {
+                tuesdayMoSub.innerHTML = courseSchedule.subject.subjectName;
+            } else if (courseSchedule.partOfDay === afternoonDutch) {
+                tuesdayAfSub.innerHTML = courseSchedule.subject.subjectName;
+            } else {
+                tuesdayEvSub.innerHTML = courseSchedule.subject.subjectName;
+            }
+        })
+    }
+}
+
+function loadWednesdaySubjectSchedule(subjectScheduleObject) {
+    if(!subjectScheduleObject) {
+        subjectScheduleObject.forEach(function (courseSchedule) {
+            if (courseSchedule.partOfDay === morningDutch) {
+                wednesdayMoSub.innerHTML = courseSchedule.subject.subjectName;
+            } else if (courseSchedule.partOfDay === afternoonDutch) {
+                wednesdayAfSub.innerHTML = courseSchedule.subject.subjectName;
+            } else {
+                wednesdayEvSub.innerHTML = courseSchedule.subject.subjectName;
+            }
+        })
+    }
+}
+
+function loadThursdaySubjectSchedule(subjectScheduleObject) {
+    if(!subjectScheduleObject) {
+        subjectScheduleObject.forEach(function (courseSchedule) {
+            if (courseSchedule.partOfDay === morningDutch) {
+                thursdayMoSub.innerHTML = courseSchedule.subject.subjectName;
+            } else if (courseSchedule.partOfDay === afternoonDutch) {
+                thursdayAfSub.innerHTML = courseSchedule.subject.subjectName;
+            } else {
+                thursdayEvSub.innerHTML = courseSchedule.subject.subjectName;
+            }
+        })
+    }
+}
+
+function loadFridaySubjectSchedule(subjectScheduleObject) {
+    if(!subjectScheduleObject) {
+        subjectScheduleObject.forEach(function (courseSchedule) {
+            if (courseSchedule.partOfDay === morningDutch) {
+                fridayMoSub.innerHTML = courseSchedule.subject.subjectName;
+            } else if (courseSchedule.partOfDay === afternoonDutch) {
+                fridayAfSub.innerHTML = courseSchedule.subject.subjectName;
+            } else {
+                fridayEvSub.innerHTML = courseSchedule.subject.subjectName;
+            }
+        })
+    }
 }
 
 function loadTuesdayTeach(courseScheduleTeachArray) {
     courseScheduleTeachArray.forEach(function (data) {
             if (data.dayOfWeek === "TUESDAY") {
                 dateTuesday = data.date;
-                dateCourseScheduleSelected = dateTuesday;
-                requestCallSubjectSchedule();
+                console.log(data.date);
 
                 tuesdayMoTeach.innerHTML = teacherNames.innerHTML;
                 tuesdayMoTeach.value = data.teacherMorning.username;
@@ -264,18 +414,11 @@ function loadTuesdayTeach(courseScheduleTeachArray) {
                 tuesdayMoSub.innerHTML = noSubject;
                 tuesdayAfSub.innerHTML = noSubject;
                 tuesdayEvSub.innerHTML = noSubject;
+                console.log(subjectScheduleObject);
 
-                if(!subjectScheduleObject) {
-                    subjectScheduleObject.forEach(function (courseSchedule) {
-                        if (courseSchedule.partOfDay === morningDutch) {
-                            tuesdayMoSub.innerHTML = courseSchedule.subject.subjectName;
-                        } else if (courseSchedule.partOfDay === afternoonDutch) {
-                            tuesdayAfSub.innerHTML = courseSchedule.subject.subjectName;
-                        } else {
-                            tuesdayEvSub.innerHTML = courseSchedule.subject.subjectName;
-                        }
-                    })
-                }
+                getRequestCohortScheduleUrlTuesday = "http://localhost:8080/api/getCourseSchedule/" + dateTuesday + "/" + cohortNaam.value;
+                requestCallSubjectScheduleTuesday();
+
             }
         }
     )
@@ -286,8 +429,7 @@ function loadWednesdayTeach(courseScheduleTeachArray) {
     courseScheduleTeachArray.forEach(function (data) {
             if (data.dayOfWeek === "WEDNESDAY") {
                 dateWednesday = data.date;
-                dateCourseScheduleSelected = dateWednesday;
-                requestCallSubjectSchedule();
+                console.log(data.date);
 
                 wednesdayMoTeach.innerHTML = teacherNames.innerHTML;
                 wednesdayMoTeach.value = data.teacherMorning.username;
@@ -301,18 +443,10 @@ function loadWednesdayTeach(courseScheduleTeachArray) {
                 wednesdayMoSub.innerHTML = noSubject;
                 wednesdayAfSub.innerHTML = noSubject;
                 wednesdayEvSub.innerHTML = noSubject;
+                console.log(subjectScheduleObject);
 
-                if(!subjectScheduleObject) {
-                    subjectScheduleObject.forEach(function (courseSchedule) {
-                        if (courseSchedule.partOfDay === morningDutch) {
-                            wednesdayMoSub.innerHTML = courseSchedule.subject.subjectName;
-                        } else if (courseSchedule.partOfDay === afternoonDutch) {
-                            wednesdayAfSub.innerHTML = courseSchedule.subject.subjectName;
-                        } else {
-                            wednesdayEvSub.innerHTML = courseSchedule.subject.subjectName;
-                        }
-                    })
-                }
+                getRequestCohortScheduleUrlWednesday = "http://localhost:8080/api/getCourseSchedule/" + dateWednesday + "/" + cohortNaam.value;
+                requestCallSubjectScheduleWednesday();
             }
         }
     )
@@ -322,8 +456,7 @@ function loadThursdayTeach(courseScheduleTeachArray) {
     courseScheduleTeachArray.forEach(function (data) {
             if (data.dayOfWeek === "THURSDAY") {
                 dateThursday = data.date;
-                dateCourseScheduleSelected = dateThursday;
-                requestCallSubjectSchedule();
+                console.log(data.date);
 
                 thursdayMoTeach.innerHTML = teacherNames.innerHTML;
                 thursdayMoTeach.value = data.teacherMorning.username;
@@ -337,18 +470,10 @@ function loadThursdayTeach(courseScheduleTeachArray) {
                 thursdayMoSub.innerHTML = noSubject;
                 thursdayAfSub.innerHTML = noSubject;
                 thursdayEvSub.innerHTML = noSubject;
+                console.log(subjectScheduleObject);
 
-                if(!subjectScheduleObject) {
-                    subjectScheduleObject.forEach(function (courseSchedule) {
-                        if (courseSchedule.partOfDay === morningDutch) {
-                            thursdayMoSub.innerHTML = courseSchedule.subject.subjectName;
-                        } else if (courseSchedule.partOfDay === afternoonDutch) {
-                            thursdayAfSub.innerHTML = courseSchedule.subject.subjectName;
-                        } else {
-                            thursdayEvSub.innerHTML = courseSchedule.subject.subjectName;
-                        }
-                    })
-                }
+                getRequestCohortScheduleUrlThursday = "http://localhost:8080/api/getCourseSchedule/" + dateThursday + "/" + cohortNaam.value;
+                requestCallSubjectScheduleThursday();
             }
         }
     )
@@ -358,8 +483,7 @@ function loadFridayTeach(courseScheduleTeachArray) {
     courseScheduleTeachArray.forEach(function (data) {
             if (data.dayOfWeek === "FRIDAY") {
                 dateFriday = data.date;
-                dateCourseScheduleSelected = dateFriday;
-                requestCallSubjectSchedule();
+                console.log(data.date);
 
                 fridayMoTeach.innerHTML = teacherNames.innerHTML;
                 fridayMoTeach.value = data.teacherMorning.username;
@@ -373,18 +497,10 @@ function loadFridayTeach(courseScheduleTeachArray) {
                 fridayMoSub.innerHTML = noSubject;
                 fridayAfSub.innerHTML = noSubject;
                 fridayEvSub.innerHTML = noSubject;
+                console.log(subjectScheduleObject);
 
-                if(!subjectScheduleObject) {
-                    subjectScheduleObject.forEach(function (courseSchedule) {
-                        if (courseSchedule.partOfDay === morningDutch) {
-                            fridayMoSub.innerHTML = courseSchedule.subject.subjectName;
-                        } else if (courseSchedule.partOfDay === afternoonDutch) {
-                            fridayAfSub.innerHTML = courseSchedule.subject.subjectName;
-                        } else {
-                            fridayEvSub.innerHTML = courseSchedule.subject.subjectName;
-                        }
-                    })
-                }
+                getRequestCohortScheduleUrlFriday = "http://localhost:8080/api/getCourseSchedule/" + dateFriday + "/" + cohortNaam.value;
+                requestCallSubjectScheduleFriday();
             }
         }
     )
@@ -412,5 +528,29 @@ function loadDates(dataCohortWeek) {
             dateFriday = day.date;
         }
     })
+
+}
+
+function resetCourses() {
+
+    mondayMoSub.innerHTML = "";
+    mondayAfSub.innerHTML = "";
+    mondayEvSub.innerHTML = "";
+
+    tuesdayMoSub.innerHTML = "";
+    tuesdayAfSub.innerHTML = "";
+    tuesdayEvSub.innerHTML = "";
+
+    wednesdayMoSub.innerHTML = "";
+    wednesdayAfSub.innerHTML = "";
+    wednesdayEvSub.innerHTML = "";
+
+    thursdayMoSub.innerHTML = "";
+    thursdayAfSub.innerHTML = "";
+    thursdayEvSub.innerHTML = "";
+
+    fridayMoSub.innerHTML = "";
+    fridayAfSub.innerHTML = "";
+    fridayEvSub.innerHTML = "";
 
 }

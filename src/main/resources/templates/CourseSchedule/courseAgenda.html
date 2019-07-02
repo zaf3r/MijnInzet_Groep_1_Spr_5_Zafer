@@ -19,9 +19,9 @@
 <div class="selectionData">
     <div class="criteria">Selectia criteria</div>
     <div class="grid-containerData">
-        <div class="grid-item">
-            <select class="" id="cohorts2Plan" name="cohorts2Plan"></select>
-        </div>
+<!--        <div class="grid-item">-->
+<!--            <select class="" id="cohorts2Plan" name="cohorts2Plan"></select>-->
+<!--        </div>-->
         <div class="grid-item">
             <p class="text_data">begindatum</p>
             <p><input type="date" class="selectData" name="selectData" id="startDate" onchange="storeStartDate(event)">
@@ -55,7 +55,7 @@
 
 
 <script>
-    var cohortName;
+    var cohortName="";
     var begin = "2019-06-12";
     var closing = "2019-10-31";
 </script>
@@ -77,25 +77,25 @@
             }
         })
     });
-    // $("#cohorts2Plan").on("change", function () {
-    //     cohortName = $(this).find(':selected').text();
-    //     payload = JSON.stringify({cohortName});
-    //     $.ajax({
-    //         type: "POST",
-    //         url: "/cohort",
-    //         contentType: "application/json; charset-utf-8",
-    //         dataType: "json",
-    //         data: payload,
-    //     }).done(function (response) {});
-    //     //begin en einddatum in date zetten
-    //     //begin en einddatum als min/max van begin/eind zetten
-    //
-    //
-    //
-    // });
+    $("#cohorts2Plan").on("change", function () {
+        cohortName = $(this).find(':selected').text();
+        payload = JSON.stringify({begin, closing, cohortName});
+        $.ajax({
+            type: "POST",
+            url: "/cohort",
+            contentType: "application/json; charset-utf-8",
+            dataType: "json",
+            data: payload,
+        }).done(function (response) {
+            begin = response.startdate;
+            closing = response.enddate;
+            document.getElementById(startDate).value(begin);
+            document.getElementById(closingDate).value(closing);
+        });
+    });
     $("#closingDate").on("change", function () {
         $("#regelPerWeek").empty();
-        payload = JSON.stringify({begin, closing});
+        payload = JSON.stringify({begin, closing,cohortName});
         console.log(payload);
         $.ajax({
             type: "POST",

@@ -156,7 +156,7 @@ public class CourseScheduleService implements RetrieveUserRole {
         for (CourseSchedule course:courses) {
             if (course.getStatus()== StatusCourseSchedule.DEFINITIEF)  courses.remove(course);
            // else { if (!subjectHours.contains(course.getSubject()))
-//            todo deze functie afmaken
+//            todo deze functie afmaken is nog niet nodig
         }
     }
     public Boolean isNonTeachingDay(receiveDatum date){
@@ -198,6 +198,15 @@ public class CourseScheduleService implements RetrieveUserRole {
        return !equals;
     }
 
+    public List<CourseSchedule> plannedCourses(String cohortName, String subjectName){
+        List<CourseSchedule> allPlannedCourses=courseScheduleRepository.findAll();
+        List<CourseSchedule> plannedCourses=new ArrayList<>();
+        for (CourseSchedule course:allPlannedCourses) {
+            if(course.getCohort().getCohortName()!=cohortName||
+                    course.getSubject().getSubjectName()!=subjectName) plannedCourses.add(course);
+            }
+        return plannedCourses;
+    }
     public List<CourseSchedule> daySchedule(receiveDatum date) {
         //this method checks if on a given date courses are planned
         List<CourseSchedule> schedulesSource = courseScheduleRepository.findAll();
