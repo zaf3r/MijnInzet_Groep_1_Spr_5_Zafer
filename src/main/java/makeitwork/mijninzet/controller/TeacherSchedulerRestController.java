@@ -65,7 +65,6 @@ public class TeacherSchedulerRestController {
     public List<User> findTeacherListHandler() {
 
         Set<User> teacherSet = userRepository.findAllByRole(TEACHER_ROLE);
-        System.out.println(teacherSet);
 
         for(User user : teacherSet) {
             loadAvailability(user);

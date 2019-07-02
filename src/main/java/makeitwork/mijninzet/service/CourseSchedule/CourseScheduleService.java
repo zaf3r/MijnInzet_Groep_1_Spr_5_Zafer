@@ -7,7 +7,6 @@ import makeitwork.mijninzet.model.Availability.PartOfDay;
 import makeitwork.mijninzet.model.Availability.Weekday;
 import makeitwork.mijninzet.model.CourseSchedule.*;
 import makeitwork.mijninzet.model.TeacherSchedule.CohortWeek;
-import makeitwork.mijninzet.model.Unused.Course;
 import makeitwork.mijninzet.model.preference.Subject;
 import makeitwork.mijninzet.repository.*;
 import makeitwork.mijninzet.service.CohortService;
