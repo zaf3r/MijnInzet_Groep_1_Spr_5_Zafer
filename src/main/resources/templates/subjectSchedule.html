@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous">
+    </script>
+
+<!--    todo selecteren vak(ken)-->
+<!--    todo per vak attributen instellen (begin, eind, lesdag(en))-->
+<!--    todo vak in weekrooster tonen-->
+<!--    todo aangeven knelpunten-->
+</head>
+<body>
+<!--    todo selecteren studierichting-->
+    <label for="richting">Welke studierichting</label><br>
+    <select name="richting" id="richting">
+    </select>
+</body>
+</html>
+
+$( function() {
+    $( "richting" ).selectmenu();
+
+    $( "#files" ).selectmenu();
+
+    $( "#number" )
+        .selectmenu()
+        .selectmenu( "menuWidget" )
+        .addClass( "overflow" );
+
+    $( "#salutation" ).selectmenu();
+} );
+
+

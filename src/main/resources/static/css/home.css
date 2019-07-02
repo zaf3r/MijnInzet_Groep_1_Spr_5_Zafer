@@ -27,3 +27,15 @@ ul{
 .container {
     margin-top: 65px;
 }
+
+
+.evenement {
+
+    width: 100%;
+    float: left;
+    height: 225px;
+}
+
+#containerVakantie {
+    background-color: #c6ebfe;
+}

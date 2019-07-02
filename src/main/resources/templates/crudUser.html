@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" th:href="@{/css/navbar.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/crudUser.css}"/>
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+      integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap" rel="stylesheet">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous">
+    </script>
+</head>
+<div th:if="${roleUser.roleName == 'Terminator'}">
+    <header th:insert="~{navbar :: header}"></header>
+</div>
+<div th:if="${roleUser.roleName == 'Docent'}">
+    <header th:insert="~{navbarDocent :: header}"></header>
+</div>
+<div th:if="${roleUser.roleName == 'Administrateur'}">
+    <header th:insert="~{navbarAdministrateur :: header}"></header>
+</div>
+<div th:if="${roleUser.roleName == 'Manager'}">
+    <header th:insert="~{navbarManager :: header}"></header>
+</div>
+<div th:if="${roleUser.roleName == 'Roosteraar'}">
+    <header th:insert="~{navbarRoosteraar :: header}"></header>
+</div>
+<body>
+
+<div class="container">
+    <form id="usrForm" autocomplete="off" action="/newUser" method="POST">
+        <br><br><br><br>
+        <fieldset>
+
+            <form>
+                <div class="form-group row">
+                    <label for="gebruiker" class="col-sm-2 col-form-label">Gebruikersnaam</label>
+                    <div class="col-sm-10">
+                        <input type="text" autocomplete="off" class="form-control" id="gebruiker" name="gebruiker" placeholder="Gebruikersnaam" required
+                               oninvalid="this.setCustomValidity('Een unieke gebruikersnaam opgeven is verplicht.')"
+                               onchange="this.setCustomValidity('')"/>
+                        <span style="display: none;"
+                              id="userNameMsg">De gebruikersnaam bestaat. <br>De gegevens van deze gebruiker zullen worden bijgewerkt.</span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="email" class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Emailadres" required
+                               oninvalid="this.setCustomValidity('Uw email-adres opgeven is verplicht.')"
+                               onchange="this.setCustomValidity('')"/>
+                        <span style="display: none;"
+                              id="eAddressMsg"> Het emailadres is al aanwezig. <br>De gegevens van de gebruiker met dit email-adres worden bijgewerkt.</span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="vnaam" class="col-sm-2 col-form-label">Voornaam</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="vnaam" name="vnaam" placeholder="Voornaam" required
+                               oninvalid="this.setCustomValidity('Uw voornaam opgeven is verplicht.')"
+                               onchange="this.setCustomValidity('')"/>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="voorvoegsel" class="col-sm-2 col-form-label">Voorvoegsel(s)</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="voorvoegsel" name="voorvoegsel" placeholder="Voorvoegsel">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="anaam" class="col-sm-2 col-form-label">Achternaam</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="anaam" name="anaam" minlength="4" placeholder="Achternaam" required
+                               oninvalid="this.setCustomValidity('Uw achternaam (minimaal 4 letters) opgeven is verplicht.')"
+                               onchange="this.setCustomValidity('')"/>
+                    </div>
+                </div>
+
+                <span name="displayRole" id="displayRole" style="display:none">
+                <div class="form-group row">
+                        <label for="welkeRol" class="col-sm-2 col-form-label">Rol</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" id="welkeRol" name="welkeRol" required></select>
+                    </div>
+                </div>
+                </span>
+
+
+                <div class="form-group row">
+                    <label for="pwd" class="col-sm-2 col-form-label">Wachtwoord</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Wachtwoord" minlength="1"required
+                               oninvalid="this.setCustomValidity('Een password is verplicht (minimaal 8 tekens.')"
+                               onchange="this.setCustomValidity('')"/><br>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="confirm_pwd" class="col-sm-2 col-form-label">Bevestig wachtwoord</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" id="confirm_pwd" name="confirm_pwd" placeholder="Bevestig wachtwoord"
+                               minlength="8"
+                               required
+                               oninvalid="this.setCustomValidity('Geef het password opnieuw in (minimaal 8 tekens.')"
+                               onchange="this.setCustomValidity('')"/>
+                        <span style="display: none;"
+                              id="checkPwdMsg"> Beide passwords zijn niet hetzelfde. Zorg dat beide passwords exact hetzelfde zijn</span>
+                    </div>
+                </div>
+
+                            <p name="userVerwijderen" id="userVerwijderen" style="display:none">
+                                <label for="userVerwijderen"> collega geen toegang meer geven?</label>
+                                <input type="checkbox" name="userDelete" id="userDelete" \>
+                            </p>
+
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        <button type="submit" name="opslaan" id="opslaan" class="btn btn-warning">Opslaan gegevens</button>
+                        <button type="reset" name="resetForm" id="resetForm" class="btn btn-warning" onclick="textFunction()">Pagina opnieuw laden</button>
+                        <span style="display: none;"
+                              id="successMsg"> De nieuwe collega heeft toegang tot het systeem </span>
+                        <span style="display: none;"
+                              id="failureMsg"> Er is iets fout gegaan. De nieuwe collega heeft geen toegang. </span><br><br><br><br><br>
+                    </div>
+                </div>
+            </form>
+        </fieldset>
+
+
+
+
+
+    </form>
+</div>
+<footer th:insert="~{footer :: footer}"></footer>
+
+
+
+<script>
+    // registreer eventhandlers
+    $(document).ready(function () {
+        $.ajax({
+            type: "POST",
+            url: "/allRoles",
+            contentType: "application/json; charset-utf-8",
+            dataType: "json",
+            data: "{}",
+            success: function (response) {
+                $("#welkeRol").empty();
+                $("#welkeRol").append('<option value="-1">Welke functie gaat de collega vervullen?</option>')
+                $.each(response,function(i,item){
+                    $("#welkeRol").append('<option value="'+ response[i].roleId +'">' + response[i].roleName + '</option>');
+                });
+            }
+        });
+        isCoordinatorFunction();
+        console.log("na coordinator bij laden  dom")
+    });
+    $("#gebruiker").on("focusout", function (event) {
+       payload = JSON.stringify({ username: event.target.value });
+       $.ajax({
+           type: 'POST',
+           url: '/checkUserName',
+           contentType: 'application/json; charset=utf-8',
+           dataType: 'json',
+           data: payload
+       }).done( function (response) {
+           userNameErr = $("#userNameMsg");
+           verwijderen=$("#userVerwijderen");
+           if (response["exists"]) {
+               userNameErr.show();
+               verwijderen.show();
+           } else {
+               userNameErr.hide();
+               verwijderen.hide();
+           }
+               isCoordinatorFunction()
+
+       }
+       )
+    });
+    $("#email").on("focusout", function (event) {
+        payload = JSON.stringify({email: event.target.value });
+        $.ajax({
+            type: 'POST',
+            url: '/checkEmail',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            data: payload
+        }).done( function (response) {
+            eAddressErr = $("#eAddressMsg");
+            verwijderen=$("#userVerwijderen");
+            if (response["exists"]) {
+                eAddressErr.show();
+                verwijderen.show();
+            } else {
+                eAddressErr.hide();
+                verwijderen.hide();
+            }
+            isCoordinatorFunction();
+        })
+    });
+    $("#gebruiker").focus(function () {
+        var voornaam = $("#vnaam").val();
+        var achternaam = $("#anaam").val();
+        if (voornaam && achternaam && !this.value) {
+            this.value = voornaam + achternaam
+        }
+    });
+    $("#usrForm").submit(function () {
+        var actief="1";
+        if ($("#userDelete").is(":checked()")) {actief="0"};
+        var payload =JSON.stringify({
+            username: $("#gebruiker").val(),
+            password: $("#pwd").val(),
+            surname: $("#vnaam").val(),
+            namePrefix: $("#voorvoegsel").val(),
+            familyName: $("#anaam").val(),
+            email: $("#email").val(),
+            active: actief
+        });
+        var roleNewUser=JSON.stringify({
+            userName: $("#gebruiker").val(),
+            roleId: $("#welkeRol").val(),
+            email: $("#email").val()
+        });
+        $.ajax({
+            type: 'POST',
+            url: '/newUser',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            data: payload
+        }).done(function (response) {
+            if (response["exists"]) {
+                if (actief==0){$("#opslaan").text("verwijderd")}
+                if (actief==1){$("#opslaan").text("opgeslagen")}
+            } else {
+                $("#opslaan").text("niet gelukt")
+            }
+            $.ajax({
+                type: 'POST',
+                url: '/newUserRole',
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                data: roleNewUser
+            })
+        })
+        event.preventDefault();
+    });
+    $("#confirm_pwd").on("focusout", function (event){
+        var pwd=$("#pwd").val();
+        var check=event.target.value;
+        if (pwd!=check) {
+            $("#checkPwdMsg").show();
+            $("#confirm_pwd").val("");
+        }
+    });
+</script>
+<script>
+    function isCoordinatorFunction(){
+        $.ajax({
+            type: 'POST',
+            url: '/checkIsAdmin',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            data: "{}"
+        }).done( function(coordinator){
+                roleDisplay=$("#displayRole");
+                eAddressErr = $("#eAddressMsg");
+                verwijderen=$("#userVerwijderen");
+                if (coordinator["isAdmin"]){
+                    roleDisplay.show();
+                    eAddressErr.hide();
+                    verwijderen.hide();
+                } else {
+                    roleDisplay.hide();
+                    actualUserName();
+
+                }
+            }
+        )
+    }
+</script>
+<script>
+    function actualUserName(){
+        $.ajax({
+            type: 'POST',
+            url: '/actualUserName',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            data: "{}"
+        }).done(function(username){
+            $("#gebruiker").val(username);
+            $("#gebruiker").prop("readonly", true);
+        })
+        $.ajax({
+            type: 'POST',
+            url: '/actualEmail',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            data: "{}"
+        }).done(function(email){
+            $("#email").val(email);
+            $("#email").prop("readonly", true);
+        })
+    }
+</script>
+<script>
+    function textFunction() {
+        document.getElementById('usrForm').reset();
+        $("#userNameMsg").hide();
+        $("#eAddressMsg").hide();
+        $("#userVerwijderen").hide();
+        $("#checkPwdMsg").hide();
+        $("#opslaan").text("Opslaan gegevens")
+    }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+</html>

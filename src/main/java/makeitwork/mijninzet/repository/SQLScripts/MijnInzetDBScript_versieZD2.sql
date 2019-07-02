@@ -29,6 +29,10 @@ CREATE TABLE IF NOT EXISTS `MijnInzet`.`Gebruiker` (
   `idGebruiker` INT(11) NOT NULL AUTO_INCREMENT,
   `gebruikersnaam` VARCHAR(45) NOT NULL,
   `wachtwoord` CHAR(60) NOT NULL,
+  `email` CHAR(60) NOT NULL,
+  `voornaam` CHAR(45),
+  `voorvoegsel` CHAR(45),
+  `achternaam` CHAR(60) NOT NULL,
   `actief` TINYINT(1) NOT NULL,
   PRIMARY KEY (`idGebruiker`))
 ENGINE = InnoDB

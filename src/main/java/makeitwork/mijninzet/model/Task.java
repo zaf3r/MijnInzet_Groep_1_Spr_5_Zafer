@@ -1,48 +1,119 @@
 package makeitwork.mijninzet.model;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.IndexDirection;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Objects;
+import java.util.List;
 
-
-@Document(collection="Vacature")
-public class Task {
+@Entity
+@Table (name="Vacature")
+public class Task implements Comparable{
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     private String titel;
-
-    @Indexed(direction = IndexDirection.ASCENDING)
 
     private String locatie;
 
     private String beschrijving;
 
-    private LocalDate startdatum;
+    private String beschrijvingLang;
 
+    @JsonIgnore
+    private String startdatum;
+    @JsonIgnore
+    private LocalDate einddatum;
+    @JsonIgnore
     private LocalDate sluitdatum;
 
     private int uren;
 
+    private TaskStatus taskStatus;
 
- //todo   private InfoBy contactPerson;
+    @ManyToOne
+    private User uitvoerder;
 
-
-    public Task() {
+    public User getUitvoerder() {
+        return uitvoerder;
     }
 
-    public Task(String title, String description, int uren, LocalDate startDate) {
+    public void setUitvoerder(User uitvoerder) {
+        this.uitvoerder = uitvoerder;
+    }
+
+    @ManyToMany
+    @JoinTable(name = "sollicitanten",
+    joinColumns = @JoinColumn(name = "id"),
+    inverseJoinColumns = @JoinColumn(name = "idgebruiker"))
+    List<User> users;
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    public void addTask(User user){
+        List<User> sollicitanten = getUsers();
+        if(!sollicitanten.contains(user.getId())) sollicitanten.add(user);
+    }
+
+    public enum TaskStatus {
+        OPEN, APPROVED
+    }
+
+    public void status(TaskStatus status) {
+        switch (status) {
+            case OPEN:
+                break;
+            case APPROVED:
+                break;
+        }
+    }
+
+    public TaskStatus getTaskStatus() {
+        return taskStatus;
+    }
+
+    public void setTaskStatus(TaskStatus taskStatus) {
+        this.taskStatus = taskStatus;
+    }
+
+    public Task() {
+        this.taskStatus = TaskStatus.OPEN;
+    }
+
+    public Task(int id, String titel) {
+        this.id = id;
+        this.titel = titel;
+        this.taskStatus = TaskStatus.OPEN;
+    }
+
+    public Task(String title, String description, int uren, String locatie, LocalDate date, String startDate, LocalDate endDate, String longD) {
         this.titel = title;
         this.beschrijving = description;
         this.uren = uren;
         this.startdatum = startDate;
+        this.locatie = locatie;
+        this.sluitdatum = date;
+        this.einddatum = endDate;
+        this.beschrijvingLang = longD;
+        this.taskStatus = TaskStatus.OPEN;
+    }
 
+    public Task(String titel, String description, int hours, String location, String longD) {
+        this.id=id;
+        this.titel = titel;
+        this.beschrijving = description;
+        this.uren = hours;
+        this.locatie = location;
+        this.beschrijvingLang = longD;
+        this.taskStatus = TaskStatus.OPEN;
     }
 
     public void setTitel(String title) {
@@ -73,8 +144,11 @@ public class Task {
         return beschrijving;
     }
 
+    public String getBeschrijvingLang() {
+        return beschrijvingLang;
+    }
 
-    public LocalDate getStartdatum() {
+    public String getStartdatum() {
         return startdatum;
     }
 
@@ -86,11 +160,7 @@ public class Task {
         return uren;
     }
 
-  //todo  public InfoBy getContactPerson() {
-    //    return contactPerson;
-   // }
-
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -98,34 +168,29 @@ public class Task {
         this.sluitdatum = sluitdatum;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Task task = (Task) o;
-        return uren == task.uren &&
-                titel.equals(task.titel) &&
-                locatie.equals(task.locatie) &&
-                beschrijving.equals(task.beschrijving) &&
-                startdatum.equals(task.startdatum) &&
-                sluitdatum.equals(task.sluitdatum);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(titel, locatie, beschrijving, startdatum, sluitdatum, uren);
+    public LocalDate getEinddatum() {
+        return einddatum;
     }
 
     @Override
     public String toString() {
         return "Task{" +
-                "id='" + id + '\'' +
+                "id=" + id +
                 ", titel='" + titel + '\'' +
                 ", locatie='" + locatie + '\'' +
                 ", beschrijving='" + beschrijving + '\'' +
-                ", startdat=" + startdatum +
-                ", sluitdate=" + sluitdatum +
+                ", beschrijvingLang='" + beschrijvingLang + '\'' +
+                ", startdatum='" + startdatum + '\'' +
+                ", einddatum=" + einddatum +
+                ", sluitdatum=" + sluitdatum +
                 ", uren=" + uren +
+                ", taskStatus=" + taskStatus +
+                " /n/n" +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
     }
 }

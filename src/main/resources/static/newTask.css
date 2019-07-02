@@ -1,0 +1,55 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 2px;
+    grid-auto-rows: minmax(100px, auto);
+}
+
+.container {
+    margin-top: 30px;
+}
+
+.label {
+    grid-column: 1 / 2;
+    grid-row: 1;
+}
+
+.inp {
+    grid-column: 2 / 2;
+    grid-row: 1;
+}
+
+#opslaan {
+    background-color: yellow;
+    border-style: none;
+}
+
+#resetForm {
+    background-color: yellow;
+    border-style: none;
+}
+
+button {
+    background-color: yellow;
+    border-style: none;
+}
+
+#intro.intro {
+    height: 100px;
+    width: 180px;
+}
+
+#taskForm {
+    margin-top: 30px;
+}
+
+h1 {
+    padding-bottom: 5px;
+}
+
+.text-center {
+    background-image: url("https://images.homedepot-static.com/productImages/9513d7c0-6365-4903-b136-0bb9d93c7e3a/svn/brewster-wallpaper-wv8103-64_600.jpg");
+    background-size: cover;
+    padding-bottom: 3px;
+}
+

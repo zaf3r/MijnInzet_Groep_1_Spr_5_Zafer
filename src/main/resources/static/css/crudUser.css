@@ -1,0 +1,29 @@
+.box1 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 2px;
+    grid-auto-rows: minmax(100px, auto);
+}
+.label {
+    grid-column: 1 / 2;
+    grid-row: 1;
+}
+.inp {
+    grid-column: 2 / 2;
+    grid-row: 1;
+}
+
+#opslaan {
+    background-color: yellow;
+    border-style: none;
+}
+
+#resetForm {
+    background-color: yellow;
+    border-style: none;
+}
+
+#intro {
+    height: 50px;
+    width: 50px;
+}

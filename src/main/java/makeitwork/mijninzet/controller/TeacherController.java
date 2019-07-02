@@ -1,9 +1,13 @@
 package makeitwork.mijninzet.controller;
 
 import makeitwork.mijninzet.model.*;
+import makeitwork.mijninzet.model.preference.Preference;
+import makeitwork.mijninzet.model.preference.PreferenceForm;
+import makeitwork.mijninzet.model.preference.PreferenceScale;
+import makeitwork.mijninzet.model.preference.Subject;
 import makeitwork.mijninzet.repository.PreferenceRepository;
 import makeitwork.mijninzet.repository.SubjectRepository;
-import makeitwork.mijninzet.repository.UsersRepository;
+import makeitwork.mijninzet.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,12 +21,12 @@ import java.util.Set;
 
 @Controller
 @RequestMapping("/teacher")
-public class TeacherController {
+public class TeacherController implements RetrieveUserRole{
 
     final private List<PreferenceScale> preferenceScaleList = getPreferenceScaleList();
 
     @Autowired
-    UsersRepository usersRepository;
+    UserRepository userRepository;
 
     @Autowired
     SubjectRepository subjectRepository;
@@ -33,27 +37,21 @@ public class TeacherController {
     @GetMapping("preference")
     public String addPreferences(Model model, Principal principal) {
 
-        // Get user
-        User user = usersRepository.findByUsername(principal.getName());
+        User user = userRepository.findByUsername(principal.getName());
 
-        // Get user preference
+        Role role = retrieveRole(userRepository,principal);
+
         Set<Preference> preferenceSet = findCurrentUserPreference(user);
 
-        //Query list of subjects
         List<Subject> subjectList = subjectRepository.findAll();
 
-        //Test whether the preferences are empty, if empty, add preference object with only subjects
         if(preferenceSet.isEmpty()) {
-            emptyPreferenceStarter(subjectList, user);
+            preferenceSet = emptyPreferenceStarter(subjectList, user);
         }
 
         // Preparing preference Form
         List<Integer> preferenceRatingList = new ArrayList<>();
         PreferenceForm preferenceForm = new PreferenceForm(preferenceRatingList);
-
-        //TESTING
-        List<Preference> preferenceList = geneRateInputForm(user);
-        System.out.println(preferenceList);
 
         //Loading the preference form with data - FIX THIS PART
         for (Preference preference: preferenceSet) {
@@ -61,6 +59,7 @@ public class TeacherController {
         }
 
         //Loading model attributes
+        model.addAttribute("roleUser", role);
         model.addAttribute("preferenceForm",preferenceForm);
         model.addAttribute("subjectsList",subjectList);
         model.addAttribute("preferenceScaleList",preferenceScaleList);
@@ -74,7 +73,7 @@ public class TeacherController {
                                   Principal principal) {
 
         //loading in user
-        User user = usersRepository.findByUsername(principal.getName());
+        User user = userRepository.findByUsername(principal.getName());
 
         //loading preference
         Set<Preference> preferenceSet = preferenceRepository.findAllByUser(user);
@@ -123,8 +122,7 @@ public class TeacherController {
      * @param subjectList List of subjects retrieved from mysql
      * @param user current session user
      */
-    public void emptyPreferenceStarter(List<Subject> subjectList, User user)  {
-        //Initialize empty hashSet
+    public Set<Preference> emptyPreferenceStarter(List<Subject> subjectList, User user)  {
         Set<Preference> preferenceSet = new HashSet<>();
 
         //Iterate over each subject for inserting info in Mysql
@@ -135,6 +133,7 @@ public class TeacherController {
             preferenceSet.add(tempPreference);
         }
         preferenceRepository.saveAll(preferenceSet);
+        return preferenceSet;
     }
 
     public List<Preference> geneRateInputForm(User user) {

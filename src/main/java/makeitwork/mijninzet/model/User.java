@@ -1,17 +1,23 @@
 package makeitwork.mijninzet.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import makeitwork.mijninzet.model.Availability.GlobalAvailability.Availability;
+import makeitwork.mijninzet.model.preference.Preference;
+import org.hibernate.annotations.SortNatural;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "gebruiker")
-public class User {
+public class User implements Comparable{
 
+//    @Transient
+//    Role roleName;
 
     //Validation fields
     @Transient
@@ -19,7 +25,6 @@ public class User {
 
     @Transient
     private final int MIN_PWD=8;
-
 
     //Column names of entity
     @Transient
@@ -29,7 +34,25 @@ public class User {
     private final String COLUMN_USERNAME="gebruikersnaam";
 
     @Transient
+    private final String COLUMN_HOURS="Uren";
+
+    @Transient
+    private final String COLUMN_HOURSALLOCATED="urenBezetting";
+
+    @Transient
     private final String COLUMN_ID = "idgebruiker";
+
+    @Transient
+    private final String COLUMN_EMAIL="email";
+
+    @Transient
+    private final String COLUMN_SURNAME="voornaam";
+
+    @Transient
+    private final String COLUMN_PREFIX="voorvoegsel";
+
+    @Transient
+    private final String COLUMN_FAMILYNAME="achternaam";
 
     @Transient
     private final String COLUMN_ACTIVE = "actief";
@@ -42,13 +65,13 @@ public class User {
     @Transient
     private final String PK_COLUMN_OTHER_ENTITY = "rol_id";
 
-
     //Fields that are mapped by Hibernate
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idgebruiker")
     private int id;
 
+    @JsonIgnore
     @NotNull(message=COLUMN_PASSWORD+VERPLICHT)
     @Size(min=MIN_PWD, message= "minimale lengte van een password is "+MIN_PWD)
     @Column(name = COLUMN_PASSWORD)
@@ -58,11 +81,35 @@ public class User {
     @Column(name = COLUMN_USERNAME)
     private String username;
 
+    @Column(name = COLUMN_HOURS)
+    private int hours;
+
+    @Column(name = COLUMN_HOURSALLOCATED)
+    private int hoursAllocated;
+
+    @Column(name = COLUMN_SURNAME)
+    private String surname;
+
+    @Column(name = COLUMN_PREFIX)
+    private String namePrefix;
+
+    @JsonIgnore
+    @NotNull(message=COLUMN_FAMILYNAME+VERPLICHT)
+    @Column(name = COLUMN_FAMILYNAME)
+    private String familyName;
+
+    @JsonIgnore
+    @NotNull(message=COLUMN_EMAIL+VERPLICHT)
+    @Column(name = COLUMN_EMAIL)
+    @Email
+    private String email;
+
     @NotNull(message = COLUMN_ACTIVE+VERPLICHT)
     @Column(name = COLUMN_ACTIVE)
     private int active;
 
     @OneToMany(mappedBy = "user",cascade= CascadeType.ALL)
+    @JsonIgnore
     private Set<Preference> preferenceSet =  new HashSet<>();
 
     @ManyToMany(fetch = FetchType.EAGER, cascade= {CascadeType.PERSIST, CascadeType.MERGE,
@@ -72,10 +119,56 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = PK_COLUMN_OTHER_ENTITY))
     private List<Role> role;
 
-    public User() {
+    @OneToMany(mappedBy = "user", cascade= CascadeType.PERSIST)
+    private List<Availability> availabilityList;
+
+    @ElementCollection
+    @SortNatural
+    @Column(name = "sollicitaties")
+    //toegewezen taken
+    private List<Task> sollicitaties;
+
+    public List<Task> getSollicitaties() {
+        return sollicitaties;
     }
 
-    // CONTROLLER MET GEGEVENS EN ROL LIST?
+    public void setSollicitaties(List<Task> sollicitaties) {
+        this.sollicitaties = sollicitaties;
+    }
+
+    public void addApprovedTask(Task sollicitatie){
+        List<Task> approvedTasks = getSollicitaties();
+        if (!approvedTasks.contains(sollicitatie)) approvedTasks.add(sollicitatie);
+    }
+
+//    @ElementCollection
+//    @SortNatural
+//    @Column(name = "vac")
+    @ManyToMany
+    @JoinTable(name = "gewildeTaken",
+            joinColumns = @JoinColumn(name = "userid"),
+            inverseJoinColumns = @JoinColumn(name = "taskId"))
+    private List<Task> task;
+
+    public List<Task> getTasks() {
+        return task;
+    }
+
+    public void setTask(List<Task> task) {
+        this.task = task;
+    }
+
+    //sollicitatie aan de lijst toevoegen
+    public void addApplication(Task vacature) {
+        List<Task> vacatures = getTasks();
+        if (!vacatures.contains(vacature)) vacatures.add(vacature);
+    }
+
+    public User() {}
+
+    public User(List<Task> sollicitaties) {
+        this.sollicitaties = sollicitaties;
+    }
 
     public int getId() {
         return id;
@@ -89,16 +182,23 @@ public class User {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getUsername() {
         return username;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public int getHours() {
+        return hours;
+    }
+    public void setHours(int hours) {
+        this.hours = hours;
     }
 
     public List<Role> getRole() {
@@ -117,11 +217,126 @@ public class User {
         this.active = active;
     }
 
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getNamePrefix() {
+        return namePrefix;
+    }
+
+    public void setNamePrefix(String namePrefix) {
+        this.namePrefix = namePrefix;
+    }
+
+    public String getFamilyName() {
+        return familyName;
+    }
+
+    public void setFamilyName(String familyName) {
+        this.familyName = familyName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getHoursAllocated() {
+        return hoursAllocated;
+    }
+
+    public void setHoursAllocated(int hoursAllocated) {
+        this.hoursAllocated = hoursAllocated;
+    }
+
     public Set<Preference> getPreferenceSet() {
         return preferenceSet;
     }
 
     public void setPreferenceSet(Set<Preference> preferenceSet) {
         this.preferenceSet = preferenceSet;
+    }
+
+    public List<Availability> getAvailabilityList() {
+        return availabilityList;
+    }
+
+    public void setAvailabilityList(List<Availability> availabilityList) {
+        this.availabilityList = availabilityList;
+    }
+
+    //    public String getNaam() {
+//        return naam;
+//    }
+
+    //    public String getRoleType() {
+//        return roleType;
+//    }
+    public String encryptPassword (String plain_password){
+        return BCrypt.hashpw(plain_password, BCrypt.gensalt());
+    }
+
+    // todo vanaf hier voor Docent --> moet nog op een andere manier
+
+
+
+ //  -------------------------------------------------------------------------------------------->
+    // Task functionaliteiten voor Teacher
+//TO DO : mag weg
+//    @ElementCollection
+//    @SortNatural
+//    private SortedSet<String> taskIds = new TreeSet<>();
+//
+//    public SortedSet<String> getTasks() {
+//        return taskIds;
+//    }
+//    // functie veranderen naar TasksID
+//
+//    public void setTaskIds(SortedSet<String> taskIds) {
+//        this.taskIds = taskIds;
+//    }
+//
+//    public void addTask(String taskId) {
+//        SortedSet<String> tasks = getTasks();
+//        if (!tasks.contains(taskId)) tasks.add(taskId);
+//    }
+//
+//    public void removeTask(String taskId) {
+//        SortedSet<String> tasks = getTasks();
+//        if (tasks.contains(taskId)) tasks.remove(taskId);
+//    }
+
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", password='" + password + '\'' +
+                ", username='" + username + '\'' +
+                ", hours='" + hours + '\'' +
+                ", hoursAllocated='" + hoursAllocated + '\'' +
+                ", surname='" + surname + '\'' +
+                ", namePrefix='" + namePrefix + '\'' +
+                ", familyName='" + familyName + '\'' +
+                ", email='" + email + '\'' +
+                ", active=" + active +
+                ", preferenceSet=" + preferenceSet +
+                ", role=" + role +
+                ", sollicitaties=" + sollicitaties +
+                ", task=" + task +
+                '}';
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
     }
 }
