@@ -47,8 +47,9 @@ h1 {
     padding-bottom: 5px;
 }
 
-#h1 {
+.text-center {
     background-image: url("https://images.homedepot-static.com/productImages/9513d7c0-6365-4903-b136-0bb9d93c7e3a/svn/brewster-wallpaper-wv8103-64_600.jpg");
     background-size: cover;
     padding-bottom: 3px;
 }
+

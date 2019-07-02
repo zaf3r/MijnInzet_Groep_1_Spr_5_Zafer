@@ -3,6 +3,7 @@
     margin-top: 80px;
 }
 
+
 .contentTable {
     margin-top: 110px;
 }
@@ -158,11 +159,6 @@ h2.description {
     margin: 20px;
 }
 
-#dislike{
-    color: midnightblue;
-    background-color: white;
-    border-style: none;
-}
 
 #cardTask{
     border: grey 1px solid;
@@ -202,4 +198,10 @@ h2.description {
 #hours {
     color: #444444;
     font-family: "Open Sans", sans-serif;
+}
+
+#opslaanSolliciatie {
+    border: solid 1px #444444;
+    border-radius: 4px;
+    color:#000000;
 }

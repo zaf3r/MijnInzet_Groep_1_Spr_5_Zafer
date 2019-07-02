@@ -36,13 +36,12 @@ public class VacatureService {
 
     //save Vacature in DB SQL
     public void addTask(Task task, User user) {
-        boolean solliciteren = checkHoursSolliciteren(task, user);
-        if (solliciteren = true) {
+        if (checkHoursSolliciteren(task, user)) {
         task.getUsers().add(user);
         user.getTasks().add(task);
         vacatureRepository.save(user);
         taskRepository.save(task);
-    }
+        }
     }
 
     //wordt een taak uit zijn eigen lijst verwijderd
@@ -67,14 +66,8 @@ public class VacatureService {
             if (t.getUsers().isEmpty()) {
                 iter.remove();
             }
-        }
-        if(allTasks.isEmpty()) {
-            Task task = new Task();
-            task.setTitel("Momenteel geen sollicitaties");
-            allTasks.add(task);
-            return allTasks;
-        }
-        return allTasks;
+        }return allTasks;
+
     }
 
     //voor het zelfde doel als bovenstaande
@@ -135,6 +128,42 @@ public class VacatureService {
     public void saveTask (String titel, String description, int hours, String location, String longD) {
         Task newTask = new Task(titel, description, hours, location, longD);
         taskRepository.save(newTask);
+    }
+
+    public List<User> getDisapprovedApplicants (Task task) {
+//        int taakId = task.getId();
+//        task = getTask(taakId);
+        List<User> sollicitanten = task.getUsers();
+        List<User> disapproved = new ArrayList<>();
+        boolean Uitvoerder = checkUitvoerder(task.getId());
+
+        if (Uitvoerder= true) {
+            User user = task.getUitvoerder();
+            for (User sollicitant: sollicitanten) {
+                if(sollicitant != user) {
+                    disapproved.add(sollicitant);
+                }
+            }
+        } return disapproved;
+    }
+
+//   public List<Task> getDisApTaskperUser (User user, Task task) {
+//        List <User> toCompare = getDisapprovedApplicants(task);
+//        List<Task> yourDisapprovedTasks = new ArrayList<>();
+//        for (:) {
+//
+//       }
+//   }
+
+
+    public boolean checkUitvoerder (int taakId) {
+        Task task = getTask(taakId);
+        if(task.getUitvoerder() == null) {
+            return false;
+        } else {
+            return true;
+
+        }
     }
 
 
