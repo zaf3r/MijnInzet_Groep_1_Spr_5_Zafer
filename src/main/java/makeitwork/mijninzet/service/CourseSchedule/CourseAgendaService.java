@@ -144,16 +144,7 @@ public class CourseAgendaService {
         }
         return agenda;
     }
-    public List<Agenda> removeAfterClosing(List<Agenda> agenda, LocalDate closing){
-        List<Agenda> beforeClosing=new ArrayList<>();if(!agenda.isEmpty()){
-            for (Agenda item:agenda) {
-                if (item.getDate().isBefore(closing)) beforeClosing.add(item);
-            }
-            agenda.clear();
-            agenda.addAll(beforeClosing);
-        }
-        return agenda;
-    }
+
     public List<Agenda> onlyCohort(List<Agenda> agenda, String cohortName){
         List<Agenda> cohort= new ArrayList<>();
         if (cohortName!=""){

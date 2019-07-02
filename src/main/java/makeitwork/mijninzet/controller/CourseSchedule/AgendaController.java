@@ -21,6 +21,10 @@ public class AgendaController {
         return "CourseSchedule/courseAgenda";
     }
 
+    @GetMapping("/agenda")
+    public String agenda2FrontEnd(Model model) {
+        return "CourseSchedule/courseAgenda";
+    }
     @PostMapping("/agenda")
     public @ResponseBody
     String cohortsToPlan(@RequestBody receiveBeginClosingDate requestPayload) {
