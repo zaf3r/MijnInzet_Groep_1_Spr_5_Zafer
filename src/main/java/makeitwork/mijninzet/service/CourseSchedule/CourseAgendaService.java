@@ -1,8 +1,10 @@
 package makeitwork.mijninzet.service.CourseSchedule;
 
+import makeitwork.mijninzet.model.Cohort;
 import makeitwork.mijninzet.model.CourseSchedule.Agenda;
 import makeitwork.mijninzet.model.CourseSchedule.CourseSchedule;
 import makeitwork.mijninzet.model.HolidaySchedule;
+import makeitwork.mijninzet.repository.CohortRepository;
 import makeitwork.mijninzet.repository.CourseScheduleRepository;
 import makeitwork.mijninzet.repository.HolidayScheduleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,9 @@ public class CourseAgendaService {
     @Autowired
     CourseScheduleRepository courseScheduleRepository;
 
+    @Autowired
+    CohortRepository cohorts;
+
     public List<Agenda> addDatesAtBeginning(List<Agenda> agenda, LocalDate begin, LocalDate closing){
         //first check if de first agenda item is later then the (begin)startdate
         var first= agenda.get(0).getDate();
@@ -40,8 +45,6 @@ public class CourseAgendaService {
         Collections.sort(agenda);
         //second check if first date=Monday, if not count backwards untill the first Monday
         //deze functie java.lang.OutOfMemoryError: Java heap space
-
-//
         first= agenda.get(0).getDate().plusDays(1);
         if (!first.getDayOfWeek().equals(DayOfWeek.MONDAY)) {
             do {
@@ -151,11 +154,29 @@ public class CourseAgendaService {
         }
         return agenda;
     }
+    public List<Agenda> onlyCohort(List<Agenda> agenda, String cohortName){
+        List<Agenda> cohort= new ArrayList<>();
+        if (cohortName!=""){
+            for (Agenda item:agenda) {
+                if (item.getCohortAfternoon()==cohortName||
+                    item.getCohortMorning()==cohortName||
+                    item.getCohortNight()==cohortName){
+                    cohort.add(item);
+                }
+            }
+        }
+        return cohort;
+    }
+    public Cohort cohort(String cohortName){
+        System.out.printf("dit cohort: %s",cohorts.findByCohortName(cohortName));
+        return cohorts.findByCohortName(cohortName);
+    }
 
-    public List<Agenda> Agenda(LocalDate begin, LocalDate closing){
+    public List<Agenda> Agenda(LocalDate begin, LocalDate closing,String cohortName){
         List<Agenda> agenda=new ArrayList<>();
-        addHolidays(agenda,begin,closing);
         addWorkshops(agenda,begin,closing);
+        if (cohortName!="") onlyCohort(agenda,cohortName);
+        addHolidays(agenda,begin,closing);
         Collections.sort(agenda);
         addDatesAtBeginning(agenda,begin,closing);
         Collections.sort(agenda);

@@ -6,6 +6,7 @@ public class receiveBeginClosingDate {
 
     private LocalDate begin;
     private LocalDate closing;
+    private String cohortName;
 
     public receiveBeginClosingDate() {
     }
@@ -26,11 +27,20 @@ public class receiveBeginClosingDate {
         this.closing = closing;
     }
 
+    public String getCohortName() {
+        return cohortName;
+    }
+
+    public void setCohortName(String cohortName) {
+        this.cohortName = cohortName;
+    }
+
     @Override
     public String toString() {
         return "receiveBeginClosingDate{" +
                 "begin=" + begin +
                 ", closing=" + closing +
+                ", cohortName='" + cohortName + '\'' +
                 '}';
     }
 }
