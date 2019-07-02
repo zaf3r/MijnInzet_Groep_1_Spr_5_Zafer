@@ -130,6 +130,42 @@ public class VacatureService {
         taskRepository.save(newTask);
     }
 
+    public List<User> getDisapprovedApplicants (Task task) {
+//        int taakId = task.getId();
+//        task = getTask(taakId);
+        List<User> sollicitanten = task.getUsers();
+        List<User> disapproved = new ArrayList<>();
+        boolean Uitvoerder = checkUitvoerder(task.getId());
+
+        if (Uitvoerder= true) {
+            User user = task.getUitvoerder();
+            for (User sollicitant: sollicitanten) {
+                if(sollicitant != user) {
+                    disapproved.add(sollicitant);
+                }
+            }
+        } return disapproved;
+    }
+
+//   public List<Task> getDisApTaskperUser (User user, Task task) {
+//        List <User> toCompare = getDisapprovedApplicants(task);
+//        List<Task> yourDisapprovedTasks = new ArrayList<>();
+//        for (:) {
+//
+//       }
+//   }
+
+
+    public boolean checkUitvoerder (int taakId) {
+        Task task = getTask(taakId);
+        if(task.getUitvoerder() == null) {
+            return false;
+        } else {
+            return true;
+
+        }
+    }
+
 
 
 }

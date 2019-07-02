@@ -79,6 +79,8 @@ public class VacatureController implements RetrieveUserRole {
         return "myApprovedTasks";
     }
 
+
+
     @PostMapping("/taskDelete/{taskId}")
     public String DeleteTaskHandler(@ModelAttribute("myTask") Task myTask, @RequestParam("taskId") int taakId, Principal principal) {
         myTask = getTask(taakId);

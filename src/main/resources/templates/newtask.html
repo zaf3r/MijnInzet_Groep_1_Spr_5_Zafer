@@ -43,6 +43,7 @@
                 <div class="col-sm-10">
                     <textarea type="text" id="intro" class="intro" th:field="*{beschrijving}"
                               required intro = "Beschrijf kort waar de vacature over gaat"></textarea>
+                    <p id="text"></p>
                 </div>
         </div>
 
@@ -79,15 +80,15 @@
                     <textarea type="text" id="beschrijvingLang" th:field = "*{beschrijvingLang}" required height="100px" maxlength='240'></textarea>
                     <p id="textleft"></p><br>
                 </div>
-        </div>
-
-
-            <div class="col-sm-10">
                 <button type="submit" id="opslaan" name="opslaan">Sla op</button>
                 <span style="display: none;"
                       id="successMsg"> De vacature is opgeslagen! </span>
                 <button type="reset" id="resetForm" name="resetForm"  onclick="textFunction()">Opnieuw</button>
-            </div>
+
+        </div>
+
+
+
 
 
 </form>
@@ -154,8 +155,16 @@ console.log(payload);
         var char = max - len;
 
         $('#textleft').text("Nog " + char);
-
     });
+
+    $('#intro').keyup(function (event) {
+        var max = 140;
+        var len = $(this).val().length;
+        var char = max - len;
+
+        $('#text').text("Nog " + char);
+    });
+
 
 </script>
 <script>
