@@ -62,7 +62,6 @@ var evening = "evening";
 
 var morningDutch = "ochtend";
 var afternoonDutch = "middag";
-var eveningDutch = "avond";
 
 //Other variables
 var teacherNames = document.createElement("select");
@@ -145,12 +144,16 @@ function requestCallTeachers() {
     $(function () {
         $.getJSON(getRequestTeacherUrl, function (data) {
             teacherObject = data;
-            data.forEach(function (teacher) {
-                var option = new Option(teacher.username, teacher.username);
-                teacherNames.append(option);
-            });
         }).fail(function () {
         })
+            .done(function () {
+                console.log(teacherObject);
+                teacherObject.forEach(function (teacher) {
+                    var option = new Option(teacher.username, teacher.username);
+                    teacherNames.append(option);
+                    console.log(getRequestTeacherUrl);
+                })
+            })
     });
 }
 
@@ -222,6 +225,7 @@ function loadMondayTeach(courseScheduleTeachArray) {
                 mondayAfTeach.innerHTML = teacherNames.innerHTML;
                 mondayAfTeach.value = data.teacherAfternoon.username;
 
+                mondayEvTeach.innerHTML = teacherNames.innerHTML;
                 mondayEvTeach.innerHTML = teacherNames.innerHTML;
                 mondayEvTeach.value = data.teacherEvening.username;
 
