@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface VacatureRepository extends JpaRepository<User, Integer> {
+    User findUserById(int id);
 
+//    User findApprovedTaskById (int TaskId, int UserId);
 }
 

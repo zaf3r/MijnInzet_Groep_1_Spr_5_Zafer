@@ -34,28 +34,24 @@
 
 <body>
 <section id="containerContent">
-
-    <form action="#" th:action="@{/taskOverview}" th:object="${taak}" th:method="get">
+<!--    <i class="fas fa-thumbs-up" style="font-size: 2.5em;"></i>-->
+    <form action="#" th:action="@{taskOverview}" th:object="${taak}" th:method="get">
         <div class="job-header">
         <h1 class="job-header header"><span th:text="*{titel}"/></h1>
     </div>
     </form>
     <div class="container">
-    <form action="#" th:action="@{/teacher/taskSave/{taskId}}" th:object="${taak}" th:method="get">
-        <div class="job-header-bar col-md-8 justify-content-right">
-            <div><p>&nbsp;&nbsp;&nbsp;&nbsp; Solliciteren
-        <button type="submit" id="love" class="love"><i class="fas fa-thumbs-up" style="font-size: 2.5em;"></i>
-            <input type="hidden" id="taskId" name="taskId" th:value="*{id}"></button>
-            <span class="tooltiptext" id="showHover">Wil ik!</span>
-            </p>
+        <form action="#" th:action="@{/teacher/taskSave/{taskId}}" th:object="${taak}" th:method="get">
+            <div class="job-header-bar col-md-8 justify-content-right">
+                <button type="submit" id="love" class="love" align="right" value ='Opslaan'>Opslaan
+                    <input type="hidden" id="taskId" name="taskId" th:value="*{id}"></button>
             </div>
-        </div>
-    </form>
+        </form>
 
         <form action="#" th:action="@{/teacher/taskOverview}" th:object="${taak}" th:method="get">
-        <div class="job-header-bar col-md-8 justify-content-right py-1">
-            <input type='submit' name='thing' value='terug naar overzicht' id="saveTask" align="right"/>
-        </div>
+            <div class="job-header-bar col-md-8 justify-content-right py-1">
+                <input type='submit' name='thing' value='Terug naar overzicht' id="saveTask" align="right"/>
+            </div>
         <div class="row justify-content-md-center">
             <div class="col col-lg-2">
             </div>
@@ -64,39 +60,12 @@
                     <div class="row bg-pattern-spacing px-4">
                         <div class="vacancy-pattern-spacing" id="detailsTekst">
                             <h2 class="details">Details</h2><br>
+
                             <span class="Locatie"><strong>Locatie:</strong> <span th:text="*{locatie}"/></span><br>
                             <span class="Uren"><strong>Uren:</strong> <span th:text="*{uren}"/></span><br>
                             <span class="Startdatum"><strong>Start vanaf:</strong><span th:text="*{startdatum}"/></span><br>
                             <span class="Reageren voor"><strong>Reageren voor: </strong><span th:text="*{sluitdatum}"/></span><br>
-                            <span class="Deadline"><strong>Let op: </strong>nog <span th:text="${deadline}"/> dagen om te solliciteren
-<!--                                <script>-->
-<!--                                    const _MS_PER_DAY = 1000 * 60 * 60 * 24;-->
-<!--                                    var date1 = new Date();-->
-<!--                                     date1.getDay();-->
-<!--                                     date1.getMonth()+1;-->
-<!--                                     date1.getFullYear();-->
-<!--                                     date1.getHours();-->
-<!--                                     date1.getMinutes();-->
-<!--                                     date1.getSeconds();-->
-<!--                                     // get total seconds between two dates&ndash;&gt;-->
-<!--                                     var res = Math.abs(date1 - sluitdatum) / 1000;-->
-<!--                                     var days = Math.floor(res/_MS_PER_DAY);-->
-<!--                                     document.write(days + " dagen");-->
-<!--                                     </script>-->
-                                </span>
-
-<!--                                    <span th:data-sluitdatum="*{sluitdatum}" onshow="getDate()"/></span>-->
-<!--                            <script>-->
-<!--                                function getDate() {-->
-<!--                                    var sluitdatum = document.querySelectorAll('span')[10].getAttribute('sluitdatum');-->
-                            <!--                                    var date1 = new Date();-->
-
-<!--                                    // get total seconds between two dates-->
-<!--                                    var res = Math.abs(date1 - sluitdatum) / 1000;-->
-<!--                                    var days = Math.floor(res / 86400);-->
-<!--                                    document.write(days + " dagen");-->
-<!--                                }-->
-<!--                            </script>-->
+                            <span class="Deadline"><strong>Let op: </strong>nog <span th:text="${deadline}"/> dagen om te solliciteren</span>
 
                         </div>
                     </div>

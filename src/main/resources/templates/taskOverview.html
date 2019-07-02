@@ -35,6 +35,16 @@
     <body>
 
     <div class="content">
+        <div class= "container" id="link" align = "right">
+            <button onclick="window.location.href = '/teacher/myTasks';" id = "linkButton">Mijn Sollicitaties</button>
+        </div>
+
+        <div class = "container" id="hours" align="right">
+            <form action="#" th:action="@{/teacher/taskoverview}"  th:object="${user}" method="get">
+                <i class="far fa-clock">&nbsp; Nog <span class = "hours" th:text = "${user}"></span> uur beschikbaar</i>
+            </form>
+        </div>
+
         <h1>Vacatures</h1>
         <section id="gallery">
             <div class="container">
@@ -57,6 +67,7 @@
                                 </div>
                             </form>
                         </div>
+<!--                        <span th:text ="${user.hoursAllocated}"></span>-->
                     </div>
                 </div>
             </div>

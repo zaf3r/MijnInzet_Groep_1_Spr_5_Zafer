@@ -14,7 +14,7 @@ import java.util.*;
 
 @Entity
 @Table(name = "gebruiker")
-public class User{
+public class User implements Comparable{
 
 //    @Transient
 //    Role roleName;
@@ -71,6 +71,7 @@ public class User{
     @Column(name = "idgebruiker")
     private int id;
 
+    @JsonIgnore
     @NotNull(message=COLUMN_PASSWORD+VERPLICHT)
     @Size(min=MIN_PWD, message= "minimale lengte van een password is "+MIN_PWD)
     @Column(name = COLUMN_PASSWORD)
@@ -92,10 +93,12 @@ public class User{
     @Column(name = COLUMN_PREFIX)
     private String namePrefix;
 
+    @JsonIgnore
     @NotNull(message=COLUMN_FAMILYNAME+VERPLICHT)
     @Column(name = COLUMN_FAMILYNAME)
     private String familyName;
 
+    @JsonIgnore
     @NotNull(message=COLUMN_EMAIL+VERPLICHT)
     @Column(name = COLUMN_EMAIL)
     @Email
@@ -104,13 +107,6 @@ public class User{
     @NotNull(message = COLUMN_ACTIVE+VERPLICHT)
     @Column(name = COLUMN_ACTIVE)
     private int active;
-
-//    @NotNull
-//    @Column(name="Naam")
-//    private String naam;
-
-    @OneToMany(mappedBy = "user",cascade= CascadeType.PERSIST)
-    private List<Availability> availabilityList;
 
     @OneToMany(mappedBy = "user",cascade= CascadeType.ALL)
     @JsonIgnore
@@ -123,21 +119,56 @@ public class User{
             inverseJoinColumns = @JoinColumn(name = PK_COLUMN_OTHER_ENTITY))
     private List<Role> role;
 
-;
+    @OneToMany(mappedBy = "user", cascade= CascadeType.PERSIST)
+    private List<Availability> availabilityList;
 
-    //contracturen?
-//    @Transient
-//    private String roleType = roleName.getRoleName();
+    @ElementCollection
+    @SortNatural
+    @Column(name = "sollicitaties")
+    //toegewezen taken
+    private List<Task> sollicitaties;
+
+    public List<Task> getSollicitaties() {
+        return sollicitaties;
+    }
+
+    public void setSollicitaties(List<Task> sollicitaties) {
+        this.sollicitaties = sollicitaties;
+    }
+
+    public void addApprovedTask(Task sollicitatie){
+        List<Task> approvedTasks = getSollicitaties();
+        if (!approvedTasks.contains(sollicitatie)) approvedTasks.add(sollicitatie);
+    }
+
+//    @ElementCollection
+//    @SortNatural
+//    @Column(name = "vac")
+    @ManyToMany
+    @JoinTable(name = "gewildeTaken",
+            joinColumns = @JoinColumn(name = "userid"),
+            inverseJoinColumns = @JoinColumn(name = "taskId"))
+    private List<Task> task;
+
+    public List<Task> getTasks() {
+        return task;
+    }
+
+    public void setTask(List<Task> task) {
+        this.task = task;
+    }
+
+    //sollicitatie aan de lijst toevoegen
+    public void addApplication(Task vacature) {
+        List<Task> vacatures = getTasks();
+        if (!vacatures.contains(vacature)) vacatures.add(vacature);
+    }
 
     public User() {}
 
-//    public User(String naam, String roleType){
-//        this.naam = naam;
-//        this.roleType = roleType;
-//
-//    }
-
-    // CONTROLLER MET GEGEVENS EN ROL LIST?
+    public User(List<Task> sollicitaties) {
+        this.sollicitaties = sollicitaties;
+    }
 
     public int getId() {
         return id;
@@ -256,37 +287,33 @@ public class User{
     // todo vanaf hier voor Docent --> moet nog op een andere manier
 
 
-    //in deze collection worden de (unieke) taskId's opgeslagen
-    //op deze wijze wordt per docent bijgehouden op welke taken
-    //gereageerd is. Moet ook de status bijgehouden worden, dan kan dat ook.
-    @ElementCollection
-    @SortNatural
-    @JsonIgnore
-//  @Column(name="task")
-    private SortedSet<String> taskIds = new TreeSet<>();
 
-    public SortedSet<String> getTasks() {
-        return taskIds;
-    }
+ //  -------------------------------------------------------------------------------------------->
+    // Task functionaliteiten voor Teacher
+//TO DO : mag weg
+//    @ElementCollection
+//    @SortNatural
+//    private SortedSet<String> taskIds = new TreeSet<>();
+//
+//    public SortedSet<String> getTasks() {
+//        return taskIds;
+//    }
+//    // functie veranderen naar TasksID
+//
+//    public void setTaskIds(SortedSet<String> taskIds) {
+//        this.taskIds = taskIds;
+//    }
+//
+//    public void addTask(String taskId) {
+//        SortedSet<String> tasks = getTasks();
+//        if (!tasks.contains(taskId)) tasks.add(taskId);
+//    }
+//
+//    public void removeTask(String taskId) {
+//        SortedSet<String> tasks = getTasks();
+//        if (tasks.contains(taskId)) tasks.remove(taskId);
+//    }
 
-    public SortedSet<String> getTaskIds() {
-
-        return taskIds;
-    }
-
-    public void setTaskIds(SortedSet<String> taskIds) {
-        this.taskIds = taskIds;
-    }
-
-    public void addTask(String taskId) {
-        SortedSet<String> tasks = getTasks();
-        if (!tasks.contains(taskId)) tasks.add(taskId);
-    }
-
-    public void removeTask(String taskId) {
-        SortedSet<String> tasks = getTasks();
-        if (tasks.contains(taskId)) tasks.remove(taskId);
-    }
 
     @Override
     public String toString() {
@@ -301,7 +328,15 @@ public class User{
                 ", familyName='" + familyName + '\'' +
                 ", email='" + email + '\'' +
                 ", active=" + active +
+                ", preferenceSet=" + preferenceSet +
                 ", role=" + role +
+                ", sollicitaties=" + sollicitaties +
+                ", task=" + task +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
     }
 }

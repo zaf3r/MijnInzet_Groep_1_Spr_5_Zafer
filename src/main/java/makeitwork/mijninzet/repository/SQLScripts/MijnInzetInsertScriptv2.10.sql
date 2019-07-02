@@ -52,3 +52,54 @@ CREATE TABLE IF NOT EXISTS `mijninzet`.`cohort` (
   `end_date` DATE NULL,
   PRIMARY KEY (`cohort_naam`))
 ENGINE = InnoDB;
+INSERT INTO `mijninzet`.`vacature`(`id`, `beschrijving`, `beschrijving_lang`, `einddatum`, `locatie`, `sluitdatum`, `startdatum`, `task_status`, `titel`, `uren`)
+VALUES ('1', 'De Engelse term voor spek is ‘bacon’. Maar in Nederland bestaat er wel degelijk verschil tussen bacon en spek. Ontbijtspek bijvoorbeeld wordt uit de buik gesneden.
+Het vlees voor bacon wordt gesneden uit de karbonadestrook van het varken...', 'van de rug, met een laagje spek erop. Daardoor is een plakje bacon ook iets minder vet. Ontbijtspek
+bijvoorbeeld wordt uit de buik gesneden.' , '2019-08-20', 'Amsterdam', '2019-09-21', '2019-10-20', '0', 'BaconBakker', '5');
+INSERT INTO `mijninzet`.`vacature`(`id`, `beschrijving`, `beschrijving_lang`, `einddatum`, `locatie`, `sluitdatum`, `startdatum`, `task_status`, `titel`, `uren`)
+VALUES ('2', 'Ben jij een zonnestraaltje in de ochtend en ben je verkikkerd op koffie? Dan hebben we jou nodig! Voor Brandstof op de AmstelCampus zijn we op zoek naar een barrista.
+Het betreft met name enkele uren in de ochtend', 'Het zetten van een heerlijk bakje koffie vroeg in de morgen is voor jou geen grote opgave, evenmin geldt dat voor het aanspreken en begroeten van mensen.
+Dan hebben we jou nodig! Voor Brandstof op de AmstelCampus zijn we op zoek naar een barrista.', '2019-09-20', 'Amsterdam', '2019-10-21', '2019-11-15','0', 'Barrista', '5');
+INSERT INTO `mijninzet`.`vacature`(`id`, `beschrijving`, `beschrijving_lang`, `einddatum`, `locatie`, `sluitdatum`, `startdatum`, `task_status`, `titel`, `uren`)
+VALUES ('3', 'Ben jij een boeken- en papierworm? Doe je graag onderzoek en ben je geordend. De AmstelCampus is op zoek naar een betrokken archivarus die een dag in de week het archief up-to-date
+houdt...', 'Ben jij een boeken- en papierworm? Doe je graag onderzoek en ben je geordend. De AmstelCampus is op zoek naar een betrokken archivarus die een dag in de week het archief up-to-date
+houdt.', '2019-10-20', 'Amsterdam', '2019-10-21', '2019-10-15','0', 'Archivaris', '5');
+INSERT INTO `mijninzet`.`vacature`(`id`, `beschrijving`, `beschrijving_lang`, `einddatum`, `locatie`, `sluitdatum`, `startdatum`, `task_status`, `titel`, `uren`)
+VALUES ('4', 'Spicy jalapeno bacon ipsum dolor amet dolore ribeye labore, proident pig t-bone bacon brisket turducken sunt cupidatat beef ground round. Filet mignon burgdoggen
+shank occaecat turkey. Est doner aliqua, non strip steak... ', 'Spicy jalapeno bacon ipsum dolor amet dolore k occaecat turkey. Venison ut eiusmod consectetur buffalo turkey.
+Commodo tempor jerky. Sed capicoladolorribs ad.Spicy je consequat ut.', '2019-08-20', 'Amsterdam', '2019-09-21', '2019-10-20', '0', 'Lorem Specialist', '8');
+INSERT INTO `mijninzet`.`vacature`(`id`, `beschrijving`, `beschrijving_lang`, `einddatum`, `locatie`, `sluitdatum`, `startdatum`, `task_status`, `titel`, `uren`)
+VALUES ('5', 'Voor de afsluiting van de lokalen op de vierde verdieping, alle stoelen en tafels op z’n plaats zetten, het bord uitvegen en de grond aanvegen.
+ Op die manier kunnen de studenten en docenten in een schoon lokaal verse kennis opsnuiven...', 'Voor de afsluiting van de lokalen op de vierde verdieping,
+ alle stoelen en tafels op z’n plaats zetten, het bord uitvegen en de grond aanvegen. Op die manier kunnen de studenten en docenten in een schoon lokaal verse
+ kennis opsnuiven.', '2019-09-14', 'Amsterdam', '2019-09-03', '2019-11-05', '0', 'Afsluiter','12');
+INSERT INTO `mijninzet`.`vacature`(`id`, `beschrijving`, `beschrijving_lang`, `einddatum`, `locatie`, `sluitdatum`, `startdatum`, `task_status`, `titel`, `uren`)
+VALUES ('6', 'Het aanwijzen van examinatoren behoort tot de wettelijke taken en bevoegdheden van de examencommissie. Een examencommissie dient elk jaar voor elk
+ studieonderdeel vast te stellen wie als examinator optreedt.', 'Een examencommissie dient elk jaar voor elk studieonderdeel vast te stellen wie als examinator optreedt.
+  De examencommissie baseert zich bij het aanwijzen van examinatoren op criteria, die zijn vastgelegd in een profiel voor examinatoren…', '2020-10-01', 'Amsterdam', '2019-10-01', '2019-10-08', '0', 'Examinator', '4');
+INSERT INTO `mijninzet`.`vacature`(`id`, `beschrijving`, `beschrijving_lang`, `einddatum`, `locatie`, `sluitdatum`, `startdatum`, `task_status`, `titel`, `uren`)
+VALUES ('7', 'Voor al het technisch onderhoud in de verschillende Hva gebouwen van de campus, zijn we op zoek naar een echte techniek nerd. Het liefst vind je het heerlijk
+ om moeilijke problemen op te lossen...', 'We zijn we op zoek naar een echte techniek nerd. Voor al het technisch onderhoud in de verschillende Hva gebouwen van de campus.
+ Het liefst vind je het heerlijk om moeilijke problemen op te lossen. Ben jij deze persoon?', '2020-12-05', 'Amstel Campus', '2019-07-05', '2019-09-01', '0', 'Technicus', '12');
+INSERT INTO `mijninzet`.`vacature`(`id`, `beschrijving`, `beschrijving_lang`, `einddatum`, `locatie`, `sluitdatum`, `startdatum`, `task_status`, `titel`, `uren`)
+VALUES ('8', 'Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel,
+luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt…', 'Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing
+ sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt.', '2020-08-02', 'Amstel Campus', '2019-07-02', '2019-09-07', '0',
+ 'Titelcreativeling', '4');
+INSERT INTO `mijninzet`.`vacature`(`id`, `beschrijving`, `beschrijving_lang`, `einddatum`, `locatie`, `sluitdatum`, `startdatum`, `task_status`, `titel`, `uren`)
+VALUES ('9', 'We zijn op zoek naar een ICT-specialist die verantwoordelijk is voor het dagelijks beheer en het onderhoud van de ICT-omgeving binnen een organisatie.
+Bij netwerkproblemen of andere technische complicaties…', 'We zijn op zoek naar een ICT-specialist die verantwoordelijk is voor het dagelijks beheer en het onderhoud
+van de ICT-omgeving binnen een organisatie. Bij netwerkproblemen of andere technische complicaties…', '2020-10-01', 'HvA Amsterdam', '2019-07-07', '2019-09-08', '0', 'Systeembeheerder', '8');
+
+INSERT INTO `mijninzet`.`cohort`(`cohort_id`, `cohort_naam`, `end_date`, `start_date`, `idgebruiker`) VALUES ('1', 'Lente', '2019-03-01', '2019-07-05', '7');
+
+-- -----------------------------------------------------
+-- Table `mijninzet`.`cohort`
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS `mijninzet`.`cohort` (
+  `cohort_naam` VARCHAR(45) NOT NULL,
+  `start_date` DATE NULL,
+  `end_date` DATE NULL,
+  PRIMARY KEY (`cohort_naam`))
+ENGINE = InnoDB;
