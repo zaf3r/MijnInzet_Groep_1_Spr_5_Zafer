@@ -297,8 +297,6 @@ function loadMondayTeach(courseScheduleTeachArray) {
     courseScheduleTeachArray.forEach(function (data) {
             if (data.dayOfWeek === "MONDAY") {
                 dateMonday = data.date;
-                console.log(data.date);
-                dateCourseScheduleSelected = dateMonday;
 
                 mondayMoTeach.innerHTML = teacherNames.innerHTML;
                 mondayMoTeach.value = data.teacherMorning.username;
@@ -321,86 +319,10 @@ function loadMondayTeach(courseScheduleTeachArray) {
     )
 }
 
-function loadMondaySubjectSchedule(subjectSchedule) {
-    if(subjectSchedule) {
-        subjectSchedule.forEach(function (courseSchedule) {
-            if (courseSchedule.partOfDay === morningDutch) {
-                console.log("Inside the right one");
-                mondayMoSub.innerHTML = courseSchedule.subject.subjectName;
-            } else if (courseSchedule.partOfDay === afternoonDutch) {
-                mondayAfSub.innerHTML = courseSchedule.subject.subjectName;
-            } else {
-                mondayEvSub.innerHTML = courseSchedule.subject.subjectName;
-            }
-        })
-    } else {
-        console.log("Empty");
-    }
-
-
-}
-
-function loadTuesdaySubjectSchedule(subjectScheduleObject) {
-    if(!subjectScheduleObject) {
-        subjectScheduleObject.forEach(function (courseSchedule) {
-            if (courseSchedule.partOfDay === morningDutch) {
-                tuesdayMoSub.innerHTML = courseSchedule.subject.subjectName;
-            } else if (courseSchedule.partOfDay === afternoonDutch) {
-                tuesdayAfSub.innerHTML = courseSchedule.subject.subjectName;
-            } else {
-                tuesdayEvSub.innerHTML = courseSchedule.subject.subjectName;
-            }
-        })
-    }
-}
-
-function loadWednesdaySubjectSchedule(subjectScheduleObject) {
-    if(!subjectScheduleObject) {
-        subjectScheduleObject.forEach(function (courseSchedule) {
-            if (courseSchedule.partOfDay === morningDutch) {
-                wednesdayMoSub.innerHTML = courseSchedule.subject.subjectName;
-            } else if (courseSchedule.partOfDay === afternoonDutch) {
-                wednesdayAfSub.innerHTML = courseSchedule.subject.subjectName;
-            } else {
-                wednesdayEvSub.innerHTML = courseSchedule.subject.subjectName;
-            }
-        })
-    }
-}
-
-function loadThursdaySubjectSchedule(subjectScheduleObject) {
-    if(!subjectScheduleObject) {
-        subjectScheduleObject.forEach(function (courseSchedule) {
-            if (courseSchedule.partOfDay === morningDutch) {
-                thursdayMoSub.innerHTML = courseSchedule.subject.subjectName;
-            } else if (courseSchedule.partOfDay === afternoonDutch) {
-                thursdayAfSub.innerHTML = courseSchedule.subject.subjectName;
-            } else {
-                thursdayEvSub.innerHTML = courseSchedule.subject.subjectName;
-            }
-        })
-    }
-}
-
-function loadFridaySubjectSchedule(subjectScheduleObject) {
-    if(!subjectScheduleObject) {
-        subjectScheduleObject.forEach(function (courseSchedule) {
-            if (courseSchedule.partOfDay === morningDutch) {
-                fridayMoSub.innerHTML = courseSchedule.subject.subjectName;
-            } else if (courseSchedule.partOfDay === afternoonDutch) {
-                fridayAfSub.innerHTML = courseSchedule.subject.subjectName;
-            } else {
-                fridayEvSub.innerHTML = courseSchedule.subject.subjectName;
-            }
-        })
-    }
-}
-
 function loadTuesdayTeach(courseScheduleTeachArray) {
     courseScheduleTeachArray.forEach(function (data) {
             if (data.dayOfWeek === "TUESDAY") {
                 dateTuesday = data.date;
-                console.log(data.date);
 
                 tuesdayMoTeach.innerHTML = teacherNames.innerHTML;
                 tuesdayMoTeach.value = data.teacherMorning.username;
@@ -429,7 +351,6 @@ function loadWednesdayTeach(courseScheduleTeachArray) {
     courseScheduleTeachArray.forEach(function (data) {
             if (data.dayOfWeek === "WEDNESDAY") {
                 dateWednesday = data.date;
-                console.log(data.date);
 
                 wednesdayMoTeach.innerHTML = teacherNames.innerHTML;
                 wednesdayMoTeach.value = data.teacherMorning.username;
@@ -456,7 +377,6 @@ function loadThursdayTeach(courseScheduleTeachArray) {
     courseScheduleTeachArray.forEach(function (data) {
             if (data.dayOfWeek === "THURSDAY") {
                 dateThursday = data.date;
-                console.log(data.date);
 
                 thursdayMoTeach.innerHTML = teacherNames.innerHTML;
                 thursdayMoTeach.value = data.teacherMorning.username;
@@ -483,7 +403,6 @@ function loadFridayTeach(courseScheduleTeachArray) {
     courseScheduleTeachArray.forEach(function (data) {
             if (data.dayOfWeek === "FRIDAY") {
                 dateFriday = data.date;
-                console.log(data.date);
 
                 fridayMoTeach.innerHTML = teacherNames.innerHTML;
                 fridayMoTeach.value = data.teacherMorning.username;
@@ -529,6 +448,88 @@ function loadDates(dataCohortWeek) {
         }
     })
 
+}
+
+
+function loadMondaySubjectSchedule(subjectSchedule) {
+    if(subjectSchedule) {
+        subjectSchedule.forEach(function (courseSchedule) {
+            if (courseSchedule.partOfDay === morningDutch) {
+                mondayMoSub.innerHTML = courseSchedule.subject.subjectName;
+            } else if (courseSchedule.partOfDay === afternoonDutch) {
+                mondayAfSub.innerHTML = courseSchedule.subject.subjectName;
+            } else {
+                mondayEvSub.innerHTML = courseSchedule.subject.subjectName;
+            }
+        })
+    } else {
+        console.log("Empty");
+    }
+
+
+}
+
+function loadTuesdaySubjectSchedule(subjectScheduleObject) {
+    if(subjectScheduleObject) {
+        subjectScheduleObject.forEach(function (courseSchedule) {
+            if (courseSchedule.partOfDay === morningDutch) {
+                tuesdayMoSub.innerHTML = courseSchedule.subject.subjectName;
+            } else if (courseSchedule.partOfDay === afternoonDutch) {
+                tuesdayAfSub.innerHTML = courseSchedule.subject.subjectName;
+            } else {
+                tuesdayEvSub.innerHTML = courseSchedule.subject.subjectName;
+            }
+        })
+    } else {
+        console.log("Empty");
+    }
+}
+
+function loadWednesdaySubjectSchedule(subjectScheduleObject) {
+    if(subjectScheduleObject) {
+        subjectScheduleObject.forEach(function (courseSchedule) {
+            if (courseSchedule.partOfDay === morningDutch) {
+                wednesdayMoSub.innerHTML = courseSchedule.subject.subjectName;
+            } else if (courseSchedule.partOfDay === afternoonDutch) {
+                wednesdayAfSub.innerHTML = courseSchedule.subject.subjectName;
+            } else {
+                wednesdayEvSub.innerHTML = courseSchedule.subject.subjectName;
+            }
+        })
+    } else {
+        console.log("Empty");
+    }
+}
+
+function loadThursdaySubjectSchedule(subjectScheduleObject) {
+    if(subjectScheduleObject) {
+        subjectScheduleObject.forEach(function (courseSchedule) {
+            if (courseSchedule.partOfDay === morningDutch) {
+                thursdayMoSub.innerHTML = courseSchedule.subject.subjectName;
+            } else if (courseSchedule.partOfDay === afternoonDutch) {
+                thursdayAfSub.innerHTML = courseSchedule.subject.subjectName;
+            } else {
+                thursdayEvSub.innerHTML = courseSchedule.subject.subjectName;
+            }
+        })
+    }
+    console.log("Empty");
+}
+
+function loadFridaySubjectSchedule(subjectScheduleObject) {
+    if(subjectScheduleObject) {
+        subjectScheduleObject.forEach(function (courseSchedule) {
+            if (courseSchedule.partOfDay === morningDutch) {
+                fridayMoSub.innerHTML = courseSchedule.subject.subjectName;
+            } else if (courseSchedule.partOfDay === afternoonDutch) {
+                fridayAfSub.innerHTML = courseSchedule.subject.subjectName;
+            } else {
+                fridayEvSub.innerHTML = courseSchedule.subject.subjectName;
+            }
+        })
+    } else {
+        console.log("Empty");
+    }
 }
 
 function resetCourses() {
