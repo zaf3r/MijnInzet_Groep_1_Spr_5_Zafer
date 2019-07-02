@@ -98,32 +98,6 @@ insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('
 insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-08-31', 'Zomervakantie');
 insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-09-01', 'Zomervakantie');
 
-insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-12-23', 'Kerstreces');
-insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-12-24', 'Kerstreces');
-insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-12-25', 'Kerstreces');
-insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-12-26', 'Kerstreces');
-insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-12-27', 'Kerstreces');
-insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-12-28', 'Kerstreces');
-insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-12-29', 'Kerstreces');
-insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-12-30', 'Kerstreces');
-insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2019-12-31', 'Oudjaarsdag');
-insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2020-01-01', 'Nieuwjaardag');
-insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2020-01-02', 'Kerstreces');
-insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2020-01-03', 'Kerstreces');
-insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2020-01-04', 'Kerstreces');
-insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2020-01-05', 'Kerstreces');
-insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2020-04-14', 'Goede Vrijdag');
-insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2020-04-13', '2e Paasdag');
-insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2020-05-21', 'Hemelvaart');
-insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2020-05-22', 'verplicht vrij');
-insert into  `MijnInzet`.`vakantie_rooster` (`datum`, `omaschrijving`) VALUES ('2020-06-01', '2e Pinksterdag');
-
-
-
-
-
-
-
 
 
 -- -----------------------------------------------------
