@@ -135,6 +135,12 @@ public class VacatureController implements RetrieveUserRole {
     public long returnDays(Task task) {
         LocalDate deadline = task.getSluitdatum();
         LocalDate today = LocalDate.now();
+
+
+        if(deadline == null) {
+            deadline = LocalDate.now();
+        }
+
         long elapsedDays = ChronoUnit.DAYS.between(today, deadline);
         return elapsedDays;
     }
