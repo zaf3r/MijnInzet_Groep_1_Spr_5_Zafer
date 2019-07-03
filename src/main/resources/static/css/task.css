@@ -93,6 +93,10 @@ div#buttons {
     color: white;
 }
 
+#love:hover {
+    color: white;
+}
+
 .tekst {
     float: left;
     height: auto;

@@ -80,7 +80,7 @@
                     <textarea type="text" id="beschrijvingLang" th:field = "*{beschrijvingLang}" required height="100px" maxlength='240'></textarea>
                     <p id="textleft"></p><br>
                 </div>
-                <button type="submit" id="opslaan" name="opslaan">Sla op</button>
+                <button type="submit" id="opslaan" name="opslaan"  onclick="alert ('De nieuwe vacature is opgeslagen')">Sla op</button>
                 <span style="display: none;"
                       id="successMsg"> De vacature is opgeslagen! </span>
                 <button type="reset" id="resetForm" name="resetForm"  onclick="textFunction()">Opnieuw</button>
@@ -180,5 +180,5 @@ console.log(payload);
     </div>
 </div>
 </body>
-<footer th:insert="~{footer :: footer}"></footer>
+<!--<footer th:insert="~{footer :: footer}"></footer>-->
 </html>
