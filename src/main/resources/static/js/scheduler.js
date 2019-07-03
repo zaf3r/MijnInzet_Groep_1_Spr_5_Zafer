@@ -553,5 +553,4 @@ function resetCourses() {
     fridayMoSub.innerHTML = "";
     fridayAfSub.innerHTML = "";
     fridayEvSub.innerHTML = "";
-
 }

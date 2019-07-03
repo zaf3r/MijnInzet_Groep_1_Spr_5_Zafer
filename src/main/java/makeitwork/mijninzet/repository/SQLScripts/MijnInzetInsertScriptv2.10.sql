@@ -91,7 +91,7 @@ VALUES ('9', 'We zijn op zoek naar een ICT-specialist die verantwoordelijk is vo
 Bij netwerkproblemen of andere technische complicaties…', 'We zijn op zoek naar een ICT-specialist die verantwoordelijk is voor het dagelijks beheer en het onderhoud
 van de ICT-omgeving binnen een organisatie. Bij netwerkproblemen of andere technische complicaties…', '2020-10-01', 'Theo Thijssenhuis', '2019-07-07', '2019-09-08', '0', 'Systeembeheerder', '8');
 
-INSERT INTO `mijninzet`.`cohort`(`cohort_id`, `cohort_naam`, `end_date`, `start_date`, `idgebruiker`) VALUES ('1', 'Lente', '2019-03-01', '2019-07-05', '7');
+INSERT INTO `mijninzet`.`cohort`(`cohort_id`, `cohort_naam`, `end_date`, `start_date`, `idgebruiker`) VALUES ('1', 'C19', '2019-03-01', '2019-07-05', '7');
 
 -- -----------------------------------------------------
 -- Table `mijninzet`.`cohort`

@@ -117,14 +117,19 @@ public class CohortController implements RetrieveUserRole {
     public String saveCohort(@ModelAttribute("saveCohort")Cohort cohort, @RequestParam("coordinator")User co) {
 
 //        try {
+        String cohortName = cohort.getCohortName();
+
+        if (coRepo.findByCohortName(cohortName) != null) {
+//            System.out.println();
+        } else {
             cohort.setUser(co);
             cohort.setStartDate(cohort.getStartDate().plusDays(INCREMENT_DAY_HIBERNATE_FIX));
             cohort.setEndDate(cohort.getEndDate().plusDays(INCREMENT_DAY_HIBERNATE_FIX));
-
-            generateWeeksAndDays(cohort);
+            generateWeeksAndDays(cohort); }
 //        } catch (ConstraintViolationException ex) {
 //            throw new ValidationException("Unable to determine current Hibernate session", ex);
 //        } finally {
+
             return "redirect:/manager/cohort";
         }
 //    }
