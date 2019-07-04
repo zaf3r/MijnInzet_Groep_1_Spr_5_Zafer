@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -32,7 +33,7 @@ public class userRepository {
         }
 
         @Override
-        public List<User> findAllByRole(Role role) {
+        public Set<User> findAllByRole(Role role) {
             return null;
         }
 

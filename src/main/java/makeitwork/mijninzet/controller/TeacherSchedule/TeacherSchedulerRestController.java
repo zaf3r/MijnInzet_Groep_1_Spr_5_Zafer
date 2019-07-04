@@ -19,6 +19,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api")
@@ -59,18 +60,18 @@ public class TeacherSchedulerRestController {
     @Autowired
     CohortDayRepository cohortDayRepository;
 
-    //TO CLEAN
     @GetMapping("/getTeachers")
     public List<User> findTeacherListHandler() {
 
-        List<User> teacherList = userRepository.findAllByRole(TEACHER_ROLE);
-        for(User user : teacherList) {
+        Set<User> teacherSet = userRepository.findAllByRole(TEACHER_ROLE);
+        for(User user : teacherSet) {
             loadAvailability(user);
         }
+
+        List<User> teacherList = new ArrayList<>(teacherSet);
         return teacherList;
     }
 
-    //TO CLEAN
     @GetMapping("/getPreferences")
     public List<Preference> findAllPreferencesHandler() {
         return preferenceRepository.findAll();
@@ -92,7 +93,6 @@ public class TeacherSchedulerRestController {
         LocalDate dateIncident = parseStringToLocalDate(dateString).plusDays(INCREMENT_DAY_HIBERNATE_FIX);
         User user = userRepository.findByUsername(userName);
         Incident incident = incidentRepository.findIncidentByUserAndDateIncident(user,dateIncident);
-
         boolean noIncident;
 
         if(incident == null) {
