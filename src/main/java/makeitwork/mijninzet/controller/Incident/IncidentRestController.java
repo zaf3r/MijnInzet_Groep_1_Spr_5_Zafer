@@ -1,4 +1,4 @@
-package makeitwork.mijninzet.controller;
+package makeitwork.mijninzet.controller.Incident;
 
 import makeitwork.mijninzet.model.Availability.Incident.Incident;
 import makeitwork.mijninzet.model.Availability.Incident.IncidentDTO;

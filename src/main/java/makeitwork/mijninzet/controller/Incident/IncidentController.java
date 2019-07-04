@@ -1,5 +1,6 @@
-package makeitwork.mijninzet.controller;
+package makeitwork.mijninzet.controller.Incident;
 
+import makeitwork.mijninzet.controller.RetrieveUserRole;
 import makeitwork.mijninzet.model.Availability.Incident.Incident;
 import makeitwork.mijninzet.model.Availability.Incident.IncidentForm;
 import makeitwork.mijninzet.model.Availability.Weekday;

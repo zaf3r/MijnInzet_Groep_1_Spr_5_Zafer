@@ -1,5 +1,6 @@
-package makeitwork.mijninzet.controller;
+package makeitwork.mijninzet.controller.TeacherSchedule;
 
+import makeitwork.mijninzet.controller.RetrieveUserRole;
 import makeitwork.mijninzet.model.*;
 import makeitwork.mijninzet.model.preference.Preference;
 import makeitwork.mijninzet.model.preference.PreferenceForm;
@@ -21,7 +22,7 @@ import java.util.Set;
 
 @Controller
 @RequestMapping("/teacher")
-public class TeacherController implements RetrieveUserRole{
+public class TeacherController implements RetrieveUserRole {
 
     final private List<PreferenceScale> preferenceScaleList = getPreferenceScaleList();
 

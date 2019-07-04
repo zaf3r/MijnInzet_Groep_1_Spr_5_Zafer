@@ -1,4 +1,4 @@
-package makeitwork.mijninzet.controller;
+package makeitwork.mijninzet.controller.TeacherSchedule;
 
 import makeitwork.mijninzet.model.Availability.GlobalAvailability.Availability;
 import makeitwork.mijninzet.model.Availability.Incident.Incident;
