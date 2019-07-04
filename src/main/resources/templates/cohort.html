@@ -16,6 +16,7 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript" src="/js/cohort.js" th:src="@{/js/cohort.js}"></script>
+
 <head>
     <meta charset="UTF-8">
     <title>Cohortbeheer</title>
@@ -45,13 +46,13 @@
         <h1>Cohort beheer</h1>
     </section>
 
-    <form action="#" th:object="${attr1}" th:action="@{saveCohort}" method="post" id="saveCohort" align="center">
+    <form action="#" th:object="${attr1}" th:value="${attr1}" th:action="@{saveCohort}" method="post" id="saveCohort" align="center">
         <div>
             <h4 class="text-center">Voeg hier een cohort toe</h4>
             <div align="center">
             <div>
                 <label class = "een">Cohortnaam:</label>
-                <input type="text" th:field="*{cohortName}" required title="Vul een vaknaam in! "id="cohortName" name="cohortName"/>
+                <input type="text" th:field="*{cohortName}" required title="Vul een cohortnaam in! "id="cohortName" name="cohortName"/>
                 <label>Coordinator:</label>
                 <select name="coordinator" id="coordinator" required>
                     <option value="">Selecteer een coordinator</option>
@@ -65,7 +66,9 @@
                 <label for="to">Einddatum:</label>
                 <input type="text" id="to" name="to" th:field="*{endDate}" required title="Vul een datum in "/>
             </div>
+
                 <input type="submit" th:onclick="alert('Het cohort is opgeslagen in de database.')" value="Opslaan" id="opslaanCohort"/>
+
             </div>
         </div>
     </form>

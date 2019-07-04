@@ -10,7 +10,6 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
-
 @Entity
 @Table(name = "cohort")
 public class Cohort {
@@ -45,10 +44,6 @@ public class Cohort {
     @OneToMany(mappedBy = "cohort",cascade= CascadeType.PERSIST)
     private List<CohortWeek> cohortWeekList;
 
-    public List<Subject> getSubjects() { return subjects; }
-
-    public void setSubjects(List<Subject> subjects) { this.subjects = subjects; }
-
     public Cohort() {}
 
     public Cohort(String cohortName, LocalDate startDate, LocalDate endDate) {
@@ -71,17 +66,9 @@ public class Cohort {
 
     public LocalDate getEndDate() { return endDate; }
 
-    public void addSubject(Subject subject){
-        List<Subject> subjects = getSubjects();
-        if(!subjects.contains(subject))
-            subjects.add(subject);
-    }
+    public List<Subject> getSubjects() { return subjects; }
 
-    public void removeSubject(Subject subject) {
-        List<Subject> subjects = getSubjects();
-        if (subjects.contains(subject))
-            subjects.remove(subject);
-    }
+    public void setSubjects(List<Subject> subjects) { this.subjects = subjects; }
 
     public void setCohortName(String cohortName) {
         this.cohortName = cohortName;
@@ -102,6 +89,19 @@ public class Cohort {
     public void setCohortWeekList(List<CohortWeek> cohortWeekList) {
         this.cohortWeekList = cohortWeekList;
     }
+
+    public void addSubject(Subject subject){
+        List<Subject> subjects = getSubjects();
+        if(!subjects.contains(subject))
+            subjects.add(subject);
+    }
+
+    public void removeSubject(Subject subject) {
+        List<Subject> subjects = getSubjects();
+        if (subjects.contains(subject))
+            subjects.remove(subject);
+    }
+
 
     @Override
     public String toString() {

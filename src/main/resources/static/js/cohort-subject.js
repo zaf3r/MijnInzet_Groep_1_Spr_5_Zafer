@@ -9,8 +9,6 @@ var cohortList = document.querySelector('#cohortList');
 var selectedSubjects = document.querySelector('select[name="selectedSubjects"]');
 var possibleSubjects = document.querySelector('select[name="possibleSubjects"]');
 $(document).ready(function () {
-
-
     console.log("Here!");
     $(function () {
         $.getJSON(getrequestCohorts, function (data) {

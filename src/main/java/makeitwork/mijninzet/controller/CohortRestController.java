@@ -33,7 +33,7 @@ public class CohortRestController {
     @GetMapping("/findCohorts")
     public List<String> findCohortsHandler(Principal principal) {
         User user = userRepository.findByUsername(principal.getName());
-        List<Cohort> cohortList = cohortRepository.findAllByUser(user);
+        List<Cohort> cohortList = cohortRepository.findByUser(user);
         List<String> cohortNamesOfManager = new ArrayList<>();
 
         for (Cohort cohort: cohortList) {

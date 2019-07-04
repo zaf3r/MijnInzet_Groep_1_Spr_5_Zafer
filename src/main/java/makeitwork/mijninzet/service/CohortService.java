@@ -17,34 +17,13 @@ import java.util.List;
 
 @Service
 public class CohortService {
-    @Autowired
-    private SubjectRepository subjectRepository;
+
     @Autowired
     private CohortRepository cohortRepository;
     @Autowired
     private UserRepository userRepository;
     @Autowired
     private RoleRepository roleRepository;
-
-    @Transient
-    private final String COORDINATOR = "Manager";
-    @Transient
-    private final String TEACHER = "Docent";
-
-
-//    public Subject getSubject(String subjectName){
-//        return subjectRepository.findBySubjectName(subjectName);
-//    }
-
-
-//    public List<Subject> getAllSubjects(Cohort cohort){
-//        List<Subject> subjects = new ArrayList<>();
-//        for (String subjectName: cohort.getSubjectNames()) {
-//            Subject subject = getSubject(subjectName);
-//            subjects.add(subject);
-//        }
-//        return subjects;
-//    }
 
     public List<Subject> getAllSubjects(Cohort cohort){
         List<Subject> subjects = new ArrayList<>();
@@ -53,28 +32,6 @@ public class CohortService {
         }
         return subjects;
     }
-
-//    public void addSubject(Cohort cohort, Subject subject){
-//        cohort.addSubject(subject.getSubjectName());
-//        cohortRepository.save(cohort);
-//    }
-
-//    public void removeSubject(Cohort cohort, Subject subject){
-//        cohort.removeSubject(subject.getSubjectName());
-//        cohortRepository.save(cohort);
-//    }
-
-//    public List<User> coordinatorList(){
-//        List<User> coordinators = new ArrayList<>();
-//        List<User> users = userRepository.findAll();
-//        for (User user : users){
-//            List<Role> roles = user.getRole();
-//                if (roles.contains(roleRepository.findByRoleName(COORDINATOR)))
-//                    coordinators.add(user);
-//        }
-//        return coordinators;
-//    }
-
 
     public List<User> userList(String roleType){
         List<User> userList = new ArrayList<>();
@@ -87,14 +44,7 @@ public class CohortService {
         return userList;
     }
 
-
     public Cohort getCohort(String name){
         return cohortRepository.findByCohortName(name);
     }
-    public List<Cohort> allCohorts(){
-        return cohortRepository.findAll();
-    }
-
-
-
 }
