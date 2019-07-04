@@ -1,4 +1,4 @@
-package makeitwork.mijninzet.model;
+package makeitwork.mijninzet.model.CourseSchedule;
 
 import org.springframework.format.annotation.DateTimeFormat;
 

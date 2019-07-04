@@ -9,6 +9,7 @@ import makeitwork.mijninzet.model.Availability.DayFinder;
 import makeitwork.mijninzet.model.Availability.Weekday;
 import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.model.preference.Subject;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -28,7 +29,7 @@ public class CohortDay implements DayFinder<CohortDay,DayOfWeek> {
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
     @DateTimeFormat(pattern = "MM/dd/yyyy")
-    @Column(name = "datum")
+    @Column(name = "datum", updatable = false)
     private LocalDate date;
 
     @Enumerated(EnumType.STRING)

@@ -1,14 +1,16 @@
-package makeitwork.mijninzet.controller;
+package makeitwork.mijninzet.controller.CourseSchedule;
 
 import com.google.gson.Gson;
 import com.mongodb.BasicDBObject;
 import makeitwork.mijninzet.model.*;
+import makeitwork.mijninzet.model.CourseSchedule.CourseSchedule;
+import makeitwork.mijninzet.model.CourseSchedule.receiveCourse;
+import makeitwork.mijninzet.model.CourseSchedule.receiveDatum;
 import makeitwork.mijninzet.model.preference.Subject;
 import makeitwork.mijninzet.repository.CohortRepository;
 import makeitwork.mijninzet.repository.CourseScheduleRepository;
-import makeitwork.mijninzet.repository.HolidayScheduleRepository;
 import makeitwork.mijninzet.service.CohortService;
-import makeitwork.mijninzet.service.CourseScheduleService;
+import makeitwork.mijninzet.service.CourseSchedule.CourseScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
-import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -84,9 +85,9 @@ public class CourseScheduleController {
     @PostMapping("/storeCourse")
     public @ResponseBody
     String storeCourseSchedule(@RequestBody receiveCourse requestPayload) {
-        CourseSchedule course=service.storeCourse(requestPayload);
+        var stored=service.storeCourse(requestPayload);
         BasicDBObject output = new BasicDBObject();
-        if (course!=null)
+        if (stored)
             output.put("exists", true);
         else {
             output.put("exists", false);

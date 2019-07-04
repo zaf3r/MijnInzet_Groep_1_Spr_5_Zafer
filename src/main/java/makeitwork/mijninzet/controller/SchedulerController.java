@@ -73,7 +73,6 @@ public class SchedulerController implements RetrieveUserRole{
     }
 
 
-
     //dit is niet langer een list in een drop down menu maar een stuk tekst in elk vakje.
     public List<Subject> selectedSubjectsList(Cohort cohort){
         List<Subject> selectedSubjects = cohortRepo.getAllSubjects(cohort);
@@ -128,5 +127,31 @@ public class SchedulerController implements RetrieveUserRole{
 
     //public void weekList(CourseSchedule weeks) { selectedWeek = selectedWeekList(weeks); }
 
+    public int addHours (User user, Subject subject){
+        int allocatedHours = user.getHoursAllocated(); //0
+        int subjectHours = subject.getHours();//12
+        int total = Integer.sum(allocatedHours, subjectHours); //12
+        return total;
+    }
+
+    public boolean checkHours (User user) {
+        int contracthours = user.getHours(); //40
+        int allocatedhours = user.getHoursAllocated(); //12
+        if(allocatedhours <= contracthours) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean checkConstraintHours (Subject subject, User user) {
+        int allocatedHours = addHours(user, subject);
+        int contractHours = user.getHours();
+        if (allocatedHours <= contractHours){
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 }

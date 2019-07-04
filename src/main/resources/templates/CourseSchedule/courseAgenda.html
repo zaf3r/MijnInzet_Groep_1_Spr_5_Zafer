@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous">
+    </script>
+    <link rel="stylesheet" href="/css/courseSchedule.css">
+<!--    <script type="text/javascript" src="/js/courseSchedule.js"></script>-->
+
+</head>
+<body>
+<div class="kop"><center><h1>Het vakkenrooster</h1></center></div><br><br>
+<div class="selectionData">
+    <div class="criteria">Selectia criteria</div>
+    <div class="grid-containerData">
+<!--        deze code kan actief gemaakt worden zogauw iteratie probleem vanuit docentrooster is opgelost-->
+<!--        <div class="grid-item">-->
+<!--            <select class="" id="cohorts2Plan" name="cohorts2Plan"></select>-->
+<!--        </div>-->
+        <div class="grid-item">
+            <p class="text_data">begindatum</p>
+            <p><input type="date" class="selectData" name="selectData" id="startDate" onchange="storeStartDate(event)">
+            </p>
+        </div>
+        <div class="grid-item">
+            <p class="text_data">einddatum</p>
+            <p><input type="date" class="selectData" name="selectData" id="closingDate" onchange="storeEndDate(event)">
+            </p>
+        </div>
+    </div>
+</div>
+
+
+<div class="content">
+    <br>
+    <div class="grid-container3">
+        <div class="grid-item1">maandag</div>
+        <div class="grid-item1">dinsdag</div>
+        <div class="grid-item1">woensdag</div>
+        <div class="grid-item1">donderdag</div>
+        <div class="grid-item1">vrijdag</div>
+        <div class="grid-item1">zaterdag</div>
+        <div class="grid-item1">zondag</div>
+
+    </div>
+    <div class="grid-container3" id="regelPerWeek">
+        <!--Let op: dit is geen lege <div>. Op de plek worden in de DOM regels voor het vakkenrooster geplaatst-->
+    </div>
+</div>
+
+
+<script>
+    var cohortName="";
+    var begin = "2019-06-12";
+    var closing = "2019-10-31";
+</script>
+<script>
+    $(document).ready(function () {
+        //todo min max date op cohort begin and end
+        $.ajax({
+            type: "POST",
+            url: "/cohortsToPlan",
+            contentType: "application/json; charset-utf-8",
+            dataType: "json",
+            data: "{}",
+            success: function (response) {
+                $("#cohorts2Plan").empty();
+                $("#cohorts2Plan").append('<option value="-1">Kies een cohort</option>')
+                $.each(response, function (i, item) {
+                    $("#cohorts2Plan").append('<option value="">' + response[i].cohortName + '</option>');
+                });
+            }
+        })
+    });
+    $("#cohorts2Plan").on("change", function () {
+        cohortName = $(this).find(':selected').text();
+        payload = JSON.stringify({begin, closing, cohortName});
+        $.ajax({
+            type: "POST",
+            url: "/cohort",
+            contentType: "application/json; charset-utf-8",
+            dataType: "json",
+            data: payload,
+        }).done(function (response) {
+            begin = response.startdate;
+            closing = response.enddate;
+            document.getElementById(startDate).value(begin);
+            document.getElementById(closingDate).value(closing);
+        });
+    });
+    $("#closingDate").on("change", function () {
+        $("#regelPerWeek").empty();
+        payload = JSON.stringify({begin, closing,cohortName});
+        console.log(payload);
+        $.ajax({
+            type: "POST",
+            url: "/agenda",
+            contentType: "application/json; charset-utf-8",
+            dataType: "json",
+            data: payload,
+        }).done(function (response) {
+            var datumEerder = "eerder";
+            $("#regelPerWeek").empty();
+            $.each(response, function (i, item) {
+                var datum = response[i].date.day + '-' + response[i].date.month;
+                var titleHoliday = response[i].descriptionTop;
+                if (datum != datumEerder) {
+                    $("#regelPerWeek").append('<div class="grid-item1">' +
+                        '<p class="datum" id="' + datum + '">' + datum + '<br>' + titleHoliday + '</p>' +
+                        '<p class="morgen" id="' + datum + 'morgen">' + '&zwnj;' + '</p>' +
+                        '<p class="middag" id="' + datum + 'middag">' + '&zwnj;' + '</p>' +
+                        '<p class="avond" id="' + datum + 'avond">' + '&zwnj;' + '</p>' +
+                        '</div>');
+                    datumEerder = datum
+                }
+            });
+            //einde each
+            $.each(response, function (i, item) {
+                var datum = response[i].date.day + '-' + response[i].date.month;
+                var cohortMorning = response[i].cohortMorning;
+                var subjectMorning = response[i].subjectMorning;
+                var cohortMiddag = response[i].cohortAfternoon;
+                var subjectMiddag = response[i].subjectAfternoon;
+                var cohortAvond = response[i].cohortNight;
+                var subjectAvond = response[i].subjectNight;
+                pointer = datum + 'morgen';
+                if (subjectMorning != "") {
+                    document.getElementById(pointer).innerHTML = '<em>\n' + cohortMorning + '</em>\n<br>\n' + subjectMorning
+                }
+                ;
+                pointer = datum + 'middag';
+                if (subjectMiddag != "") {
+                    document.getElementById(pointer).innerHTML = '<em>\n' + cohortMiddag + '</em>\n<br>\n' + subjectMiddag
+                }
+                ;
+                pointer = datum + 'avond';
+                if (subjectAvond != "") {
+                    document.getElementById(pointer).innerHTML = '<em>\n' + cohortAvond + '</em>\n<br>\n' + subjectAvond
+                }
+                ;
+            })
+        })
+    });
+</script>
+<script>
+    function storeStartDate(event) {
+        begin = event.target.value;
+    }
+</script>
+<script>
+    function storeEndDate(event) {
+        closing = event.target.value;
+    }
+</script>
+</body>
+</html>

@@ -28,7 +28,7 @@ table {
 
 #docentTabel tr td { background: #ffdec4; }
 
-.availabilityConstraint{
+.HardConstraint{
     background: #ff002b !important;
 }
 

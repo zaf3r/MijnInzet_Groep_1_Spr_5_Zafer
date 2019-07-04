@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -19,44 +20,150 @@ public class VacatureService {
     @Autowired
     private TaskRepository taskRepository;
 
-    //save Vacature in DB SQL
-    public void addTask(Task task, User user){
-        System.out.println("Task: " + task);
-        System.out.println("User: " + user);
-        System.out.println("User: " + user.getUsername());
-
-        user.addTask(task.getId());
-        vacatureRepository.save(user);
-    }
-    //todo teller bijhouden??
-    //wordt een taak uit zijn eigen lijst verwijderd
-    public void removeTask(Task task, User user) {
-        System.out.println("Task: " + task);
-        user.removeTask(task.getId());
-        vacatureRepository.save(user);
-    }
-    //MongoDB
-    public Task getTask(String taskId){
-        return taskRepository.findDocumentById(taskId);
+    public Task getTask(int taskId){
+        return taskRepository.findTaskById(taskId);
     }
 
-    //lijst met vacatures van een Docent: zijn lijst met taken
+    //    lijst met vacatures van een Docent: zijn lijst met taken
     public List<Task> getAllTasks(User user){
         List<Task> tasks = new ArrayList<>();
-        for (String taskId: user.getTasks()
-        ) { Task task = getTask(taskId);
+        for (Task taskId: user.getTasks()) {
+            Task task = getTask(taskId.getId());
             tasks.add(task);
         }
         return tasks;
     }
 
-    //stel taak is komen te vervallen, moet deze taak overal uit de DB (bij teacher) verwijderd worden.
-    public void removeTaskFromOverview(Task task){
+    //save Vacature in DB SQL
+    public void addTask(Task task, User user) {
+        if (checkHoursSolliciteren(task, user)) {
+        task.getUsers().add(user);
+        user.getTasks().add(task);
+        vacatureRepository.save(user);
+        taskRepository.save(task);
+        }
+    }
 
-//        for (User user: vacatureRepository.findAll()) {
-//            removeTask(task,teacher);
-//        }
-        taskRepository.delete(task);
+    //wordt een taak uit zijn eigen lijst verwijderd
+    public void removeTask(Task task, User user) {
+        System.out.println("Task: " + task);
+        user.getTasks().remove(task);
+        task.getUsers().remove(user);
+        vacatureRepository.save(user);
+        taskRepository.save(task);
+    }
+
+
+    // voor de MANAGER: lijst met tasks en users die gesolliciteerd hebben (lijst sollicitanten)
+    public List<Task> allApplications() {
+        List<Task> allTasks = taskRepository.findAll();
+        Iterator<Task> iter = allTasks.iterator();
+
+        while (iter.hasNext()) {
+            Task t = iter.next();
+            if (t.getTaskStatus() == (Task.TaskStatus.APPROVED)) {
+                iter.remove();}
+            if (t.getUsers().isEmpty()) {
+                iter.remove();
+            }
+        }return allTasks;
+
+    }
+
+    //voor het zelfde doel als bovenstaande
+    public List<User> getSollicitanten (int taskId){
+        try{
+            return taskRepository.findTaskById(taskId).getUsers();
+        } catch (NullPointerException e){
+            return new ArrayList<>();
+        }
+    }
+    //TODO is geen List<> denk ik
+    public void approveSollicitant(User user, Task task){
+        List<User> approved = new ArrayList<>();
+        approved.add(user);
+        taskRepository.findTaskById(task.getId()).setUsers(approved);
+        task.setTaskStatus(Task.TaskStatus.APPROVED);
+    }
+
+    public void saveApprovedTasks(User user, Task task){
+        user.getSollicitaties().add(task);
+        System.out.println("Opgeslagen user is" + user);
+        task.setUitvoerder(user);
+        task.setTaskStatus(Task.TaskStatus.APPROVED);
+        int hours = addHours(task, user);
+        user.setHoursAllocated(hours);
+        vacatureRepository.save(user);
+    }
+
+    //TODO de uren final maken ivm software maintanance
+    public int hoursToApply (User user) {
+        int allocatedHours = user.getHoursAllocated(); //5
+        int contractHours = user.getHours(); //40
+        int hourstoFillIn = contractHours - allocatedHours; //35
+        return hourstoFillIn;
+    }
+
+    public int addHours (Task task, User user){
+        int allocatedHours = user.getHoursAllocated(); //0
+        int taskHoursPossible = task.getUren(); //4
+        return Integer.sum(allocatedHours, taskHoursPossible); //4
+    }
+
+    public boolean checkHoursSolliciteren (Task task, User user) {
+        int contractHours = user.getHours(); //40
+        int allocatedHours = user.getHoursAllocated(); //0
+        int taskHoursPossible = task.getUren(); //4
+        if((allocatedHours + taskHoursPossible) <= contractHours) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void saveTasks (Task task){
+        taskRepository.save(task);
+    }
+
+    public void saveTask (String titel, String description, int hours, String location, String longD) {
+        Task newTask = new Task(titel, description, hours, location, longD);
+        taskRepository.save(newTask);
+    }
+
+    public List<User> getDisapprovedApplicants (Task task) {
+//        int taakId = task.getId();
+//        task = getTask(taakId);
+        List<User> sollicitanten = task.getUsers();
+        List<User> disapproved = new ArrayList<>();
+        boolean Uitvoerder = checkUitvoerder(task.getId());
+
+        if (Uitvoerder= true) {
+            User user = task.getUitvoerder();
+            for (User sollicitant: sollicitanten) {
+                if(sollicitant != user) {
+                    disapproved.add(sollicitant);
+                }
+            }
+        } return disapproved;
+    }
+
+//   public List<Task> getDisApTaskperUser (User user, Task task) {
+//        List <User> toCompare = getDisapprovedApplicants(task);
+//        List<Task> yourDisapprovedTasks = new ArrayList<>();
+//        for (:) {
+//
+//       }
+//   }
+
+
+    public boolean checkUitvoerder (int taakId) {
+        Task task = getTask(taakId);
+        if(task.getUitvoerder() == null) {
+            return false;
+        } else {
+            return true;
+
+        }
     }
 
 

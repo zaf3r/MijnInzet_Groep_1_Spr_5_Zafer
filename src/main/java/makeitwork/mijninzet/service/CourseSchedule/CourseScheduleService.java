@@ -1,24 +1,20 @@
-package makeitwork.mijninzet.service;
+package makeitwork.mijninzet.service.CourseSchedule;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
-import com.google.gson.stream.JsonReader;
 import makeitwork.mijninzet.controller.RetrieveUserRole;
 import makeitwork.mijninzet.model.*;
 import makeitwork.mijninzet.model.Availability.PartOfDay;
 import makeitwork.mijninzet.model.Availability.Weekday;
+import makeitwork.mijninzet.model.CourseSchedule.*;
 import makeitwork.mijninzet.model.TeacherSchedule.CohortWeek;
 import makeitwork.mijninzet.model.preference.Subject;
 import makeitwork.mijninzet.repository.*;
+import makeitwork.mijninzet.service.CohortService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
-import javax.imageio.IIOException;
-import java.io.IOException;
 import java.security.Principal;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 
@@ -40,10 +36,6 @@ public class CourseScheduleService implements RetrieveUserRole {
 
     static final int URENLESBLOK=4;
 //    static final String STATUS_PLANNING_COHORT=StatusCourseSchedule.DEFINITIEF.ordinal();
-
-    public void storeCourseSchedule(CourseSchedule schedule){
-        courseScheduleRepository.saveAndFlush(schedule);
-    }
 
 
     public List<CourseSchedule> courseSchedule(Cohort cohort){
@@ -162,9 +154,9 @@ public class CourseScheduleService implements RetrieveUserRole {
         List<CourseSchedule> courses=courseSchedule(cohortRepository.findByCohortName(cohortName));
         List<Subject> subjectHours=new ArrayList<>(); // this list will cointans subjects with the sum of their planned hours
         for (CourseSchedule course:courses) {
-            if (course.getStatus()==StatusCourseSchedule.DEFINITIEF)  courses.remove(course);
+            if (course.getStatus()== StatusCourseSchedule.DEFINITIEF)  courses.remove(course);
            // else { if (!subjectHours.contains(course.getSubject()))
-//            todo deze functie afmaken
+//            todo deze functie afmaken is nog niet nodig
         }
     }
     public Boolean isNonTeachingDay(receiveDatum date){
@@ -175,11 +167,13 @@ public class CourseScheduleService implements RetrieveUserRole {
         }
         return present;
     }
-    public CourseSchedule storeCourse(receiveCourse course){
+    public Boolean storeCourse(receiveCourse course){
+        //this method store the course (if applicable) and return true (!equals) in that case
+        //if the course is not stored false (!equals) is returned.
         CourseSchedule schedule=new CourseSchedule();
         schedule.setCohort(cohortRepository.findByCohortName(course.getCohortName()));
         schedule.setSubject(subjectRepository.findBySubjectName(course.getSubjectName()));
-        schedule.setDate(course.getDate());
+        schedule.setDate(course.getDate().plusDays(0));
         switch (course.getPartOfDay()){
             case "OCHTEND": schedule.setPartOfDay(PartOfDay.OCHTEND); break;
             case "MIDDAG": schedule.setPartOfDay(PartOfDay.MIDDAG); break;
@@ -188,9 +182,31 @@ public class CourseScheduleService implements RetrieveUserRole {
         }
         if (course.getStatus()==null) schedule.setStatus(StatusCourseSchedule.INPLANNING);
         else {schedule.setStatus(StatusCourseSchedule.DEFINITIEF);}
-        return courseScheduleRepository.saveAndFlush(schedule);
+        var equals=false;
+        List<CourseSchedule> storedSchedules=courseScheduleRepository.findAllByCohort(schedule.getCohort());
+        for (CourseSchedule workshop: storedSchedules) {
+            //if equals ==true then there is the same workshop. No need for more checks
+            if (equals==true) break;
+            if( schedule.getSubject().equals(workshop.getSubject())){
+                if (schedule.getDate().toString()==(workshop.getDate().toString())) {
+                    if (schedule.getPartOfDay().equals(course.getPartOfDay()))
+                    equals=true;break;}
+                }
+        }
+        schedule.setDate(schedule.getDate().plusDays(1));
+        if(equals==false) courseScheduleRepository.saveAndFlush(schedule);
+       return !equals;
     }
 
+    public List<CourseSchedule> plannedCourses(String cohortName, String subjectName){
+        List<CourseSchedule> allPlannedCourses=courseScheduleRepository.findAll();
+        List<CourseSchedule> plannedCourses=new ArrayList<>();
+        for (CourseSchedule course:allPlannedCourses) {
+            if(course.getCohort().getCohortName()!=cohortName||
+                    course.getSubject().getSubjectName()!=subjectName) plannedCourses.add(course);
+            }
+        return plannedCourses;
+    }
     public List<CourseSchedule> daySchedule(receiveDatum date) {
         //this method checks if on a given date courses are planned
         List<CourseSchedule> schedulesSource = courseScheduleRepository.findAll();

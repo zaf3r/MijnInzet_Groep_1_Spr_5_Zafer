@@ -9,9 +9,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface CohortDayRepository extends JpaRepository<CohortDay, Long> {
-    List<Weekday> findAllByDateAndTeacherMorning(LocalDate localDate, User user);
+    List<CohortDay> findAllByDateAndTeacherMorning(LocalDate localDate, User user);
 
-    List<Weekday>  findAllByDateAndTeacherAfternoon(LocalDate localDate, User user);
+    List<CohortDay>  findAllByDateAndTeacherAfternoon(LocalDate localDate, User user);
 
-    List<Weekday>  findAllByDateAndTeacherEvening(LocalDate localDate, User user);
+    List<CohortDay>  findAllByDateAndTeacherEvening(LocalDate localDate, User user);
 }

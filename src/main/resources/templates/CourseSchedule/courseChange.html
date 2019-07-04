@@ -9,59 +9,9 @@
             integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
             crossorigin="anonymous">
     </script>
-    <style>
-        .content {
-            max-width: 500px;
-            margin: auto;
-        }
+    <link rel="stylesheet" href="/css/courseSchedule.css">
+<!--    <script type="text/javascript" src="/js/courseSchedule.js"></script>-->
 
-        .grid-container {
-            display: grid;
-            grid-template-columns: 40em 40em;
-            justify-content: space-evenly;
-            background-color: inherit;
-            padding: 0px;
-            width: 82em;
-        }
-
-        .grid-container1 {
-            display: grid;
-            grid-template-columns: 12em 5em 5em 5em 5em 10em;
-            background-color: inherit;
-            padding: 0px;
-            justify-content: space-evenly;
-            width: 33em;
-        }
-
-        .grid-container2 {
-            display: grid;
-            grid-template-rows: 5em 5em 5em;
-            grid-template-columns: 10em 10em
-        }
-
-        .grid-item {
-            background-color: rgba(255, 255, 255, 0.8);
-            border: 1px solid rgba(0, 0, 0, 0.8);
-            padding: 20px;
-            font-size: inherit;
-            text-align: center;
-        }
-
-        .regelsPerLes {
-            width: 31em;
-        }
-
-        input.largerCheckbox {
-            width: 110%;
-            height: 110%;
-        }
-
-        input.largerText {
-            width: 110%;
-            height: 110%;
-            font-size: 110%;
-        }
-    </style>
 </head>
 <div>
     <div class="content">
@@ -88,8 +38,8 @@
         <form action="#" style="display: none">
 <!--            <input type="submit" th:onclick="" value="<" id="remove" style="display: none"/>-->
             <select id="selectedSubject" name="selectedSubject" required multiple="multiple" size="7" style="width: 250px">
-                <option th:each="subject: ${subjects}" th:value="${subject.subjectId}"
-                    th:text="${subject.subjectName}">
+                <option th:each="subject: ${subjects}" th:value="${subject.subjectId}">
+
                 </option>
             </select>
        </form>
@@ -101,8 +51,7 @@
             <!--            todo tonen in overzicht container2-->
             <!--            todo herhalingen met dropdown-->
             <!--            todo hele column voor geselecteerde data invullen "onclick"-->
-            <!--            todo checken of datum geen-les-dag is-->
-            <!--            todo check beschikbaarheid in-->
+<!--            todo nog aantal in tevulle workshops geven-->
                 <div class="grid-item">datum</div>
                 <div class="grid-item">ochtend</div>
                 <div class="grid-item">middag</div>
@@ -123,6 +72,7 @@
     var date;
     var partOfDay;
     var status = "";
+    var workshopExists=false;
 </script>
 <script>
     $(document).ready(function () {
@@ -160,7 +110,9 @@
             });
         })
     });
+    //todo min max date op cohort begin and end
     $("#vakkenCohort").on("change", function () {
+        //show at the view the number of the maximum courseSchedule possibilities
         var selectedText = $(this).find(':selected').text();
         subject = selectedText;
         payload = JSON.stringify({subjectName: selectedText});
@@ -188,9 +140,11 @@
                 n++;
                 o=n+1
                 p=o+1;
-                $("#regelPerLes").append('<div class="grid-item"><span type="text" id="' + n + '" style="display:none">opgeslagen</span>' +
-                    '                                            <span type="text" id="' + o + '" style="display:none">geef minimaal 1 dagdeel op</span>' +
-                    '                                            <span type="text" id="' + p + '" style="display:none">op deze dag zijn geen onderwijs activiteiten</span></div> ');
+                q=p+1
+                $("#regelPerLes").append('<div class="grid-item">   <span class="berichten" type="text" id="' + n + '" style="display:none">opgeslagen</span>' +
+                    '                                               <span class="berichten" type="text" id="' + o + '" style="display:none">geef minimaal 1 dagdeel op</span>' +
+                    '                                               <span class="berichten" type="text" id="' + p + '" style="display:none">op deze dag zijn geen onderwijs activiteiten</span>' +
+                    '                                               <span class="berichten" type="text" id="' + q + '" style="display:none">bestaat al, niet opgeslagen</span></div> ');
             });
         })
     });
@@ -198,19 +152,21 @@
 
 <script>
     function storeCourse(id) {
+        //store the courseSchedule in the database
+        checkWorkshop();
         if ($("input[type=checkbox][" + elementContent(id, 3) + "]:checked").val() == "on") {
             partOfDay = "OCHTEND";
-            storeCourseService(id)
+            if (!workshopExists)storeCourseService(id);
         }
         ;
         if ($("input[type=checkbox][" + elementContent(id, 2) + "]:checked").val() == 'on') {
             partOfDay = "MIDDAG";
-            storeCourseService(id)
+            if (!workshopExists)storeCourseService(id);
         }
         ;
         if ($("input[type=checkbox][" + elementContent(id, 1) + "]:checked").val() == "on") {
             partOfDay = "AVOND";
-            storeCourseService(id)
+            if (!workshopExists)storeCourseService(id);
         }
         ;
         if (($("input[type=checkbox][" + elementContent(id, 3) + "]:checked").val() != "on")&&
@@ -226,11 +182,12 @@
 </script>
 <script>
     function storeCourseService(id) {
+        // the course is transferred to the controller
+        // and the status of insert/updated is managed.
         date = dateLocal;
         subjectName = subject;
         var course = {cohortName, subjectName, date, partOfDay, status};
         var payload = JSON.stringify(course);
-        console.log(payload);
         $.ajax({
             type: 'POST',
             url: '/storeCourse',
@@ -239,9 +196,16 @@
             data: payload
         }).done(function (response) {
             if (response["exists"]) {
+                //the courseScheduel is stored in the database
+                $(".berichten").hide();
                 var teller = (parseInt(id) + 1).toString();
                 document.getElementById(teller).style.display = "block";
             //    todo aantal workshops
+            } else{
+                // not stored presummable because the schedule allready was in the database
+                $(".berichten").hide();
+                var teller = (parseInt(id) + 4).toString();
+                document.getElementById(teller).style.display = "block";
             }
         });
     }
@@ -249,6 +213,7 @@
 
 <script>
     function show(id, view) {
+        //show ("block" or not show ("none") the checkboxes
         var see = view ? 'block' : 'none';
         var teller = (parseInt(id) + 1).toString();
         document.getElementById(teller).style.display = see;//morgen
@@ -279,6 +244,30 @@
         // } else {document.getElementById(teller).style.display = "none"}
     }
 </script>
+<script>
+    function checkWorkshop(){
+        var date = dateLocal;
+        var desc = 'vakantie';
+        payload = JSON.stringify({date, desc});
+        if (dateLocal != '') {
+            $.ajax({
+                type: 'POST',
+                url: '/plannedWorkshop',
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                data: payload
+            }).done(function (response) {
+                if (response["exists"]) {
+                    //on the selected date there are workshops (at least 1)
+                    workshopExists=true;
+                } else {
+                    //no workshop found at the date
+                    workshopExists=false;
+                }
+
+    })}};
+
+</script>
 
 <script>
     function checkDate(event,id) {
@@ -305,14 +294,14 @@
                 data: payload
             }).done(function (response) {
                 if (response["exists"]) {
-                    console.log(date);
-                    console.log("is vakantie")
-                    view = !response["exists"]
+                    //the selected date is present in "vakantierooster"
+                    view = !response["exists"];
                     show(id, view);
+                    $(".berichten").hide();
                     var teller = (parseInt(id) + 7).toString();
                     document.getElementById(teller).style.display = "block";
                 } else {
-                    console.log(date);
+                    //the selected is not a holiday
                     view = true;
                     show(id, view);
                     var teller = (parseInt(id) + 7).toString();
@@ -325,8 +314,7 @@
                         data: payload
                     }).done(function (response) {
                         if (response["exists"]) {
-                            console.log(response);
-                            console.log("heeft planning");
+                            //on the selected date there are workshops (at least 1)
                             var teller = (parseInt(id) + 1).toString();
                             {if (response["morgen"]) {document.getElementById(teller).style.display = "none";}}
                             var teller = (parseInt(id) + 2).toString();
@@ -337,8 +325,7 @@
                             if (response["morgen"]&&response["middag"]&&response["avond"]){
                             document.getElementById(teller).style.display = "none"}
                         } else {
-                            console.log(response);
-                            console.log("heeft geen planning")
+                            //no workshop found at the date
                             view=true;
                             show(id,view);
                         }

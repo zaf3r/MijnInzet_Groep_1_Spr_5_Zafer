@@ -2,85 +2,168 @@
 <html lang="en">
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Nieuwe Vacature</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/navbar.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/generic.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/newTask.css}"/>
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
           integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <title>Nieuwe Vacature</title>
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous">
+    </script>
 </head>
-<div th:if="${roleUser.roleName == 'Terminator'}">
-    <header th:insert="~{navbar :: header}"></header>
-</div>
-<div th:if="${roleUser.roleName == 'Docent'}">
-    <header th:insert="~{navbarDocent :: header}"></header>
-</div>
-<div th:if="${roleUser.roleName == 'Administrateur'}">
-    <header th:insert="~{navbarAdministrateur :: header}"></header>
-</div>
-<div th:if="${roleUser.roleName == 'Manager'}">
-    <header th:insert="~{navbarManager :: header}"></header>
-</div>
-<div th:if="${roleUser.roleName == 'Roosteraar'}">
-    <header th:insert="~{navbarRoosteraar :: header}"></header>
-</div>
+<header th:insert="~{navbarManager :: header}"></header>
 <body>
-<div><h1>Voeg een nieuwe vacature toe</h1></div>
 
-<form id="taskForm" action="/addTask" method="POST">
-    <label for="Titel">Titel:</label>
-    <input type="text" id="titel" class="titel">
-    <label for="intro">Intro:</label>
-    <input type="text" id="intro">
-    <label for="uren">Aantal uren:</label>
-    <input type="text" id = "uren" >
-    <label for="locatie">Locatie:</label>
-    <input type="text" id="locatie">
-    <label for ="deadline">Sluitingsdatum:</label>
-    <input type="date" id="deadline"><br>
-    <label for="beschrijving">Beschrijving:</label><br>
-    <textarea rows 20 cols 800 id="beschrijving"></textarea><br>
-    <button type="submit" id="opslaan" name="opslaan">Sla op</button>
-    <button type="reset" id="resetForm" name="resetForm" onclick="textFunction()">Opnieuw</button>
+<div class ="container">
+    <div id = "h1" class="jumbotron text-center">
+        <h1>Voeg een nieuwe vacature toe</h1>
+    </div>
 
-    <footer th:insert="~{footer :: footer}"></footer>
+    <div class = "wrapper">
+        <form action ="#" th:action="@{/manager/createNewTask}" th:object="${createTask}" id="taskForm" method="post">
+
+
+        <div class="form-group row">
+            <label for ="titel" class="col-sm-2 col-form-label">Titel</label>
+            <div class="col-sm-10">
+                <input type="text" id="titel" class="titel" th:field="*{titel}" required title = "Vul een titel in">
+            </div>
+        </div>
+
+        <div class="form-group row" id ="introbox">
+            <label for="intro" class="col-sm-2 col-form-label">Beschrijving</label>
+                <div class="col-sm-10">
+                    <textarea type="text" id="intro" class="intro" th:field="*{beschrijving}"
+                              required intro = "Beschrijf kort waar de vacature over gaat"></textarea>
+                    <p id="text"></p>
+                </div>
+        </div>
+
+        <div class ="form-group row">
+            <label for="uren" class="col-sm-2 col-form-label">Aantal uren:</label>
+                <div class="col-sm-10">
+                    <input type="text" id = "uren" th:field="*{uren}" required>
+                </div>
+        </div>
+
+        <div class ="form-group row">
+            <label for ="locatie" class="col-sm-2 col-form-label">Locatie</label>
+                <div class="col-sm-10">
+                    <input type="text" id="locatie" th:field="*{locatie}" required>
+                </div>
+        </div>
+
+<!--    <label for ="sluitdatum">Sluitingsdatum:</label>-->
+<!--    <input type="date" id="sluitdatum" th:field="*{sluitdatum}" required>-->
+
+        <div class ="form-group row">
+            <label for ="startdatum" class="col-sm-2 col-form-label">Startdatum:</label>
+                <div class="col-sm-10">
+                    <input type ="text" id="startdatum" required th:field="*{startdatum}">
+                </div>
+        </div>
+
+<!--    <label for="einddatum"> Einddatum:</label>-->
+<!--    <input type="date" id="einddatum" required th:field="*{einddatum}">-->
+
+        <div class ="form-group row">
+            <label for="beschrijvingLang" class="col-sm-2 col-form-label">Beschrijving:</label>
+                <div class="col-sm-10">
+                    <textarea type="text" id="beschrijvingLang" th:field = "*{beschrijvingLang}" required height="100px" maxlength='240'></textarea>
+                    <p id="textleft"></p><br>
+                </div>
+                <button type="submit" id="opslaan" name="opslaan">Sla op</button>
+                <span style="display: none;"
+                      id="successMsg"> De vacature is opgeslagen! </span>
+                <button type="reset" id="resetForm" name="resetForm"  onclick="textFunction()">Opnieuw</button>
+
+        </div>
+
+
+
+
+
 </form>
+
+
 <script>
-    $("#taskForm").submit(function () {
-        var payload = JSON.stringify({
-            id:"",
-            titel: $("#titel").val(),
-            beschrijving: $("#intro").val(),
-            uren: $("#uren").val(),
-            locatie: $("#locatie").val(),
-            sluitdatum: $("#deadline").val(),
-            einddatum: $("#deadline").val(),
-            startdatum: $("#deadline").val(),
-            beschrijvinglang: $("#beschrijving").val()
-        });
-        $.ajax({
-            type: 'POST',
-            url: "/addTask",
-            contentType: 'application/json; charset=utf-8',
-            dataType: 'json',
-            data: payload
-        }).done(function (response) {
-            if (response["exists"]) {
-                if (response["exists"]) {
-                    $("#opslaan").text("opgeslagen")
-                } else {
-                    $("#opslaan").text("niet gelukt")
+    $(document).ready(
+        function() {
+            $("#taskForm").submit(function () {
+                event.preventDefault();
+                ajaxPost();
+            });
+
+            function ajaxPost() {
+
+                var payload = {
+                    titel: $("#titel").val(),
+                    beschrijving: $("#intro").val(),
+                    uren: $("#uren").val(),
+                    locatie: $("#locatie").val(),
+                    // sluitdatum: $("#sluitdatum").val(),
+                    // einddatum: $("#einddatum").val(),
+                    startdatum: $("#startdatum").val(),
+                    beschrijvingLang: $("#beschrijvingLang").val()
                 }
+console.log(payload);
+                $.ajax({
+                    type: 'POST',
+                    url: '/manager/createNewTask',
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    data: JSON.stringify(payload),
+                }).done(function (response) {
+                    if (response["exists"]) {
+                        if (response["exists"]) {
+                            $("#opslaan").text("opgeslagen")
+                        } else {
+                            $("#opslaan").text("niet gelukt")
+                        }
+                    }
+                })
             }
-        })
-        event.preventDefault();
-    })
+        });
+
+    const textarea = document.querySelector("textarea");
+
+    textarea.addEventListener("input", event => {
+        const target = event.currentTarget;
+        const maxLength = target.getAttribute("maxlength");
+        const currentLength = target.value.length;
+
+        if (currentLength >= maxLength) {
+            return console.log("You have reached the maximum number of characters.");
+        }
+
+        console.log(`${maxLength - currentLength} chars left`);
+    });
+
+    $('#beschrijvingLang').keyup(function (event) {
+        var max = 240;
+        var len = $(this).val().length;
+        var char = max - len;
+
+        $('#textleft').text("Nog " + char);
+    });
+
+    $('#intro').keyup(function (event) {
+        var max = 140;
+        var len = $(this).val().length;
+        var char = max - len;
+
+        $('#text').text("Nog " + char);
+    });
+
+
 </script>
 <script>
     function textFunction() {
@@ -88,5 +171,14 @@
         $("#opslaan").text("Opslaan gegevens")
     }
 </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    </div>
+</div>
 </body>
+<footer th:insert="~{footer :: footer}"></footer>
 </html>

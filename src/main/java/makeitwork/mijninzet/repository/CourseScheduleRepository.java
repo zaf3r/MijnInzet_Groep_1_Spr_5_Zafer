@@ -1,7 +1,7 @@
 package makeitwork.mijninzet.repository;
 
 import makeitwork.mijninzet.model.Cohort;
-import makeitwork.mijninzet.model.CourseSchedule;
+import makeitwork.mijninzet.model.CourseSchedule.CourseSchedule;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,8 +13,6 @@ public interface CourseScheduleRepository extends JpaRepository<CourseSchedule,I
 
     List<CourseSchedule>  findAllByCohort(Cohort cohort);
     List<CourseSchedule> findAllByDate(LocalDate date);
-
-
-
-
+    List<CourseSchedule> findAllByDateAfter(LocalDate begin);
+    List<CourseSchedule> findAllByCohortAndDate(Cohort cohort, LocalDate localDate);
 }

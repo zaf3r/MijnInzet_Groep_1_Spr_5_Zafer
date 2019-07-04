@@ -35,6 +35,16 @@
     <body>
 
     <div class="content">
+        <div class= "container" id="link" align = "right">
+            <button onclick="window.location.href = '/teacher/myTasks';" id = "linkButton">Mijn Sollicitaties</button>
+        </div>
+
+        <div class = "container" id="hours" align="right">
+            <form action="#" th:action="@{/teacher/taskoverview}"  th:object="${user}" method="get">
+                <i class="far fa-clock">&nbsp; Nog <span class = "hours" th:text = "${user}"></span> uur beschikbaar</i>
+            </form>
+        </div>
+
         <h1>Vacatures</h1>
         <section id="gallery">
             <div class="container">
@@ -57,6 +67,7 @@
                                 </div>
                             </form>
                         </div>
+<!--                        <span th:text ="${user.hoursAllocated}"></span>-->
                     </div>
                 </div>
             </div>
@@ -71,6 +82,13 @@
             integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script>
+
+    </script>
+
+
+
     </body>
     </html>
 

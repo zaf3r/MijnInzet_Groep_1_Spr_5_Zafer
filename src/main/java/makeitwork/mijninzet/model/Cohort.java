@@ -15,7 +15,7 @@ import java.util.List;
 public class Cohort {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cohortId")
     private int cohortId;
 

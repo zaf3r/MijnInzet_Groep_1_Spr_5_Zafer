@@ -1,7 +1,9 @@
-package makeitwork.mijninzet.model;
+package makeitwork.mijninzet.model.CourseSchedule;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import makeitwork.mijninzet.model.Availability.PartOfDay;
-import makeitwork.mijninzet.model.Availability.Weekday;
+import makeitwork.mijninzet.model.Cohort;
+import makeitwork.mijninzet.model.User;
 import makeitwork.mijninzet.model.preference.Subject;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -11,7 +13,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name="vakkenrooster")
-public class CourseSchedule {
+public class CourseSchedule implements Comparable<CourseSchedule>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -36,6 +38,7 @@ public class CourseSchedule {
     @Column(name="status")
     private StatusCourseSchedule status;
 
+    @JsonIgnore
     @ManyToOne()
     @JoinColumn(name="docent")
     private User user;
@@ -113,8 +116,7 @@ public class CourseSchedule {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CourseSchedule that = (CourseSchedule) o;
-        return courseId == that.courseId &&
-                cohort.equals(that.cohort) &&
+        return  cohort.equals(that.cohort) &&
                 subject.equals(that.subject) &&
                 date.equals(that.date) &&
                 partOfDay == that.partOfDay;
@@ -125,5 +127,8 @@ public class CourseSchedule {
         return Objects.hash(courseId, cohort, subject, date, partOfDay);
     }
 
-
+    @Override
+    public int compareTo(CourseSchedule o) {
+        return this.getDate().compareTo(o.getDate());
+    }
 }

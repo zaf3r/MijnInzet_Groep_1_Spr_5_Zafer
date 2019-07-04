@@ -6,20 +6,17 @@ import makeitwork.mijninzet.model.Role;
 import makeitwork.mijninzet.model.TeacherSchedule.CohortDay;
 import makeitwork.mijninzet.model.TeacherSchedule.CohortWeek;
 import makeitwork.mijninzet.model.User;
-import makeitwork.mijninzet.model.preference.Subject;
+
 import makeitwork.mijninzet.repository.CohortRepository;
-import makeitwork.mijninzet.repository.SubjectRepository;
 import makeitwork.mijninzet.repository.UserRepository;
 import makeitwork.mijninzet.service.CohortService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.ResourceProperties;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.persistence.Transient;
-import javax.swing.text.AbstractDocument;
+
 import java.security.Principal;
 import java.time.DayOfWeek;
 import java.time.LocalDate;

@@ -1,0 +1,112 @@
+.avond{
+    background-color: azure;
+}
+.content {
+    max-width: 700px;
+    margin: auto;
+}
+.contentData{
+    max-width: 65em;
+    margin: auto;
+}
+.datum{
+    font-size: 120%;
+}
+
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 40em 40em;
+    justify-content: space-evenly;
+    background-color: inherit;
+    padding: 0px;
+    width: 82em;
+}
+.grid-containerData{
+    display: grid;
+    grid-template-columns: 15em 10em 10em;
+    grid-template-rows: auto;
+    justify-content: space-evenly;
+    background-color: inherit;
+    padding: 0px;
+    width: 33em;
+}
+
+.grid-container1 {
+    display: grid;
+    grid-template-columns: 14em 7em 7em 7em 7em 10em;
+    background-color: inherit;
+    padding: 0px;
+    justify-content: space-evenly;
+    width: 50em;
+}
+.grid-container3 {
+    display: grid;
+    grid-template-columns: 10em 10em 10em 10em 10em 10em 10em;
+    grid-row-gap: 5px;
+    background-color: inherit;
+    padding: 0px;
+    justify-content: space-evenly;
+    width: 52em;
+}
+.grid-container2 {
+    display: grid;
+    grid-template-rows: 5em 5em 5em;
+    grid-template-columns: 10em 10em
+}
+
+.grid-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    font-size: inherit;
+    text-align: center;
+}
+.grid-item1 {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    font-size: inherit;
+    text-align: center;
+    justify-self: stretch;
+}
+.input.largerCheckbox {
+    width: 110%;
+    height: 110%;
+}
+
+.input.largerText {
+    width: 110%;
+    height: 110%;
+    font-size: 110%;
+}
+.input.selectData{
+    width: 19em;
+    font-size: 110%;
+}
+.kop{
+    font-size: large;
+    margin: auto;
+}
+.middag{
+    background-color: #c6ebfe;
+}
+.morgen{
+    background-color: #62B7C2;
+}
+.regelsPerLes {
+    width: 31em;
+}
+.regelsPerWeek{
+    width: 52em;
+}
+.selectionData{
+    margin: auto;
+    width: 30%;
+    border: #e5e5e5;
+    padding: 10px;
+}
+
+
+
+
