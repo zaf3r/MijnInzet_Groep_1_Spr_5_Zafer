@@ -70,46 +70,11 @@ public class CohortController implements RetrieveUserRole {
         return "cohortSubject";
     }
 
-//    @PostMapping("/cohortsToSelect")
-//    public @ResponseBody
-//    String cohortsToPlan(@RequestBody String requestPayload, Principal principal){
-////        User user = userRepository.findByUsername(principal.getName());
-//        List<Cohort> cohorts = getAllCohorts(actualUser);
-//        System.out.println("Hi!" + actualUser);
-//        System.out.println(cohorts);
-//        return new Gson().toJson(cohorts);
-//    }
 
     public List<User> getCoordinators(){
         List<User> allCoordinators = cohortService.userList(COORDINATOR);
         return allCoordinators;
     }
-
-//    public List<Cohort> getAllCohorts(User user){
-//        List<Cohort> allcohorts = coRepo.findByUser(user);
-//        return allcohorts;
-//    }
-
-//    public List<Subject> getAllSubjects(){
-//        List<Subject> allSubjects = subRepo.findAll();
-//        return allSubjects;
-//    }
-//
-//    public List<Subject> selectedSubjects(Cohort cohort){
-//        List<Subject> selectedSubjects = cohortService.getAllSubjects(cohort);
-//        return selectedSubjects;
-//    }
-
-//    public List<Subject> possibleSubjects(Cohort cohort){
-//        List<Subject> possibleSubjects = new ArrayList<>();
-//        List<Subject> subjects = getAllSubjects();
-//        for (Subject s : subjects){
-//            if (!selectedSubjects(cohort).contains(s)){
-//                possibleSubjects.add(s);
-//            }
-//        }
-//        return possibleSubjects;
-//    }
 
     @PostMapping("/saveCohort")
     public String saveCohort(@ModelAttribute("saveCohort")Cohort cohort, @RequestParam("coordinator")User co) {
@@ -121,41 +86,6 @@ public class CohortController implements RetrieveUserRole {
         return "redirect:/manager/cohort";
     }
 
-//    @PostMapping("/showSubjects")
-//    public String showSubjects(@RequestParam("cohortName") String cohortName, Model model){
-//        Cohort cohort = coRepo.findByCohortName(cohortName);
-//        selectedCohort = cohortName;
-//        model.addAttribute("cohortName", selectedCohort);
-//        subjectList(cohort);
-//        return "redirect:/manager/cohortSubject";
-//    }
-//
-//    @PostMapping("/addSubjects")
-//    public String addSubjectHandler(@RequestParam("subjectName") int subjectId ){
-//        Cohort cohort = coRepo.findByCohortName(selectedCohort);
-//        Subject subject = subRepo.findBySubjectId(subjectId);
-//        cohort.addSubject(subject);
-//        coRepo.save(cohort);
-//        subjectList(cohort);
-//
-//        return "redirect:/manager/cohortSubject";
-//    }
-//
-//    @PostMapping("/removeSubjects")
-//    public String removeSubjectHandler(@RequestParam("selectedSubjectList") int subjectId){
-//        Cohort cohort = coRepo.findByCohortName(selectedCohort);
-//        Subject subject = subRepo.findBySubjectId(subjectId);
-//        cohort.removeSubject(subject);
-//        coRepo.save(cohort);
-//        subjectList(cohort);
-//
-//        return "redirect:/manager/cohortSubject";
-//    }
-
-//    public void subjectList(Cohort cohort){
-//        selectedSubjectList = selectedSubjects(cohort);
-//        possibleSubjectList = possibleSubjects(cohort);
-//    }
 
     public void generateWeeksAndDays(Cohort cohort) {
         List<CohortWeek> cohortWeekList = new ArrayList<>();
@@ -174,7 +104,6 @@ public class CohortController implements RetrieveUserRole {
         }
         cohort.setCohortWeekList(cohortWeekList);
         coRepo.save(cohort);
-        //TO DO: MAKE IT CLEAN - EVERYTHING A SINGLE PURPOSE
     }
 
     public User retrieveDefaultTeacher() {
